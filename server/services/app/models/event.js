@@ -18,16 +18,126 @@ module.exports = (sequelize, DataTypes) => {
   }
   Event.init(
     {
-      CategoryId: DataTypes.INTEGER,
-      name: DataTypes.STRING,
-      location: DataTypes.STRING,
-      description: DataTypes.TEXT,
-      eventDate: DataTypes.DATE,
-      eventHomepageLink: DataTypes.STRING,
-      eventDuration: DataTypes.STRING,
-      AdminId: DataTypes.INTEGER,
-      image: DataTypes.STRING,
-      ticketPrice: DataTypes.INTEGER,
+      CategoryId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: `Please choose event's category`,
+          },
+          notEmpty: {
+            msg: `Please choose event's category`,
+          },
+        },
+      },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: `Event's name is required`,
+          },
+          notEmpty: {
+            msg: `Event's name is required`,
+          },
+        },
+      },
+      location: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: `Event's location is required`,
+          },
+          notEmpty: {
+            msg: `Event's location is required`,
+          },
+        },
+      },
+      description: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: `Event's description is required`,
+          },
+          notEmpty: {
+            msg: `Event's description is required`,
+          },
+        },
+      },
+      eventDate: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: `Event's date is required`,
+          },
+          notEmpty: {
+            msg: `Event's date is required`,
+          },
+        },
+      },
+      eventHomepageLink: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: `Event's official homepage is required`,
+          },
+          notEmpty: {
+            msg: `Event's official homepage is required`,
+          },
+        },
+      },
+      eventDuration: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: `Event's duration is required`,
+          },
+          notEmpty: {
+            msg: `Event's duration is required`,
+          },
+        },
+      },
+      AdminId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: `Information of the event creator is required`,
+          },
+          notEmpty: {
+            msg: `Information of the event creator is required`,
+          },
+        },
+      },
+      image: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: `Event's image/photo is required`,
+          },
+          notEmpty: {
+            msg: `Event's image/photo is required`,
+          },
+        },
+      },
+      ticketPrice: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: `Event's ticket price is required`,
+          },
+          notEmpty: {
+            msg: `Event's ticket price is required`,
+          },
+        },
+      },
     },
     {
       sequelize,

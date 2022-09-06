@@ -1,0 +1,179 @@
+{
+  "users": [
+    {
+      "email": "admin1@mail.com",
+      "password": "12345",
+      "firstName": "admin1",
+      "lastName": "admin1",
+      "address": "Jakarta",
+      "birthdate": "01/01/1990",
+      "profilePict": "https://i.pravatar.cc/300",
+      "instagramAccount": "@admin1",
+      "twitterAccount": "@admin1",
+      "phoneNumber": "0812345",
+      "gender": "Male",
+      "role": "Admin"
+    },
+    {
+      "email": "admin2@mail.com",
+      "password": "12345",
+      "firstName": "admin2",
+      "lastName": "admin2",
+      "address": "Jakarta",
+      "birthdate": "01/01/1990",
+      "profilePict": "https://i.pravatar.cc/300",
+      "instagramAccount": "@admin2",
+      "twitterAccount": "@admin2",
+      "phoneNumber": "0812345",
+      "gender": "Female",
+      "role": "Admin"
+    },
+    {
+      "email": "user1@mail.com",
+      "password": "12345",
+      "firstName": "user1",
+      "lastName": "user1",
+      "address": "Bandung",
+      "birthdate": "01/01/1990",
+      "profilePict": "https://i.pravatar.cc/300",
+      "instagramAccount": "@user1",
+      "twitterAccount": "@user1",
+      "phoneNumber": "0812345",
+      "gender": "Male",
+      "role": "Visitor"
+    },
+    {
+      "email": "user2@mail.com",
+      "password": "12345",
+      "firstName": "user2",
+      "lastName": "user2",
+      "address": "Surabaya",
+      "birthdate": "01/01/2005",
+      "profilePict": "https://i.pravatar.cc/300",
+      "instagramAccount": "@user2",
+      "twitterAccount": "@user2",
+      "phoneNumber": "0812345",
+      "gender": "Female",
+      "role": "Visitor"
+    },
+    {
+      "email": "user3@mail.com",
+      "password": "12345",
+      "firstName": "user3",
+      "lastName": "user3",
+      "address": "Bandung",
+      "birthdate": "01/01/2005",
+      "profilePict": "https://i.pravatar.cc/300",
+      "instagramAccount": "@user3",
+      "twitterAccount": "@user3",
+      "phoneNumber": "0812345",
+      "gender": "Female",
+      "role": "Visitor"
+    }
+  ],
+  "Categories": [
+    {
+      "name": "Music"
+    },
+    {
+      "name": "Attraction"
+    },
+    {
+      "name": "Playground"
+    },
+    {
+      "name": "Workshop and Education"
+    },
+    {
+      "name": "Tours"
+    }
+  ],
+  "events": [
+    {
+      "CategoryId": 1,
+      "name": "Synchronize Fest",
+      "location": "Kemayoran, Jakarta",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
+      "eventDate": "2022/10/08",
+      "eventHomepageLink": "https://synchronizefestival.com",
+      "eventDuration": "3 Days",
+      "AdmindId": 1,
+      "image": "http://vradiofm.com/uploads/news/730b2923-60ed-41f4-8895-04d6c49c325c78805a221a988e79ef3f42d7c5bfd418.jpg",
+      "ticketPrice": 500000
+    },
+    {
+      "CategoryId": 1,
+      "name": "The Sounds Project",
+      "location": "Ancol, Jakarta",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
+      "eventDate": "2022/8/22",
+      "eventHomepageLink": "https://www.thesoundsproject.com",
+      "eventDuration": "3 Days",
+      "AdmindId": 2,
+      "image": "https://cdn.kiostix.com/media/18304/conversions/medium.jpg",
+      "ticketPrice": 800000
+    },
+    {
+      "CategoryId": 5,
+      "name": "Labuan Bajo",
+      "location": "Nusa Tenggara Timur",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
+      "eventDate": "2022/12/10",
+      "eventHomepageLink": "https://www.indonesia.travel/id/id/destinasi/bali-nusa-tenggara/labuan-bajo",
+      "eventDuration": "5 Days",
+      "AdmindId": 1,
+      "image": "https://img.jakpost.net/c/2017/08/02/2017_08_02_30495_1501654303._large.jpg",
+      "ticketPrice": 8000000
+    },
+    {
+      "CategoryId": 3,
+      "name": "Dunia Fantasi",
+      "location": "Ancol, Jakarta",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
+      "eventDate": "2022/11/02",
+      "eventHomepageLink": "https://synchronizefestival.com",
+      "eventDuration": "1 Day",
+      "AdmindId": 2,
+      "image": "https://s-light.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/rsfit19201280gsm/events/2021/12/08/9c6ae660-1799-4276-b81d-f8b0b85669d6-1638949473006-1e6c55a1b1edca6bf250012af2cc79e2.jpg",
+      "ticketPrice": 200000
+    }
+  ],
+  "magnets": [
+    {
+      "UserId": 3,
+      "EventId": 1,
+      "confirmationDate": "2022/10/03",
+      "status": "open",
+      "ageRequirement": "18",
+      "specialRequirement": "Male or Female",
+      "magnetDescription": "Pengen nonton tapi gapunya temen, ayo temenin! Kesononya naik bis",
+      "participant": 4,
+      "vacantParticipant": 3,
+      "participantDescription": "Yang ikut baru saya saja, mencari 3 orang, pria atau wanita bebas"
+    },
+    {
+      "UserId": 4,
+      "EventId": 1,
+      "confirmationDate": "2022/10/03",
+      "status": "open",
+      "ageRequirement": "18",
+      "specialRequirement": "Female",
+      "magnetDescription": "Cari teman untuk nonton konser, transportasi saya tanggung",
+      "participant": 2,
+      "vacantParticipant": 1,
+      "participantDescription": "Mencari 1 orang wanita untuk nonton bareng! Yang ikut baru saya saja"
+    },
+    {
+      "UserId": 5,
+      "EventId": 1,
+      "confirmationDate": "2022/10/03",
+      "status": "open",
+      "ageRequirement": "18",
+      "specialRequirement": "Male or Female",
+      "magnetDescription": "Synchronize fest, akomodasi di hotel bintang 3",
+      "participant": 6,
+      "vacantParticipant": 3,
+      "participantDescription": "Mencari 3 orang, 2 wanita 1 Pria untuk nonton bareng! Yang ikut baru saya, kakak saya(perempuan) dan adik saya(perempuan)"
+    }
+  ]
+}

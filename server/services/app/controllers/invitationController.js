@@ -1,41 +1,60 @@
-const { Invitation, User } = require('../models');
+const { Invitation, User, Event, Magnet } = require('../models');
+const fetch = require('node-fetch');
 
-const nodemailer = require('nodemailer');
+// const nodemailer = require('nodemailer');
 
 class InvitationController {
   static async sendMailInvitation(req, res, next) {
-    const { id } = req.params;
     try {
-      const user = await Invitation.findOne({
+      const { id } = req.params;
+      const user = await User.findAll();
+      const event = await Event.findByPk(id, {
         include: User,
-        where: {
-          id: id,
-        },
       });
 
-      const transporter = nodemailer.createTransport({
-        service: 'yopmail',
-        auth: {
-          user: 'goteifijeco-1184@yopmail.com',
-        },
+      const allMailUser = user.map((el) => {
+        return {
+          email: el.email,
+        };
       });
-      const options = {
-        from: 'goteifijeco-1184@yopmail.com',
-        to: 'tes@tes.com',
-        subject: `Hello Guys`,
-        text: `Kamu mendapatkan undangan untuk bergabung dalam event kami`,
-      };
+      const userStr = allMailUser.map(function (mail) {
+        return mail['email'];
+      });
 
-      // transporter.sendMail(options, function (err, info) {
-      //   if (err) {
-      //     console.log(err);
-      //     return;
-      //   } else {
-      //     console.log('sent: ' + info.response);
-      //   }
-      // });
-      res.status(200).json({ message: 'success send maiil', user });
+      for (let i = 0; i < userStr.length; i++) {
+        const options = {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer pk_prod_R6NNEYEZ5QMY2CNTVK56Z4DFCNJ4',
+          },
+          body: JSON.stringify({
+            message: {
+              to: {
+                email: userStr[i],
+              },
+              content: {
+                title: 'Hellow',
+                body: 'Test',
+              },
+            },
+          }),
+        };
+        // const successSendInvitation = await Invitation.create({});
+
+        fetch('https://api.courier.com/send', options)
+          .then((response) => response.json())
+          .then((response) => console.log(response))
+          .catch((err) => console.error(err));
+      }
+
+      res.status(200).json({
+        message: `success send mail to ...`,
+        event,
+      });
     } catch (error) {
+      console.log(error);
       next(error);
     }
   }

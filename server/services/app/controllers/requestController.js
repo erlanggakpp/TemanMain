@@ -1,43 +1,65 @@
-const { Request, User } = require('../models');
-const nodemailer = require('nodemailer');
+const { Request, User, Magnet } = require('../models');
+// const nodemailer = require('nodemailer');
+const fetch = require('node-fetch');
+
 class RequestController {
   static async requestEmail(req, res, next) {
     try {
       const { id } = req.params;
-      const user = await Request.findOne({
-        include: User,
+      const { requestDescription } = req.body;
+      const magnet = await Magnet.findOne({
+        include: {
+          model: User,
+          attributes: {
+            exclude: ['password'],
+          },
+        },
         where: {
-          MagnetId: id,
+          id: id,
         },
       });
-      const mailUser = user.User.email;
+      const mailUser = magnet.User.email;
+      const EventId = magnet.EventId;
+      const UserId = magnet.UserId;
 
-      const transporter = nodemailer.createTransport({
-        service: 'yopmail',
-        auth: {
-          user: 'goteifijeco-1184@yopmail.com',
-          pass: '',
-        },
-      });
       const options = {
-        from: 'goteifijeco-1184@yopmail.com',
-        to: mailUser,
-        subject: `Hello Guys`,
-        text: `Kamu mendapatkan undangan untuk bergabung dalam event kami`,
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer pk_prod_R6NNEYEZ5QMY2CNTVK56Z4DFCNJ4',
+        },
+        body: JSON.stringify({
+          message: {
+            to: {
+              email: mailUser,
+            },
+            content: {
+              title: 'Hellow',
+              body: 'Test',
+            },
+          },
+        }),
       };
 
-      transporter.sendMail(options, function (err, info) {
-        if (err) {
-          console.log(err);
-          return;
-        } else {
-          console.log('sent: ' + info.response);
-        }
+      fetch('https://api.courier.com/send', options)
+        .then((response) => response.json())
+        .then((response) => console.log(response))
+        .catch((err) => console.error(err));
+
+      const createRequest = await Request.create({
+        UserId,
+        EventId,
+        MagnetId: id,
+        requestDescription,
+        status: false,
       });
+
       res
         .status(200)
-        .json({ message: `success send maiil to ${mailUser}`, mailUser });
+        .json({ message: `success send mail to ${mailUser}`, createRequest });
     } catch (error) {
+      console.log(error);
       next(error);
     }
   }

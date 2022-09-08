@@ -1,6 +1,7 @@
 const { User } = require('../models/index.js')
 const { createToken } = require('../helper/jwt.js')
 const { comparePassword } = require('../helper/bcryptjs.js')
+const { AgeFormat } = require('../helper/customFormat.js')
 
 class UserController {
     static async readAllUser(req, res, next) {
@@ -167,10 +168,13 @@ class UserController {
             }
 
             const access_token = createToken(payload)
+            const age = AgeFormat(findUser.birthdate)
 
             res.status(200).json({
                 message: `Successfully login as ${findUser.firstName}`,
-                access_token
+                access_token,
+                age,
+                gender: findUser.gender
             })
         } catch (error) {
             next(error)

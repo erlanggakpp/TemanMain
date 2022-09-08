@@ -1,6 +1,7 @@
 "use strict";
 const { users } = require("../../../../db.json");
 const { hashPassword } = require('../helper/bcryptjs.js')
+const { HTMLDateFormat } = require('../helper/customFormat.js')
 
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -18,6 +19,7 @@ module.exports = {
       el.createdAt = new Date();
       el.updatedAt = new Date();
       el.password = hashPassword(el.password);
+      el.birthdate = HTMLDateFormat(el.birthdate)
     });
     await queryInterface.bulkInsert("Users", userSeed, {});
   },

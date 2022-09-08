@@ -1,4 +1,4 @@
-const { Magnet } = require("../models");
+const { Magnet, Request, Invitation, User } = require("../models");
 
 class MagnetController {
   static async getAllMagnets(req, res, next) {
@@ -85,6 +85,73 @@ class MagnetController {
       });
       res.status(200).json({ message: "Successfully deleted magnet" });
     } catch (error) {
+      next(error);
+    }
+  }
+  static async getMagnetByUserId(req, res, next) {
+    try {
+      const { userId } = req.params;
+      const magnetList = await Magnet.findAll({
+        where: {
+          UserId: userId,
+        },
+      });
+      // console.log(magnetList);
+      if (!magnetList.length) {
+        throw { name: "magnetsNotExist" };
+      }
+      res.status(200).json(magnetList);
+    } catch (error) {
+      next(error);
+    }
+  }
+  static async findOneMagnet(req, res, next) {
+    try {
+      const { magnetId } = req.params;
+      const magnet = await Magnet.findOne({
+        where: {
+          id: magnetId,
+        },
+        include: [
+          {
+            model: Request,
+          },
+          {
+            model: Invitation,
+          },
+          {
+            model: User,
+          },
+        ],
+      });
+      res.status(200).json(magnet);
+    } catch (error) {
+      // console.log(error);
+      next(error);
+    }
+  }
+  static async findOneMagnet(req, res, next) {
+    try {
+      const { magnetId } = req.params;
+      const magnet = await Magnet.findOne({
+        where: {
+          id: magnetId,
+        },
+        include: [
+          {
+            model: Request,
+          },
+          {
+            model: Invitation,
+          },
+          {
+            model: User,
+          },
+        ],
+      });
+      res.status(200).json(magnet);
+    } catch (error) {
+      // console.log(error);
       next(error);
     }
   }

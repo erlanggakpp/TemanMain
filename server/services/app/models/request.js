@@ -19,7 +19,18 @@ module.exports = (sequelize, DataTypes) => {
       UserId: DataTypes.INTEGER,
       EventId: DataTypes.INTEGER,
       MagnetId: DataTypes.INTEGER,
-      requestDescription: DataTypes.TEXT,
+      requestDescription: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: `Request description is required`,
+          },
+          notEmpty: {
+            msg: `Request description is required`,
+          },
+        },
+      },
       status: DataTypes.STRING,
     },
     {

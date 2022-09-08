@@ -1,0 +1,39 @@
+import Carousel from "react-bootstrap/Carousel";
+
+const styleCarousel = {"max-height" : "300px", "max-width" : "20%", "objectFit" : "cover", marginTop : "20px", borderRadius : "0.5em"}
+
+export default function CategoryCarou() {
+  return (
+    <div>
+      <div>
+        <div  className="rounded" style={{display : "flex", flexWrap : "wrap", justifyContent : "space-between"}}>
+          <img
+            className="d-block w-100 round"
+            src="https://img.freepik.com/free-vector/music-event-poster-template-with-colorful-shapes_1361-1591.jpg?w=2000"
+            alt="First slide"
+            style={styleCarousel}
+          />
+          <img
+            className="d-block w-100"
+            src="https://img.freepik.com/free-vector/music-event-poster-template-with-colorful-shapes_1361-1591.jpg?w=2000"
+            alt="First slide"
+            style={styleCarousel}
+          />
+          <img
+            className="d-block w-100"
+            src="https://img.freepik.com/free-vector/music-event-poster-template-with-colorful-shapes_1361-1591.jpg?w=2000"
+            alt="First slide"
+            style={styleCarousel}
+          />
+        <img
+          className="d-block w-100"
+          src="https://img.freepik.com/free-vector/modern-music-event-poster-template_1361-1292.jpg?w=2000"
+          alt="Second slide"
+          style={styleCarousel}
+        />
+
+        </div>
+      </div>
+    </div>
+  );
+}

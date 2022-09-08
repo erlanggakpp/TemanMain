@@ -1,0 +1,1 @@
+export const fetch_event = 'get/events'

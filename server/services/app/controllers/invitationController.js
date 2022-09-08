@@ -6,8 +6,13 @@ const fetch = require('node-fetch');
 class InvitationController {
   static async sendMailInvitation(req, res, next) {
     try {
-      const { id } = req.params;
-      const user = await User.findAll();
+      const { id } = req.body;
+      // const EventId = req.params.id;
+      const user = await User.findAll({
+        where: {
+          id: id,
+        },
+      });
 
       const allMailUser = user.map((el) => {
         return {
@@ -48,6 +53,7 @@ class InvitationController {
 
       res.status(200).json({
         message: `success send mail to ${userStr}`,
+        user,
       });
     } catch (error) {
       console.log(error);

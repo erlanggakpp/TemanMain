@@ -15,13 +15,90 @@ module.exports = (sequelize, DataTypes) => {
     {
       UserId: DataTypes.INTEGER,
       EventId: DataTypes.INTEGER,
-      confirmationDate: DataTypes.DATE,
-      status: DataTypes.BOOLEAN,
-      ageRequirement: DataTypes.STRING,
-      specialRequirement: DataTypes.STRING,
-      magnetDescription: DataTypes.TEXT,
-      participant: DataTypes.INTEGER,
-      vacantParticipant: DataTypes.INTEGER,
+      confirmationDate: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: `Confirmation date is required`,
+          },
+          notEmpty: {
+            msg: `Confirmation date is required`,
+          },
+        },
+      },
+      status: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: `Magnet status is required`,
+          },
+          notEmpty: {
+            msg: `Magnet status is required`,
+          },
+        },
+      },
+      ageRequirement: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: `Age requirement is required`,
+          },
+          notEmpty: {
+            msg: `Age requirement is required`,
+          },
+        },
+      },
+      specialRequirement: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: `Special requirement is required`,
+          },
+          notEmpty: {
+            msg: `Special requirement is required`,
+          },
+        },
+      },
+      magnetDescription: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: `Magnet description is required`,
+          },
+          notEmpty: {
+            msg: `Magnet description is required`,
+          },
+        },
+      },
+      participant: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: `Participant number is required`,
+          },
+          notEmpty: {
+            msg: `Participant number is required`,
+          },
+        },
+      },
+      vacantParticipant: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: `Number of vacant participant is required`,
+          },
+          notEmpty: {
+            msg: `Number of vacant participant is required`,
+          },
+        },
+      },
     },
     {
       sequelize,

@@ -1,30 +1,43 @@
-import axios from "axios";
 // import NavBar from "../components/NavBar";
 import CarouselComp from "../components/CarouselComp";
 import CategoryCarou from "../components/CategoryCarou";
 
 import { useEffect, useState } from "react";
-import { fetchEvent } from "../store/action/events";
+import { detailEvent, fetchEvent, loadingSet } from "../store/action/events";
 import { useDispatch, useSelector } from "react-redux";
+import { fetchCategory } from "../store/action/categories";
+import { fetchMagnet } from "../store/action/magnets";
 
 // const styleRound = {width : 20%}
 
 export default function HomePage() {
-    const dispatch = useDispatch()
-    const {events} = useSelector((e)=>e.events)
-    useEffect(()=>{
-        dispatch(fetchEvent())
-        console.log(events);
-    }, [])
-    // if(events.length == 0) return(<h1>Loading...</h1>)
+  const dispatch = useDispatch();
+  const { events, eventDetail, loading } = useSelector((e) => e.events);
+  const { categories } = useSelector((e) => e.categories);
+  const { magnets } = useSelector((e) => e.magnets);
+
+  useEffect(() => {
+    dispatch(fetchEvent()).finally(() => {
+      dispatch(loadingSet(false));
+    });
+    dispatch(detailEvent(2)).finally(() => {
+      dispatch(loadingSet(false));
+    });
+    dispatch(fetchCategory()).finally(() => {
+      dispatch(loadingSet(false));
+    });
+    dispatch(fetchMagnet()).finally(() => {
+      dispatch(loadingSet(false));
+    });
+  }, []);
+  // if(events.length == 0) return(<h1>Loading...</h1>)
   return (
     <>
-      {/* <h1>{JSON.stringify(events)}</h1> */}
       <div className="container-fluid">
         <div className="container">
           <div className="row">
             <div className="col-12">
-              <div style={{height : "200px"}}>
+              <div style={{ height: "200px" }}>
                 <h1>INI BUAT LOGO</h1>
               </div>
               <CarouselComp />
@@ -46,4 +59,3 @@ export default function HomePage() {
     </>
   );
 }
-

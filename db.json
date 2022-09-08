@@ -90,6 +90,7 @@
   ],
   "events": [
     {
+      "id": 1,
       "CategoryId": 1,
       "name": "Synchronize Fest",
       "location": "Kemayoran, Jakarta",
@@ -102,6 +103,7 @@
       "ticketPrice": 500000
     },
     {
+      "id": 2,
       "CategoryId": 1,
       "name": "The Sounds Project",
       "location": "Ancol, Jakarta",
@@ -114,6 +116,7 @@
       "ticketPrice": 800000
     },
     {
+      "id": 3,
       "CategoryId": 5,
       "name": "Labuan Bajo",
       "location": "Nusa Tenggara Timur",
@@ -126,6 +129,7 @@
       "ticketPrice": 8000000
     },
     {
+      "id": 4,
       "CategoryId": 3,
       "name": "Dunia Fantasi",
       "location": "Ancol, Jakarta",
@@ -140,6 +144,7 @@
   ],
   "magnets": [
     {
+      "id": 1,
       "UserId": 3,
       "EventId": 1,
       "confirmationDate": "2022/10/03",
@@ -152,6 +157,7 @@
       "participantDescription": "Yang ikut baru saya saja, mencari 3 orang, pria atau wanita bebas"
     },
     {
+      "id": 2,
       "UserId": 4,
       "EventId": 1,
       "confirmationDate": "2022/10/03",
@@ -164,6 +170,7 @@
       "participantDescription": "Mencari 1 orang wanita untuk nonton bareng! Yang ikut baru saya saja"
     },
     {
+      "id": 3,
       "UserId": 5,
       "EventId": 1,
       "confirmationDate": "2022/10/03",
@@ -174,6 +181,19 @@
       "participant": 6,
       "vacantParticipant": 3,
       "participantDescription": "Mencari 3 orang, 2 wanita 1 Pria untuk nonton bareng! Yang ikut baru saya, kakak saya(perempuan) dan adik saya(perempuan)"
+    },
+    {
+      "UserId": 3,
+      "EventId": 1,
+      "confirmationDate": "2022/10/03",
+      "status": "open",
+      "ageRequirement": "19",
+      "specialRequirement": "Female",
+      "magnetDescription": "apawe",
+      "participant": "6",
+      "vacantParticipant": "5",
+      "participantDescription": "asdasdasd",
+      "id": 4
     }
   ]
 }

@@ -1,7 +1,7 @@
-import logo from './logo.svg';
-import HomePage from './pages/HomePage';
-import './App.css';
-import NavBar from './components/NavBar';
+import logo from "./logo.svg";
+import HomePage from "./pages/HomePage";
+import "./App.css";
+import NavBar from "./components/NavBar";
 
 function App() {
   return (
@@ -10,13 +10,13 @@ function App() {
         <div className="container">
           <div className="row">
             <div className="col-12">
-            <NavBar/>
+              <NavBar />
             </div>
           </div>
         </div>
       </div>
-      
-      <HomePage/>
+
+      <HomePage />
     </div>
   );
 }

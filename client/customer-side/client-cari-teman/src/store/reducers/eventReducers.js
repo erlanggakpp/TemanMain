@@ -1,8 +1,9 @@
-import { fetch_event } from "../action/actionType";
+import { fetch_detail, fetch_event, loading_set } from "../action/actionType";
 
-
- const initialState = {
+const initialState = {
   events: [],
+  eventDetail: "",
+  loading: false,
 };
 
 function eventReducers(state = initialState, action) {
@@ -11,6 +12,16 @@ function eventReducers(state = initialState, action) {
       return {
         ...state,
         events: action.payload,
+      };
+    case fetch_detail:
+      return {
+        ...state,
+        eventDetail: action.payload,
+      };
+    case loading_set:
+      return {
+        ...state,
+        loading: action.payload,
       };
 
     default:

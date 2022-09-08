@@ -8,9 +8,6 @@ class InvitationController {
     try {
       const { id } = req.params;
       const user = await User.findAll();
-      const event = await Event.findByPk(id, {
-        include: User,
-      });
 
       const allMailUser = user.map((el) => {
         return {
@@ -50,8 +47,7 @@ class InvitationController {
       }
 
       res.status(200).json({
-        message: `success send mail to ...`,
-        event,
+        message: `success send mail to ${userStr}`,
       });
     } catch (error) {
       console.log(error);

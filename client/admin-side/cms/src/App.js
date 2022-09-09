@@ -5,6 +5,9 @@ import { Routes, Route } from "react-router-dom";
 import EventAdd from './components/EventAdd';
 import TableUser from './components/TableUser';
 import UserAdd from './components/UserAdd';
+import TableCategory from './components/TableCategory';
+import CategoryAdd from './components/CategoryAdd';
+import UserEdit from './components/UserEdit';
 
 function App() {
   return (
@@ -15,6 +18,9 @@ function App() {
         <Route path="/event" element={<EventAdd />} />
         <Route path="/listuser" element={<TableUser />} />
         <Route path="/user" element={<UserAdd />} />
+        <Route path="/user/:id" element={<UserEdit />} />
+        <Route path="/listcategory" element={<TableCategory />} />
+        <Route path="/category" element={<CategoryAdd />} />
       </Routes>
     </div>
   );

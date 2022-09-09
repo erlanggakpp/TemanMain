@@ -1,17 +1,31 @@
 import Table from 'react-bootstrap/Table';
 import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col'
-import Stack from 'react-bootstrap/Stack';
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect, useState } from 'react';
+import { fetchEvents } from '../store/actions';
+import EventTableRow from './EventTableRow';
+
 
 export default function TableEvent() {
+    const dispatch = useDispatch()
+    const [loading, setLoading] = useState(true)
+    const { events } = useSelector((state) => state.event)
+
+    useEffect(() => {
+        dispatch(fetchEvents())
+            .then((_) => {
+                console.log('Success')
+            })
+            .finally(() => setLoading(false))
+    }, [])
+
+
     const container = {
         padding: "20px"
     }
-    const image = {
-        width: "300px",
-        height: "150px"
-    }
+
+
     return (
         <Col lg={true} style={container}>
             <Container>
@@ -28,20 +42,13 @@ export default function TableEvent() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Synchronize Fest</td>
-                            <td>Kemayoran, Jakarta</td>
-                            <td>2022/10/08</td>
-                            <td><img src="http://vradiofm.com/uploads/news/730b2923-60ed-41f4-8895-04d6c49c325c78805a221a988e79ef3f42d7c5bfd418.jpg" style={image} /></td>
-                            <td>3 Days</td>
-                            <td>
-                                <Stack gap={2} direction="horizontal">
-                                    <Button variant="primary" className="justify-center">Edit</Button>
-                                    <Button variant="danger" className="justify-center">Delete</Button>
-                                </Stack>
-                            </td>
-                        </tr>
+                        {loading ? (
+                            <h1>Loadingg cuyy ...</h1>
+                        ) : (
+                            events.data.map((event, i) =>
+                                <EventTableRow key={i} event={event} i={i} />
+                            )
+                        )}
                     </tbody>
                 </Table>
             </Container>

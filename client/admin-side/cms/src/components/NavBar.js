@@ -3,11 +3,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { NavLink } from "react-router-dom";
 
 export default function NavBar() {
-    const navigate = useNavigate()
     return (
         <Navbar bg="light" expand="lg">
             <Container>
@@ -40,6 +37,18 @@ export default function NavBar() {
                                 </Link>
                             </NavDropdown.Item>
                         </NavDropdown>
+                        <NavDropdown title="Category" id="basic-nav-dropdown">
+                            <NavDropdown.Item>
+                                <Link to="/listcategory">
+                                    List Category
+                                </Link>
+                            </NavDropdown.Item>
+                            <NavDropdown.Item>
+                                <Link to="/category">
+                                    Add Category
+                                </Link>
+                            </NavDropdown.Item>
+                        </NavDropdown>
                     </Nav>
                     <Nav.Link href="">Logout</Nav.Link>
                 </Navbar.Collapse>
@@ -47,14 +56,3 @@ export default function NavBar() {
         </Navbar >
     )
 }
-
-
-{/* <NavLink
-to="tasks"
->
-{({ isActive }) => (
-  <span className={isActive ? activeClassName : undefined}>
-    Tasks
-  </span>
-))}
-</NavLink> */}

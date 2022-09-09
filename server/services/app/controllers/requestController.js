@@ -17,9 +17,11 @@ class RequestController {
   }
   static async createRequest(req, res, next) {
     try {
+      // console.log("MASUUK");
       const { eventId, magnetId } = req.params;
       const { user_id } = req.headers;
       const { requestDescription } = req.body;
+      //
       const createdRequest = await Request.create({
         EventId: eventId,
         MagnetId: magnetId,
@@ -84,6 +86,8 @@ class RequestController {
         }
       );
       const targetMagnet = await Magnet.findByPk(req.targetMagnetId);
+      // console.log(targetMagnet.vacantParticipant, "target controller");
+
       const updateMagnet = await Magnet.update(
         {
           vacantParticipant: targetMagnet.vacantParticipant - 1,

@@ -51,6 +51,28 @@ class MagnetController {
         vacantParticipant,
         status,
       } = req.body;
+      // console.log(S, "INI BODYYY");
+      if (!confirmationDate) {
+        throw { name: "emptyMagDate" };
+      }
+      if (!ageRequirement) {
+        throw { name: "emptyMagAge" };
+      }
+      if (!magnetDescription) {
+        throw { name: "emptyMagDes" };
+      }
+      if (!specialRequirement) {
+        throw { name: "emptyMagSpe" };
+      }
+      if (!participant) {
+        throw { name: "emptyMagPart" };
+      }
+      if (!vacantParticipant) {
+        throw { name: "emptyMagVac" };
+      }
+      if (status === undefined || status === null || status === "") {
+        throw { name: "emptyMagStatus" };
+      }
       const createdMagnet = await Magnet.update(
         {
           confirmationDate,
@@ -91,12 +113,13 @@ class MagnetController {
   static async getMagnetByUserId(req, res, next) {
     try {
       const { userId } = req.params;
+      // console.log(userId);
       const magnetList = await Magnet.findAll({
         where: {
-          UserId: userId,
+          UserId: +userId,
         },
       });
-      // console.log(magnetList);
+      // console.log(magnetList, "INI MAGNET LIST");
       if (!magnetList.length) {
         throw { name: "magnetsNotExist" };
       }
@@ -119,9 +142,9 @@ class MagnetController {
           {
             model: Invitation,
           },
-          {
-            model: User,
-          },
+          // {
+          //   model: User,
+          // },
         ],
       });
       res.status(200).json(magnet);

@@ -12,5 +12,5 @@ router.get(
   EventController.findEventsByCategory
 );
 router.put("/:eventId", EventController.editEvent);
-router.delete("/:eventId", EventController.deleteEvent);
+router.delete("/:eventId", eventChecker, EventController.deleteEvent);
 module.exports = router;

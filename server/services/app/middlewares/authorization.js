@@ -2,7 +2,8 @@ const { Magnet, Invitation, User, Request } = require("../models");
 
 async function ageAuthorizationBeforeCreateInvitation(req, res, next) {
   try {
-    console.log(req.baseUrl);
+    // console.log(req.baseUrl);
+    // console.log("MASUK AUTH");0
     const { target_user_age } = req.headers;
     const { magnetId } = req.params;
     const targetMagnet = await Magnet.findByPk(magnetId);
@@ -23,7 +24,8 @@ async function ageAuthorizationBeforeCreateInvitation(req, res, next) {
 async function magnetAuthorization(req, res, next) {
   try {
     const { magnetId } = req.params;
-    const { UserId } = req.headers;
+    const { user_id } = req.headers;
+    // console.log(user_id, "<<<<<<<<<<<<<<");
     const targetMagnet = await Magnet.findOne({
       where: {
         id: magnetId,
@@ -32,7 +34,7 @@ async function magnetAuthorization(req, res, next) {
     if (!targetMagnet) {
       throw { name: "magnetNotFound" };
     }
-    if (UserId !== targetMagnet.UserId) {
+    if (+user_id !== targetMagnet.UserId) {
       throw { name: "magnetUnauthorized" };
     }
     next();
@@ -50,10 +52,12 @@ async function invitationAuthorization(req, res, next) {
       },
       include: [{ model: Magnet, include: [User] }],
     });
+    // console.log(targetInvitation, "<<<<<<<<<<<<<<<<<");
+    // console.log(+user_id, targetInvitation.Magnet.UserId, "<<<<<<<<<<<<<<<<<");
     if (!targetInvitation) {
       throw { name: "invitationNotFound" };
     }
-    if (+user_id !== targetInvitation.Magnet.User.id) {
+    if (+user_id !== targetInvitation.Magnet.UserId) {
       throw { name: "invitationUnauthorized" };
     }
     req.targetMagnetId = targetInvitation.Magnet.id;
@@ -71,7 +75,7 @@ async function requestAuthorization(req, res, next) {
       where: {
         id: requestId,
       },
-      include: [{ model: Magnet, include: [User] }],
+      include: [{ model: Magnet }],
     });
     if (!targetRequest) {
       throw { name: "requestNotFound" };
@@ -94,15 +98,15 @@ async function acceptRequestAuthorization2(req, res, next) {
       where: {
         id: requestId,
       },
-      include: [{ model: Magnet, include: [User] }],
+      include: [{ model: Magnet }],
     });
-    console.log(user_id, "<<<<<<<");
-    console.log(targetRequest.Magnet.User.id, "<<<<<<<<<<<<");
+    // console.log(user_id, "<<<<<<<");
+    // console.log(targetRequest.Magnet.User.id, "<<<<<<<<<<<<");
     if (!targetRequest) {
       throw { name: "requestNotFound" };
     }
-    if (+user_id !== targetRequest.Magnet.User.id) {
-      throw { name: "requestUnauthorized" };
+    if (+user_id !== targetRequest.Magnet.UserId) {
+      throw { name: "acceptRequestUnauthorized" };
     }
     req.targetMagnetId = targetRequest.Magnet.id;
 
@@ -120,7 +124,7 @@ async function acceptInvitationAuthorization(req, res, next) {
       where: {
         id: invitationId,
       },
-      include: [{ model: Magnet, include: [User] }],
+      include: [{ model: Magnet }],
     });
     if (!targetInvitation) {
       throw { name: "invitationNotFound" };
@@ -148,14 +152,14 @@ async function acceptRequestAuthorization(req, res, next) {
       where: {
         id: requestId,
       },
-      include: [{ model: Magnet, include: [User] }],
+      include: [{ model: Magnet }],
     });
     if (!targetRequest) {
       throw { name: "requestNotFound" };
     }
-    // console.log(user_id, "<<<<<<<");
-    // console.log(targetRequest.Magnet.User.id, "<<<<<<<<<<<<");
-    if (+user_id !== targetRequest.Magnet.User.id) {
+    // console.log(user_id, targetRequest.Magnet.UserId, "<<<<<<<");
+    // console.log(targetRequest.Magnet.vacantParticipant, "VACANT <<<<<<<<<<<<");
+    if (+user_id !== targetRequest.Magnet.UserId) {
       throw { name: "acceptRequestUnauthorized" };
     }
     if (targetRequest.Magnet.vacantParticipant === 0) {

@@ -82,6 +82,33 @@ class EventController {
         image,
         ticketPrice,
       } = req.body;
+      if (!CategoryId) {
+        throw { name: "emptyCategoryId" };
+      }
+      if (!name) {
+        throw { name: "emptyEventName" };
+      }
+      if (!location) {
+        throw { name: "emptyEventLocation" };
+      }
+      if (!description) {
+        throw { name: "emptyEventDescription" };
+      }
+      if (!eventDate) {
+        throw { name: "emptyEventDate" };
+      }
+      if (!eventHomepageLink) {
+        throw { name: "emptyEventLink" };
+      }
+      if (!eventDuration) {
+        throw { name: "emptyEventDuration" };
+      }
+      if (!image) {
+        throw { name: "emptyEventImage" };
+      }
+      if (!ticketPrice) {
+        throw { name: "emptyEventPrice" };
+      }
       const editedEvent = await Event.update(
         {
           CategoryId,

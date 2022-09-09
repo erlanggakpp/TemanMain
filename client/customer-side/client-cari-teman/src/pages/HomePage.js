@@ -17,6 +17,7 @@ export default function HomePage() {
   const { events, eventDetail, loading } = useSelector((e) => e.events);
   const { categories } = useSelector((e) => e.categories);
   const { magnets, magnetDetail } = useSelector((e) => e.magnets);
+  const [showEvents, setShowEvents] = useState([]);
   useEffect(() => {
     dispatch(fetchEvent()).finally(() => {
       dispatch(loadingSet(false));
@@ -36,6 +37,7 @@ export default function HomePage() {
     });
   }, []);
   // if(events.length == 0) return(<h1>Loading...</h1>)
+
   return (
     <>
       <div className="container-fluid">
@@ -58,7 +60,7 @@ export default function HomePage() {
             </div>
             <div className="col-9">
               <h1>ini buat card</h1>
-              <MainCard />
+              <MainCard showEvents={showEvents} />
             </div>
           </div>
         </div>

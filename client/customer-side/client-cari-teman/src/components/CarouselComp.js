@@ -1,6 +1,6 @@
 import Carousel from "react-bootstrap/Carousel";
 
-const styleCarousel = {"max-height" : "300px", "objectFit" : "cover"}
+const styleCarousel = { maxHeight: "300px", objectFit: "cover" };
 
 export default function CarouselComp() {
   return (

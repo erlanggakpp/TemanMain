@@ -2,6 +2,7 @@ import logo from "./logo.svg";
 import HomePage from "./pages/HomePage";
 import "./App.css";
 import NavBar from "./components/NavBar";
+import FormTest from "./pages/FormTest";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       </div>
 
       <HomePage />
+      <FormTest />
     </div>
   );
 }

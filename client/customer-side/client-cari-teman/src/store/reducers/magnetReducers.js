@@ -1,7 +1,8 @@
-import { fetch_magnets } from "../action/actionType";
+import { detail_magnet, fetch_magnets } from "../action/actionType";
 
 const initialState = {
   magnets: [],
+  magnetDetail: "",
 };
 
 function magnetReducers(state = initialState, action) {
@@ -10,6 +11,11 @@ function magnetReducers(state = initialState, action) {
       return {
         ...state,
         magnets: action.payload,
+      };
+    case detail_magnet:
+      return {
+        ...state,
+        magnetDetail: action.payload,
       };
 
     default:

@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { detailEvent, fetchEvent, loadingSet } from "../store/action/events";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategory } from "../store/action/categories";
-import { fetchMagnet } from "../store/action/magnets";
+import { detailMagnet, fetchMagnet } from "../store/action/magnets";
 
 // const styleRound = {width : 20%}
 
@@ -14,8 +14,7 @@ export default function HomePage() {
   const dispatch = useDispatch();
   const { events, eventDetail, loading } = useSelector((e) => e.events);
   const { categories } = useSelector((e) => e.categories);
-  const { magnets } = useSelector((e) => e.magnets);
-
+  const { magnets, magnetDetail } = useSelector((e) => e.magnets);
   useEffect(() => {
     dispatch(fetchEvent()).finally(() => {
       dispatch(loadingSet(false));
@@ -27,6 +26,10 @@ export default function HomePage() {
       dispatch(loadingSet(false));
     });
     dispatch(fetchMagnet()).finally(() => {
+      dispatch(loadingSet(false));
+    });
+    dispatch(detailMagnet(1)).finally(() => {
+      console.log(magnetDetail);
       dispatch(loadingSet(false));
     });
   }, []);

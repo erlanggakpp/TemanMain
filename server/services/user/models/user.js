@@ -1,6 +1,7 @@
 "use strict";
 const { Model } = require("sequelize");
 const { hashPassword } = require('../helper/bcryptjs.js')
+const { HTMLDateFormat } = require('../helper/customFormat.js')
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
@@ -86,7 +87,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       },
       birthdate: {
-        type: DataTypes.DATE,
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
           notEmpty: {
@@ -174,9 +175,11 @@ module.exports = (sequelize, DataTypes) => {
       hooks: {
         beforeCreate(instance, options) {
           instance.password = hashPassword(instance.password)
+          instance.birthdate = HTMLDateFormat(instance.birthdate)
         },
         beforeUpdate(instance, options) {
           instance.password = hashPassword(instance.password)
+          instance.birthdate = HTMLDateFormat(instance.birthdate)
         }
       },
       sequelize,

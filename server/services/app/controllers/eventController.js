@@ -1,4 +1,4 @@
-const { Event, Category } = require("../models");
+const { Event, Category, Magnet } = require("../models");
 
 class EventController {
   static async getAllEvents(req, res, next) {
@@ -15,6 +15,27 @@ class EventController {
     }
   }
 
+  static async findOneEvent(req, res, next) {
+    try {
+      const { eventId } = req.params;
+      const targetEvent = await Event.findOne({
+        where: {
+          id: eventId,
+        },
+        include: [
+          {
+            model: Category,
+          },
+          {
+            model: Magnet,
+          },
+        ],
+      });
+      res.status(200).json(targetEvent);
+    } catch (error) {
+      next(error);
+    }
+  }
   static async createEvent(req, res, next) {
     try {
       const {
@@ -61,6 +82,33 @@ class EventController {
         image,
         ticketPrice,
       } = req.body;
+      if (!CategoryId) {
+        throw { name: "emptyCategoryId" };
+      }
+      if (!name) {
+        throw { name: "emptyEventName" };
+      }
+      if (!location) {
+        throw { name: "emptyEventLocation" };
+      }
+      if (!description) {
+        throw { name: "emptyEventDescription" };
+      }
+      if (!eventDate) {
+        throw { name: "emptyEventDate" };
+      }
+      if (!eventHomepageLink) {
+        throw { name: "emptyEventLink" };
+      }
+      if (!eventDuration) {
+        throw { name: "emptyEventDuration" };
+      }
+      if (!image) {
+        throw { name: "emptyEventImage" };
+      }
+      if (!ticketPrice) {
+        throw { name: "emptyEventPrice" };
+      }
       const editedEvent = await Event.update(
         {
           CategoryId,
@@ -94,6 +142,23 @@ class EventController {
         },
       });
       res.status(200).json({ message: "Successfully deleted event" });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async findEventsByCategory(req, res, next) {
+    try {
+      const { categoryId } = req.params;
+      const events = await Event.findAll({
+        include: {
+          model: Category,
+        },
+        where: {
+          CategoryId: categoryId,
+        },
+      });
+      res.status(200).json(events);
     } catch (error) {
       next(error);
     }

@@ -22,7 +22,7 @@ class InvitationController {
     try {
       const { invitationId } = req.params;
       const { invitationDescription } = req.body;
-      if (!requestDescription) {
+      if (!invitationDescription) {
         throw { name: "invDesRequired" };
       }
       const editedInvitation = await Invitation.update(

@@ -1,5 +1,5 @@
 function errorHandler(err, req, res, next) {
-  console.log(err);
+  console.log(err, "<<<<<<<<<<<<<");
   if (
     err.name === "SequelizeValidationError" ||
     err.name === "SequelizeUniqueConstraintError"
@@ -15,6 +15,54 @@ function errorHandler(err, req, res, next) {
     return res.status(400).json({ message: "Invitation already accepted" });
   } else if (err.name === "alreadyAcceptedRequest") {
     return res.status(400).json({ message: "Request already accepted" });
+  } else if (err.name === "emptyCategoryId") {
+    return res.status(400).json({ message: "Please choose event's category" });
+  } else if (err.name === "emptyEventLocation") {
+    return res.status(400).json({ message: "Event's location is required" });
+  } else if (err.name === "emptyEventDescription") {
+    return res.status(400).json({ message: "Event's description is required" });
+  } else if (err.name === "emptyEventDate") {
+    return res.status(400).json({ message: "Event's date is required" });
+  } else if (err.name === "emptyEventLink") {
+    return res
+      .status(400)
+      .json({ message: "Event's official homepage is required" });
+  } else if (err.name === "emptyEventDuration") {
+    return res.status(400).json({ message: "Event's duration is required" });
+  } else if (err.name === "emptyEventImage") {
+    return res.status(400).json({ message: "Event's image/photo is required" });
+  } else if (err.name === "emptyEventPrice") {
+    return res
+      .status(400)
+      .json({ message: "Event's ticket price is required" });
+  } else if (err.name === "emptyEventName") {
+    return res.status(400).json({ message: "Event's name is required" });
+  } else if (err.name === "alreadyFoundReq") {
+    return res
+      .status(400)
+      .json({ message: "Request already made for this magnet" });
+  } else if (err.name === "emptyCatName") {
+    return res.status(400).json({ message: "Category's name is required" });
+  } else if (err.name === "emptyCatImg") {
+    return res.status(400).json({ message: "Category's image is required" });
+  } else if (err.name === "emptyMagDate") {
+    return res.status(400).json({ message: "Confirmation date is required" });
+  } else if (err.name === "emptyMagAge") {
+    return res.status(400).json({ message: "Age requirement is required" });
+  } else if (err.name === "emptyMagDes") {
+    return res.status(400).json({ message: "Magnet description is required" });
+  } else if (err.name === "emptyMagSpe") {
+    return res.status(400).json({ message: "Special requirement is required" });
+  } else if (err.name === "emptyMagPart") {
+    return res.status(400).json({ message: "Participant number is required" });
+  } else if (err.name === "emptyMagVac") {
+    return res
+      .status(400)
+      .json({ message: "Number of vacant participant is required" });
+  } else if (err.name === "emptyMagStatus") {
+    return res.status(400).json({
+      message: "Please choose whether you want to open or close this magnet",
+    });
   } else if (err.name === "reqDesRequired") {
     return res.status(400).json({ message: "Request description is required" });
   } else if (err.name === "invDesRequired") {
@@ -28,7 +76,7 @@ function errorHandler(err, req, res, next) {
     });
   } else if (err.name === "underageReq") {
     return res.status(400).json({
-      message: "Your age  doesn't meet Magnet's age requirement",
+      message: "Your age doesn't meet Magnet's age requirement",
     });
   } else if (err.name === "magnetUnauthorized") {
     return res

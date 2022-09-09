@@ -6,11 +6,19 @@ const {
   acceptRequestAuthorization,
   acceptRequestAuthorization2,
 } = require("../middlewares/authorization");
+const {
+  eventChecker,
+  magnetChecker,
+  alreadyMadeRequest,
+} = require("../middlewares/checker");
 
 router.get("/user/:userId", RequestController.getRequestByUserId);
 router.post(
   "/event/:eventId/magnet/:magnetId",
+  eventChecker,
+  magnetChecker,
   ageAuthorizationBeforeCreateInvitation,
+  alreadyMadeRequest,
   RequestController.createRequest
 );
 router.put(
@@ -21,7 +29,7 @@ router.put(
 router.delete(
   "/:requestId",
   requestAuthorization,
-  RequestController.editRequestDescription
+  RequestController.deleteRequest
 );
 
 router.put(

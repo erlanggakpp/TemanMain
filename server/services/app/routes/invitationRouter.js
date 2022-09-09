@@ -4,10 +4,13 @@ const {
   acceptInvitationAuthorization,
   ageAuthorizationBeforeCreateInvitation,
 } = require("../middlewares/authorization");
+const { magnetChecker, eventChecker } = require("../middlewares/checker");
 
 const router = require("express").Router();
 router.post(
   "/event/:eventId/magnet/:magnetId/user/:userId",
+  eventChecker,
+  magnetChecker,
   ageAuthorizationBeforeCreateInvitation,
   InvitationController.createInvitation
 );

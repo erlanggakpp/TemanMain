@@ -28,6 +28,12 @@ class CategoryController {
     try {
       const { categoryId } = req.params;
       const { name, image } = req.body;
+      if (!name) {
+        throw { name: "emptyCatName" };
+      }
+      if (!image) {
+        throw { name: "emptyCatImg" };
+      }
       const editedCategory = await Category.update(
         {
           name,

@@ -95,6 +95,7 @@
   ],
   "events": [
     {
+      "id": 1,
       "CategoryId": 1,
       "name": "Synchronize Fest",
       "location": "Kemayoran, Jakarta",
@@ -107,6 +108,7 @@
       "ticketPrice": 500000
     },
     {
+      "id": 2,
       "CategoryId": 1,
       "name": "The Sounds Project",
       "location": "Ancol, Jakarta",
@@ -119,6 +121,7 @@
       "ticketPrice": 800000
     },
     {
+      "id": 3,
       "CategoryId": 5,
       "name": "Labuan Bajo",
       "location": "Nusa Tenggara Timur",
@@ -131,6 +134,7 @@
       "ticketPrice": 8000000
     },
     {
+      "id": 4,
       "CategoryId": 3,
       "name": "Dunia Fantasi",
       "location": "Ancol, Jakarta",
@@ -145,6 +149,7 @@
   ],
   "magnets": [
     {
+      "id": 1,
       "UserId": 3,
       "EventId": 1,
       "confirmationDate": "2022/10/03",
@@ -167,6 +172,7 @@
       "vacantParticipant": 3
     },
     {
+      "id": 2,
       "UserId": 4,
       "EventId": 1,
       "confirmationDate": "2022/10/03",
@@ -178,6 +184,7 @@
       "vacantParticipant": 0
     },
     {
+      "id": 3,
       "UserId": 5,
       "EventId": 1,
       "confirmationDate": "2022/10/03",
@@ -186,23 +193,76 @@
       "specialRequirement": "Male or Female",
       "magnetDescription": "Synchronize fest, akomodasi di hotel bintang 3",
       "participant": 6,
-      "vacantParticipant": 1
+      "vacantParticipant": 3,
+      "participantDescription": "Mencari 3 orang, 2 wanita 1 Pria untuk nonton bareng! Yang ikut baru saya, kakak saya(perempuan) dan adik saya(perempuan)"
+    },
+    {
+      "UserId": 3,
+      "EventId": 1,
+      "confirmationDate": "2022/10/03",
+      "status": "open",
+      "ageRequirement": "19",
+      "specialRequirement": "Female",
+      "magnetDescription": "apawe",
+      "participant": "6",
+      "vacantParticipant": "5",
+      "participantDescription": "asdasdasd",
+      "id": 4
+    },
+    {
+      "UserId": 3,
+      "EventId": 1,
+      "confirmationDate": "2022/10/03",
+      "status": "open",
+      "ageRequirement": "",
+      "specialRequirement": "",
+      "magnetDescription": "",
+      "participant": "",
+      "vacantParticipant": "",
+      "participantDescription": "",
+      "id": 5
+    },
+    {
+      "UserId": 3,
+      "EventId": 1,
+      "confirmationDate": "2022/10/03",
+      "status": "open",
+      "ageRequirement": "",
+      "specialRequirement": "",
+      "magnetDescription": "",
+      "participant": "",
+      "vacantParticipant": "",
+      "participantDescription": "",
+      "id": 6
     }
   ],
   "requests": [
     {
-      "EventId": 1,
-      "UserId": 4,
+      "id": 1,
+      "EventId": 3,
+      "UserId": 3,
       "MagnetId": 1,
-      "description": "Ingin ikut"
+      "requestDescription": "i req join",
+      "status": "open"
     }
   ],
   "invitations": [
     {
-      "EventId": 1,
-      "UserId": 5,
+      "id": 1,
+      "EventId": 3,
+      "UserId": 3,
       "MagnetId": 1,
-      "description": "Ayo ikut"
+      "invitationDescription": "i invit u",
+      "status": "open"
+    },
+    {
+      "UserId": 3,
+      "EventId": 3,
+      "MagnetId": 1,
+      "invitationDescription": "ayok ayokk",
+      "status": "open",
+      "id": 3
+
     }
   ]
 }

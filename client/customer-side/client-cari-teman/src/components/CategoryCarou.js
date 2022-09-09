@@ -1,6 +1,6 @@
 import Carousel from "react-bootstrap/Carousel";
 
-const styleCarousel = {"max-height" : "300px", "max-width" : "20%", "objectFit" : "cover", marginTop : "20px", borderRadius : "0.5em"}
+const styleCarousel = {"max-height" : "300px", "max-width" : "20%", "objectFit" : "cover", margin : "30px 0px", borderRadius : "0.25em"}
 
 export default function CategoryCarou() {
   return (

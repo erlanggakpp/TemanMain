@@ -1,7 +1,12 @@
 import logo from './logo.svg';
-import HomePage from './pages/HomePage';
 import './App.css';
 import NavBar from './components/NavBar';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import HomePage from './pages/HomePage';
+import DetailEvent from "./pages/DetailEvent";
+import DetailMagnets from "./pages/DetailMagnets";
+
 
 function App() {
   return (
@@ -10,13 +15,18 @@ function App() {
         <div className="container">
           <div className="row">
             <div className="col-12">
-            <NavBar/>
+              <NavBar />
             </div>
           </div>
         </div>
       </div>
-      
-      <HomePage/>
+
+      <Routes>
+        <Route path="/" element={<HomePage />}></Route>
+        <Route path="/events/:id" element={<DetailEvent />} />
+        <Route path="/magnets/:id" element={<DetailMagnets />} />
+        {/* <Route path="/filter/:id" element={<MainPage />} /> */}
+      </Routes>
     </div>
   );
 }

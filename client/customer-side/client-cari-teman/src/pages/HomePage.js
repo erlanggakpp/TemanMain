@@ -2,6 +2,8 @@ import axios from "axios";
 // import NavBar from "../components/NavBar";
 import CarouselComp from "../components/CarouselComp";
 import CategoryCarou from "../components/CategoryCarou";
+import FilterSide from "../components/FilterSide";
+import MainCard from "../components/MainCard";
 
 import { useEffect, useState } from "react";
 import { fetchEvent } from "../store/action/events";
@@ -24,7 +26,7 @@ export default function HomePage() {
         <div className="container">
           <div className="row">
             <div className="col-12">
-              <div style={{height : "200px"}}>
+              <div style={{height : "200px"}} className="bg-warning">
                 <h1>INI BUAT LOGO</h1>
               </div>
               <CarouselComp />
@@ -34,11 +36,13 @@ export default function HomePage() {
         </div>
         <div className="container">
           <div className="row">
-            <div className="col-3 bg-warning">
+            <div className="col-3">
               <h1>ini buat filter</h1>
+              <FilterSide/>
             </div>
-            <div className="col-9 bg-primary">
+            <div className="col-9">
               <h1>ini buat card</h1>
+              <MainCard/>
             </div>
           </div>
         </div>

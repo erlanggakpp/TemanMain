@@ -1,4 +1,4 @@
-const { Event, Category } = require("../models");
+const { Event, Category, Invitation } = require("../models");
 
 async function eventChecker(req, res, next) {
   try {
@@ -30,6 +30,18 @@ async function categoryChecker(req, res, next) {
       throw { name: "categoryNotFound" };
     } else {
       next();
+    }
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function invitationChecker(req, res, next) {
+  try {
+    const { invitationId } = req.params;
+    const targetInvitation = await Invitation.findByPk(invitationId);
+    if (!targetInvitation) {
+      throw { name: "invitationNotFound" };
     }
   } catch (error) {
     next(error);

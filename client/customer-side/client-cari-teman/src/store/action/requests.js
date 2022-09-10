@@ -2,15 +2,15 @@ import axios from "axios";
 import { loadingSet } from "./events";
 const baseUrl = "http://localhost:3001";
 
-export const addInvitation = function (data) {
+export const addRequest = function (data) {
   return function (dispatch) {
-    const { UserId, EventId, MagnetId, invitationDescription, status } = data;
+    const { UserId, EventId, MagnetId, requestDescription, status } = data;
     dispatch(loadingSet(true));
-    return axios.post(`${baseUrl}/invitations`, {
+    return axios.post(`${baseUrl}/requests`, {
       UserId,
       EventId,
       MagnetId,
-      invitationDescription,
+      requestDescription,
       status,
     });
   };

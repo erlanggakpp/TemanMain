@@ -57,7 +57,7 @@ export default function MainCard() {
                         <p className="card-text">Price: {e.ticketPrice}</p>
                         <div className="d-flex justify-content-between align-items-center">
                           <div className="btn-group">
-                            <Link to={`/events/`}>
+                            <Link to={`/events/${e.id}`}>
                               <button
                                 type="button"
                                 className="btn btn-sm btn-outline-secondary"

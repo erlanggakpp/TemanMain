@@ -230,6 +230,14 @@
       "MagnetId": 1,
       "requestDescription": "i req join",
       "status": "open"
+    },
+    {
+      "UserId": 3,
+      "EventId": 3,
+      "MagnetId": 1,
+      "requestDescription": "mencoba ygy",
+      "status": "wokee",
+      "id": 2
     }
   ],
   "invitations": [

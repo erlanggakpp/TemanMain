@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import DetailEvent from "./pages/DetailEvent";
 import DetailMagnets from "./pages/DetailMagnets";
+import FormTest from "./pages/FormTest";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/events/:id" element={<DetailEvent />} />
         <Route path="/magnets/:id" element={<DetailMagnets />} />
         {/* <Route path="/filter/:id" element={<MainPage />} /> */}
+        <Route path="/form" element={<FormTest />} />
       </Routes>
     </div>
   );

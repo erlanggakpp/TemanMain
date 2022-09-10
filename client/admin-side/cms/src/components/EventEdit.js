@@ -4,16 +4,22 @@ import Button from 'react-bootstrap/Button';
 import Stack from 'react-bootstrap/Stack';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import { postEvent } from '../store/actions';
-import { useDispatch } from 'react-redux';
-import { useState } from 'react';
 
-export default function EventAdd() {
+import { useDispatch, useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { fetchEventById, updateEvent } from '../store/actions';
+
+export default function EventEdit() {
   const container = {
     padding: '150px',
   };
+  const { id } = useParams();
   const dispatch = useDispatch();
-  const [addEvent, setAddEvent] = useState({
+  const navigate = useNavigate();
+  const { detailevents } = useSelector((state) => state.event);
+  // console.log(detailevents);
+  const [editEvent, setEditEvent] = useState({
     name: '',
     location: '',
     description: '',
@@ -27,22 +33,42 @@ export default function EventAdd() {
   });
   const changeInputEvent = (e) => {
     const { name, value } = e.target;
-    setAddEvent({
-      ...addEvent,
+    setEditEvent({
+      ...editEvent,
       [name]: value,
     });
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(postEvent(addEvent))
+    dispatch(updateEvent(id, editEvent))
       .then((_) => {
         console.log('success');
+        navigate(`/listevent`);
       })
       .catch((err) => {
         console.log(err.response.data);
       });
   };
 
+  useEffect(() => {
+    dispatch(fetchEventById(id));
+  }, []);
+
+  useEffect(() => {
+    setEditEvent({
+      name: detailevents?.data?.name,
+      location: detailevents?.data?.location,
+      description: detailevents?.data?.description,
+      eventDate: detailevents?.data?.eventDate,
+      eventHomepageLink: detailevents?.data?.eventHomepageLink,
+      eventDuration: detailevents?.data?.eventDuration,
+      AdmindId: 1,
+      image: detailevents?.data?.image,
+      ticketPrice: detailevents?.data?.ticketPrice,
+      CategoryId: detailevents?.data?.CategoryId,
+    });
+  }, [detailevents]);
   return (
     <Container sm>
       <Form onSubmit={handleSubmit}>
@@ -60,6 +86,7 @@ export default function EventAdd() {
                   type="text"
                   placeholder="Name Of Event"
                   onChange={changeInputEvent}
+                  value={editEvent.name}
                 />
               </Form.Group>
               <Form.Group
@@ -72,6 +99,7 @@ export default function EventAdd() {
                   type="text"
                   placeholder="Event location"
                   onChange={changeInputEvent}
+                  value={editEvent.location}
                 />
               </Form.Group>
               <Form.Group
@@ -85,6 +113,7 @@ export default function EventAdd() {
                   rows={3}
                   placeholder="Description this Event"
                   onChange={changeInputEvent}
+                  value={editEvent.description}
                 />
               </Form.Group>
               <Form.Group
@@ -96,6 +125,7 @@ export default function EventAdd() {
                   name="eventDate"
                   type="Date"
                   onChange={changeInputEvent}
+                  value={editEvent.eventDate}
                 />
               </Form.Group>
               <Form.Group
@@ -108,6 +138,7 @@ export default function EventAdd() {
                   type="text"
                   placeholder="Event Homepage Link"
                   onChange={changeInputEvent}
+                  value={editEvent.eventHomepageLink}
                 />
               </Form.Group>
               <Form.Group
@@ -120,6 +151,7 @@ export default function EventAdd() {
                   type="text"
                   placeholder="Event Duration in Day"
                   onChange={changeInputEvent}
+                  value={editEvent.eventDuration}
                 />
               </Form.Group>
               <Form.Group
@@ -132,6 +164,7 @@ export default function EventAdd() {
                   type="text"
                   placeholder="Image That Event"
                   onChange={changeInputEvent}
+                  value={editEvent.image}
                 />
               </Form.Group>
 
@@ -145,6 +178,7 @@ export default function EventAdd() {
                   type="number"
                   placeholder="Ticket Price"
                   onChange={changeInputEvent}
+                  value={editEvent.ticketPrice}
                 />
               </Form.Group>
 
@@ -157,6 +191,7 @@ export default function EventAdd() {
                   name="CategoryId"
                   placeholder="Ticket Price"
                   onChange={changeInputEvent}
+                  value={editEvent.CategoryId}
                 >
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -171,9 +206,11 @@ export default function EventAdd() {
                 >
                   Save
                 </Button>
-                <Button variant="primary" className="justify-center">
-                  Cancel
-                </Button>
+                <Link to={'/listevent'}>
+                  <Button variant="primary" className="justify-center">
+                    Cancel
+                  </Button>
+                </Link>
               </Stack>
             </div>
           </Col>

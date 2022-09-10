@@ -73,19 +73,24 @@
   ],
   "Categories": [
     {
-      "name": "Music"
+      "name": "Music",
+      "image": "https://cdn.kiostix.com/media/18304/conversions/medium.jpg"
     },
     {
-      "name": "Attraction"
+      "name": "Attraction",
+      "image": "https://cdn.kiostix.com/media/18304/conversions/medium.jpg"
     },
     {
-      "name": "Playground"
+      "name": "Playground",
+      "image": "https://cdn.kiostix.com/media/18304/conversions/medium.jpg"
     },
     {
-      "name": "Workshop and Education"
+      "name": "Workshop and Education",
+      "image": "https://cdn.kiostix.com/media/18304/conversions/medium.jpg"
     },
     {
-      "name": "Tours"
+      "name": "Tours",
+      "image": "https://cdn.kiostix.com/media/18304/conversions/medium.jpg"
     }
   ],
   "events": [
@@ -98,7 +103,7 @@
       "eventDate": "2022/10/08",
       "eventHomepageLink": "https://synchronizefestival.com",
       "eventDuration": "3 Days",
-      "AdmindId": 1,
+      "AdminId": 1,
       "image": "http://vradiofm.com/uploads/news/730b2923-60ed-41f4-8895-04d6c49c325c78805a221a988e79ef3f42d7c5bfd418.jpg",
       "ticketPrice": 500000
     },
@@ -111,7 +116,7 @@
       "eventDate": "2022/8/22",
       "eventHomepageLink": "https://www.thesoundsproject.com",
       "eventDuration": "3 Days",
-      "AdmindId": 2,
+      "AdminId": 2,
       "image": "https://cdn.kiostix.com/media/18304/conversions/medium.jpg",
       "ticketPrice": 800000
     },
@@ -124,7 +129,7 @@
       "eventDate": "2022/12/10",
       "eventHomepageLink": "https://www.indonesia.travel/id/id/destinasi/bali-nusa-tenggara/labuan-bajo",
       "eventDuration": "5 Days",
-      "AdmindId": 1,
+      "AdminId": 1,
       "image": "https://img.jakpost.net/c/2017/08/02/2017_08_02_30495_1501654303._large.jpg",
       "ticketPrice": 8000000
     },
@@ -137,7 +142,7 @@
       "eventDate": "2022/11/02",
       "eventHomepageLink": "https://synchronizefestival.com",
       "eventDuration": "1 Day",
-      "AdmindId": 2,
+      "AdminId": 2,
       "image": "https://s-light.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/rsfit19201280gsm/events/2021/12/08/9c6ae660-1799-4276-b81d-f8b0b85669d6-1638949473006-1e6c55a1b1edca6bf250012af2cc79e2.jpg",
       "ticketPrice": 200000
     }
@@ -148,33 +153,42 @@
       "UserId": 3,
       "EventId": 1,
       "confirmationDate": "2022/10/03",
-      "status": "open",
+      "status": true,
       "ageRequirement": "18",
       "specialRequirement": "Male or Female",
       "magnetDescription": "Pengen nonton tapi gapunya temen, ayo temenin! Kesononya naik bis",
       "participant": 4,
-      "vacantParticipant": 3,
-      "participantDescription": "Yang ikut baru saya saja, mencari 3 orang, pria atau wanita bebas"
+      "vacantParticipant": 3
+    },
+    {
+      "UserId": 3,
+      "EventId": 2,
+      "confirmationDate": "2022/10/03",
+      "status": true,
+      "ageRequirement": "18",
+      "specialRequirement": "Male or Female",
+      "magnetDescription": "Pengen nonton tapi gapunya temen, ayo temenin! Kesononya naik bis",
+      "participant": 4,
+      "vacantParticipant": 3
     },
     {
       "id": 2,
       "UserId": 4,
       "EventId": 1,
       "confirmationDate": "2022/10/03",
-      "status": "open",
+      "status": true,
       "ageRequirement": "18",
       "specialRequirement": "Female",
       "magnetDescription": "Cari teman untuk nonton konser, transportasi saya tanggung",
       "participant": 2,
-      "vacantParticipant": 1,
-      "participantDescription": "Mencari 1 orang wanita untuk nonton bareng! Yang ikut baru saya saja"
+      "vacantParticipant": 0
     },
     {
       "id": 3,
       "UserId": 5,
       "EventId": 1,
       "confirmationDate": "2022/10/03",
-      "status": "open",
+      "status": true,
       "ageRequirement": "18",
       "specialRequirement": "Male or Female",
       "magnetDescription": "Synchronize fest, akomodasi di hotel bintang 3",
@@ -256,6 +270,7 @@
       "invitationDescription": "ayok ayokk",
       "status": "open",
       "id": 3
+
     }
   ]
 }

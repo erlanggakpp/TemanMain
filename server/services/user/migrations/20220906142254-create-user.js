@@ -30,7 +30,7 @@ module.exports = {
         allowNull: false
       },
       birthdate: {
-        type: Sequelize.DATE,
+        type: Sequelize.STRING,
         allowNull: false
       },
       profilePict: {

@@ -16,10 +16,54 @@ module.exports = (sequelize, DataTypes) => {
   }
   Invitation.init(
     {
-      UserId: DataTypes.INTEGER,
-      EventId: DataTypes.INTEGER,
-      MagnetId: DataTypes.INTEGER,
-      invitationDescription: DataTypes.TEXT,
+      UserId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: `Invited person is required`,
+          },
+          notEmpty: {
+            msg: `Invited person is required`,
+          },
+        },
+      },
+      EventId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: `Event ID required`,
+          },
+          notEmpty: {
+            msg: `Event ID required`,
+          },
+        },
+      },
+      MagnetId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: `Magnet ID required`,
+          },
+          notEmpty: {
+            msg: `Magnet ID required`,
+          },
+        },
+      },
+      invitationDescription: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: `Invitation description is required`,
+          },
+          notEmpty: {
+            msg: `Invitation description is required`,
+          },
+        },
+      },
       status: DataTypes.STRING,
     },
     {

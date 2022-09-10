@@ -153,31 +153,6 @@ class MagnetController {
       next(error);
     }
   }
-  static async findOneMagnet(req, res, next) {
-    try {
-      const { magnetId } = req.params;
-      const magnet = await Magnet.findOne({
-        where: {
-          id: magnetId,
-        },
-        include: [
-          {
-            model: Request,
-          },
-          {
-            model: Invitation,
-          },
-          // {
-          //   model: User,
-          // },
-        ],
-      });
-      res.status(200).json(magnet);
-    } catch (error) {
-      // console.log(error);
-      next(error);
-    }
-  }
 }
 
 module.exports = MagnetController;

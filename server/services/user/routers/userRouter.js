@@ -7,6 +7,7 @@ userRouter.post("/login", UserController.login);
 
 userRouter.post("/public/register", UserController.register);
 userRouter.post("/public/login", UserController.login);
+userRouter.get("/public", UserController.readAllUserPublic);
 
 userRouter.use(Authentication);
 userRouter.get("/tokenChecker", UserController.findLoggedUser);

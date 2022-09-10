@@ -5,11 +5,30 @@ export default function SideMenu({ toSide }) {
       <div className="col-md-4">
         <div className="position-sticky" style={{ top: "2rem" }}>
           <div className="p-4 mb-3 bg-light rounded">
-            <h4 className="fst-italic">WhEn UwHerre ?!</h4>
+            <h4 className="fst-italic">create magnets</h4>
+            {/* <h4 className="fst-italic">WhEn UwHerre ?!</h4>
             <p className="mb-0">{toSide.location}</p>
             <p className="mb-0">{toSide.eventDate}</p>
-            <p className="mb-0">{toSide.eventDuration}</p>
+            <p className="mb-0">{toSide.eventDuration}</p> */}
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
+              + magnets
+            </button>
+            {/* form nya ditaro di bawah tulisan magnets di halaman sebelah*/}
           </div>
+          <div className="p-4 mb-3 bg-light rounded">
+            <h4 className="fst-italic">About</h4>
+            <p className="mb-0">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia
+              sint molestiae, veritatis eligendi consequatur possimus illo
+              consectetur accusamus voluptas pariatur!
+            </p>
+          </div>
+
           <div className="p-4 mb-3 bg-light rounded">
             <h4 className="fst-italic">Maps</h4>
             <iframe

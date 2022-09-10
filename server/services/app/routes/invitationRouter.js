@@ -3,6 +3,7 @@ const {
   invitationAuthorization,
   acceptInvitationAuthorization,
   ageAuthorizationBeforeCreateInvitation,
+  magnetAuthorization,
 } = require("../middlewares/authorization");
 const { magnetChecker, eventChecker } = require("../middlewares/checker");
 
@@ -12,9 +13,10 @@ router.post(
   eventChecker,
   magnetChecker,
   ageAuthorizationBeforeCreateInvitation,
+  magnetAuthorization,
   InvitationController.createInvitation
 );
-router.get("/user/:userId", InvitationController.getInvitationByUserId);
+router.get("/user", InvitationController.getInvitationByUserId);
 router.put(
   "/:invitationId",
   invitationAuthorization,

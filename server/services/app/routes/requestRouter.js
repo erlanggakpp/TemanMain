@@ -12,7 +12,7 @@ const {
   alreadyMadeRequest,
 } = require("../middlewares/checker");
 
-router.get("/user/:userId", RequestController.getRequestByUserId);
+router.get("/user", RequestController.getRequestByUserId);
 router.post(
   "/event/:eventId/magnet/:magnetId",
   eventChecker,

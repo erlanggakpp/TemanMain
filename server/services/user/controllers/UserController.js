@@ -16,6 +16,18 @@ class UserController {
     }
   }
 
+  static async readAllUserPublic(req, res, next) {
+    try {
+      const users = await User.findAll({
+        attributes: { exclude: ["createdAt", "updatedAt", "password"] },
+      });
+
+      res.status(200).json(users);
+    } catch (error) {
+      next(error);
+    }
+  }
+
   static async createUser(req, res, next) {
     try {
       const {

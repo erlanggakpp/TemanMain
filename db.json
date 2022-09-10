@@ -106,10 +106,10 @@
       "eventDate": "2022/10/08",
       "eventHomepageLink": "https://synchronizefestival.com",
       "eventDuration": "3 Days",
-      "AdmindId": 1,
+      "AdminId": 1,
       "image": "http://vradiofm.com/uploads/news/730b2923-60ed-41f4-8895-04d6c49c325c78805a221a988e79ef3f42d7c5bfd418.jpg",
       "ticketPrice": 500000,
-      "CategoryId": "3",
+      "CategoryId": 3,
       "id": 1
     },
     {
@@ -121,20 +121,20 @@
       "eventDate": "2022/8/22",
       "eventHomepageLink": "https://www.thesoundsproject.com",
       "eventDuration": "3 Days",
-      "AdmindId": 2,
+      "AdminId": 2,
       "image": "https://cdn.kiostix.com/media/18304/conversions/medium.jpg",
       "ticketPrice": 800000
     },
     {
       "id": 3,
-      "CategoryId": 5,
+      "CategoryId": 4,
       "name": "Labuan Bajo",
       "location": "Nusa Tenggara Timur",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
       "eventDate": "2022/12/10",
       "eventHomepageLink": "https://www.indonesia.travel/id/id/destinasi/bali-nusa-tenggara/labuan-bajo",
       "eventDuration": "5 Days",
-      "AdmindId": 1,
+      "AdminId": 1,
       "image": "https://img.jakpost.net/c/2017/08/02/2017_08_02_30495_1501654303._large.jpg",
       "ticketPrice": 8000000
     },
@@ -147,22 +147,9 @@
       "eventDate": "2022/11/02",
       "eventHomepageLink": "https://synchronizefestival.com",
       "eventDuration": "1 Day",
-      "AdmindId": 2,
+      "AdminId": 2,
       "image": "https://s-light.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/rsfit19201280gsm/events/2021/12/08/9c6ae660-1799-4276-b81d-f8b0b85669d6-1638949473006-1e6c55a1b1edca6bf250012af2cc79e2.jpg",
       "ticketPrice": 200000
-    },
-    {
-      "name": "ea",
-      "location": "ea",
-      "description": "eqeq",
-      "eventDate": "2022-09-07",
-      "eventHomepageLink": "eqeqw",
-      "eventDuration": "13qeq",
-      "AdmindId": 1,
-      "image": "https://assets-prd.ignimgs.com/2022/03/10/pokemonasmr-blogroll-01-1646936829293.jpg",
-      "ticketPrice": "12313",
-      "CategoryId": "2",
-      "id": 5
     }
   ],
   "magnets": [

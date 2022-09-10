@@ -4,16 +4,15 @@ async function authenticator(req, res, next) {
   try {
     const { access_token } = req.headers;
     if (!access_token) {
-      throw { name: "NoToken" };
+      throw {
+        response: {
+          data: {
+            error: "Please login",
+          },
+          status: 401,
+        },
+      };
     }
-    // const { data: user } = await axios.get(
-    //   "http://localhost:4001/users/log-in",
-    //   {
-    //     headers: {
-    //       access_token,
-    //     },
-    //   }
-    // );
     const { data: user } = await axios({
       method: "GET",
       url: "http://localhost:4001/users/tokenChecker",
@@ -21,10 +20,11 @@ async function authenticator(req, res, next) {
         access_token: access_token,
       },
     });
+    req.user = user;
     next();
   } catch (error) {
-    console.log(error, "AUTHENTICATOR");
-    next(error);
+    const { status, data } = error.response;
+    res.status(status).json(data);
   }
 }
 

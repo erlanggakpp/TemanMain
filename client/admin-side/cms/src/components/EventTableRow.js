@@ -2,10 +2,10 @@ import Button from 'react-bootstrap/Button';
 import Stack from 'react-bootstrap/Stack';
 import { useNavigate } from 'react-router-dom';
 
-import { deleteEventById } from '../store/actions';
+import { deleteEvents } from '../store/actions';
 import { useDispatch } from 'react-redux';
 
-export default function EventTableRow({ event, i }) {
+export default function EventTableRow({ data, i }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -15,7 +15,7 @@ export default function EventTableRow({ event, i }) {
   };
   const handleDelete = (e, id) => {
     e.preventDefault();
-    dispatch(deleteEventById(id));
+    dispatch(deleteEvents(id));
   };
 
   const handleEdit = (id) => {
@@ -25,26 +25,26 @@ export default function EventTableRow({ event, i }) {
   return (
     <tr>
       <td>{i + 1}</td>
-      <td>{event.name}</td>
-      <td>{event.localtion}</td>
-      <td>{event.eventDate}</td>
+      <td>{data.name}</td>
+      <td>{data.localtion}</td>
+      <td>{data.eventDate}</td>
       <td>
-        <img src={event.image} style={image} />
+        <img src={data.image} style={image} />
       </td>
-      <td>{event.eventDuration}</td>
+      <td>{data.eventDuration}</td>
       <td>
         <Stack gap={2} direction="horizontal">
           <Button
             variant="primary"
             className="justify-center"
-            onClick={(e) => handleEdit(event.id)}
+            onClick={(e) => handleEdit(data.id)}
           >
             Edit
           </Button>
           <Button
             variant="danger"
             className="justify-center"
-            onClick={(e) => handleDelete(e, event.id)}
+            onClick={(e) => handleDelete(e, data.id)}
           >
             Delete
           </Button>

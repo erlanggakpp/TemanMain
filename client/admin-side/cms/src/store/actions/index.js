@@ -3,6 +3,7 @@ import {
   EVENT_FETCH,
   CATEGORY_FETCH,
   USER_DETAILID,
+  EVENT_DETAILID,
 } from './actionType';
 import axios from 'axios';
 

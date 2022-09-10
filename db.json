@@ -96,14 +96,8 @@
       "id": 4,
       "name": "Workshop and Education",
       "image": "https://cdn.kiostix.com/media/18304/conversions/medium.jpg"
-    },
-    {
-      "id": 5,
-      "name": "Tours",
-      "image": "https://cdn.kiostix.com/media/18304/conversions/medium.jpg"
     }
   ],
-  
   "events": [
     {
       "name": "Synchronize Fest",
@@ -156,19 +150,6 @@
       "AdmindId": 2,
       "image": "https://s-light.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/rsfit19201280gsm/events/2021/12/08/9c6ae660-1799-4276-b81d-f8b0b85669d6-1638949473006-1e6c55a1b1edca6bf250012af2cc79e2.jpg",
       "ticketPrice": 200000
-    },
-    {
-      "name": "eae",
-      "location": "ea",
-      "description": "ea",
-      "eventDate": "2022-09-16",
-      "eventHomepageLink": "ea",
-      "eventDuration": "311 ea",
-      "AdmindId": 1,
-      "image": "https://assets-prd.ignimgs.com/2022/03/10/pokemonasmr-blogroll-01-1646936829293.jpg",
-      "ticketPrice": "21",
-      "CategoryId": "2",
-      "id": 5
     }
   ],
   "magnets": [

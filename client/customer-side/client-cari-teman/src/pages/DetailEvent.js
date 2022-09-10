@@ -12,6 +12,7 @@ export default function DetailEvent() {
   const { loading, eventDetail } = useSelector((e) => e.events);
 
   useEffect(() => {
+    console.log("detail event");
     dispatch(detailEvent(params.id)).finally(() => dispatch(loadingSet(false)));
   }, []);
   return (

@@ -96,67 +96,69 @@ export default function FormTest() {
                   <input
                     value={dataForm.ageRequirement}
                     onChange={changeForm}
+                    name="ageRequirement"
                     type="text"
                     className="form-control"
                     placeholder="Food Name"
-                    name="ageRequirement"
                   />
-                  <label htmlFor="floatingInput">ageRequirement</label>
+                  <label htmlhtmlFor="floatingInput">ageRequirement</label>
                 </div>
                 <div className="form-floating mb-3">
                   <input
                     value={dataForm.specialRequirement}
                     onChange={changeForm}
+                    name="specialRequirement"
                     type="text"
                     className="form-control"
                     placeholder="Food Name"
-                    name="specialRequirement"
                   />
-                  <label htmlFor="floatingInput">specialRequirement</label>
+                  <label htmlhtmlFor="floatingInput">specialRequirement</label>
                 </div>
                 <div className="form-floating mb-3">
                   <input
                     value={dataForm.magnetDescription}
                     onChange={changeForm}
+                    name="magnetDescription"
                     type="text"
                     className="form-control"
                     placeholder="Food Name"
-                    name="magnetDescription"
                   />
-                  <label htmlFor="floatingInput">magnetDescription</label>
+                  <label htmlhtmlFor="floatingInput">magnetDescription</label>
                 </div>
                 <div className="form-floating mb-3">
                   <input
                     value={dataForm.participant}
                     onChange={changeForm}
+                    name="participant"
                     type="text"
                     className="form-control"
                     placeholder="Food Name"
-                    name="participant"
                   />
-                  <label htmlFor="floatingInput">participant</label>
+                  <label htmlhtmlFor="floatingInput">participant</label>
                 </div>
                 <div className="form-floating mb-3">
                   <input
                     value={dataForm.vacantParticipant}
                     onChange={changeForm}
+                    name="vacantParticipant"
                     type="text"
                     className="form-control"
                     placeholder="Food Name"
-                    name="vacantParticipant"
                   />
-                  <label htmlFor="floatingInput">vacantParticipant</label>
+                  <label htmlhtmlFor="floatingInput">vacantParticipant</label>
                 </div>
                 <div className="form-floating mb-3">
                   <input
                     value={dataForm.participantDescription}
                     onChange={changeForm}
+                    name="participantDescription"
                     type="text"
                     className="form-control"
                     placeholder="Food Name"
-                    name="participantDescription"
                   />
-                  <label htmlFor="floatingInput">participantDescription</label>
+                  <label htmlhtmlFor="floatingInput">
+                    participantDescription
+                  </label>
                 </div>
                 <div className="d-flex flex-row justify-content-end">
                   <button
@@ -190,7 +192,7 @@ export default function FormTest() {
                     placeholder="Food Name"
                     name="invitationDescription"
                   />
-                  <label htmlFor="floatingInput">invitationDescription</label>
+                  <label htmlhtmlFor="floatingInput">invitationDescription</label>
                 </div>
                 <div className="form-floating mb-3">
                   <input
@@ -201,7 +203,7 @@ export default function FormTest() {
                     placeholder="Food Name"
                     name="status"
                   />
-                  <label htmlFor="floatingInput">status</label>
+                  <label htmlhtmlFor="floatingInput">status</label>
                 </div>
                 <div className="d-flex flex-row justify-content-end">
                   <button
@@ -235,7 +237,7 @@ export default function FormTest() {
                     placeholder="Food Name"
                     name="requestDescription"
                   />
-                  <label htmlFor="floatingInput">requestDescription</label>
+                  <label htmlhtmlFor="floatingInput">requestDescription</label>
                 </div>
                 <div className="form-floating mb-3">
                   <input
@@ -246,7 +248,7 @@ export default function FormTest() {
                     placeholder="Food Name"
                     name="status"
                   />
-                  <label htmlFor="floatingInput">status</label>
+                  <label htmlhtmlFor="floatingInput">status</label>
                 </div>
                 <div className="d-flex flex-row justify-content-end">
                   <button

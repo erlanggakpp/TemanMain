@@ -5,7 +5,7 @@ export default function CardAtDetailPage() {
       <div className="row mb-2">
         <div
           className="row d-flex justify-content-center my-4"
-          style={{ "margin-left": "0" }}
+          style={{ marginLeft: "0" }}
         >
           <div className="col-12 bg-dark rounded d-flex align-item-center justify-content-center py-2 text-light">
             <h1>Magnets</h1>

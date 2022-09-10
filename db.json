@@ -211,29 +211,68 @@
     },
     {
       "UserId": 3,
-      "EventId": 1,
+      "EventId": "1",
       "confirmationDate": "2022/10/03",
       "status": "open",
-      "ageRequirement": "",
-      "specialRequirement": "",
-      "magnetDescription": "",
-      "participant": "",
-      "vacantParticipant": "",
-      "participantDescription": "",
+      "ageRequirement": "19",
+      "specialRequirement": "All Gender",
+      "magnetDescription": "dadadawkdoa askdaskdjh",
+      "participant": "5",
+      "vacantParticipant": "4",
+      "participantDescription": "drimsesn sadkjsdh",
       "id": 5
     },
     {
       "UserId": 3,
-      "EventId": 1,
+      "EventId": "2",
       "confirmationDate": "2022/10/03",
       "status": "open",
-      "ageRequirement": "",
-      "specialRequirement": "",
-      "magnetDescription": "",
-      "participant": "",
-      "vacantParticipant": "",
-      "participantDescription": "",
+      "ageRequirement": "97",
+      "specialRequirement": "All Gender",
+      "magnetDescription": "hohouuu",
+      "participant": "10",
+      "vacantParticipant": "9",
+      "participantDescription": "lalala",
       "id": 6
+    },
+    {
+      "UserId": 3,
+      "EventId": "2",
+      "confirmationDate": "2022/10/03",
+      "status": "open",
+      "ageRequirement": "20",
+      "specialRequirement": "All Gender",
+      "magnetDescription": "aman aman",
+      "participant": "9",
+      "vacantParticipant": "7",
+      "participantDescription": "ygy",
+      "id": 7
+    },
+    {
+      "UserId": 3,
+      "EventId": "3",
+      "confirmationDate": "2022/10/03",
+      "status": "open",
+      "ageRequirement": "21",
+      "specialRequirement": "All Gender",
+      "magnetDescription": "gg gemink",
+      "participant": "1",
+      "vacantParticipant": "21",
+      "participantDescription": "ha ha ha",
+      "id": 8
+    },
+    {
+      "UserId": 3,
+      "EventId": "3",
+      "confirmationDate": "2022/10/03",
+      "status": "open",
+      "ageRequirement": "123",
+      "specialRequirement": "Man Only",
+      "magnetDescription": "sadsad",
+      "participant": "213",
+      "vacantParticipant": "213",
+      "participantDescription": "scxzczc",
+      "id": 9
     }
   ],
   "requests": [
@@ -270,7 +309,6 @@
       "invitationDescription": "ayok ayokk",
       "status": "open",
       "id": 3
-
     }
   ]
 }

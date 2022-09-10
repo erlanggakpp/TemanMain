@@ -44,18 +44,22 @@ export const addMagnets = function (data) {
       participantDescription,
     } = data;
     dispatch(loadingSet(true));
-    return axios.post(`${baseUrl}/magnets`, {
-      UserId,
-      EventId,
-      confirmationDate,
-      status,
-      ageRequirement,
-      specialRequirement,
-      magnetDescription,
-      participant,
-      vacantParticipant,
-      participantDescription,
-    });
+    return axios
+      .post(`${baseUrl}/magnets`, {
+        UserId,
+        EventId,
+        confirmationDate,
+        status,
+        ageRequirement,
+        specialRequirement,
+        magnetDescription,
+        participant,
+        vacantParticipant,
+        participantDescription,
+      })
+      .finally(() => {
+        dispatch(loadingSet(false));
+      });
   };
 };
 

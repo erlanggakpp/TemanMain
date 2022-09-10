@@ -1,5 +1,18 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { detailEvent, loadingSet } from "../store/action/events";
+
 export default function SideMenu({ toSide }) {
-  console.log(toSide);
+  // const dispatch = useDispatch();
+  // const params = useParams();
+  // useEffect(() => {
+  //   console.log(params.id);
+  //   dispatch(detailEvent(params.id)).finally(() => {
+  //     dispatch(loadingSet(false));
+  //   });
+  // }, []);
+
   return (
     <>
       <div className="col-md-4">
@@ -12,7 +25,7 @@ export default function SideMenu({ toSide }) {
             <p className="mb-0">{toSide.eventDuration}</p> */}
             <button
               type="button"
-              class="btn btn-primary"
+              className="btn btn-primary"
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
             >

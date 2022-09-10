@@ -85,10 +85,12 @@ afterAll(async () => {
   }
 });
 
-describe("GET /requests/user/:userId", () => {
-  describe("GET /requests/user/:userId - Success", () => {
+describe("GET /requests/user", () => {
+  describe("GET /requests/user - Success", () => {
     it("Should return array of requests from specific user", async () => {
-      const response = await request(app).get("/requests/user/1");
+      const response = await request(app).get("/requests/user").set({
+        user_id: 1,
+      });
       // console.log(response, "<<<<<<<<<<<<<<<< ini  response");
       expect(response.body).toEqual(expect.any(Array));
       expect(response.status).toBe(200);
@@ -507,10 +509,12 @@ describe("DELETE /requests/:requestId", () => {
   });
 });
 
-describe("GET /invitations/user/:userId", () => {
-  describe("GET /invitations/user/:userId - Success", () => {
+describe("GET /invitations", () => {
+  describe("GET /invitations - Success", () => {
     it("Should return array of invitations for specific user", async () => {
-      const response = await request(app).get("/invitations/user/4");
+      const response = await request(app).get("/invitations/user").set({
+        user_id: 1,
+      });
       // console.log(response, "<<<<<<<<<<<<<<<< ini  response");
       expect(response.body).toEqual(expect.any(Array));
       expect(response.status).toBe(200);
@@ -527,6 +531,7 @@ describe("POST /invitations/event/:eventId/magnet/:magnetId/user/:userId", () =>
         .post("/invitations/event/1/magnet/1/user/4")
         .set({
           target_user_age: 19,
+          user_id: 3,
         })
         .send(payload);
       // console.log(response, "<<<<<<<<<<<<<<<< ini  response");
@@ -547,6 +552,7 @@ describe("POST /invitations/event/:eventId/magnet/:magnetId/user/:userId", () =>
         .post("/invitations/event/1/magnet/1/user/4")
         .set({
           target_user_age: 15,
+          user_id: 3,
         })
         .send(payload);
       // console.log(response, "<<<<<<<<<<<<<<<< ini  response");
@@ -565,6 +571,7 @@ describe("POST /invitations/event/:eventId/magnet/:magnetId/user/:userId", () =>
         .post("/invitations/event/1/magnet/1/user/4")
         .set({
           target_user_age: 19,
+          user_id: 3,
         })
         .send(payload);
       // console.log(response, "<<<<<<<<<<<<<<<< ini  response");
@@ -581,6 +588,7 @@ describe("POST /invitations/event/:eventId/magnet/:magnetId/user/:userId", () =>
         .post("/invitations/event/1/magnet/1/user/4")
         .set({
           target_user_age: 19,
+          user_id: 3,
         })
         .send(payload);
       // console.log(response, "<<<<<<<<<<<<<<<< ini  response");
@@ -746,12 +754,13 @@ describe("PUT /invitations/:invitationId/accept", () => {
         .post("/invitations/event/1/magnet/3/user/5")
         .set({
           target_user_age: 21,
+          user_id: 4,
         })
         .send(payload);
       const response = await request(app).put("/invitations/2/accept").set({
         user_id: 5,
       });
-      // console.log(response, "<<<<<<<<<<<<<<<< ini  response");
+      console.log(response, "<<<<<<<<<<<<<<<< ini  response");
       expect(response.status).toBe(400);
 
       expect(response.body).toHaveProperty(
@@ -800,18 +809,22 @@ describe("PUT /invitations/:invitationId/reject", () => {
     });
   });
 });
-describe("GET /magnets/user/:userId", () => {
-  describe("GET /magnets/user/:userId - Success", () => {
+describe("GET /magnets/user", () => {
+  describe("GET /magnets/user - Success", () => {
     it("Should return array of magnets that created by specific user", async () => {
-      const response = await request(app).get("/magnets/user/3");
+      const response = await request(app).get("/magnets/user").set({
+        user_id: 3,
+      });
       // console.log(response, "<<<<<<<<<<<<<<<< ini  response");
       expect(response.body).toEqual(expect.any(Array));
       expect(response.status).toBe(200);
     });
   });
-  describe("GET /magnets/user/:userId - Error", () => {
+  describe("GET /magnets/user- Error", () => {
     it("Should return 'Can't find magnet list'", async () => {
-      const response = await request(app).get("/magnets/user/1");
+      const response = await request(app).get("/magnets/user").set({
+        user_id: 1,
+      });
       //   console.log(response, "<<<<<<<<<<<<<<<< ini  response");
       expect(response.body).toEqual(expect.any(Object));
       expect(response.status).toBe(400);

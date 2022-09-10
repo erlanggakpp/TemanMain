@@ -112,11 +112,11 @@ class MagnetController {
   }
   static async getMagnetByUserId(req, res, next) {
     try {
-      const { userId } = req.headers;
+      const { user_id } = req.headers;
 
       const magnetList = await Magnet.findAll({
         where: {
-          UserId: +userId,
+          UserId: +user_id,
         },
       });
 

@@ -59,7 +59,7 @@ export default function HomePage() {
               <FilterSide />
             </div>
             <div className="col-9">
-              <h1>ini buat card</h1>
+              <h1 className="display-4 mt-2">on going events</h1>
               <MainCard showEvents={showEvents} />
             </div>
           </div>

@@ -10,83 +10,52 @@ export default function MainCard() {
     dispatch(fetchEvent()).finally(() => {
       dispatch(loadingSet(false));
     });
-  }, [events]);
+  }, []);
 
   return (
-    <main>
-      {loading ? (
-        <h1>Loading...</h1>
-      ) : (
-        <div className="album py-5 bg-light">
-          <div className="container">
-            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-              {events.map((e) => {
-                return (
-                  <div className="col" key={e.id}>
-                    <div className="card shadow-sm">
-                      <svg
-                        className="bd-placeholder-img card-img-top"
-                        width="100%"
-                        height="225"
-                        xmlns="http://www.w3.org/2000/svg"
-                        role="img"
-                        aria-label="Placeholder: Thumbnail"
-                        preserveAspectRatio="xMidYMid slice"
-                        focusable="false"
-                      >
-                        <title>Placeholder</title>
-                        <rect
-                          style={{ position: "relative" }}
-                          width="100%"
-                          height="100%"
-                          fill="#55595c"
-                        />
-
-                        <text x="50%" y="50%" fill="#eceeef" dy=".3em">
-                          {e.name}
-                        </text>
-                      </svg>
-                      <img
-                        src={e.image}
-                        style={{
-                          height: "100%",
-                          width: "100%",
-                        }}
-                      />
-                      <div className="card-body">
-                        <p className="card-text">Price: {e.ticketPrice}</p>
-                        <div className="d-flex justify-content-between align-items-center">
-                          <div className="btn-group">
-                            <Link to={`/events/`}>
-                              <button
-                                type="button"
-                                className="btn btn-sm btn-outline-secondary"
-                              >
-                                View
-                              </button>
-                            </Link>
-                            <button
-                              type="button"
-                              className="btn btn-sm btn-outline-secondary"
-                            >
-                              <a href={e.eventHomepageLink}>Event Link</a>
-                            </button>
-                          </div>
-
-                          <small className="text-muted">
-                            <p>{e.eventDate}</p>
-                            <p>{e.eventDuration} Event</p>
-                          </small>
+    <>
+      <section className="card py-5 " style={{ border: 0 }}>
+        {loading ? (
+          <h1>Loading...</h1>
+        ) : (
+          // <p>
+          //   {JSON.stringify(events)}
+          // </p>
+          <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-center">
+              {events.map((e) => (
+                <div class="col mb-5" key={e.id}>
+                  <div class="card h-100">
+                    <img class="card-img-top" src={e.image} alt="..." />
+                    <div class="card-body ">
+                      <div class="text-center">
+                        <h5 class="fw-bolder"> {e.name}</h5>
+                        Rp. {e.ticketPrice}
+                      </div>
+                    </div>
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                      <div class="text-center">
+                        <div
+                          class="btn-group"
+                          role="group"
+                          aria-label="Basic outlined example"
+                        >
+                          <button type="button" class="btn btn-outline-dark">
+                            Detail
+                          </button>
+                          <button type="button" class="btn btn-outline-dark">
+                            Buy
+                          </button>
                         </div>
                       </div>
                     </div>
                   </div>
-                );
-              })}
+                </div>
+              ))}
             </div>
           </div>
-        </div>
-      )}
-    </main>
+        )}
+      </section>
+    </>
   );
 }

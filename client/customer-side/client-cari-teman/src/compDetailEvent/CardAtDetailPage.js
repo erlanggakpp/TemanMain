@@ -1,3 +1,4 @@
+import ModalMagnets from "./ModalMagnets";
 export default function CardAtDetailPage() {
   return (
     <>
@@ -8,8 +9,8 @@ export default function CardAtDetailPage() {
         >
           <div className="col-12 bg-dark rounded d-flex align-item-center justify-content-center py-2 text-light">
             <h1>Magnets</h1>
-            <br />
           </div>
+          <ModalMagnets />
         </div>
         <div className="col-md-3">
           <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
@@ -20,7 +21,8 @@ export default function CardAtDetailPage() {
               <h3 className="mb-0">Nama Orang</h3>
               <div className="mb-1 text-muted">Nov 12</div>
               <p className="card-text mb-auto">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit, iure. Fuga ex aperiam unde corporis.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit,
+                iure. Fuga ex aperiam unde corporis.
               </p>
               <a href="#" className="stretched-link">
                 Continue reading
@@ -37,7 +39,8 @@ export default function CardAtDetailPage() {
               <h3 className="mb-0">Nama Orang</h3>
               <div className="mb-1 text-muted">Nov 11</div>
               <p className="mb-auto">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odit rem aut natus vel omnis distinctio.
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odit
+                rem aut natus vel omnis distinctio.
               </p>
               <a href="#" className="stretched-link">
                 Continue reading
@@ -54,7 +57,8 @@ export default function CardAtDetailPage() {
               <h3 className="mb-0">Nama Orang</h3>
               <div className="mb-1 text-muted">Nov 11</div>
               <p className="mb-auto">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum sapiente assumenda beatae,est recusandae!
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum
+                sapiente assumenda beatae,est recusandae!
               </p>
               <a href="#" className="stretched-link">
                 Continue reading
@@ -71,7 +75,8 @@ export default function CardAtDetailPage() {
               <h3 className="mb-0">Nama Orang</h3>
               <div className="mb-1 text-muted">Nov 11</div>
               <p className="mb-auto">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit voluptatibus doloribus sapiente minus, quae vitae.
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit
+                voluptatibus doloribus sapiente minus, quae vitae.
               </p>
               <a href="#" className="stretched-link">
                 Continue reading

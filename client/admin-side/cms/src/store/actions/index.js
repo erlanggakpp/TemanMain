@@ -2,9 +2,7 @@ import {
   USER_FETCH,
   EVENT_FETCH,
   CATEGORY_FETCH,
-  DELETE_EVENTID,
   USER_DETAILID,
-  EVENT_DETAILID,
 } from './actionType';
 import axios from 'axios';
 
@@ -23,29 +21,38 @@ export const fetchEvents = () => {
   };
 };
 
-export const deleteEventId = (payload) => {
-  return {
-    type: DELETE_EVENTID,
-    payload,
-  };
-};
-
-export const deleteEventById = (id) => {
+export const deleteEvents = (id) => {
   return (dispatch) => {
+    console.log(id, 'from action');
     return axios
       .delete(`http://localhost:3001/events/${id}`, {
         headers: {
           'Content-Type': 'application/json',
         },
       })
-      .then((response) => {
-        console.log(response);
+      .then((res) => {
+        console.log(res.data);
       })
       .then((data) => {
         dispatch(fetchEvents(data));
+      });
+  };
+};
+
+export const deleteCategory = (id) => {
+  return (dispatch) => {
+    console.log(id, 'from action');
+    return axios
+      .delete(`http://localhost:3001/categories/${id}`, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
       })
-      .catch((error) => {
-        console.log(error);
+      .then((res) => {
+        console.log(res.data);
+      })
+      .then((data) => {
+        dispatch(fetchCategories(data));
       });
   };
 };
@@ -120,7 +127,7 @@ export const fetchcategory = (payload) => {
 
 export const fetchCategories = () => {
   return (dispatch) => {
-    return axios.get('http://localhost:3001/Categories').then((data) => {
+    return axios.get('http://localhost:3001/categories').then((data) => {
       dispatch(fetchcategory(data));
     });
   };

@@ -46,7 +46,7 @@ export default function TableEvent() {
                             <h1>Loadingg cuyy ...</h1>
                         ) : (
                             events.data.map((event, i) =>
-                                <EventTableRow key={i} event={event} i={i} />
+                                <EventTableRow key={i} data={event} i={i} />
                             )
                         )}
                     </tbody>

@@ -3,10 +3,11 @@ import Button from 'react-bootstrap/Button';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { deleteUser } from '../store/actions';
+
+
 export default function UserTableRow({ user, i }) {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-
 
     const image = {
         width: "150px",

@@ -76,23 +76,34 @@
       "role": "Visitor"
     }
   ],
-  "Categories": [
+  "categories": [
     {
-      "name": "Music"
+      "id": 1,
+      "name": "Music",
+      "image": "https://cdn.kiostix.com/media/18304/conversions/medium.jpg"
     },
     {
-      "name": "Attraction"
+      "id": 2,
+      "name": "Attraction",
+      "image": "https://cdn.kiostix.com/media/18304/conversions/medium.jpg"
     },
     {
-      "name": "Playground"
+      "id": 3,
+      "name": "Playground",
+      "image": "https://cdn.kiostix.com/media/18304/conversions/medium.jpg"
     },
     {
-      "name": "Workshop and Education"
+      "id": 4,
+      "name": "Workshop and Education",
+      "image": "https://cdn.kiostix.com/media/18304/conversions/medium.jpg"
     },
     {
-      "name": "Tours"
+      "id": 5,
+      "name": "Tours",
+      "image": "https://cdn.kiostix.com/media/18304/conversions/medium.jpg"
     }
   ],
+  
   "events": [
     {
       "name": "Synchronize Fest",
@@ -162,40 +173,119 @@
   ],
   "magnets": [
     {
+      "id": 1,
       "UserId": 3,
       "EventId": 1,
       "confirmationDate": "2022/10/03",
-      "status": "open",
+      "status": true,
       "ageRequirement": "18",
       "specialRequirement": "Male or Female",
       "magnetDescription": "Pengen nonton tapi gapunya temen, ayo temenin! Kesononya naik bis",
       "participant": 4,
-      "vacantParticipant": 3,
-      "participantDescription": "Yang ikut baru saya saja, mencari 3 orang, pria atau wanita bebas"
+      "vacantParticipant": 3
     },
     {
+      "UserId": 3,
+      "EventId": 2,
+      "confirmationDate": "2022/10/03",
+      "status": true,
+      "ageRequirement": "18",
+      "specialRequirement": "Male or Female",
+      "magnetDescription": "Pengen nonton tapi gapunya temen, ayo temenin! Kesononya naik bis",
+      "participant": 4,
+      "vacantParticipant": 3
+    },
+    {
+      "id": 2,
       "UserId": 4,
       "EventId": 1,
       "confirmationDate": "2022/10/03",
-      "status": "open",
+      "status": true,
       "ageRequirement": "18",
       "specialRequirement": "Female",
       "magnetDescription": "Cari teman untuk nonton konser, transportasi saya tanggung",
       "participant": 2,
-      "vacantParticipant": 1,
-      "participantDescription": "Mencari 1 orang wanita untuk nonton bareng! Yang ikut baru saya saja"
+      "vacantParticipant": 0
     },
     {
+      "id": 3,
       "UserId": 5,
       "EventId": 1,
       "confirmationDate": "2022/10/03",
-      "status": "open",
+      "status": true,
       "ageRequirement": "18",
       "specialRequirement": "Male or Female",
       "magnetDescription": "Synchronize fest, akomodasi di hotel bintang 3",
       "participant": 6,
       "vacantParticipant": 3,
       "participantDescription": "Mencari 3 orang, 2 wanita 1 Pria untuk nonton bareng! Yang ikut baru saya, kakak saya(perempuan) dan adik saya(perempuan)"
+    },
+    {
+      "id": 4,
+      "UserId": 3,
+      "EventId": 1,
+      "confirmationDate": "2022/10/03",
+      "status": "open",
+      "ageRequirement": "19",
+      "specialRequirement": "Female",
+      "magnetDescription": "apawe",
+      "participant": "6",
+      "vacantParticipant": "5",
+      "participantDescription": "asdasdasd"
+    },
+    {
+      "id": 5,
+      "UserId": 3,
+      "EventId": 1,
+      "confirmationDate": "2022/10/03",
+      "status": "open",
+      "ageRequirement": "",
+      "specialRequirement": "",
+      "magnetDescription": "",
+      "participant": "",
+      "vacantParticipant": "",
+      "participantDescription": ""
+    },
+    {
+      "id": 6,
+      "UserId": 3,
+      "EventId": 1,
+      "confirmationDate": "2022/10/03",
+      "status": "open",
+      "ageRequirement": "",
+      "specialRequirement": "",
+      "magnetDescription": "",
+      "participant": "",
+      "vacantParticipant": "",
+      "participantDescription": ""
+    }
+  ],
+  "requests": [
+    {
+      "id": 1,
+      "EventId": 3,
+      "UserId": 3,
+      "MagnetId": 1,
+      "requestDescription": "i req join",
+      "status": "open"
+    }
+  ],
+  "invitations": [
+    {
+      "id": 1,
+      "EventId": 3,
+      "UserId": 3,
+      "MagnetId": 1,
+      "invitationDescription": "i invit u",
+      "status": "open"
+    },
+    {
+      "UserId": 3,
+      "EventId": 3,
+      "MagnetId": 1,
+      "invitationDescription": "ayok ayokk",
+      "status": "open",
+      "id": 3
     }
   ]
 }

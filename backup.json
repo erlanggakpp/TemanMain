@@ -90,6 +90,7 @@
     ],
     "events": [
         {
+            "id": 1,
             "CategoryId": 1,
             "name": "Synchronize Fest",
             "location": "Kemayoran, Jakarta",
@@ -102,6 +103,7 @@
             "ticketPrice": 500000
         },
         {
+            "id": 2,
             "CategoryId": 1,
             "name": "The Sounds Project",
             "location": "Ancol, Jakarta",
@@ -114,6 +116,7 @@
             "ticketPrice": 800000
         },
         {
+            "id": 3,
             "CategoryId": 5,
             "name": "Labuan Bajo",
             "location": "Nusa Tenggara Timur",
@@ -126,6 +129,7 @@
             "ticketPrice": 8000000
         },
         {
+            "id": 4,
             "CategoryId": 3,
             "name": "Dunia Fantasi",
             "location": "Ancol, Jakarta",

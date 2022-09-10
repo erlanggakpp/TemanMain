@@ -8,6 +8,7 @@ class EventController {
       if (eventsCache) {
         // console.log("CACHE");
         eventsCache = JSON.parse(eventsCache);
+        // await redis.del("event:events");
       } else {
         // console.log("axiois");
         const { data: events, status } = await axios({
@@ -18,7 +19,26 @@ class EventController {
         await redis.set("event:events", JSON.stringify(events));
         // await redis.del("event:events");
       }
-
+      let usersCache = await redis.get("user:users");
+      if (usersCache) {
+        // console.log("CACHE");
+        usersCache = JSON.parse(usersCache);
+      } else {
+        // console.log("axiois");
+        const { data: users } = await axios({
+          method: "GET",
+          url: "http://localhost:4001/users",
+          headers: {
+            access_token,
+          },
+        });
+        usersCache = users;
+        await redis.set("user:users", JSON.stringify(users));
+      }
+      eventsCache.forEach((event) => {
+        const User = usersCache.filter((el) => el.id === event.AdminId);
+        event.Admin = User;
+      });
       res.status(200).json(eventsCache);
     } catch (error) {
       const { status, data } = error.response;
@@ -50,10 +70,9 @@ class EventController {
         usersCache = users;
         await redis.set("user:users", JSON.stringify(users));
       }
+      const admin = usersCache.find((el) => el.id);
       event.Magnets.forEach((magnet) => {
-        const userTarget = usersCache.filter(
-          (user) => user.id === magnet.UserId
-        );
+        const userTarget = usersCache.find((user) => user.id === magnet.UserId);
         magnet.User = userTarget;
       });
       res.status(200).json(event);
@@ -95,6 +114,26 @@ class EventController {
       eventsCache = eventsCache.filter(
         (el) => el.CategoryId === targetCategory.id
       );
+      let usersCache = await redis.get("user:users");
+      if (usersCache) {
+        // console.log("CACHE");
+        usersCache = JSON.parse(usersCache);
+      } else {
+        // console.log("axiois");
+        const { data: users } = await axios({
+          method: "GET",
+          url: "http://localhost:4001/users",
+          headers: {
+            access_token,
+          },
+        });
+        usersCache = users;
+        await redis.set("user:users", JSON.stringify(users));
+      }
+      eventsCache.forEach((event) => {
+        const User = usersCache.filter((el) => el.id === event.AdminId);
+        event.Admin = User;
+      });
       res.status(200).json(eventsCache);
     } catch (error) {
       const { status, data } = error.response;

@@ -10,11 +10,13 @@
       "profilePict": "https://i.pravatar.cc/300",
       "instagramAccount": "@admin1",
       "twitterAccount": "@admin1",
-      "phoneNumber": "0812345",
+      "phoneNumber": "081234525",
       "gender": "Male",
-      "role": "Admin"
+      "role": "Admin",
+      "id": 1
     },
     {
+      "id": 2,
       "email": "admin2@mail.com",
       "password": "12345",
       "firstName": "admin2",
@@ -29,6 +31,7 @@
       "role": "Admin"
     },
     {
+      "id": 3,
       "email": "user1@mail.com",
       "password": "12345",
       "firstName": "user1",
@@ -43,6 +46,7 @@
       "role": "Visitor"
     },
     {
+      "id": 4,
       "email": "user2@mail.com",
       "password": "12345",
       "firstName": "user2",
@@ -57,6 +61,7 @@
       "role": "Visitor"
     },
     {
+      "id": 5,
       "email": "user3@mail.com",
       "password": "12345",
       "firstName": "user3",
@@ -262,7 +267,6 @@
       "invitationDescription": "ayok ayokk",
       "status": "open",
       "id": 3
-
     }
   ]
 }

@@ -1,23 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import NavBar from './components/NavBar';
+import TableEvent from './components/TableEvent';
+import { Routes, Route } from "react-router-dom";
+import EventAdd from './components/EventAdd';
+import TableUser from './components/TableUser';
+import UserAdd from './components/UserAdd';
+import TableCategory from './components/TableCategory';
+import CategoryAdd from './components/CategoryAdd';
+import UserEdit from './components/UserEdit';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavBar />
+      <Routes>
+        <Route path="/listevent" element={<TableEvent />} />
+        <Route path="/event" element={<EventAdd />} />
+        <Route path="/listuser" element={<TableUser />} />
+        <Route path="/user" element={<UserAdd />} />
+        <Route path="/user/:id" element={<UserEdit />} />
+        <Route path="/listcategory" element={<TableCategory />} />
+        <Route path="/category" element={<CategoryAdd />} />
+      </Routes>
     </div>
   );
 }

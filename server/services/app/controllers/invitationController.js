@@ -127,10 +127,10 @@ class InvitationController {
   }
   static async getInvitationByUserId(req, res, next) {
     try {
-      const { userId } = req.params;
+      const { user_id } = req.headers;
       const invitations = await Invitation.findAll({
         where: {
-          UserId: userId,
+          UserId: user_id,
         },
       });
       res.status(200).json(invitations);

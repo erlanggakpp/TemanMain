@@ -43,13 +43,6 @@ module.exports = {
       },
       AdminId: {
         type: Sequelize.INTEGER,
-        references: {
-          model: "Users",
-          key: "id",
-        },
-        onDelete: "cascade",
-        onUpdate: "cascade",
-        allowNull: false,
       },
       image: {
         type: Sequelize.STRING,

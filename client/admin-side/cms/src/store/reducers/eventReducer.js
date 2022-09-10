@@ -1,4 +1,4 @@
-import { EVENT_DETAILID, EVENT_FETCH, DELETE_EVENTID } from "../actions/actionType";
+import { EVENT_DETAILID, EVENT_FETCH } from "../actions/actionType";
 
 const intialState = { events: [], detailevents: [] }
 function eventReducer(state = intialState, action) {
@@ -7,8 +7,6 @@ function eventReducer(state = intialState, action) {
             return { ...state, events: action.payload }
         case EVENT_DETAILID:
             return { ...state, detailevents: action.payload }
-        case DELETE_EVENTID:
-            return { ...state, events: action.payload }
         default:
             return state;
     }

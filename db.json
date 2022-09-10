@@ -76,24 +76,29 @@
       "role": "Visitor"
     }
   ],
-  "Categories": [
+  "categories": [
     {
+      "id": 1,
       "name": "Music",
       "image": "https://cdn.kiostix.com/media/18304/conversions/medium.jpg"
     },
     {
+      "id": 2,
       "name": "Attraction",
       "image": "https://cdn.kiostix.com/media/18304/conversions/medium.jpg"
     },
     {
+      "id": 3,
       "name": "Playground",
       "image": "https://cdn.kiostix.com/media/18304/conversions/medium.jpg"
     },
     {
+      "id": 4,
       "name": "Workshop and Education",
       "image": "https://cdn.kiostix.com/media/18304/conversions/medium.jpg"
     },
     {
+      "id": 5,
       "name": "Tours",
       "image": "https://cdn.kiostix.com/media/18304/conversions/medium.jpg"
     }
@@ -108,7 +113,7 @@
       "eventDate": "2022/10/08",
       "eventHomepageLink": "https://synchronizefestival.com",
       "eventDuration": "3 Days",
-      "AdminId": 1,
+      "AdmindId": 1,
       "image": "http://vradiofm.com/uploads/news/730b2923-60ed-41f4-8895-04d6c49c325c78805a221a988e79ef3f42d7c5bfd418.jpg",
       "ticketPrice": 500000
     },
@@ -121,7 +126,7 @@
       "eventDate": "2022/8/22",
       "eventHomepageLink": "https://www.thesoundsproject.com",
       "eventDuration": "3 Days",
-      "AdminId": 2,
+      "AdmindId": 2,
       "image": "https://cdn.kiostix.com/media/18304/conversions/medium.jpg",
       "ticketPrice": 800000
     },
@@ -134,7 +139,7 @@
       "eventDate": "2022/12/10",
       "eventHomepageLink": "https://www.indonesia.travel/id/id/destinasi/bali-nusa-tenggara/labuan-bajo",
       "eventDuration": "5 Days",
-      "AdminId": 1,
+      "AdmindId": 1,
       "image": "https://img.jakpost.net/c/2017/08/02/2017_08_02_30495_1501654303._large.jpg",
       "ticketPrice": 8000000
     },
@@ -147,7 +152,7 @@
       "eventDate": "2022/11/02",
       "eventHomepageLink": "https://synchronizefestival.com",
       "eventDuration": "1 Day",
-      "AdminId": 2,
+      "AdmindId": 2,
       "image": "https://s-light.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/rsfit19201280gsm/events/2021/12/08/9c6ae660-1799-4276-b81d-f8b0b85669d6-1638949473006-1e6c55a1b1edca6bf250012af2cc79e2.jpg",
       "ticketPrice": 200000
     }
@@ -202,6 +207,7 @@
       "participantDescription": "Mencari 3 orang, 2 wanita 1 Pria untuk nonton bareng! Yang ikut baru saya, kakak saya(perempuan) dan adik saya(perempuan)"
     },
     {
+      "id": 4,
       "UserId": 3,
       "EventId": 1,
       "confirmationDate": "2022/10/03",
@@ -211,10 +217,10 @@
       "magnetDescription": "apawe",
       "participant": "6",
       "vacantParticipant": "5",
-      "participantDescription": "asdasdasd",
-      "id": 4
+      "participantDescription": "asdasdasd"
     },
     {
+      "id": 5,
       "UserId": 3,
       "EventId": 1,
       "confirmationDate": "2022/10/03",
@@ -224,10 +230,10 @@
       "magnetDescription": "",
       "participant": "",
       "vacantParticipant": "",
-      "participantDescription": "",
-      "id": 5
+      "participantDescription": ""
     },
     {
+      "id": 6,
       "UserId": 3,
       "EventId": 1,
       "confirmationDate": "2022/10/03",
@@ -237,8 +243,7 @@
       "magnetDescription": "",
       "participant": "",
       "vacantParticipant": "",
-      "participantDescription": "",
-      "id": 6
+      "participantDescription": ""
     }
   ],
   "requests": [

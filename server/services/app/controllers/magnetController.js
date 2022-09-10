@@ -1,4 +1,4 @@
-const { Magnet, Request, Invitation, User } = require("../models");
+const { Magnet, Request, Invitation } = require("../models");
 
 class MagnetController {
   static async getAllMagnets(req, res, next) {
@@ -112,14 +112,14 @@ class MagnetController {
   }
   static async getMagnetByUserId(req, res, next) {
     try {
-      const { userId } = req.params;
-      // console.log(userId);
+      const { userId } = req.headers;
+
       const magnetList = await Magnet.findAll({
         where: {
           UserId: +userId,
         },
       });
-      // console.log(magnetList, "INI MAGNET LIST");
+
       if (!magnetList.length) {
         throw { name: "magnetsNotExist" };
       }
@@ -167,9 +167,9 @@ class MagnetController {
           {
             model: Invitation,
           },
-          {
-            model: User,
-          },
+          // {
+          //   model: User,
+          // },
         ],
       });
       res.status(200).json(magnet);

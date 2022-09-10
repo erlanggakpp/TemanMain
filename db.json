@@ -109,7 +109,7 @@
       "AdmindId": 1,
       "image": "http://vradiofm.com/uploads/news/730b2923-60ed-41f4-8895-04d6c49c325c78805a221a988e79ef3f42d7c5bfd418.jpg",
       "ticketPrice": 500000,
-      "CategoryId": 1,
+      "CategoryId": "3",
       "id": 1
     },
     {
@@ -150,6 +150,19 @@
       "AdmindId": 2,
       "image": "https://s-light.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/rsfit19201280gsm/events/2021/12/08/9c6ae660-1799-4276-b81d-f8b0b85669d6-1638949473006-1e6c55a1b1edca6bf250012af2cc79e2.jpg",
       "ticketPrice": 200000
+    },
+    {
+      "name": "ea",
+      "location": "ea",
+      "description": "eqeq",
+      "eventDate": "2022-09-07",
+      "eventHomepageLink": "eqeqw",
+      "eventDuration": "13qeq",
+      "AdmindId": 1,
+      "image": "https://assets-prd.ignimgs.com/2022/03/10/pokemonasmr-blogroll-01-1646936829293.jpg",
+      "ticketPrice": "12313",
+      "CategoryId": "2",
+      "id": 5
     }
   ],
   "magnets": [

@@ -8,7 +8,7 @@ import Row from 'react-bootstrap/Row';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { fetchEventById, updateEvent } from '../store/actions';
+import { fetchEventById, updateEvent, fetchCategories } from '../store/actions';
 
 export default function EventEdit() {
   const container = {
@@ -18,6 +18,15 @@ export default function EventEdit() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { detailevents } = useSelector((state) => state.event);
+  const { categories } = useSelector((state) => state.category);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    dispatch(fetchCategories())
+      .then((_) => {
+        console.log('success');
+      })
+      .finally(() => setLoading(false));
+  }, []);
   // console.log(detailevents);
   const [editEvent, setEditEvent] = useState({
     name: '',
@@ -74,7 +83,7 @@ export default function EventEdit() {
       <Form onSubmit={handleSubmit}>
         <Row style={container}>
           <Col md={{ span: 7, offset: 3 }}>
-            <h2 style={{ textAlign: 'center' }}>Form Add Event</h2>
+            <h2 style={{ textAlign: 'center' }}>Form Edit Event</h2>
             <div classname="container-sm mt-5">
               <Form.Group
                 className="mb-1"
@@ -193,8 +202,13 @@ export default function EventEdit() {
                   onChange={changeInputEvent}
                   value={editEvent.CategoryId}
                 >
-                  <option value="1">1</option>
-                  <option value="2">2</option>
+                  {loading ? (
+                    <h1>Loading bang</h1>
+                  ) : (
+                    categories.data.map((el) => (
+                      <option value={el.id}>{el.name}</option>
+                    ))
+                  )}
                 </Form.Select>
               </Form.Group>
 

@@ -2,6 +2,7 @@ import {
   USER_FETCH,
   EVENT_FETCH,
   CATEGORY_FETCH,
+  CATEGORY_DETAILID,
   USER_DETAILID,
   EVENT_DETAILID,
 } from './actionType';
@@ -131,6 +132,51 @@ export const fetchCategories = () => {
     return axios.get('http://localhost:3001/categories').then((data) => {
       dispatch(fetchcategory(data));
     });
+  };
+};
+
+export const postCategory = (input) => {
+  return (dispatch) => {
+    return axios
+      .post('http://localhost:3001/categories', input, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+      });
+  };
+};
+export const detailCategory = (payload) => {
+  return {
+    type: CATEGORY_DETAILID,
+    payload,
+  };
+};
+
+export const fetchCategoryById = (id) => {
+  return (dispatch) => {
+    return axios.get(`http://localhost:3001/categories/${id}`).then((data) => {
+      dispatch(detailCategory(data));
+    });
+  };
+};
+
+export const updateCategory = (id, input) => {
+  return (dispatch) => {
+    return axios
+      .put(`http://localhost:3001/categories/${id}`, input, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .then((data) => {
+        dispatch(fetchCategories(data));
+      });
   };
 };
 

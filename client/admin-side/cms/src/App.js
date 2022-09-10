@@ -9,6 +9,7 @@ import TableCategory from './components/TableCategory';
 import CategoryAdd from './components/CategoryAdd';
 import UserEdit from './components/UserEdit';
 import EventEdit from './components/EventEdit';
+import CategoryEdit from './components/CategoryEdit';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/user/:id" element={<UserEdit />} />
         <Route path="/listcategory" element={<TableCategory />} />
         <Route path="/category" element={<CategoryAdd />} />
+        <Route path="/category/:id" element={<CategoryEdit />} />
       </Routes>
     </div>
   );

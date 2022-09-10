@@ -4,15 +4,21 @@ import Button from 'react-bootstrap/Button';
 import Stack from 'react-bootstrap/Stack';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import { postEvent } from '../store/actions';
-import { useDispatch } from 'react-redux';
-import { useState } from 'react';
+import { postEvent, fetchCategories } from '../store/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function EventAdd() {
   const container = {
     padding: '150px',
   };
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { categories } = useSelector((state) => state.category);
+  const [loading, setLoading] = useState(true);
+  console.log(categories);
+
   const [addEvent, setAddEvent] = useState({
     name: '',
     location: '',
@@ -25,6 +31,14 @@ export default function EventAdd() {
     ticketPrice: '',
     CategoryId: '',
   });
+  useEffect(() => {
+    dispatch(fetchCategories())
+      .then((_) => {
+        console.log('success');
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
   const changeInputEvent = (e) => {
     const { name, value } = e.target;
     setAddEvent({
@@ -37,6 +51,7 @@ export default function EventAdd() {
     dispatch(postEvent(addEvent))
       .then((_) => {
         console.log('success');
+        navigate(`/listevent`);
       })
       .catch((err) => {
         console.log(err.response.data);
@@ -153,13 +168,20 @@ export default function EventAdd() {
                 controlId="exampleForm.ControlInput1"
               >
                 <Form.Label>Category</Form.Label>
+
                 <Form.Select
                   name="CategoryId"
                   placeholder="Ticket Price"
                   onChange={changeInputEvent}
                 >
-                  <option value="1">1</option>
-                  <option value="2">2</option>
+                  <option disabled>-----Select Category----</option>
+                  {loading ? (
+                    <h1>Loading cuy</h1>
+                  ) : (
+                    categories.data.map((el) => (
+                      <option value={el.id}>{el.name}</option>
+                    ))
+                  )}
                 </Form.Select>
               </Form.Group>
 
@@ -171,9 +193,11 @@ export default function EventAdd() {
                 >
                   Save
                 </Button>
-                <Button variant="primary" className="justify-center">
-                  Cancel
-                </Button>
+                <Link to={'/listevent'}>
+                  <Button variant="primary" className="justify-center">
+                    Cancel
+                  </Button>
+                </Link>
               </Stack>
             </div>
           </Col>

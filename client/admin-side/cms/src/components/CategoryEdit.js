@@ -4,46 +4,59 @@ import Button from 'react-bootstrap/Button';
 import Stack from 'react-bootstrap/Stack';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import { useDispatch } from 'react-redux';
-import { useState } from 'react';
-import { postCategory } from '../store/actions';
-import { Link, useNavigate } from 'react-router-dom';
-export default function CategoryAdd() {
+
+import { useDispatch, useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { fetchCategoryById, updateCategory } from '../store/actions';
+
+export default function CategoryEdit() {
   const container = {
     padding: '150px',
   };
+  const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [addCategory, setAddCategory] = useState({
+  const { detailcategories } = useSelector((state) => state.category);
+  // console.log(detailevents);
+  const [editCategory, setEditCategory] = useState({
     name: '',
   });
-
   const changeInputEvent = (e) => {
     const { name, value } = e.target;
-    setAddCategory({
-      ...addCategory,
+    setEditCategory({
+      ...editCategory,
       [name]: value,
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(postCategory(addCategory))
+    dispatch(updateCategory(id, editCategory))
       .then((_) => {
         console.log('success');
-        navigate('/listcategory');
+        navigate(`/listcategory`);
       })
       .catch((err) => {
         console.log(err.response.data);
       });
   };
 
+  useEffect(() => {
+    dispatch(fetchCategoryById(id));
+  }, []);
+
+  useEffect(() => {
+    setEditCategory({
+      name: detailcategories?.data?.name,
+    });
+  }, [detailcategories]);
   return (
     <Container sm>
       <Form onSubmit={handleSubmit}>
         <Row style={container}>
           <Col md={{ span: 7, offset: 3 }}>
-            <h2 style={{ textAlign: 'center' }}>Form Add Category</h2>
+            <h2 style={{ textAlign: 'center' }}>Form Edit Category</h2>
             <div classname="container-sm mt-5">
               <Form.Group
                 className="mb-1"
@@ -53,10 +66,12 @@ export default function CategoryAdd() {
                 <Form.Control
                   name="name"
                   type="text"
-                  placeholder="Name Of Category"
+                  placeholder="Name Of Event"
                   onChange={changeInputEvent}
+                  value={editCategory.name}
                 />
               </Form.Group>
+
               <Stack gap={2} direction="horizontal">
                 <Button
                   variant="primary"

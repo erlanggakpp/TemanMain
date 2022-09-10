@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "postgres",
-    "password": "qwerty123",
-    "database": "TemanMain-app",
+    "password": "postgres",
+    "database": "TemanMain",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },

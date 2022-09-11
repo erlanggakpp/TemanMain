@@ -32,6 +32,7 @@ export default function TableCategory() {
                         <tr>
                             <th>#</th>
                             <th>Category Name</th>
+                            <th>Category Image</th>
                             <th>Action</th>
                         </tr>
                     </thead>

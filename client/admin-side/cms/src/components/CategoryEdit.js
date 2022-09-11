@@ -18,9 +18,10 @@ export default function CategoryEdit() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { detailcategories } = useSelector((state) => state.category);
-  // console.log(detailevents);
+  console.log(detailcategories);
   const [editCategory, setEditCategory] = useState({
     name: '',
+    image: ''
   });
   const changeInputEvent = (e) => {
     const { name, value } = e.target;
@@ -49,6 +50,7 @@ export default function CategoryEdit() {
   useEffect(() => {
     setEditCategory({
       name: detailcategories?.data?.name,
+      image: detailcategories?.data?.image,
     });
   }, [detailcategories]);
   return (
@@ -66,9 +68,22 @@ export default function CategoryEdit() {
                 <Form.Control
                   name="name"
                   type="text"
-                  placeholder="Name Of Event"
+                  placeholder="Name Of Category"
                   onChange={changeInputEvent}
                   value={editCategory.name}
+                />
+              </Form.Group>
+              <Form.Group
+                className="mb-1"
+                controlId="exampleForm.ControlInput1"
+              >
+                <Form.Label>Image</Form.Label>
+                <Form.Control
+                  name="image"
+                  type="text"
+                  placeholder="Image Url"
+                  onChange={changeInputEvent}
+                  value={editCategory.image}
                 />
               </Form.Group>
 

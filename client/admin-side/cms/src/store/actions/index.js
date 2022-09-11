@@ -171,9 +171,9 @@ export const detailCategory = (payload) => {
   };
 };
 
-export const fetchCategoryById = (id) => {
+export const fetchCategoryById = (categoryId) => {
   return (dispatch) => {
-    return axios.get(`http://localhost:4000/categories/${id}`, {
+    return axios.get(`http://localhost:4000/categories/${categoryId}`, {
       headers: {
         access_token: localStorage.getItem('access_token')
       }

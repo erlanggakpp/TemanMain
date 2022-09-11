@@ -8,6 +8,10 @@ export default function CategoryTableRow({ category, i }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const image = {
+    width: '300px',
+    height: '150px',
+  };
   const handleDelete = (e, id) => {
     e.preventDefault();
     dispatch(deleteCategory(id));
@@ -20,6 +24,9 @@ export default function CategoryTableRow({ category, i }) {
     <tr>
       <td>{i + 1}</td>
       <td>{category.name}</td>
+      <td>
+        <img src={category.image} style={image} />
+      </td>
       <td>
         <Stack gap={2} direction="horizontal">
           <Button

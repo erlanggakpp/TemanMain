@@ -14,6 +14,7 @@ module.exports = {
      */
     let eventSeed = [...events];
     eventSeed.forEach((el) => {
+      delete el.id;
       el.createdAt = new Date();
       el.updatedAt = new Date();
     });

@@ -1,5 +1,5 @@
 "use strict";
-const { Categories } = require("../../../../db.json");
+const { categories } = require("../../../../db.json");
 
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -12,8 +12,9 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
-    let categoriesSeed = [...Categories];
+    let categoriesSeed = [...categories];
     categoriesSeed.forEach((el) => {
+      delete el.id;
       el.createdAt = new Date();
       el.updatedAt = new Date();
     });

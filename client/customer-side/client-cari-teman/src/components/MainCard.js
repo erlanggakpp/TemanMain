@@ -34,29 +34,37 @@ export default function MainCard() {
           // <p>
           //   {JSON.stringify(events)}
           // </p>
-          <div class="container px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-center">
+          <div className="container px-4 px-lg-5">
+            <div className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-center">
               {events.map((e) => (
-                <div class="col mb-5" key={e.id}>
-                  <div class="card h-100">
-                    <img class="card-img-top" src={e.image} alt="..." />
-                    <div class="card-body ">
-                      <div class="text-center">
-                        <h5 class="fw-bolder"> {e.name}</h5>
+                <div className="col mb-5" key={e.id}>
+                  <div className="card h-100">
+                    <img className="card-img-top" src={e.image} alt="..." />
+                    <div className="card-body ">
+                      <div className="text-center">
+                        <h5 className="fw-bolder"> {e.name}</h5>
                         Rp. {e.ticketPrice}
                       </div>
                     </div>
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                      <div class="text-center">
+                    <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                      <div className="text-center">
                         <div
-                          class="btn-group"
+                          className="btn-group"
                           role="group"
                           aria-label="Basic outlined example"
                         >
-                          <button type="button" class="btn btn-outline-dark">
-                            Detail
-                          </button>
-                          <button type="button" class="btn btn-outline-dark">
+                          <Link to={`/events/${e.id}`}>
+                            <button
+                              type="button"
+                              className="btn btn-outline-dark"
+                            >
+                              Detail
+                            </button>
+                          </Link>
+                          <button
+                            type="button"
+                            className="btn btn-outline-dark"
+                          >
                             Buy
                           </button>
                         </div>

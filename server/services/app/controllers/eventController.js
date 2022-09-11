@@ -38,6 +38,7 @@ class EventController {
   }
   static async createEvent(req, res, next) {
     try {
+      console.log(req.body, "<<<<<<<<");
       const {
         CategoryId,
         name,

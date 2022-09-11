@@ -1,7 +1,7 @@
 import axios from "axios";
 import { fetch_detail, fetch_event, loading_set } from "./actionType";
 
-const baseUrl = "http://localhost:3001";
+const baseUrl = "http://localhost:4000";
 
 export const getEvent = function (payload) {
   return {
@@ -16,6 +16,11 @@ export const getDetail = function (payload) {
     payload,
   };
 };
+export const createMagnet = function (payload) {
+  return {
+    type: "addMagnet",
+  };
+};
 
 export const loadingSet = function (payload) {
   return {
@@ -27,9 +32,17 @@ export const loadingSet = function (payload) {
 export const fetchEvent = function () {
   return (dispatch) => {
     dispatch(loadingSet(true));
-    return axios.get(`${baseUrl}/events`).then(({ data }) => {
-      dispatch(getEvent(data));
-    });
+    return axios
+      .get(`${baseUrl}/events`, {
+        headers: {
+          access_token:
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZSI6IlZpc2l0b3IiLCJlbWFpbCI6InVzZXIxQG1haWwuY29tIiwiaWF0IjoxNjYyODgxMzM2fQ.wc8_YJIkTX-PhQSVGuU-ObrJA_53AvTixj08NAR2QPg",
+        },
+      })
+      .then(({ data }) => {
+        console.log(data);
+        dispatch(getEvent(data));
+      });
 
     // .finally(() => dispatch(loadingSet(false)));
   };
@@ -38,9 +51,16 @@ export const fetchEvent = function () {
 export const detailEvent = function (id) {
   return function (dispatch) {
     dispatch(loadingSet(true));
-    return axios.get(`${baseUrl}/events/${id}`).then(({ data }) => {
-      dispatch(getDetail(data));
-    });
+    return axios
+      .get(`${baseUrl}/events/${id}`, {
+        headers: {
+          access_token:
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZSI6IlZpc2l0b3IiLCJlbWFpbCI6InVzZXIxQG1haWwuY29tIiwiaWF0IjoxNjYyODgxMzM2fQ.wc8_YJIkTX-PhQSVGuU-ObrJA_53AvTixj08NAR2QPg",
+        },
+      })
+      .then(({ data }) => {
+        dispatch(getDetail(data));
+      });
     // .finally(() => dispatch(loadingSet(false)));
   };
 };

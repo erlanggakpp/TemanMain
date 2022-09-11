@@ -50,7 +50,7 @@ async function invitationAuthorization(req, res, next) {
       where: {
         id: invitationId,
       },
-      include: [{ model: Magnet, include: [User] }],
+      include: [{ model: Magnet }],
     });
     // console.log(targetInvitation, "<<<<<<<<<<<<<<<<<");
     // console.log(+user_id, targetInvitation.Magnet.UserId, "<<<<<<<<<<<<<<<<<");

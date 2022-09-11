@@ -71,7 +71,7 @@
       "role": "Visitor"
     }
   ],
-  "Categories": [
+  "categories": [
     {
       "name": "Music",
       "image": "https://cdn.kiostix.com/media/18304/conversions/medium.jpg"
@@ -95,7 +95,6 @@
   ],
   "events": [
     {
-      "id": 1,
       "CategoryId": 1,
       "name": "Synchronize Fest",
       "location": "Kemayoran, Jakarta",
@@ -108,7 +107,6 @@
       "ticketPrice": 500000
     },
     {
-      "id": 2,
       "CategoryId": 1,
       "name": "The Sounds Project",
       "location": "Ancol, Jakarta",
@@ -121,7 +119,6 @@
       "ticketPrice": 800000
     },
     {
-      "id": 3,
       "CategoryId": 5,
       "name": "Labuan Bajo",
       "location": "Nusa Tenggara Timur",
@@ -134,7 +131,6 @@
       "ticketPrice": 8000000
     },
     {
-      "id": 4,
       "CategoryId": 3,
       "name": "Dunia Fantasi",
       "location": "Ancol, Jakarta",
@@ -149,7 +145,6 @@
   ],
   "magnets": [
     {
-      "id": 1,
       "UserId": 3,
       "EventId": 1,
       "confirmationDate": "2022/10/03",
@@ -172,7 +167,6 @@
       "vacantParticipant": 3
     },
     {
-      "id": 2,
       "UserId": 4,
       "EventId": 1,
       "confirmationDate": "2022/10/03",
@@ -184,7 +178,6 @@
       "vacantParticipant": 0
     },
     {
-      "id": 3,
       "UserId": 5,
       "EventId": 1,
       "confirmationDate": "2022/10/03",
@@ -211,46 +204,91 @@
     },
     {
       "UserId": 3,
-      "EventId": 1,
+      "EventId": "1",
       "confirmationDate": "2022/10/03",
       "status": "open",
-      "ageRequirement": "",
-      "specialRequirement": "",
-      "magnetDescription": "",
-      "participant": "",
-      "vacantParticipant": "",
-      "participantDescription": "",
+      "ageRequirement": "19",
+      "specialRequirement": "All Gender",
+      "magnetDescription": "dadadawkdoa askdaskdjh",
+      "participant": "5",
+      "vacantParticipant": "4",
+      "participantDescription": "drimsesn sadkjsdh",
       "id": 5
     },
     {
       "UserId": 3,
-      "EventId": 1,
+      "EventId": "2",
       "confirmationDate": "2022/10/03",
       "status": "open",
-      "ageRequirement": "",
-      "specialRequirement": "",
-      "magnetDescription": "",
-      "participant": "",
-      "vacantParticipant": "",
-      "participantDescription": "",
+      "ageRequirement": "97",
+      "specialRequirement": "All Gender",
+      "magnetDescription": "hohouuu",
+      "participant": "10",
+      "vacantParticipant": "9",
+      "participantDescription": "lalala",
       "id": 6
+    },
+    {
+      "UserId": 3,
+      "EventId": "2",
+      "confirmationDate": "2022/10/03",
+      "status": "open",
+      "ageRequirement": "20",
+      "specialRequirement": "All Gender",
+      "magnetDescription": "aman aman",
+      "participant": "9",
+      "vacantParticipant": "7",
+      "participantDescription": "ygy",
+      "id": 7
+    },
+    {
+      "UserId": 3,
+      "EventId": "3",
+      "confirmationDate": "2022/10/03",
+      "status": "open",
+      "ageRequirement": "21",
+      "specialRequirement": "All Gender",
+      "magnetDescription": "gg gemink",
+      "participant": "1",
+      "vacantParticipant": "21",
+      "participantDescription": "ha ha ha",
+      "id": 8
+    },
+    {
+      "UserId": 3,
+      "EventId": "3",
+      "confirmationDate": "2022/10/03",
+      "status": "open",
+      "ageRequirement": "123",
+      "specialRequirement": "Man Only",
+      "magnetDescription": "sadsad",
+      "participant": "213",
+      "participantDescription": "scxzczc",
+      "id": 9,
+      "vacantParticipant": 1
     }
   ],
   "requests": [
     {
-      "id": 1,
-      "EventId": 3,
-      "UserId": 3,
+      "EventId": 1,
+      "UserId": 4,
       "MagnetId": 1,
       "requestDescription": "i req join",
       "status": "open"
+    },
+    {
+      "UserId": 3,
+      "EventId": 3,
+      "MagnetId": 1,
+      "requestDescription": "mencoba ygy",
+      "status": "wokee",
+      "id": 2
     }
   ],
   "invitations": [
     {
-      "id": 1,
-      "EventId": 3,
-      "UserId": 3,
+      "EventId": 1,
+      "UserId": 5,
       "MagnetId": 1,
       "invitationDescription": "i invit u",
       "status": "open"
@@ -262,7 +300,6 @@
       "invitationDescription": "ayok ayokk",
       "status": "open",
       "id": 3
-
     }
   ]
 }

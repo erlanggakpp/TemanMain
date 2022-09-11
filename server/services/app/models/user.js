@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Event, { foreignKey: "AdminId" });
       User.hasMany(models.Request, { foreignKey: "UserId" });
       User.hasMany(models.Invitation, { foreignKey: "UserId" });
-      User.hasMany(models.Magnet, { foreignKey: "UserId" });
+      // User.hasMany(models.Magnet, { foreignKey: "UserId" });
     }
   }
   User.init(

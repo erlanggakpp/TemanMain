@@ -16,11 +16,6 @@ export const getDetail = function (payload) {
     payload,
   };
 };
-export const createMagnet = function (payload) {
-  return {
-    type: "addMagnet",
-  };
-};
 
 export const loadingSet = function (payload) {
   return {

@@ -10,12 +10,14 @@ import CategoryAdd from './components/CategoryAdd';
 import UserEdit from './components/UserEdit';
 import EventEdit from './components/EventEdit';
 import CategoryEdit from './components/CategoryEdit';
+import LoginPages from './pages/LoginPages';
 
 function App() {
   return (
     <div className="App">
       <NavBar />
       <Routes>
+        <Route path="/login" element={<LoginPages />} />
         <Route path="/listevent" element={<TableEvent />} />
         <Route path="/event" element={<EventAdd />} />
         <Route path="/event/:id" element={<EventEdit />} />

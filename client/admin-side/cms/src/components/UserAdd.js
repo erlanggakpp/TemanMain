@@ -7,11 +7,13 @@ import Row from 'react-bootstrap/Row';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { postUser } from '../store/actions';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function UserAdd() {
   const container = {
     padding: '150px',
   };
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [addUser, setAddUser] = useState({
     email: '',
@@ -41,7 +43,7 @@ export default function UserAdd() {
     e.preventDefault();
     dispatch(postUser(addUser))
       .then((_) => {
-        console.log('success');
+        navigate('/listuser')
       })
       .catch((err) => {
         console.log(err.response.data);
@@ -163,9 +165,11 @@ export default function UserAdd() {
                 >
                   Save
                 </Button>
-                <Button variant="primary" className="justify-center">
-                  Cancel
-                </Button>
+                <Link to={'/listuser'}>
+                  <Button variant="primary" className="justify-center">
+                    Cancel
+                  </Button>
+                </Link>
               </Stack>
             </div>
           </Col>

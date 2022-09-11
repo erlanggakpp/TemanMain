@@ -7,7 +7,7 @@ import Row from 'react-bootstrap/Row';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUser } from '../store/actions';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import { fetchuserbyid } from '../store/actions';
 
 export default function UserEdit() {
@@ -50,6 +50,7 @@ export default function UserEdit() {
         dispatch(updateUser(id, editUser))
             .then((_) => {
                 console.log('success')
+                navigate('/listuser')
             })
             .catch((err) => {
                 console.log(err.response.data)
@@ -143,7 +144,9 @@ export default function UserEdit() {
                             </Form.Select>
                             <Stack gap={2} direction="horizontal">
                                 <Button variant="primary" className="justify-center" type="submit">Save</Button>
-                                <Button variant="primary" className="justify-center">Cancel</Button>
+                                <Link to={'/listuser'}>
+                                    <Button variant="primary" className="justify-center">Cancel</Button>
+                                </Link>
                             </Stack>
                         </div>
                     </Col>

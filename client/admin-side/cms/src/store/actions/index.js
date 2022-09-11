@@ -274,7 +274,7 @@ export const login = (value, cb) => {
         'Content-Type': 'application/json',
       },
     })
-    .then((data) => {
+    .then(({ data }) => {
       localStorage.setItem('access_token', data.access_token);
       cb();
     });

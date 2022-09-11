@@ -3,7 +3,7 @@ import "./App.css";
 import io from "socket.io-client";
 
 let socket;
-const CONNECTION_PORT = "http://localhost:3000";
+const CONNECTION_PORT = "http://localhost:4000";
 
 function App() {
   //Before login
@@ -11,7 +11,7 @@ function App() {
   const [room, setRoom] = useState("");
   const [username, setUsername] = useState("");
   //After login
-  const [message, setMessage] = useState("");
+  const [chat, setChat] = useState("");
   const [messageList, setMessageList] = useState([]);
 
   useEffect(() => {
@@ -20,7 +20,6 @@ function App() {
 
   useEffect(() => {
     socket.on("receive_message", (data) => {
-      console.log(data);
       setMessageList([...messageList, data]);
     });
   });
@@ -41,11 +40,11 @@ function App() {
       room: room,
       content: {
         author: username,
-        message: message,
+        chat: chat,
       },
     };
     await socket.emit("send_message", messageContent);
-    setMessage("");
+    setChat("");
     setMessageList([...messageList, messageContent.content]);
   };
   const leaveRoom = async () => {
@@ -79,7 +78,7 @@ function App() {
               return (
                 <>
                   <h3>
-                    {el.author} {el.message}
+                    {el.author} {el.chat}
                   </h3>
                 </>
               );
@@ -90,7 +89,7 @@ function App() {
               type="text"
               placeholder="Message..."
               onChange={(e) => {
-                setMessage(e.target.value);
+                setChat(e.target.value);
               }}
             />
             <button onClick={sendMessage}>Send</button>

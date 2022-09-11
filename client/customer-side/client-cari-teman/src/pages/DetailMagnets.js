@@ -1,3 +1,5 @@
+import RoomChat from "../components/RoomChat";
+
 export default function DetailMagnets() {
   return (
     <div className="containet-fluid">
@@ -71,6 +73,7 @@ export default function DetailMagnets() {
                 </p>
                 <br />
                 <br />
+              <RoomChat/>
               </div>
               <div className="col-md-4">
                 <div className="position-sticky" style={{ top: "2rem" }}>

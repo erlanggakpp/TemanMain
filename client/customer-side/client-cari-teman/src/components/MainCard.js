@@ -5,6 +5,7 @@ import { fetchEvent, loadingSet } from "../store/action/events";
 
 export default function MainCard() {
   const { events, eventDetail, loading } = useSelector((e) => e.events);
+  const iseng = "a"
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchEvent()).finally(() => {
@@ -15,8 +16,20 @@ export default function MainCard() {
   return (
     <>
       <section className="card py-5 " style={{ border: 0 }}>
-        {loading ? (
-          <h1>Loading...</h1>
+        {iseng == "a" ? (
+          <>
+            <div className="container d-flex justify-content-center align-items-center">
+              <div
+                style={{ width: "200px", height: "200px" , marginTop : "50px"}}
+              >
+                <img
+                  src="https://cdn.discordapp.com/attachments/1015235714780246077/1018164300940062790/loading.jpg"
+                  alt=""
+                  className="img-fluid rounded-circle"
+                />
+              </div>
+            </div>
+          </>
         ) : (
           // <p>
           //   {JSON.stringify(events)}

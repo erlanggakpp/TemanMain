@@ -44,8 +44,15 @@ export default function HomePage() {
         <div className="container">
           <div className="row">
             <div className="col-12">
-              <div style={{ height: "200px" }} className="bg-warning">
-                <h1>INI BUAT LOGO</h1>
+              <div
+                style={{ height: "150px", backgroundColor: "#2e94d1" }}
+                className="d-flex justify-content-center mb-2"
+              >
+                <img
+                  src="https://cdn.discordapp.com/attachments/1015235714780246077/1018164301342720091/bannerTemanMain.jpg"
+                  alt=""
+                  className="img-fluid"
+                />
               </div>
               <CarouselComp />
               <CategoryCarou />

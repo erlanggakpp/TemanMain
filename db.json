@@ -71,7 +71,7 @@
       "role": "Visitor"
     }
   ],
-  "Categories": [
+  "categories": [
     {
       "name": "Music",
       "image": "https://cdn.kiostix.com/media/18304/conversions/medium.jpg"

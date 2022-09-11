@@ -101,7 +101,7 @@ export default function FormTest() {
                     className="form-control"
                     placeholder="Food Name"
                   />
-                  <label htmlhtmlFor="floatingInput">ageRequirement</label>
+                  <label htmlFor="floatingInput">ageRequirement</label>
                 </div>
                 <div className="form-floating mb-3">
                   <input
@@ -112,7 +112,7 @@ export default function FormTest() {
                     className="form-control"
                     placeholder="Food Name"
                   />
-                  <label htmlhtmlFor="floatingInput">specialRequirement</label>
+                  <label htmlFor="floatingInput">specialRequirement</label>
                 </div>
                 <div className="form-floating mb-3">
                   <input
@@ -123,7 +123,7 @@ export default function FormTest() {
                     className="form-control"
                     placeholder="Food Name"
                   />
-                  <label htmlhtmlFor="floatingInput">magnetDescription</label>
+                  <label htmlFor="floatingInput">magnetDescription</label>
                 </div>
                 <div className="form-floating mb-3">
                   <input
@@ -134,7 +134,7 @@ export default function FormTest() {
                     className="form-control"
                     placeholder="Food Name"
                   />
-                  <label htmlhtmlFor="floatingInput">participant</label>
+                  <label htmlFor="floatingInput">participant</label>
                 </div>
                 <div className="form-floating mb-3">
                   <input
@@ -145,7 +145,7 @@ export default function FormTest() {
                     className="form-control"
                     placeholder="Food Name"
                   />
-                  <label htmlhtmlFor="floatingInput">vacantParticipant</label>
+                  <label htmlFor="floatingInput">vacantParticipant</label>
                 </div>
                 <div className="form-floating mb-3">
                   <input
@@ -156,9 +156,7 @@ export default function FormTest() {
                     className="form-control"
                     placeholder="Food Name"
                   />
-                  <label htmlhtmlFor="floatingInput">
-                    participantDescription
-                  </label>
+                  <label htmlFor="floatingInput">participantDescription</label>
                 </div>
                 <div className="d-flex flex-row justify-content-end">
                   <button
@@ -192,7 +190,7 @@ export default function FormTest() {
                     placeholder="Food Name"
                     name="invitationDescription"
                   />
-                  <label htmlhtmlFor="floatingInput">invitationDescription</label>
+                  <label htmlFor="floatingInput">invitationDescription</label>
                 </div>
                 <div className="form-floating mb-3">
                   <input
@@ -203,7 +201,7 @@ export default function FormTest() {
                     placeholder="Food Name"
                     name="status"
                   />
-                  <label htmlhtmlFor="floatingInput">status</label>
+                  <label htmlFor="floatingInput">status</label>
                 </div>
                 <div className="d-flex flex-row justify-content-end">
                   <button
@@ -237,7 +235,7 @@ export default function FormTest() {
                     placeholder="Food Name"
                     name="requestDescription"
                   />
-                  <label htmlhtmlFor="floatingInput">requestDescription</label>
+                  <label htmlFor="floatingInput">requestDescription</label>
                 </div>
                 <div className="form-floating mb-3">
                   <input
@@ -248,7 +246,7 @@ export default function FormTest() {
                     placeholder="Food Name"
                     name="status"
                   />
-                  <label htmlhtmlFor="floatingInput">status</label>
+                  <label htmlFor="floatingInput">status</label>
                 </div>
                 <div className="d-flex flex-row justify-content-end">
                   <button

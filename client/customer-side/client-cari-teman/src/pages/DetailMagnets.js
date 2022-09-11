@@ -42,7 +42,7 @@ export default function DetailMagnets() {
                   </div>
                   <div className="col-md-8 bg-success">
                     {" "}
-                    ini buat title magnets
+                    {magnetDetail.specialRequirement}
                   </div>
                 </div>
               </div>

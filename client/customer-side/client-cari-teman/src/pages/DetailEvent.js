@@ -10,21 +10,24 @@ export default function DetailEvent() {
   const params = useParams();
   const dispatch = useDispatch();
   const { loading, eventDetail } = useSelector((e) => e.events);
-
   useEffect(() => {
-    console.log("detail event");
     dispatch(detailEvent(params.id)).finally(() => dispatch(loadingSet(false)));
   }, []);
+  useEffect(() => {}, []);
   return (
     // <h1>hallo</h1>
     <>
-      {loading ? (
+      {!eventDetail ? (
         <h1>Loading...</h1>
       ) : (
         <div className="container">
           <div className="container">
             <TopBanner name={eventDetail.name} />
-            <CardAtDetailPage />
+            {eventDetail.Magnets ? (
+              <CardAtDetailPage magnets={eventDetail.Magnets} />
+            ) : (
+              <h1>Loading...</h1>
+            )}
 
             <div className="row g-5">
               <div className="col-md-8">

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
-import { loadingSet } from "../store/action/events";
+import { detailEvent, loadingSet } from "../store/action/events";
 import { addMagnets } from "../store/action/magnets";
 
 export default function ModalMagnets() {
@@ -12,7 +12,6 @@ export default function ModalMagnets() {
     UserId: 3,
     EventId: params.id,
     confirmationDate: "2022/10/03",
-    status: "open",
     ageRequirement: "",
     specialRequirement: "",
     magnetDescription: "",
@@ -29,10 +28,14 @@ export default function ModalMagnets() {
   };
   const formSubmit = (e) => {
     e.preventDefault();
-    dispatch(addMagnets(dataForm)).finally(() => {
-      loadingSet(false);
-      navigate(`/events/${params.id}`);
-    });
+    dispatch(addMagnets(dataForm))
+      .then(() => {
+        dispatch(detailEvent(params.id));
+      })
+      .finally(() => {
+        dispatch(loadingSet(false));
+        navigate(`/events/${params.id}`);
+      });
   };
 
   return (

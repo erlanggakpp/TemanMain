@@ -22,19 +22,19 @@ export default function HomePage() {
     dispatch(fetchEvent()).finally(() => {
       dispatch(loadingSet(false));
     });
-    dispatch(detailEvent(2)).finally(() => {
-      dispatch(loadingSet(false));
-    });
+    // dispatch(detailEvent(2)).finally(() => {
+    //   dispatch(loadingSet(false));
+    // });
     dispatch(fetchCategory()).finally(() => {
       dispatch(loadingSet(false));
     });
     dispatch(fetchMagnet()).finally(() => {
       dispatch(loadingSet(false));
     });
-    dispatch(detailMagnet(1)).finally(() => {
-      console.log(magnetDetail);
-      dispatch(loadingSet(false));
-    });
+    // dispatch(detailMagnet(1)).finally(() => {
+    //   console.log(magnetDetail);
+    //   dispatch(loadingSet(false));
+    // });
   }, []);
   // if(events.length == 0) return(<h1>Loading...</h1>)
 

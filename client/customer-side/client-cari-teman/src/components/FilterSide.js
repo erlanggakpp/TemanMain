@@ -48,19 +48,19 @@ export default function FilterSide() {
           <form className="ml-md-2">
             <div className="form-inline border rounded p-sm-2 my-2">
               <input type="radio" name="type" id="boring" />
-              <label htmlhtmlFor="boring" className="pl-1 pt-sm-0 pt-1">
+              <label htmlFor="boring" className="pl-1 pt-sm-0 pt-1">
                 All Gender
               </label>
             </div>
             <div className="form-inline border rounded p-sm-2 my-2">
               <input type="radio" name="type" id="ugly" />
-              <label htmlhtmlFor="ugly" className="pl-1 pt-sm-0 pt-1">
+              <label htmlFor="ugly" className="pl-1 pt-sm-0 pt-1">
                 Man Only
               </label>
             </div>
             <div className="form-inline border rounded p-md-2 p-sm-1">
               <input type="radio" name="type" id="notugly" />
-              <label htmlhtmlFor="notugly" className="pl-1 pt-sm-0 pt-1">
+              <label htmlFor="notugly" className="pl-1 pt-sm-0 pt-1">
                 Woman Only
               </label>
             </div>

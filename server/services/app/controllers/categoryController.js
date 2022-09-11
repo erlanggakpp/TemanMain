@@ -24,6 +24,16 @@ class CategoryController {
     }
   }
 
+  static async fetchOneCategory(req, res, next) {
+    try {
+      const { categoryId } = req.params;
+      const targetCategory = await Category.findByPk(categoryId);
+      res.status(200).json(targetCategory);
+    } catch (error) {
+      next(error);
+    }
+  }
+
   static async editCategory(req, res, next) {
     try {
       const { categoryId } = req.params;

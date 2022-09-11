@@ -29,9 +29,6 @@ class EventController {
         const { data: users } = await axios({
           method: "GET",
           url: "http://localhost:4001/users/public",
-          headers: {
-            access_token,
-          },
         });
         usersCache = users;
         await redis.set("user:users", JSON.stringify(users));
@@ -43,6 +40,7 @@ class EventController {
       });
       res.status(200).json(eventsCache);
     } catch (error) {
+      console.log(error);
       const { status, data } = error.response;
 
       res.status(status).json(data);
@@ -65,9 +63,6 @@ class EventController {
         const { data: users } = await axios({
           method: "GET",
           url: "http://localhost:4001/users/public",
-          headers: {
-            access_token,
-          },
         });
         usersCache = users;
         await redis.set("user:users", JSON.stringify(users));
@@ -125,9 +120,6 @@ class EventController {
         const { data: users } = await axios({
           method: "GET",
           url: "http://localhost:4001/users/public",
-          headers: {
-            access_token,
-          },
         });
         usersCache = users;
         await redis.set("user:users", JSON.stringify(users));

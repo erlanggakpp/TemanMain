@@ -49,11 +49,9 @@ export default function SideMenu({ toSide }) {
               {/* form nya ditaro di bawah tulisan magnets di halaman sebelah*/}
             </div>
             <div className="p-4 mb-3 bg-light rounded">
-              <h4 className="fst-italic">About</h4>
+              <h4 className="fst-italic">information</h4>
               <p className="mb-0">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Officia sint molestiae, veritatis eligendi consequatur possimus
-                illo consectetur accusamus voluptas pariatur!
+                {JSON.stringify(toSide)}
               </p>
             </div>
 

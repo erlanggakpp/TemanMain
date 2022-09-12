@@ -26,6 +26,7 @@ export default function CardAtDetailPage({ magnets }) {
           >
             <div className="col-12 bg-dark rounded d-flex align-item-center justify-content-center py-2 text-light">
               <h1>Magnets</h1>
+              {/* <p>{JSON.stringify(magnets)}</p> */}
             </div>
             <ModalMagnets />
           </div>
@@ -33,23 +34,33 @@ export default function CardAtDetailPage({ magnets }) {
             return (
               <div className="col-md-3" key={el.id}>
                 <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                  <div className="col p-4 d-flex flex-column position-static">
+                  <div className="col p-4 d-flex flex-column position-static m-2">
+                    <div className=" d-flex justify-content-center">
+                      <img
+                        src={el.User.profilePict}
+                        alt=""
+                        className="img-fluid rounded-circle h-100 p-4"
+                      />
+                    </div>
+                    <h3 className="mb-0">
+                      {el.User.firstName} {el.User.lastName}
+                    </h3>
+                    <div className="mb-1 text-muted">{el.corfirmationDate}</div>
+                    <p className="card-text mb-auto">
+                      {" "}
+                      participants :{" "}
+                      <strong>
+                        {el.vacantParticipant} / {el.participant}
+                      </strong>
+                    </p>
                     <strong className="d-inline-block mb-2 text-primary">
                       {el.specialRequirement}
                     </strong>
-                    <h3 className="mb-0">
-                      {el.User.firstName}
-                      {el.User.lastName}
-                    </h3>
-                    <div className="mb-1 text-muted">Nov 12</div>
-                    <p className="card-text mb-auto">{el.magnetDescription}</p>
                     <Link
                       to={`magnets/${el.id}`}
                       href="#"
                       className="stretched-link"
-                    >
-                      Continue reading
-                    </Link>
+                    ></Link>
                   </div>
                 </div>
               </div>

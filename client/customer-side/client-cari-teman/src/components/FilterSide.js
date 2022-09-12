@@ -3,48 +3,32 @@ export default function FilterSide() {
     <div className="container">
       <div id="mobile-filter">
         <div>
-          <h6 className="p-1 border-bottom">Filter -1</h6>
-          <ul>
-            <li>
-              <a href="#">test</a>
-            </li>
-            <li>
-              <a href="#">test</a>
-            </li>
-            <li>
-              <a href="#">test</a>
-            </li>
-            <li>
-              <a href="#">test</a>
-            </li>
-            <li>
-              <a href="#">test</a>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h6 className="p-1 border-bottom">Filter -2</h6>
-          <p className="mb-2">coba</p>
+          <h6 className="p-1 border-bottom">Age</h6>
           <ul className="list-group">
             <li className="list-group-item list-group-item-action mb-2 rounded">
               <a href="#">
-                <span className="fa fa-circle pr-1" id="red"></span>test
+                <span className="fa fa-circle pr-1" id="red"></span>10-18
               </a>
             </li>
             <li className="list-group-item list-group-item-action mb-2 rounded">
               <a href="#">
-                <span className="fa fa-circle pr-1" id="teal"></span>test
+                <span className="fa fa-circle pr-1" id="teal"></span>19-25
               </a>
             </li>
             <li className="list-group-item list-group-item-action mb-2 rounded">
               <a href="#">
-                <span className="fa fa-circle pr-1" id="blue"></span>test
+                <span className="fa fa-circle pr-1" id="blue"></span>26-40
+              </a>
+            </li>
+            <li className="list-group-item list-group-item-action mb-2 rounded">
+              <a href="#">
+                <span className="fa fa-circle pr-1" id="blue"></span>41-70
               </a>
             </li>
           </ul>
         </div>
         <div>
-          <h6>Filter -3</h6>
+          <h6>Gender</h6>
           <form className="ml-md-2">
             <div className="form-inline border rounded p-sm-2 my-2">
               <input type="radio" name="type" id="boring" />

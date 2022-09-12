@@ -1,4 +1,42 @@
+import { useEffect, useState } from "react";
+import { detailEvent, fetchEvent, loadingSet } from "../store/action/events";
+import { fetchMagnetsByUserId } from "../store/action/magnets";
+import { getMyInvitation } from "../store/action/invitation";
+import { fetchMyProfile } from "../store/action/users";
+import { getMyRequest } from "../store/action/requests";
+import { useDispatch, useSelector } from "react-redux";
+
 export default function UserPage() {
+const dispatch = useDispatch()
+const [user, setUser] = useState({})
+const [myMagnets, setMyMagnets] = useState([])
+const [myRequests, setMyRequests] = useState([])
+const [myInvitations, setMyInvitations] = useState([])
+useEffect(() => {
+dispatch(fetchMagnetsByUserId()).then((data) => {
+  setMyMagnets(data.data)
+})
+}, [])
+useEffect(() => {
+dispatch(getMyInvitation()).then((data) => {
+  setMyInvitations(data.data)
+}).catch((err) => console.log(err))
+}, [])
+useEffect(() => {
+dispatch(getMyRequest()).then((data) => {
+  setMyRequests(data.data)
+}).catch((err) => console.log(err))
+}, [])
+useEffect(() => {
+dispatch(fetchMyProfile()).then((data) => {
+  setUser(data.data)
+}).catch((err) => console.log(err))
+}, [])
+
+console.log(myMagnets, "<<<<<<<<<<<<");
+console.log(myRequests, "<<<<<<<<<<<<");
+console.log(myInvitations, "<<<<<<<<<<<<");
+console.log(user, "<<<<<<<<<<<<");
   return (
     <div className="containet-fluid">
       <div className="container">

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { fetchEvent, loadingSet } from "../store/action/events";
 
-export default function MainCard() {
+export default function MainCard({displayedEvents}) {
   const { events, eventDetail, loading } = useSelector((e) => e.events);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -40,7 +40,7 @@ export default function MainCard() {
           // </p>
           <div className="container px-4 px-lg-5">
             <div className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-center">
-              {events.map((e) => (
+              {displayedEvents.map((e) => (
                 <div className="col mb-5" key={e.id}>
                   <div className="card h-100">
                     <img className="card-img-top" src={e.image} alt="..." />

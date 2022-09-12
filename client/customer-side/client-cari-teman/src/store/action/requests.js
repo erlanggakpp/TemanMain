@@ -20,3 +20,20 @@ export const addRequest = function (data) {
     );
   };
 };
+
+export const getMyRequest = function () {
+  return function (dispatch) {
+    dispatch(loadingSet(true));
+    return axios.get(
+      `${baseUrl}/requests/your-requests`,
+      {
+        headers: {
+          access_token:
+            localStorage.access_token
+        },
+      }
+    ).then( (data) => {
+      return data
+            });
+  };
+}

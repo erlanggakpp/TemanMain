@@ -85,6 +85,24 @@ async function alreadyMadeRequest(req, res, next) {
     next(error);
   }
 }
+async function alreadyMadeInvitation(req, res, next) {
+  try {
+    const { magnetId, userId } = req.params;
+    const targetInvitation = await Invitation.findOne({
+      where: {
+        MagnetId: magnetId,
+        UserId: userId,
+      },
+    });
+    if (targetInvitation) {
+      throw { name: "alreadyFoundInv" };
+    } else {
+      next();
+    }
+  } catch (error) {
+    next(error);
+  }
+}
 
 module.exports = {
   eventChecker,
@@ -92,4 +110,5 @@ module.exports = {
   invitationChecker,
   magnetChecker,
   alreadyMadeRequest,
+  alreadyMadeInvitation,
 };

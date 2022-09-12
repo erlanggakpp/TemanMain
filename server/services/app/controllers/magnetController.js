@@ -32,7 +32,12 @@ class MagnetController {
         participant,
         vacantParticipant,
       });
-      res.status(201).json({ message: "Successfully created new magnet" });
+      res
+        .status(201)
+        .json({
+          message: "Successfully created new magnet",
+          magnet: createdMagnet,
+        });
     } catch (error) {
       //   console.log(error);
       next(error);

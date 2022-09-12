@@ -26,6 +26,7 @@ router.put(
   requestAuthorization,
   RequestController.editRequestDescription
 );
+router.get("/public/:requestId", RequestController.findOneRequest);
 router.delete(
   "/:requestId",
   requestAuthorization,

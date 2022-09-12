@@ -15,6 +15,15 @@ class RequestController {
       next(error);
     }
   }
+  static async findOneRequest(req, res, next) {
+    try {
+      const { requestId } = req.params;
+      const targetRequest = await Request.findByPk(requestId);
+      res.status(200).json(targetRequest);
+    } catch (error) {
+      next(error);
+    }
+  }
   static async createRequest(req, res, next) {
     try {
       // console.log("MASUUK");
@@ -29,7 +38,16 @@ class RequestController {
         requestDescription,
         status: "Not Accepted",
       });
-      res.status(201).json({ message: "Successfully created request" });
+      const targetMagnet = await Magnet.findOne({
+        where: {
+          id: magnetId,
+        },
+      });
+
+      res.status(201).json({
+        message: "Successfully created request",
+        magnet: targetMagnet,
+      });
     } catch (error) {
       next(error);
     }

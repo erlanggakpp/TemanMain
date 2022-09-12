@@ -34,6 +34,8 @@ class EventController {
         await redis.set("user:users", JSON.stringify(users));
         await redis.del("user:users");
       }
+      // console.log(usersCache);
+      // console.log(eventsCache);
       eventsCache.forEach((event) => {
         const User = usersCache.filter((el) => el.id === event.AdminId);
         event.Admin = User;

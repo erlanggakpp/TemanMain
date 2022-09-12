@@ -41,6 +41,10 @@ function errorHandler(err, req, res, next) {
     return res
       .status(400)
       .json({ message: "Request already made for this magnet" });
+  } else if (err.name === "alreadyFoundInv") {
+    return res
+      .status(400)
+      .json({ message: "Invitation already made for this magnet" });
   } else if (err.name === "emptyCatName") {
     return res.status(400).json({ message: "Category's name is required" });
   } else if (err.name === "emptyCatImg") {

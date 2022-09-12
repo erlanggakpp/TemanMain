@@ -137,6 +137,22 @@ class InvitationController {
       next(error);
     }
   }
+  static async findOneInvitation(req, res, next) {
+    try {
+      const { invitationId } = req.params;
+      const targetInvitation = await Invitation.findOne({
+        where: {
+          id: invitationId,
+        },
+        include: {
+          model: Magnet,
+        },
+      });
+      res.status(200).json(targetInvitation);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 module.exports = InvitationController;

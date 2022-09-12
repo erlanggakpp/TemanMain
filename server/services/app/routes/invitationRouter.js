@@ -5,7 +5,11 @@ const {
   ageAuthorizationBeforeCreateInvitation,
   magnetAuthorization,
 } = require("../middlewares/authorization");
-const { magnetChecker, eventChecker } = require("../middlewares/checker");
+const {
+  magnetChecker,
+  eventChecker,
+  alreadyMadeInvitation,
+} = require("../middlewares/checker");
 
 const router = require("express").Router();
 router.post(
@@ -14,6 +18,7 @@ router.post(
   magnetChecker,
   ageAuthorizationBeforeCreateInvitation,
   magnetAuthorization,
+  alreadyMadeInvitation,
   InvitationController.createInvitation
 );
 router.get("/user", InvitationController.getInvitationByUserId);
@@ -22,6 +27,7 @@ router.put(
   invitationAuthorization,
   InvitationController.editInvitationDescription
 );
+router.get("/:invitationId", InvitationController.findOneInvitation);
 router.delete(
   "/:invitationId",
   invitationAuthorization,

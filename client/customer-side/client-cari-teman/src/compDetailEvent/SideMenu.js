@@ -1,9 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { detailEvent, loadingSet } from "../store/action/events";
+import { getLocation } from "../store/action/events";
 
 export default function SideMenu({ toSide }) {
+  const [ mapAttr, setMapAttr] = useState()
+  const dispatch = useDispatch()
   const { loading } = useSelector((e) => e.events);
   // const dispatch = useDispatch();
   // const params = useParams();
@@ -14,7 +17,12 @@ export default function SideMenu({ toSide }) {
   //   });
   // }, []);
   useEffect(() => {
-    console.log(toSide, "dari side menu");
+    dispatch(getLocation(toSide.location))
+    .then( data => {
+      setMapAttr(
+        `https://maps.google.com/maps?q=${data.data.latitude},${data.data.longitude}&t=&z=13&ie=UTF8&iwloc=&output=embed`
+      );
+    })
   }, []);
 
   return (
@@ -41,23 +49,24 @@ export default function SideMenu({ toSide }) {
               {/* form nya ditaro di bawah tulisan magnets di halaman sebelah*/}
             </div>
             <div className="p-4 mb-3 bg-light rounded">
-              <h4 className="fst-italic">About</h4>
+              <h4 className="fst-italic">information</h4>
               <p className="mb-0">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Officia sint molestiae, veritatis eligendi consequatur possimus
-                illo consectetur accusamus voluptas pariatur!
+                {JSON.stringify(toSide)}
               </p>
             </div>
 
-            <div className="p-4 mb-3 bg-light rounded" style={{
-  overflow: "hidden",
-  background: "none" ,
-  height: "auto",
-  width: "100%",
-}}>
+            <div
+              className="p-4 mb-3 bg-light rounded"
+              style={{
+                overflow: "hidden",
+                background: "none",
+                height: "auto",
+                width: "100%",
+              }}
+            >
               <h4 className="fst-italic">Maps</h4>
               <iframe
-                src="https://maps.google.com/maps?q=-6.1682337,106.828319&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                src={mapAttr}
                 style={{
                   width: "100%",
                   height: "auto",

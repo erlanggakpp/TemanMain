@@ -15,11 +15,25 @@ import { detailMagnet, fetchMagnet } from "../store/action/magnets";
 export default function HomePage() {
   const dispatch = useDispatch();
   const { events, eventDetail, loading } = useSelector((e) => e.events);
-
+const [displayedEvents, setDisplayedEvents] = useState([])
   const { magnets, magnetDetail } = useSelector((e) => e.magnets);
   const [showEvents, setShowEvents] = useState([]);
+
+  const categoryFiltering = (id) => {
+    if(+id === 0) {
+      setDisplayedEvents(events)
+    } else {
+      const filteredEvents = events.filter(el => el.CategoryId === id)
+      setDisplayedEvents(filteredEvents)
+
+
+    }
+      }
+
   useEffect(() => {
-    dispatch(fetchEvent()).finally(() => {
+    dispatch(fetchEvent()).then((data) => {
+      setDisplayedEvents(data)
+    }).finally(() => {
       dispatch(loadingSet(false));
     });
     // dispatch(detailEvent(2)).finally(() => {
@@ -53,7 +67,7 @@ export default function HomePage() {
                 />
               </div>
               <CarouselComp />
-              <CategoryCarou />
+              <CategoryCarou categoryFiltering={categoryFiltering}/>
             </div>
           </div>
         </div>
@@ -65,7 +79,7 @@ export default function HomePage() {
             </div>
             <div className="col-9">
               <h1 className="display-4 mt-2">on going events</h1>
-              <MainCard showEvents={showEvents} />
+              <MainCard displayedEvents={displayedEvents} />
             </div>
           </div>
         </div>

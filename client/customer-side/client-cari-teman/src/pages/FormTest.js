@@ -45,7 +45,6 @@ export default function FormTest() {
     UserId: 3,
     MagnetId: 1,
     invitationDescription: "",
-    status: "",
   });
   const changeInvitationForm = (e) => {
     const { name, value } = e.target;
@@ -78,8 +77,6 @@ export default function FormTest() {
     e.preventDefault();
     dispatch(addRequest(requestForm));
   };
-
-  useEffect(() => {}, []);
 
   return (
     <>
@@ -230,10 +227,10 @@ export default function FormTest() {
                   <input
                     value={requestForm.requestDescription}
                     onChange={changeRequestForm}
+                    name="requestDescription"
                     type="text"
                     className="form-control"
                     placeholder="Food Name"
-                    name="requestDescription"
                   />
                   <label htmlFor="floatingInput">requestDescription</label>
                 </div>

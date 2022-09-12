@@ -242,3 +242,16 @@ export const updateUser = (id, input) => {
       });
   };
 };
+
+export const login = (value, cb) => {
+  return axios
+    .post(`http://localhost:4000/users/login`, value, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((data) => {
+      localStorage.setItem('access_token', data.access_token);
+      cb();
+    });
+};

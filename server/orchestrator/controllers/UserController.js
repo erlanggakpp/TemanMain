@@ -5,7 +5,7 @@ class UserController {
   static async readAllUser(req, res) {
     try {
       const usersCache = await redis.get("user:users");
-
+      const { access_token } = req.headers;
       if (usersCache) {
         const users = JSON.parse(usersCache);
 
@@ -14,6 +14,9 @@ class UserController {
         const { data: users } = await axios({
           method: "GET",
           url: "http://localhost:4001/users",
+          headers: {
+            access_token,
+          },
         });
 
         await redis.set("user:users", JSON.stringify(users));
@@ -30,11 +33,14 @@ class UserController {
   static async createUser(req, res) {
     try {
       const data = req.body;
-
+      const { access_token } = req.headers;
       const { data: newUser } = await axios({
         method: "POST",
         url: "http://localhost:4001/users",
         data,
+        headers: {
+          access_token,
+        },
       });
 
       await redis.del("user:users");
@@ -50,10 +56,14 @@ class UserController {
   static async showUser(req, res) {
     try {
       const { id } = req.params;
+      const { access_token } = req.headers;
 
       const { data: user } = await axios({
         method: "GET",
         url: "http://localhost:4001/users/" + id,
+        headers: {
+          access_token,
+        },
       });
 
       res.status(200).json(user);
@@ -68,11 +78,15 @@ class UserController {
     try {
       const { id } = req.params;
       const data = req.body;
+      const { access_token } = req.headers;
 
       const { data: user } = await axios({
         method: "PUT",
         url: "http://localhost:4001/users/" + id,
         data,
+        headers: {
+          access_token,
+        },
       });
 
       await redis.del("user:users");
@@ -88,10 +102,14 @@ class UserController {
   static async deleteUser(req, res) {
     try {
       const { id } = req.params;
+      const { access_token } = req.headers;
 
       const { data: user } = await axios({
         method: "DELETE",
         url: "http://localhost:4001/users/" + id,
+        headers: {
+          access_token,
+        },
       });
 
       await redis.del("user:users");
@@ -108,6 +126,7 @@ class UserController {
     try {
       const data = req.body;
       //   console.log(data);
+
       const { data: newUser } = await axios({
         method: "POST",
         url: "http://localhost:4001/users/register",

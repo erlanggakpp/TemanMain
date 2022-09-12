@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "email": "admin1@mail.comm",
+      "email": "admin1@mail.com",
       "password": "12345",
       "firstName": "admin1",
       "lastName": "admin1",
@@ -10,13 +10,11 @@
       "profilePict": "https://i.pravatar.cc/300",
       "instagramAccount": "@admin1",
       "twitterAccount": "@admin1",
-      "phoneNumber": "081234525",
+      "phoneNumber": "0812345",
       "gender": "Male",
-      "role": "Admin",
-      "id": 1
+      "role": "Admin"
     },
     {
-      "id": 2,
       "email": "admin2@mail.com",
       "password": "12345",
       "firstName": "admin2",
@@ -31,7 +29,6 @@
       "role": "Admin"
     },
     {
-      "id": 3,
       "email": "user1@mail.com",
       "password": "12345",
       "firstName": "user1",
@@ -46,7 +43,6 @@
       "role": "Visitor"
     },
     {
-      "id": 4,
       "email": "user2@mail.com",
       "password": "12345",
       "firstName": "user2",
@@ -61,7 +57,6 @@
       "role": "Visitor"
     },
     {
-      "id": 5,
       "email": "user3@mail.com",
       "password": "12345",
       "firstName": "user3",
@@ -76,44 +71,42 @@
       "role": "Visitor"
     }
   ],
-  "categories": [
+  "Categories": [
     {
-      "id": 1,
       "name": "Music",
       "image": "https://cdn.kiostix.com/media/18304/conversions/medium.jpg"
     },
     {
-      "id": 2,
       "name": "Attraction",
       "image": "https://cdn.kiostix.com/media/18304/conversions/medium.jpg"
     },
     {
-      "id": 3,
       "name": "Playground",
       "image": "https://cdn.kiostix.com/media/18304/conversions/medium.jpg"
     },
     {
-      "id": 4,
       "name": "Workshop and Education",
+      "image": "https://cdn.kiostix.com/media/18304/conversions/medium.jpg"
+    },
+    {
+      "name": "Tours",
       "image": "https://cdn.kiostix.com/media/18304/conversions/medium.jpg"
     }
   ],
   "events": [
     {
+      "CategoryId": 1,
       "name": "Synchronize Fest",
       "location": "Kemayoran, Jakarta",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
       "eventDate": "2022/10/08",
       "eventHomepageLink": "https://synchronizefestival.com",
       "eventDuration": "3 Days",
-      "AdmindId": 1,
+      "AdminId": 1,
       "image": "http://vradiofm.com/uploads/news/730b2923-60ed-41f4-8895-04d6c49c325c78805a221a988e79ef3f42d7c5bfd418.jpg",
-      "ticketPrice": 500000,
-      "CategoryId": "3",
-      "id": 1
+      "ticketPrice": 500000
     },
     {
-      "id": 2,
       "CategoryId": 1,
       "name": "The Sounds Project",
       "location": "Ancol, Jakarta",
@@ -121,12 +114,11 @@
       "eventDate": "2022/8/22",
       "eventHomepageLink": "https://www.thesoundsproject.com",
       "eventDuration": "3 Days",
-      "AdmindId": 2,
+      "AdminId": 2,
       "image": "https://cdn.kiostix.com/media/18304/conversions/medium.jpg",
       "ticketPrice": 800000
     },
     {
-      "id": 3,
       "CategoryId": 5,
       "name": "Labuan Bajo",
       "location": "Nusa Tenggara Timur",
@@ -134,12 +126,11 @@
       "eventDate": "2022/12/10",
       "eventHomepageLink": "https://www.indonesia.travel/id/id/destinasi/bali-nusa-tenggara/labuan-bajo",
       "eventDuration": "5 Days",
-      "AdmindId": 1,
+      "AdminId": 1,
       "image": "https://img.jakpost.net/c/2017/08/02/2017_08_02_30495_1501654303._large.jpg",
       "ticketPrice": 8000000
     },
     {
-      "id": 4,
       "CategoryId": 3,
       "name": "Dunia Fantasi",
       "location": "Ancol, Jakarta",
@@ -147,27 +138,13 @@
       "eventDate": "2022/11/02",
       "eventHomepageLink": "https://synchronizefestival.com",
       "eventDuration": "1 Day",
-      "AdmindId": 2,
+      "AdminId": 2,
       "image": "https://s-light.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/rsfit19201280gsm/events/2021/12/08/9c6ae660-1799-4276-b81d-f8b0b85669d6-1638949473006-1e6c55a1b1edca6bf250012af2cc79e2.jpg",
       "ticketPrice": 200000
-    },
-    {
-      "name": "ea",
-      "location": "ea",
-      "description": "eqeq",
-      "eventDate": "2022-09-07",
-      "eventHomepageLink": "eqeqw",
-      "eventDuration": "13qeq",
-      "AdmindId": 1,
-      "image": "https://assets-prd.ignimgs.com/2022/03/10/pokemonasmr-blogroll-01-1646936829293.jpg",
-      "ticketPrice": "12313",
-      "CategoryId": "2",
-      "id": 5
     }
   ],
   "magnets": [
     {
-      "id": 1,
       "UserId": 3,
       "EventId": 1,
       "confirmationDate": "2022/10/03",
@@ -190,7 +167,6 @@
       "vacantParticipant": 3
     },
     {
-      "id": 2,
       "UserId": 4,
       "EventId": 1,
       "confirmationDate": "2022/10/03",
@@ -202,7 +178,6 @@
       "vacantParticipant": 0
     },
     {
-      "id": 3,
       "UserId": 5,
       "EventId": 1,
       "confirmationDate": "2022/10/03",
@@ -211,75 +186,23 @@
       "specialRequirement": "Male or Female",
       "magnetDescription": "Synchronize fest, akomodasi di hotel bintang 3",
       "participant": 6,
-      "vacantParticipant": 3,
-      "participantDescription": "Mencari 3 orang, 2 wanita 1 Pria untuk nonton bareng! Yang ikut baru saya, kakak saya(perempuan) dan adik saya(perempuan)"
-    },
-    {
-      "id": 4,
-      "UserId": 3,
-      "EventId": 1,
-      "confirmationDate": "2022/10/03",
-      "status": "open",
-      "ageRequirement": "19",
-      "specialRequirement": "Female",
-      "magnetDescription": "apawe",
-      "participant": "6",
-      "vacantParticipant": "5",
-      "participantDescription": "asdasdasd"
-    },
-    {
-      "id": 5,
-      "UserId": 3,
-      "EventId": 1,
-      "confirmationDate": "2022/10/03",
-      "status": "open",
-      "ageRequirement": "",
-      "specialRequirement": "",
-      "magnetDescription": "",
-      "participant": "",
-      "vacantParticipant": "",
-      "participantDescription": ""
-    },
-    {
-      "id": 6,
-      "UserId": 3,
-      "EventId": 1,
-      "confirmationDate": "2022/10/03",
-      "status": "open",
-      "ageRequirement": "",
-      "specialRequirement": "",
-      "magnetDescription": "",
-      "participant": "",
-      "vacantParticipant": "",
-      "participantDescription": ""
+      "vacantParticipant": 1
     }
   ],
   "requests": [
     {
-      "id": 1,
-      "EventId": 3,
-      "UserId": 3,
+      "EventId": 1,
+      "UserId": 4,
       "MagnetId": 1,
-      "requestDescription": "i req join",
-      "status": "open"
+      "description": "Ingin ikut"
     }
   ],
   "invitations": [
     {
-      "id": 1,
-      "EventId": 3,
-      "UserId": 3,
+      "EventId": 1,
+      "UserId": 5,
       "MagnetId": 1,
-      "invitationDescription": "i invit u",
-      "status": "open"
-    },
-    {
-      "UserId": 3,
-      "EventId": 3,
-      "MagnetId": 1,
-      "invitationDescription": "ayok ayokk",
-      "status": "open",
-      "id": 3
+      "description": "Ayo ikut"
     }
   ]
 }

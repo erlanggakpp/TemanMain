@@ -8,7 +8,7 @@
   },
   "test": {
     "username": "postgres",
-    "password": "qwerty123",
+    "password": "postgres",
     "database": "TemanMain-user-test",
     "host": "127.0.0.1",
     "dialect": "postgres"

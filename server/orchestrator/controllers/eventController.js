@@ -8,7 +8,7 @@ class EventController {
       if (eventsCache) {
         // console.log("CACHE");
         eventsCache = JSON.parse(eventsCache);
-        // await redis.del("event:events");
+        await redis.del("event:events");
       } else {
         // console.log("axiois");
         const { data: events, status } = await axios({
@@ -17,23 +17,22 @@ class EventController {
         });
         eventsCache = events;
         await redis.set("event:events", JSON.stringify(events));
-        // await redis.del("event:events");
+        await redis.del("event:events");
       }
       let usersCache = await redis.get("user:users");
       if (usersCache) {
         // console.log("CACHE");
         usersCache = JSON.parse(usersCache);
+        await redis.del("user:users");
       } else {
         // console.log("axiois");
         const { data: users } = await axios({
           method: "GET",
-          url: "http://localhost:4001/users",
-          headers: {
-            access_token,
-          },
+          url: "http://localhost:4001/users/public",
         });
         usersCache = users;
         await redis.set("user:users", JSON.stringify(users));
+        await redis.del("user:users");
       }
       eventsCache.forEach((event) => {
         const User = usersCache.filter((el) => el.id === event.AdminId);
@@ -41,6 +40,7 @@ class EventController {
       });
       res.status(200).json(eventsCache);
     } catch (error) {
+      console.log(error);
       const { status, data } = error.response;
 
       res.status(status).json(data);
@@ -62,10 +62,7 @@ class EventController {
         // console.log("axiois");
         const { data: users } = await axios({
           method: "GET",
-          url: "http://localhost:4001/users",
-          headers: {
-            access_token,
-          },
+          url: "http://localhost:4001/users/public",
         });
         usersCache = users;
         await redis.set("user:users", JSON.stringify(users));
@@ -122,10 +119,7 @@ class EventController {
         // console.log("axiois");
         const { data: users } = await axios({
           method: "GET",
-          url: "http://localhost:4001/users",
-          headers: {
-            access_token,
-          },
+          url: "http://localhost:4001/users/public",
         });
         usersCache = users;
         await redis.set("user:users", JSON.stringify(users));

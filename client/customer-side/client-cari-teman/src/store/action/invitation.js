@@ -13,7 +13,6 @@ export const addInvitation = function (data) {
         EventId,
         MagnetId,
         invitationDescription,
-        status,
       },
       {
         headers: {

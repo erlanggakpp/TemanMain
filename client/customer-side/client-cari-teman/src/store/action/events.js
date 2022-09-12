@@ -59,3 +59,9 @@ export const detailEvent = function (id) {
     // .finally(() => dispatch(loadingSet(false)));
   };
 };
+
+export const getLocation = (loc) => (dispatch) =>{
+  return axios.get(
+    `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${loc},ID/2023-07-04?key=VQKDY363J7W3FXYM3KFRER4RW`
+  )
+}

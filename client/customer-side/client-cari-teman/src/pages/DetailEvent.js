@@ -1,7 +1,7 @@
 import TopBanner from "../compDetailEvent/TopBanner";
 import CardAtDetailPage from "../compDetailEvent/CardAtDetailPage";
 import SideMenu from "../compDetailEvent/SideMenu";
-import { useParams } from "react-router-dom";
+import { useParams, Outlet } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { detailEvent, loadingSet } from "../store/action/events";
@@ -13,13 +13,15 @@ export default function DetailEvent() {
   useEffect(() => {
     dispatch(detailEvent(params.id)).finally(() => dispatch(loadingSet(false)));
   }, []);
-  useEffect(() => {}, []);
+
   return (
     // <h1>hallo</h1>
     <>
       {!eventDetail ? (
         <h1>Loading...</h1>
       ) : (
+        <>
+        <Outlet/>
         <div className="container">
           <div className="container">
             <TopBanner name={eventDetail.name} />
@@ -50,6 +52,7 @@ export default function DetailEvent() {
             </div>
           </div>
         </div>
+        </>
       )}
     </>
   );

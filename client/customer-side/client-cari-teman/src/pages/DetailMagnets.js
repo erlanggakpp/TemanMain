@@ -1,27 +1,49 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams , Outlet} from "react-router-dom";
 import { loadingSet } from "../store/action/events";
 import { detailMagnet } from "../store/action/magnets";
 import RoomChat from "../components/RoomChat";
+import { addRequest } from "../store/action/requests";
 
 export default function DetailMagnets() {
   const params = useParams();
   const dispatch = useDispatch();
   const { loading } = useSelector((e) => e.events);
   const { magnetDetail } = useSelector((e) => e.magnets);
+  console.log(params);
   useEffect(() => {
-    dispatch(detailMagnet(params.id)).finally(() =>
+    dispatch(detailMagnet(params.magnetId)).finally(() =>
       dispatch(loadingSet(false))
     );
   }, []);
 
+  const [requestForm, setRequestForm] = useState({
+    EventId: params.id,
+    MagnetId: params.magnetId,
+    requestDescription: "",
+  });
+  const changeRequestForm = (e) => {
+    const { name, value } = e.target;
+    setRequestForm({
+      ...requestForm,
+      [name]: value,
+    });
+  };
+  const formRequest = (e) => {
+    e.preventDefault();
+    dispatch(addRequest(requestForm))
+    .then(({data})=>console.log(data, 'aaaaaaaaa'))
+    .catch((err)=>console.log(err, 'errrr'))
+  };
 
   return (
     <>
       {loading ? (
         <h1>Loading...</h1>
       ) : (
+        <>
+        <Outlet/>
         <div className="containet-fluid">
           <div className="container">
             <div className="row d-flex justify-content-center">
@@ -83,9 +105,11 @@ export default function DetailMagnets() {
                           <br />
                           <button
                             type="button"
-                            className="btn btn-primary btn-lg btn-block"
+                            class="btn btn-primary"
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"
                           >
-                            Request to join
+                            request to join
                           </button>
                         </div>
                       </div>
@@ -121,7 +145,55 @@ export default function DetailMagnets() {
             </div>
           </div>
         </div>
+        </>
       )}
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">
+                New message
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form onSubmit={formRequest}>
+                <div class="mb-3">
+                  <label for="message-text" class="col-form-label">
+                    Message:
+                  </label>
+                  <textarea   value={requestForm.requestDescription}
+                    onChange={changeRequestForm}
+                    name="requestDescription" class="form-control" id="message-text" ></textarea>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button type="submit" class="btn btn-primary">
+                    Send message
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 }

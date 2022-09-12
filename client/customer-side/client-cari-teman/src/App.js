@@ -26,13 +26,13 @@ function App() {
 
       <Routes>
         <Route path="/" element={<HomePage />}></Route>
-        <Route path="/events/:id" element={<DetailEvent />} />
-        <Route path="/magnets/:id" element={<DetailMagnets />} />
+        <Route path="events/:id" element={<DetailEvent />}></Route>
+        <Route path="events/:id/magnets/:magnetId" element={<DetailMagnets />} />
         {/* <Route path="/filter/:id" element={<MainPage />} /> */}
-        <Route path="/form" element={<FormTest />} />
-        <Route path="/Users/:id" element={<UserPage />} />
-        <Route path="/profile" element={<FormProfile />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="form" element={<FormTest />} />
+        <Route path="Users/:id" element={<UserPage />} />
+        <Route path="profile" element={<FormProfile />} />
+        <Route path="login" element={<LoginPage />} />
       </Routes>
     </div>
   );

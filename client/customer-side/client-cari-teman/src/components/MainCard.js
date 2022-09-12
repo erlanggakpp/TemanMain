@@ -1,17 +1,21 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { fetchEvent, loadingSet } from "../store/action/events";
 
 export default function MainCard() {
   const { events, eventDetail, loading } = useSelector((e) => e.events);
-  const iseng = "a";
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchEvent()).finally(() => {
       dispatch(loadingSet(false));
     });
   }, []);
+
+  const navigate = useNavigate()
+  function pindahHalaman(id) {
+    navigate(`/events/${id}`)
+  }
 
   return (
     <>
@@ -53,10 +57,11 @@ export default function MainCard() {
                           role="group"
                           aria-label="Basic example"
                         >
-                            <button type="button" className="btn btn-secondary">
-                          <Link to={`/events/${e.id}`} style={{textDecorationLine : "none", color : "white"}}>
+                            <button type="button" className="btn btn-secondary" onClick={() => pindahHalaman(e.id)}>
+                          {/* <Link to={`/events/${e.id}`} style={{textDecorationLine : "none", color : "white"}}>
                               Detail
-                          </Link>
+                          </Link> */}
+                          Detail
                             </button>
                           <button type="button" className="btn btn-secondary">
                             Buy

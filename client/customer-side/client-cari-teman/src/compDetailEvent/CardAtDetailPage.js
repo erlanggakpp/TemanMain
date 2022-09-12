@@ -44,7 +44,7 @@ export default function CardAtDetailPage({ magnets }) {
                     <div className="mb-1 text-muted">Nov 12</div>
                     <p className="card-text mb-auto">{el.magnetDescription}</p>
                     <Link
-                      to={`/magnets/${el.id}`}
+                      to={`magnets/${el.id}`}
                       href="#"
                       className="stretched-link"
                     >

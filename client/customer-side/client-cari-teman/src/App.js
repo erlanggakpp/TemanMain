@@ -7,8 +7,9 @@ import HomePage from "./pages/HomePage";
 import DetailEvent from "./pages/DetailEvent";
 import DetailMagnets from "./pages/DetailMagnets";
 import FormTest from "./pages/FormTest";
-import UserPage from "./pages/UserPage";
 import FormProfile from "./pages/FormProfile";
+import UserPage from "./pages/UserPage";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path="/form" element={<FormTest />} />
         <Route path="/Users/:id" element={<UserPage />} />
         <Route path="/profile" element={<FormProfile />} />
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
     </div>
   );

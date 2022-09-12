@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { loadingSet } from "../store/action/events";
@@ -15,6 +15,8 @@ export default function DetailMagnets() {
       dispatch(loadingSet(false))
     );
   }, []);
+
+
   return (
     <>
       {loading ? (
@@ -47,29 +49,25 @@ export default function DetailMagnets() {
                   </div>
                 </div>
               </div>
-              <div
-                className="col-md-12 bg-light"
-                style={{ height: "150px" }}
-              ></div>
+              <div className="col-md-12" style={{ height: "150px" }}></div>
             </div>
             <div className="row d-flex justify-content-center">
-              <div className="col-10 bg-light d-flex justify-content-center p-0">
-                <div className="row g-5">
+              <div className="col-10  d-flex justify-content-center p-0">
+                <div className="row g-5" style={{ width: "100%" }}>
                   <div className="col-md-8">
                     <h1>in isi ygy</h1>
                     <p className="p-4">{magnetDetail.magnetDescription}</p>
                     <br />
                     <br />
-                    <RoomChat />
+                    <RoomChat magnetId={magnetDetail.id} />
                   </div>
                   <div className="col-md-4">
                     <div className="position-sticky" style={{ top: "2rem" }}>
-                      <div className="p-4 mb-3 bg-light rounded">
+                      <div className="p-4 mb-3 rounded">
                         <h4 className="fst-italic">Avaiable to join</h4>
                         <p className="mb-0">
-                          <br />
-                          Total Participant :{" "}
-                          <span
+                          Total Participant :
+                          <div
                             style={{ padding: 20, borderRadius: "30px" }}
                             className="bg-warning"
                           >
@@ -78,7 +76,7 @@ export default function DetailMagnets() {
                                 magnetDetail.vacantParticipant}{" "}
                               / {magnetDetail.participant}
                             </strong>
-                          </span>
+                          </div>
                         </p>
                         <div>
                           <br />

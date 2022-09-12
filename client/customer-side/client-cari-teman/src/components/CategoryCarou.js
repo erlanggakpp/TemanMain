@@ -1,8 +1,20 @@
-// import { useEffect } from "react";
+import { useEffect } from "react";
 // import Carousel from "react-bootstrap/Carousel";
+import { useDispatch, useSelector } from "react-redux";
+import { loadingSet } from "../store/action/events";
+import { fetchCategory } from "../store/action/categories";
 
 export default function CategoryCarou() {
-  // useEffect(() => {});
+  const dispatch = useDispatch()
+
+  const { categories } = useSelector((e) => e.categories);
+  useEffect(() => {
+    dispatch(fetchCategory()).finally(() => {
+      dispatch(loadingSet(false));
+    });
+
+ 
+  });
   return (
     <>
       <div className="container" style={{ padding: 0 }}>

@@ -29,7 +29,7 @@ class ChatController {
         },
       });
       chatList.forEach((el) => {
-        el.dataValues.author = el.dataValues.User.firstName;
+        el.dataValues.author = el.dataValues.User.firstName + " " + el.dataValues.User.lastName;
       });
       res.status(201).json(chatList);
     } catch (error) {

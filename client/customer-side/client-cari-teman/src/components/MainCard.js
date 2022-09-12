@@ -51,20 +51,14 @@ export default function MainCard() {
                         <div
                           className="btn-group"
                           role="group"
-                          aria-label="Basic outlined example"
+                          aria-label="Basic example"
                         >
-                          <Link to={`/events/${e.id}`}>
-                            <button
-                              type="button"
-                              className="btn btn-outline-dark"
-                            >
+                            <button type="button" className="btn btn-secondary">
+                          <Link to={`/events/${e.id}`} style={{textDecorationLine : "none", color : "white"}}>
                               Detail
-                            </button>
                           </Link>
-                          <button
-                            type="button"
-                            className="btn btn-outline-dark"
-                          >
+                            </button>
+                          <button type="button" className="btn btn-secondary">
                             Buy
                           </button>
                         </div>

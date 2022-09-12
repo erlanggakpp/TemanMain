@@ -15,7 +15,7 @@ import { detailMagnet, fetchMagnet } from "../store/action/magnets";
 export default function HomePage() {
   const dispatch = useDispatch();
   const { events, eventDetail, loading } = useSelector((e) => e.events);
-  const { categories } = useSelector((e) => e.categories);
+
   const { magnets, magnetDetail } = useSelector((e) => e.magnets);
   const [showEvents, setShowEvents] = useState([]);
   useEffect(() => {
@@ -25,12 +25,10 @@ export default function HomePage() {
     // dispatch(detailEvent(2)).finally(() => {
     //   dispatch(loadingSet(false));
     // });
-    dispatch(fetchCategory()).finally(() => {
-      dispatch(loadingSet(false));
-    });
     dispatch(fetchMagnet()).finally(() => {
       dispatch(loadingSet(false));
     });
+
     // dispatch(detailMagnet(1)).finally(() => {
     //   console.log(magnetDetail);
     //   dispatch(loadingSet(false));

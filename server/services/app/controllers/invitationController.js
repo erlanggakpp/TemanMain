@@ -87,7 +87,6 @@ class InvitationController {
       res.status(200).json({ message: "Accepted invitation" });
     } catch (error) {
       await t.rollback();
-
       next(error);
     }
   }

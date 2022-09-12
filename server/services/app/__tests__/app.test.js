@@ -809,6 +809,47 @@ describe("PUT /invitations/:invitationId/reject", () => {
     });
   });
 });
+
+describe("DELETE /invitations/:invitationId", () => {
+  describe("DELETE /invitations/:invitationId - Success", () => {
+    it("Should return 'Successfully deleted invitation'", async () => {
+      const response = await request(app).delete("/invitations/1").set({
+        user_id: 3,
+      });
+      // console.log(response, "<<<<<<<<<<<<<<<< ini  response");
+      expect(response.status).toBe(200);
+
+      expect(response.body).toHaveProperty(
+        "message",
+        "Successfully deleted invitation"
+      );
+    });
+  });
+  describe("DELETE /invitations/:invitationId - Error", () => {
+    it("Should return 'Invitation not found'", async () => {
+      const response = await request(app).delete("/invitations/100").set({
+        user_id: 3,
+      });
+      // console.log(response, "<<<<<<<<<<<<<<<< ini  response");
+      expect(response.status).toBe(404);
+
+      expect(response.body).toHaveProperty("message", "Invitation not found");
+    });
+    it("Should return 'You are not authorized to edit/delete this invitation!'", async () => {
+      const response = await request(app).delete("/invitations/2").set({
+        user_id: 1,
+      });
+      // console.log(response, "<<<<<<<<<<<<<<<< ini  response");
+      expect(response.status).toBe(403);
+
+      expect(response.body).toHaveProperty(
+        "message",
+        "You are not authorized to edit/delete this invitation!"
+      );
+    });
+  });
+});
+
 describe("GET /magnets/user", () => {
   describe("GET /magnets/user - Success", () => {
     it("Should return array of magnets that created by specific user", async () => {
@@ -2355,6 +2396,27 @@ describe("GET /categories", () => {
       //   console.log(response.body);
       expect(response.status).toBe(200);
       expect(response.body).toEqual(expect.any(Array));
+    });
+  });
+});
+describe("GET /categories/:categoryId", () => {
+  describe("GET /categories:categoryId - Success", () => {
+    it("Should return object of specific category", async () => {
+      const response = await request(app).get("/categories/1");
+      //   console.log(response.body);
+      expect(response.status).toBe(200);
+      expect(response.body).toEqual(expect.any(Object));
+      expect(response.body).toHaveProperty("name", expect.any(String));
+      expect(response.body).toHaveProperty("image", expect.any(String));
+    });
+  });
+  describe("GET /categories:categoryId - Error", () => {
+    it("Should return 'Ctaegory not found'", async () => {
+      const response = await request(app).get("/categories/99");
+      //   console.log(response.body);
+      expect(response.status).toBe(404);
+      expect(response.body).toEqual(expect.any(Object));
+      expect(response.body).toHaveProperty("message", "Category not found");
     });
   });
 });

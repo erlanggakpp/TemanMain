@@ -71,7 +71,7 @@
       "role": "Visitor"
     }
   ],
-  "Categories": [
+  "categories": [
     {
       "name": "Music",
       "image": "https://cdn.kiostix.com/media/18304/conversions/medium.jpg"
@@ -186,6 +186,85 @@
       "specialRequirement": "Male or Female",
       "magnetDescription": "Synchronize fest, akomodasi di hotel bintang 3",
       "participant": 6,
+      "vacantParticipant": 3,
+      "participantDescription": "Mencari 3 orang, 2 wanita 1 Pria untuk nonton bareng! Yang ikut baru saya, kakak saya(perempuan) dan adik saya(perempuan)"
+    },
+    {
+      "UserId": 3,
+      "EventId": 1,
+      "confirmationDate": "2022/10/03",
+      "status": "open",
+      "ageRequirement": "19",
+      "specialRequirement": "Female",
+      "magnetDescription": "apawe",
+      "participant": "6",
+      "vacantParticipant": "5",
+      "participantDescription": "asdasdasd",
+      "id": 4
+    },
+    {
+      "UserId": 3,
+      "EventId": "1",
+      "confirmationDate": "2022/10/03",
+      "status": "open",
+      "ageRequirement": "19",
+      "specialRequirement": "All Gender",
+      "magnetDescription": "dadadawkdoa askdaskdjh",
+      "participant": "5",
+      "vacantParticipant": "4",
+      "participantDescription": "drimsesn sadkjsdh",
+      "id": 5
+    },
+    {
+      "UserId": 3,
+      "EventId": "2",
+      "confirmationDate": "2022/10/03",
+      "status": "open",
+      "ageRequirement": "97",
+      "specialRequirement": "All Gender",
+      "magnetDescription": "hohouuu",
+      "participant": "10",
+      "vacantParticipant": "9",
+      "participantDescription": "lalala",
+      "id": 6
+    },
+    {
+      "UserId": 3,
+      "EventId": "2",
+      "confirmationDate": "2022/10/03",
+      "status": "open",
+      "ageRequirement": "20",
+      "specialRequirement": "All Gender",
+      "magnetDescription": "aman aman",
+      "participant": "9",
+      "vacantParticipant": "7",
+      "participantDescription": "ygy",
+      "id": 7
+    },
+    {
+      "UserId": 3,
+      "EventId": "3",
+      "confirmationDate": "2022/10/03",
+      "status": "open",
+      "ageRequirement": "21",
+      "specialRequirement": "All Gender",
+      "magnetDescription": "gg gemink",
+      "participant": "1",
+      "vacantParticipant": "21",
+      "participantDescription": "ha ha ha",
+      "id": 8
+    },
+    {
+      "UserId": 3,
+      "EventId": "3",
+      "confirmationDate": "2022/10/03",
+      "status": "open",
+      "ageRequirement": "123",
+      "specialRequirement": "Man Only",
+      "magnetDescription": "sadsad",
+      "participant": "213",
+      "participantDescription": "scxzczc",
+      "id": 9,
       "vacantParticipant": 1
     }
   ],
@@ -194,7 +273,16 @@
       "EventId": 1,
       "UserId": 4,
       "MagnetId": 1,
-      "description": "Ingin ikut"
+      "requestDescription": "i req join",
+      "status": "open"
+    },
+    {
+      "UserId": 3,
+      "EventId": 3,
+      "MagnetId": 1,
+      "requestDescription": "mencoba ygy",
+      "status": "wokee",
+      "id": 2
     }
   ],
   "invitations": [
@@ -202,7 +290,16 @@
       "EventId": 1,
       "UserId": 5,
       "MagnetId": 1,
-      "description": "Ayo ikut"
+      "invitationDescription": "i invit u",
+      "status": "open"
+    },
+    {
+      "UserId": 3,
+      "EventId": 3,
+      "MagnetId": 1,
+      "invitationDescription": "ayok ayokk",
+      "status": "open",
+      "id": 3
     }
   ]
 }

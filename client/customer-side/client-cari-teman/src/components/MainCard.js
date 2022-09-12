@@ -5,88 +5,72 @@ import { fetchEvent, loadingSet } from "../store/action/events";
 
 export default function MainCard() {
   const { events, eventDetail, loading } = useSelector((e) => e.events);
+  const iseng = "a";
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchEvent()).finally(() => {
       dispatch(loadingSet(false));
     });
-  }, [events]);
+  }, []);
 
   return (
-    <main>
-      {loading ? (
-        <h1>Loading...</h1>
-      ) : (
-        <div className="album py-5 bg-light">
-          <div className="container">
-            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-              {events.map((e) => {
-                return (
-                  <div className="col" key={e.id}>
-                    <div className="card shadow-sm">
-                      <svg
-                        className="bd-placeholder-img card-img-top"
-                        width="100%"
-                        height="225"
-                        xmlns="http://www.w3.org/2000/svg"
-                        role="img"
-                        aria-label="Placeholder: Thumbnail"
-                        preserveAspectRatio="xMidYMid slice"
-                        focusable="false"
-                      >
-                        <title>Placeholder</title>
-                        <rect
-                          style={{ position: "relative" }}
-                          width="100%"
-                          height="100%"
-                          fill="#55595c"
-                        />
-
-                        <text x="50%" y="50%" fill="#eceeef" dy=".3em">
-                          {e.name}
-                        </text>
-                      </svg>
-                      <img
-                        src={e.image}
-                        style={{
-                          height: "100%",
-                          width: "100%",
-                        }}
-                      />
-                      <div className="card-body">
-                        <p className="card-text">Price: {e.ticketPrice}</p>
-                        <div className="d-flex justify-content-between align-items-center">
-                          <div className="btn-group">
-                            <Link to={`/events/`}>
-                              <button
-                                type="button"
-                                className="btn btn-sm btn-outline-secondary"
-                              >
-                                View
-                              </button>
-                            </Link>
-                            <button
-                              type="button"
-                              className="btn btn-sm btn-outline-secondary"
-                            >
-                              <a href={e.eventHomepageLink}>Event Link</a>
+    <>
+      <section className="card py-5 " style={{ border: 0 }}>
+        {loading ? (
+          <>
+            <div className="container d-flex justify-content-center align-items-center">
+              <div
+                style={{ width: "200px", height: "200px", marginTop: "50px" }}
+              >
+                <img
+                  src="https://cdn.discordapp.com/attachments/1015235714780246077/1018164300940062790/loading.jpg"
+                  alt=""
+                  className="img-fluid rounded-circle"
+                />
+              </div>
+            </div>
+          </>
+        ) : (
+          // <p>
+          //   {JSON.stringify(events)}
+          // </p>
+          <div className="container px-4 px-lg-5">
+            <div className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-center">
+              {events.map((e) => (
+                <div className="col mb-5" key={e.id}>
+                  <div className="card h-100">
+                    <img className="card-img-top" src={e.image} alt="..." />
+                    <div className="card-body ">
+                      <div className="text-center">
+                        <h5 className="fw-bolder"> {e.name}</h5>
+                        Rp. {e.ticketPrice}
+                      </div>
+                    </div>
+                    <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                      <div className="text-center">
+                        <div
+                          className="btn-group"
+                          role="group"
+                          aria-label="Basic example"
+                        >
+                            <button type="button" className="btn btn-secondary">
+                          <Link to={`/events/${e.id}`} style={{textDecorationLine : "none", color : "white"}}>
+                              Detail
+                          </Link>
                             </button>
-                          </div>
-
-                          <small className="text-muted">
-                            <p>{e.eventDate}</p>
-                            <p>{e.eventDuration} Event</p>
-                          </small>
+                          <button type="button" className="btn btn-secondary">
+                            Buy
+                          </button>
                         </div>
                       </div>
                     </div>
                   </div>
-                );
-              })}
+                </div>
+              ))}
             </div>
           </div>
-        </div>
-      )}
-    </main>
+        )}
+      </section>
+    </>
   );
 }

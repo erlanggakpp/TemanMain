@@ -259,6 +259,7 @@ class UserController {
         access_token,
         age,
         gender: findUser.gender,
+        name: findUser.firstName + " " + findUser.lastName
       });
     } catch (error) {
       next(error);

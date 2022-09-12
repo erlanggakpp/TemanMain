@@ -7,9 +7,9 @@ const CONNECTION_PORT = "http://localhost:4000";
 
 function App() {
   //Before login
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [room, setRoom] = useState("");
-  const [username, setUsername] = useState("");
+  // const [loggedIn, setLoggedIn] = useState(false);
+  // const [room, setRoom] = useState("");
+  // const [username, setUsername] = useState("");
   //After login
   const [chat, setChat] = useState("");
   const [messageList, setMessageList] = useState([]);
@@ -25,7 +25,7 @@ function App() {
   });
   useEffect(() => {
     socket.on("init_chat", (data) => {
-      console.log(data);
+      // console.log(data);
       setMessageList(data);
     });
   }, []);

@@ -9,6 +9,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { fetchCategoryById, updateCategory } from '../store/actions';
+import Swal from 'sweetalert2'
+
 
 export default function CategoryEdit() {
   const container = {
@@ -18,7 +20,7 @@ export default function CategoryEdit() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { detailcategories } = useSelector((state) => state.category);
-  console.log(detailcategories);
+
   const [editCategory, setEditCategory] = useState({
     name: '',
     image: ''
@@ -34,12 +36,22 @@ export default function CategoryEdit() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(updateCategory(id, editCategory))
+      .then((data) => {
+        Swal.fire(
+          data.data.message,
+          'You clicked the button!',
+          'success'
+        )
+      })
       .then((_) => {
-        console.log('success');
         navigate(`/listcategory`);
       })
       .catch((err) => {
-        console.log(err.response.data);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err.response.data.message,
+        })
       });
   };
 

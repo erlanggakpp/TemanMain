@@ -2,7 +2,8 @@ import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { deleteUser } from '../store/actions';
+import { deleteUser, fetchUsers } from '../store/actions';
+import Swal from 'sweetalert2'
 
 
 export default function UserTableRow({ user, i }) {
@@ -16,6 +17,23 @@ export default function UserTableRow({ user, i }) {
     const handleDelete = (e, id) => {
         e.preventDefault();
         dispatch(deleteUser(id))
+            .then((res) => {
+                Swal.fire(
+                    res.data.message,
+                    'You clicked the button!',
+                    'success'
+                )
+            })
+            .then((data) => {
+                dispatch(fetchUsers(data))
+            })
+            .catch((err) => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: err.response.data.message,
+                })
+            })
     }
 
     const handleEdit = (id) => {

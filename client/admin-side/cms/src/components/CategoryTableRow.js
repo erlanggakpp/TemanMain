@@ -2,7 +2,8 @@ import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { deleteCategory } from '../store/actions';
+import { deleteCategory, fetchCategories } from '../store/actions';
+import Swal from 'sweetalert2'
 
 export default function CategoryTableRow({ category, i }) {
   const dispatch = useDispatch();
@@ -14,7 +15,24 @@ export default function CategoryTableRow({ category, i }) {
   };
   const handleDelete = (e, id) => {
     e.preventDefault();
-    dispatch(deleteCategory(id));
+    dispatch(deleteCategory(id))
+      .then((res) => {
+        Swal.fire(
+          res.data.message,
+          'You clicked the button!',
+          'success'
+        )
+      })
+      .then((data) => {
+        dispatch(fetchCategories(data))
+      })
+      .catch((err) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err.response.data.message,
+        })
+      })
   };
 
   const handleEdit = (id) => {

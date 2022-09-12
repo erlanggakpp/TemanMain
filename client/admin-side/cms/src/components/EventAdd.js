@@ -8,6 +8,8 @@ import { postEvent, fetchCategories } from '../store/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'
+
 
 export default function EventAdd() {
   const container = {
@@ -17,7 +19,6 @@ export default function EventAdd() {
   const navigate = useNavigate();
   const { categories } = useSelector((state) => state.category);
   const [loading, setLoading] = useState(true);
-  console.log(categories);
 
   const [addEvent, setAddEvent] = useState({
     name: '',
@@ -49,12 +50,22 @@ export default function EventAdd() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(postEvent(addEvent))
+      .then((data) => {
+        Swal.fire(
+          data.data.message,
+          'You clicked the button!',
+          'success'
+        )
+      })
       .then((_) => {
-        console.log('success');
         navigate(`/listevent`);
       })
       .catch((err) => {
-        console.log(err.response.data);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err.response.data.message,
+        })
       });
   };
 
@@ -174,7 +185,7 @@ export default function EventAdd() {
                   placeholder="Ticket Price"
                   onChange={changeInputEvent}
                 >
-                  <option disabled>-----Select Category----</option>
+                  <option disabled selected>-----Select Category----</option>
                   {loading ? (
                     <h1>Loading cuy</h1>
                   ) : (

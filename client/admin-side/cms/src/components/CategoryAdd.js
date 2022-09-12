@@ -8,6 +8,8 @@ import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { postCategory } from '../store/actions';
 import { Link, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'
+
 export default function CategoryAdd() {
   const container = {
     padding: '150px',
@@ -30,12 +32,22 @@ export default function CategoryAdd() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(postCategory(addCategory))
+      .then((data) => {
+        Swal.fire(
+          data.data.message,
+          'You clicked the button!',
+          'success'
+        )
+      })
       .then((_) => {
-        console.log('success');
         navigate('/listcategory');
       })
       .catch((err) => {
-        console.log(err.response.data);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err.response.data.message,
+        })
       });
   };
 

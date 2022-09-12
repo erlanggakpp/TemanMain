@@ -8,6 +8,8 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { postUser } from '../store/actions';
 import { Link, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'
+
 
 export default function UserAdd() {
   const container = {
@@ -32,7 +34,7 @@ export default function UserAdd() {
 
   const changeInputUser = (e) => {
     const { name, value } = e.target;
-    console.log(name);
+    // console.log(name);
     setAddUser({
       ...addUser,
       [name]: value,
@@ -42,11 +44,23 @@ export default function UserAdd() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(postUser(addUser))
+      .then((data) => {
+        Swal.fire(
+          data.data.message,
+          'You clicked the button!',
+          'success'
+        )
+      })
       .then((_) => {
         navigate('/listuser')
       })
       .catch((err) => {
-        console.log(err.response.data);
+        console.log(err)
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err.response.data.error,
+        })
       });
   };
 

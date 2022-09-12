@@ -36,30 +36,17 @@ export const deleteEvents = (id) => {
           access_token: localStorage.getItem('access_token')
         },
       })
-      .then((res) => {
-        console.log(res.data);
-      })
-      .then((data) => {
-        dispatch(fetchEvents(data));
-      });
   };
 };
 
 export const deleteCategory = (id) => {
   return (dispatch) => {
-    console.log(id, 'from action');
     return axios
       .delete(`http://localhost:4000/categories/${id}`, {
         headers: {
           access_token: localStorage.getItem('access_token')
         },
       })
-      .then((res) => {
-        console.log(res.data);
-      })
-      .then((data) => {
-        dispatch(fetchCategories(data));
-      });
   };
 };
 
@@ -71,9 +58,6 @@ export const postEvent = (input) => {
           access_token: localStorage.getItem('access_token')
         },
       })
-      .then((res) => {
-        console.log(res.data);
-      });
   };
 };
 
@@ -104,12 +88,6 @@ export const updateEvent = (id, input) => {
           access_token: localStorage.getItem('access_token')
         },
       })
-      .then((res) => {
-        console.log(res);
-      })
-      .then((data) => {
-        dispatch(fetchEvents(data));
-      });
   };
 };
 
@@ -147,7 +125,7 @@ export const fetchCategories = () => {
       }
     }).then((data) => {
       dispatch(fetchcategory(data));
-    });
+    })
   };
 };
 
@@ -159,9 +137,6 @@ export const postCategory = (input) => {
           access_token: localStorage.getItem('access_token')
         },
       })
-      .then((res) => {
-        console.log(res.data);
-      });
   };
 };
 export const detailCategory = (payload) => {
@@ -191,12 +166,6 @@ export const updateCategory = (id, input) => {
           access_token: localStorage.getItem('access_token')
         },
       })
-      .then((res) => {
-        console.log(res);
-      })
-      .then((data) => {
-        dispatch(fetchCategories(data));
-      });
   };
 };
 
@@ -208,9 +177,6 @@ export const postUser = (input) => {
           access_token: localStorage.getItem('access_token')
         },
       })
-      .then((res) => {
-        console.log(res.data);
-      });
   };
 };
 
@@ -222,12 +188,12 @@ export const deleteUser = (id) => {
           access_token: localStorage.getItem('access_token')
         },
       })
-      .then((res) => {
-        console.log(res.data);
-      })
-      .then((data) => {
-        dispatch(fetchUsers(data));
-      });
+    // .then((res) => {
+    //   console.log(res.data);
+    // })
+    // .then((data) => {
+    //   dispatch(fetchUsers(data));
+    // });
   };
 };
 
@@ -258,24 +224,14 @@ export const updateUser = (id, input) => {
           access_token: localStorage.getItem('access_token')
         },
       })
-      .then((res) => {
-        console.log(res);
-      })
-      .then((data) => {
-        dispatch(fetchUsers(data));
-      });
   };
 };
 
-export const login = (value, cb) => {
+export const login = (value) => {
   return axios
     .post(`http://localhost:4000/users/login`, value, {
       headers: {
         'Content-Type': 'application/json',
       },
     })
-    .then(({ data }) => {
-      localStorage.setItem('access_token', data.access_token);
-      cb();
-    });
 };

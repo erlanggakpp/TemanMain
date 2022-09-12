@@ -2,8 +2,10 @@ import Button from 'react-bootstrap/Button';
 import Stack from 'react-bootstrap/Stack';
 import { useNavigate } from 'react-router-dom';
 
-import { deleteEvents } from '../store/actions';
+import { deleteEvents, fetchEvents } from '../store/actions';
 import { useDispatch } from 'react-redux';
+import Swal from 'sweetalert2'
+
 
 export default function EventTableRow({ data, i }) {
   const dispatch = useDispatch();
@@ -15,19 +17,41 @@ export default function EventTableRow({ data, i }) {
   };
   const handleDelete = (e, id) => {
     e.preventDefault();
-    dispatch(deleteEvents(id));
+    dispatch(deleteEvents(id))
+      .then((res) => {
+        Swal.fire(
+          res.data.message,
+          'You clicked the button!',
+          'success'
+        )
+      })
+      .then((data) => {
+        dispatch(fetchEvents(data))
+      })
+      .catch((err) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err.response.data.message,
+        })
+      })
   };
 
   const handleEdit = (id) => {
     navigate(`/event/${id}`);
   };
 
+  const formatdate = (date) => {
+    const newdate = new Date(date).toLocaleDateString("en-US")
+    return newdate
+  };
+
   return (
     <tr>
       <td>{i + 1}</td>
       <td>{data.name}</td>
-      <td>{data.localtion}</td>
-      <td>{data.eventDate}</td>
+      <td>{data.location}</td>
+      <td>{formatdate(data.eventDate)}</td>
       <td>
         <img src={data.image} style={image} />
       </td>

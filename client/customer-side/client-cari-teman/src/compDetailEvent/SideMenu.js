@@ -1,17 +1,75 @@
-export default function SideMenu() {
-    return (
-      <>
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { detailEvent, loadingSet } from "../store/action/events";
+
+export default function SideMenu({ toSide }) {
+  const { loading } = useSelector((e) => e.events);
+  // const dispatch = useDispatch();
+  // const params = useParams();
+  // useEffect(() => {
+  //   console.log(params.id);
+  //   dispatch(detailEvent(params.id)).finally(() => {
+  //     dispatch(loadingSet(false));
+  //   });
+  // }, []);
+  useEffect(() => {
+    console.log(toSide, "dari side menu");
+  }, []);
+
+  return (
+    <>
+      {loading ? (
+        <h1>Loading...</h1>
+      ) : (
         <div className="col-md-4">
           <div className="position-sticky" style={{ top: "2rem" }}>
             <div className="p-4 mb-3 bg-light rounded">
-              <h4 className="fst-italic">About</h4>
-              <p className="mb-0">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia sint molestiae, veritatis eligendi consequatur possimus illo consectetur accusamus voluptas pariatur!
-              </p>
+              <h4 className="fst-italic">create magnets</h4>
+              {/* <h4 className="fst-italic">WhEn UwHerre ?!</h4>
+            <p className="mb-0">{toSide.location}</p>
+            <p className="mb-0">{toSide.eventDate}</p>
+            <p className="mb-0">{toSide.eventDuration}</p> */}
+              <button
+                type="button"
+                className="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+              >
+                + magnets
+              </button>
+              {/* form nya ditaro di bawah tulisan magnets di halaman sebelah*/}
             </div>
             <div className="p-4 mb-3 bg-light rounded">
+              <h4 className="fst-italic">About</h4>
+              <p className="mb-0">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                Officia sint molestiae, veritatis eligendi consequatur possimus
+                illo consectetur accusamus voluptas pariatur!
+              </p>
+            </div>
+
+            <div className="p-4 mb-3 bg-light rounded" style={{
+  overflow: "hidden",
+  background: "none" ,
+  height: "auto",
+  width: "100%",
+}}>
               <h4 className="fst-italic">Maps</h4>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.683728838511!2d107.6198273144352!3d-6.928355569741015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e87ffb3736a5%3A0x1fa0782bad367c26!2sWebhozz+Bandung!5e0!3m2!1sid!2sid!4v1512984270823" style={{width : "100%", height : "auto", frameborder : 0, border : 0, objectFit : "cover"}}></iframe>
+              <iframe
+                src="https://maps.google.com/maps?q=-6.1682337,106.828319&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  frameborder: 0,
+                  border: 0,
+                  objectFit: "cover",
+                }}
+                frameborder="0"
+                scrolling="no"
+                marginheight="0"
+                marginwidth="0"
+              ></iframe>
             </div>
 
             <div className="p-4">
@@ -72,6 +130,7 @@ export default function SideMenu() {
             </div>
           </div>
         </div>
-      </>
-    );
+      )}
+    </>
+  );
 }

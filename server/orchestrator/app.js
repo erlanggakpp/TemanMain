@@ -25,17 +25,16 @@ let io = socket(server, {
 
 io.on("connection", (socket) => {
   socket.on("join_room", async (data) => {
-    socket.join(data); //Data itu room numbernya
+    socket.join(data.roomName); //Data itu room numbernya
     const { data: chatList } = await axios({
       method: "GET",
       url: `http://localhost:4001/chats/magnet/${data.magnetId}`,
       headers: {
-        access_token:
-          data.access_token
-        },
+        access_token: data.access_token,
+      },
     });
     socket.emit("init_chat", chatList);
-    console.log("user Joined the room " + data);
+    console.log("user Joined the room " + data.roomName);
   });
   socket.on("leave_room", (data) => {
     socket.leave(data);
@@ -50,8 +49,7 @@ io.on("connection", (socket) => {
       method: "POST",
       url: `http://localhost:4001/chats`,
       headers: {
-        access_token:
-        data.access_token
+        access_token: data.access_token,
       },
       data: {
         MagnetId: data.magnetId,

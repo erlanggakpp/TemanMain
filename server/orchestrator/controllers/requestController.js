@@ -19,7 +19,6 @@ class RequestController {
           user_id: user_id,
         },
       });
-      console.log(data, '<<<<<<<<<<<<<<<<<<');
       const targetUserId = data.magnet.UserId;
       // console.log(data, "<<<<<<<<<<<<");
       let usersCache = await redis.get("user:users");
@@ -119,6 +118,8 @@ class RequestController {
   static async getRequestByUserId(req, res) {
     try {
       const { id: userId } = req.user;
+      const { access_token } = req.headers;
+
       const { data } = await axios({
         method: "GET",
         url: `http://localhost:4002/requests/user`,
@@ -126,8 +127,27 @@ class RequestController {
           user_id: userId,
         },
       });
+      let usersCache = await redis.get("user:users");
+      if (usersCache) {
+        usersCache = JSON.parse(usersCache);
+      } else {
+        const { data: users } = await axios({
+          method: "GET",
+          url: "http://localhost:4001/users",
+          headers: {
+            access_token,
+          },
+        });
+        await redis.set("user:users", JSON.stringify(users));
+        usersCache = users;
+      }
+      data.forEach((el) => {
+        const targetUser = usersCache.find((user) => el.UserId === user.id);
+        el.User = targetUser;
+      });
       res.status(200).json(data);
     } catch (error) {
+      console.log(error, "<<<<<<");
       const { status, data } = error.response;
 
       res.status(status).json(data);

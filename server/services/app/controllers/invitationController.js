@@ -1,4 +1,4 @@
-const { Invitation, Magnet } = require("../models");
+const { Invitation, Magnet, Event } = require("../models");
 const { sequelize } = require("../models");
 
 class InvitationController {
@@ -131,7 +131,14 @@ class InvitationController {
         where: {
           UserId: user_id,
         },
+        include: {
+          model: Magnet,
+          include: {
+            model: Event,
+          },
+        },
       });
+      console.log(invitations);
       res.status(200).json(invitations);
     } catch (error) {
       next(error);

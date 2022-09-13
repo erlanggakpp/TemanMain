@@ -56,3 +56,21 @@ export const acceptInvitationFromStore = function (id) {
       });
   };
 };
+export const sendInvitation = function (eventId, id) {
+  return function (dispatch) {
+    dispatch(loadingSet(true));
+    return axios
+      .put(
+        `${baseUrl}/invitations/event/${eventId}/magnet/${id}/accept`,
+        {},
+        {
+          headers: {
+            access_token: localStorage.getItem("access_token"),
+          },
+        }
+      )
+      .then((data) => {
+        return data;
+      });
+  };
+};

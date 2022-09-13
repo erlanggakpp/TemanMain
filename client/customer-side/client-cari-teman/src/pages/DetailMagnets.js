@@ -14,8 +14,12 @@ export default function DetailMagnets() {
   const { loading } = useSelector((e) => e.events);
   const { magnetDetail } = useSelector((e) => e.magnets);
   const [users, setUsers] = useState([]);
+  const [selectedUser, setSelectedUser] = useState(0);
   const [banner, setBanner] = useState([]);
+  const { loggedUser } = useSelector((e) => e.users);
 
+  // console.log(magnetDetail, "magnet deteail");
+  // console.log(loggedUser, "LOGGED USER");
   useEffect(() => {
     dispatch(fetchAllUsers())
       .then((data) => {
@@ -95,6 +99,11 @@ export default function DetailMagnets() {
     setBanner(gambarBanner[angkaNgasal]);
   }, []);
 
+  const inviteUser = (e) => {
+    e.preventDefault();
+    console.log(selectedUser, "<<<<<<<<<<<<<<");
+  };
+
   // console.log(magnetDetail, "ajsdjpasdjapsdjpasdj")
   if (!magnetDetail) return <h1>Loading...</h1>;
   return (
@@ -163,7 +172,10 @@ export default function DetailMagnets() {
                       <p className="p-4">{magnetDetail.magnetDescription}</p>
                       <br />
                       <br />
-                      <RoomChat magnetId={magnetDetail.id} />
+                      <RoomChat
+                        magnetId={magnetDetail.id}
+                        magnetDetail={magnetDetail}
+                      />
                     </div>
                     <div className="col-md-4">
                       <div className="position-sticky" style={{ top: "2rem" }}>
@@ -194,24 +206,32 @@ export default function DetailMagnets() {
                           </div>
                           <h3>invite : </h3>
                           <div>
-                            <form action="" className="d-flex">
+                            <form
+                              onSubmit={(e) => inviteUser(e)}
+                              className="d-flex"
+                            >
                               <input
                                 type="text"
                                 list="data"
                                 class="form-control"
                                 placeholder="Type to search..."
                                 id="exampleDataList"
+                                onChange={(e) =>
+                                  setSelectedUser(e.target.value)
+                                }
                               />
                               <datalist id="data">
                                 {users.map((item, key) => (
-                                  <option key={key} value={item.email} />
+                                  <option key={key} value={item.id}>
+                                    {item.email}
+                                  </option>
                                 ))}
                               </datalist>
                               <button
                                 type="submit"
                                 class="btn btn-dark text-white"
                               >
-                                send
+                                Send
                               </button>
                             </form>
                           </div>

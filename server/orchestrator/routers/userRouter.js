@@ -4,8 +4,9 @@ const authenticator = require("../middlewares/authenticator");
 
 userRouter.get("/", UserController.readAllUser);
 userRouter.post("/", UserController.createUser);
-userRouter.get("/:id", UserController.showUser2);
 userRouter.get("/my-profile", authenticator, UserController.showUser);
+userRouter.get("/:id", UserController.showUser2);
+// userRouter.get("/:userId", authenticator, UserController.showUser2);
 userRouter.put("/my-profil", authenticator, UserController.updateUserProfile);
 userRouter.get("/:id", UserController.showUser);
 userRouter.put("/:id", UserController.updateUser);

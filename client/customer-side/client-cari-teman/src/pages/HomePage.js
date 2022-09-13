@@ -16,6 +16,7 @@ export default function HomePage() {
   const dispatch = useDispatch();
   const { events, eventDetail, loading } = useSelector((e) => e.events);
   const { magnets, magnetDetail } = useSelector((e) => e.magnets);
+  const { loggedUser } = useSelector((e) => e.users);
   const [showEvents, setShowEvents] = useState([]);
   const [displayedEvents, setDisplayedEvents] = useState([]);
   const [displayedMagnets, setDisplayedMagnets] = useState([]);

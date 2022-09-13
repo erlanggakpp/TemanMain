@@ -1,0 +1,81 @@
+.stream-local {
+  height: 500px;
+  border-radius: 10px;
+}
+
+.stream-remote {
+  width: 100%;
+  height: 200px;
+  border-radius: 10px;
+}
+
+
+.stream {
+  width: 480px;
+  height: 320px;
+}
+
+.card-custom {
+  height: 200px;
+  width: 100%;
+}
+
+.card-custom-local {
+  height: 400px;
+  width: 100%;
+}
+
+.color-white {
+  color: white;
+}
+
+.banner {
+  padding: 0;
+  background-color: #52575c;
+  color: white;
+}
+
+.banner-text {
+  padding: 8px 20px;
+  margin: 0;
+}
+
+
+#join-form {
+  margin-top: 10px;
+}
+
+.tips {
+  font-size: 12px;
+  margin-bottom: 2px;
+  color: gray;
+}
+
+.join-info-text {
+  margin-bottom: 2px;
+}
+
+input {
+  width: 100%;
+  margin-bottom: 2px;
+}
+
+.player {
+  width: 100%;
+}
+
+.player-name {
+  margin: 8px 0;
+}
+
+#success-alert,
+#success-alert-with-token {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .player {
+    width: 320px;
+    height: 240px;
+  }
+}

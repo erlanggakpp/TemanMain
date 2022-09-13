@@ -143,13 +143,20 @@ class MagnetController {
         include: [
           {
             model: Request,
+            where: {
+              status: "Accepted",
+            },
           },
           {
             model: Invitation,
+            where: {
+              status: "Accepted",
+            },
           },
           // {
           //   model: User,
           // },
+          ,
         ],
       });
       res.status(200).json(magnet);

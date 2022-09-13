@@ -1,9 +1,12 @@
 const userRouter = require('express').Router()
 const UserController = require('../controllers/UserController.js')
+const authenticator = require("../middlewares/authenticator");
+
 
 userRouter.get("/", UserController.readAllUser)
 userRouter.post("/", UserController.createUser)
-userRouter.get("/:id", UserController.showUser)
+userRouter.get("/:id", UserController.showUser) 
+userRouter.get("/my-profile", authenticator, UserController.showUser) 
 userRouter.put('/:id', UserController.updateUser)
 userRouter.delete('/:id', UserController.deleteUser)
 

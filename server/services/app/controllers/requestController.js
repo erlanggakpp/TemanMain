@@ -43,7 +43,7 @@ class RequestController {
           id: magnetId,
         },
       });
-
+      console.log(targetMagnet, magnetId, '======================');
       res.status(201).json({
         message: "Successfully created request",
         magnet: targetMagnet,

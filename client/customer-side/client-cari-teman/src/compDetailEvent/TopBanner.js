@@ -8,29 +8,35 @@ export default function TopBanner({ eventDetail }) {
   }
   return (
     <>
-      <div className="p-4 p-md-5 mb-4 text-white rounded bg-dark">
+      <div
+        className="p-4 p-md-5 text-white mt-4"
+        style={{ backgroundColor: "#EAF6F6", borderRadius: "30px" }}
+      >
         <div className="row">
           <div
             className="col-md-6 px-0 d-flex justify-content-center align-items-center"
             style={{ flexDirection: "column" }}
           >
-            <h1 className="display-4 fst-italic">{eventDetail.name}</h1>
-            <h6 className="lead my-3">{eventDetail.Category.name}</h6>
-            <div class="d-grid gap-2">
+            <h1 className="display-5  text-dark">
+              <strong>{eventDetail.name}</strong>
+            </h1>
+            <h3 className="text-dark">- {eventDetail.Category.name} -</h3>
+            <div class="d-grid gap-2 mt-4">
               {/* <p>{eventDetail.eventHomePageLink}</p> */}
               <button
-                class="btn btn-warning"
+                class="btn pt-3 px-5"
                 type="button"
+                style={{ backgroundColor: "#2e94d1", borderRadius : "25px" }}
                 // onClick={() => move(eventDetail.eventHomepageLink)}
               >
                 <a
                   href={eventDetail.eventHomepageLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{"text-decoration" : "none"}}
+                  style={{ "text-decoration": "none" }}
                   className="text-dark"
                 >
-                  <strong>go to offcial website...</strong>
+                  <p style={{fontSize : "18px"}} className="text-white">go to offcial website...</p>
                 </a>
               </button>
             </div>
@@ -46,7 +52,8 @@ export default function TopBanner({ eventDetail }) {
               <img
                 src={eventDetail.image}
                 alt=""
-                className="rounded h-75 img-fluid"
+                className=" h-75 img-fluid"
+                style={{ borderRadius: "30px" }}
               />
             </div>
           </div>

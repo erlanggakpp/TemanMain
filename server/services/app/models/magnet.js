@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      // Magnet.belongsTo(models.User, { foreignKey: "UserId" });
+      Magnet.belongsTo(models.Event, { foreignKey: "EventId" });
       Magnet.hasMany(models.Invitation, { foreignKey: "MagnetId" });
       Magnet.hasMany(models.Request, { foreignKey: "MagnetId" });
     }

@@ -1,18 +1,36 @@
 import { useEffect, useState } from "react";
 import io from "socket.io-client";
+import { useSelector } from "react-redux";
 
 let socket;
 const CONNECTION_PORT = "http://localhost:4000";
 
-export default function RoomChat({ magnetId }) {
+export default function RoomChat({ magnetDetail, magnetId }) {
   const [chat, setChat] = useState("");
   const [messageList, setMessageList] = useState([]);
   const [openChat, setOpenChat] = useState(false);
+  const { loggedUser } = useSelector((e) => e.users);
 
-
+  console.log(loggedUser, magnetDetail, "<<<<<<<<<<<<<<<<<<<<<");
   const joinGroupChat = () => {
-    connectToRoom()
-    setOpenChat(true);
+    let flag = false;
+
+    if (loggedUser.id === magnetDetail.UserId) {
+      flag = true;
+    } else {
+      const targetParticipant = magnetDetail.Participant.find(
+        (el) => el.UserId === loggedUser.id
+      );
+      if (targetParticipant) {
+        flag = true;
+      }
+    }
+    if (flag === true) {
+      connectToRoom();
+      setOpenChat(true);
+    } else {
+      console.log("GABOLEH MASUKKK");
+    }
   };
 
   useEffect(() => {
@@ -30,21 +48,25 @@ export default function RoomChat({ magnetId }) {
       setMessageList(data);
     });
   }, []);
-  
+
   const connectToRoom = () => {
-    socket.emit("join_room", {roomName: "magnet" + magnetId, magnetId, access_token: localStorage.access_token});
+    socket.emit("join_room", {
+      roomName: "magnet" + magnetId,
+      magnetId,
+      access_token: localStorage.access_token,
+    });
   };
 
   const sendMessage = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     let messageContent = {
       room: "magnet" + magnetId,
       content: {
-        author: localStorage.name,
+        author: `${loggedUser.firstName} ${loggedUser.lastName}`,
         chat: chat,
       },
       access_token: localStorage.access_token,
-      magnetId: magnetId
+      magnetId: magnetId,
     };
     await socket.emit("send_message", messageContent);
     setChat("");
@@ -60,7 +82,7 @@ export default function RoomChat({ magnetId }) {
           <div class="col-12">
             <div class="card" id="chat1" style={{ "border-radius": "15px" }}>
               <div
-                class="card-header d-flex justify-content-between align-items-center p-3 bg-info text-white border-bottom-0"
+                class="card-header d-flex justify-content-between align-items-center p-3 bg-primary text-white border-bottom-0"
                 style={{
                   "border-top-left-radius": "15px",
                   "border-top-right-radius": "15px",
@@ -98,8 +120,6 @@ export default function RoomChat({ magnetId }) {
                 );
               })}
               <div class="card-body">
-
-
                 {/* ini chat kanan */}
                 {/* <div class="d-flex flex-row justify-content-end mb-4">
                   <div
@@ -122,17 +142,18 @@ export default function RoomChat({ magnetId }) {
                   <div>
                     <div className="messageInput d-flex">
                       <form onSubmit={sendMessage}>
-                      <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Message..."
-                        onChange={(e) => {
-                          setChat(e.target.value);
-                        }}
-                      />
-                      <button className="btn btn-primary" >
-                        Send
-                      </button>
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Message..."
+                          onChange={(e) => {
+                            setChat(e.target.value);
+                          }}
+                        />
+                        <button className="btn btn-primary">Send</button>
+                        <button className="btn btn-danger" onClick={leaveRoom}>
+                          leave
+                        </button>
                       </form>
                     </div>
                   </div>

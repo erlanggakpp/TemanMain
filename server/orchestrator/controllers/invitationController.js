@@ -116,12 +116,34 @@ class InvitationController {
   static async getInvitationByUserId(req, res) {
     try {
       const { id: userId } = req.user;
+      const { access_token } = req.headers;
+
       const { data } = await axios({
         method: "GET",
         url: `http://localhost:4002/invitations/user`,
         headers: {
           user_id: userId,
         },
+      });
+      let usersCache = await redis.get("user:users");
+      if (usersCache) {
+        usersCache = JSON.parse(usersCache);
+      } else {
+        const { data: users } = await axios({
+          method: "GET",
+          url: "http://localhost:4001/users",
+          headers: {
+            access_token,
+          },
+        });
+        await redis.set("user:users", JSON.stringify(users));
+        usersCache = users;
+      }
+      data.forEach((el) => {
+        const targetUser = usersCache.find((user) => el.UserId === user.id);
+        const invitor = usersCache.find((user) => el.Magnet.UserId === user.id);
+        el.User = targetUser;
+        el.Invitor = invitor;
       });
       res.status(200).json(data);
     } catch (error) {

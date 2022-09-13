@@ -10,9 +10,9 @@ export default function CardAtDetailPage({ magnets }) {
   useEffect(() => {
     dispatch(detailEvent(params.id)).finally(() => dispatch(loadingSet(false)));
   }, []);
-  useEffect(() => {
-    console.log(magnets, "dari card detail magnet");
-  }, []);
+  // useEffect(() => {
+  //   console.log(magnets, "dari card detail magnet");
+  // }, []);
 
   return (
     <>
@@ -21,10 +21,16 @@ export default function CardAtDetailPage({ magnets }) {
       ) : (
         <div className="row mb-2">
           <div
-            className="row d-flex justify-content-center my-4"
+            className="row d-flex justify-content-center mb-5"
             style={{ marginLeft: "0" }}
           >
-            <div className="col-12 bg-dark rounded d-flex align-item-center justify-content-center py-2 text-light">
+            <div
+              className="col-12 d-flex align-item-center justify-content-center mt-5 py-2 text-light"
+              style={{
+                backgroundColor: "#2e94d1",
+                borderRadius: "30px 30px 0 0 ",
+              }}
+            >
               <h1>Magnets</h1>
               {/* <p>{JSON.stringify(magnets)}</p> */}
             </div>
@@ -62,14 +68,14 @@ export default function CardAtDetailPage({ magnets }) {
                       className="stretched-link"
                     ></Link>
                     <div>
-                      
                       <button
                         type="button"
-                        className="btn btn-success text-white w-100 opacity-50 mt-3"
+                        className="btn w-100 text-white mt-3"
                         data-bs-toggle="modal"
                         data-bs-target="#exampleModal"
+                        style={{ backgroundColor: "#2e94d1" }}
                       >
-                        <h6>click me!</h6>
+                        <h6 style={{ color: "#white" }}>click me!</h6>
                       </button>
                     </div>
                   </div>

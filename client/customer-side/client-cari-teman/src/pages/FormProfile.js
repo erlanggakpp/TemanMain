@@ -1,4 +1,63 @@
+import { useDispatch, useSelector } from "react-redux";
+import { editMyProfile, fetchMyProfile } from "../store/action/users";
+import { useEffect, useState } from "react";
+
 export default function FormProfile() {
+  const dispatch = useDispatch();
+  const [user, setUser] = useState({
+    address: "",
+    birthdate: "",
+    email: "",
+    firstName: "",
+    gender: "",
+    instagramAccount: "",
+    lastName: "",
+    phoneNumber: "",
+    profilePict: "",
+    twitterAccount: "",
+  });
+  useEffect(() => {
+    dispatch(fetchMyProfile())
+      .then((data) => {
+        const {
+          address,
+          birthdate,
+          email,
+          firstName,
+          gender,
+          instagramAccount,
+          lastName,
+          phoneNumber,
+          profilePict,
+          twitterAccount,
+        } = data.data;
+        setUser({
+          address,
+          birthdate,
+          email,
+          firstName,
+          gender,
+          instagramAccount,
+          lastName,
+          phoneNumber,
+          profilePict,
+          twitterAccount,
+        });
+      })
+      .catch((err) => console.log(err));
+  }, []);
+  const changeUserForm = (e) => {
+    const { name, value } = e.target;
+    setUser({
+      ...user,
+      [name]: value,
+    });
+  };
+  const formUser = (e) => {
+    console.log("masooookkkk");
+    e.preventDefault();
+    dispatch(editMyProfile(user));
+  };
   return (
     <>
       <div className="container rounded bg-white mt-5">
@@ -7,12 +66,14 @@ export default function FormProfile() {
             <div className="d-flex flex-column align-items-center text-center p-3 py-5">
               <img
                 className="rounded-circle mt-5"
-                src="https://media-exp1.licdn.com/dms/image/C4E03AQEA2hq7k-y8iQ/profile-displayphoto-shrink_200_200/0/1625029397449?e=2147483647&v=beta&t=ZFojw_cAobe7-gi_NJ-gMOoheyV85ucCW6PQWwOVxbc"
+                src={user.profilePict}
                 width="90"
               />
-              <span className="font-weight-bold">Erlangga Kencana</span>
-              <span className="text-black-50">kencanaerlangga@gmail.com</span>
-              <span>jalan-jalan</span>
+              <span className="font-weight-bold">
+                {user.firstName + " " + user.lastName}
+              </span>
+              <span className="text-black-50">{user.email}</span>
+              <span>{user.address}</span>
             </div>
           </div>
           <div className="col-md-8">
@@ -23,86 +84,104 @@ export default function FormProfile() {
                   <h6>Edit Profile</h6>
                 </div>
               </div>
-              <div className="row mt-2">
-                <div className="col-md-6">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="first name"
-                    value="Erlangga"
-                  />
+              <form onSubmit={(e) => formUser(e)}>
+                <div className="row mt-2">
+                  <div className="col-md-6">
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="first name"
+                      value={user.firstName}
+                      onChange={(e) => changeUserForm(e)}
+                      name="firstName"
+                    />
+                  </div>
+                  <div className="col-md-6">
+                    <input
+                      type="text"
+                      className="form-control"
+                      value={user.lastName}
+                      onChange={(e) => changeUserForm(e)}
+                      name="lastName"
+                      placeholder="Last Name"
+                    />
+                  </div>
                 </div>
-                <div className="col-md-6">
-                  <input
-                    type="text"
-                    className="form-control"
-                    value="Kencana"
-                    placeholder="Doe"
-                  />
+                <div className="row mt-3">
+                  <div className="col-md-6">
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Email"
+                      value={user.email}
+                      onChange={(e) => changeUserForm(e)}
+                      name="email"
+                    />
+                  </div>
+                  <div className="col-md-6">
+                    <input
+                      type="text"
+                      className="form-control"
+                      value={user.profilePict}
+                      onChange={(e) => changeUserForm(e)}
+                      name="profilePict"
+                      placeholder="Profile Picture"
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className="row mt-3">
-                <div className="col-md-6">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Email"
-                    value="kencanaerlangga@gmail.com"
-                  />
+                <div className="row mt-3">
+                  <div className="col-md-6">
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="address"
+                      value={user.address}
+                      onChange={(e) => changeUserForm(e)}
+                      name="address"
+                    />
+                  </div>
+                  <div className="col-md-6">
+                    <input
+                      type="date"
+                      className="form-control"
+                      value={user.birthdate}
+                      onChange={(e) => changeUserForm(e)}
+                      name="birthdate"
+                      placeholder="date of birth"
+                    />
+                  </div>
                 </div>
-                <div className="col-md-6">
-                  <input
-                    type="password"
-                    className="form-control"
-                    value="123123123"
-                    placeholder="Password"
-                  />
+                <div className="row mt-3">
+                  <div className="col-md-6">
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="instagram"
+                      value={user.instagramAccount}
+                      onChange={(e) => changeUserForm(e)}
+                      name="instagramAccount"
+                    />
+                  </div>
+                  <div className="col-md-6">
+                    <input
+                      type="text"
+                      className="form-control"
+                      value={user.twitterAccount}
+                      onChange={(e) => changeUserForm(e)}
+                      name="twitterAccount"
+                      placeholder="tiwtter"
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className="row mt-3">
-                <div className="col-md-6">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="address"
-                    value="jalan-jalan"
-                  />
+                <div className="mt-5 text-right">
+                  <button
+                    className="btn btn-primary profile-button"
+                    type="submit"
+                  >
+                    Save Profile
+                  </button>
                 </div>
-                <div className="col-md-6">
-                  <input
-                    type="date"
-                    className="form-control"
-                    value=""
-                    placeholder="date of birth"
-                  />
-                </div>
-              </div>
-              <div className="row mt-3">
-                <div className="col-md-6">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="instagram"
-                    value="erlanggakencana"
-                  />
-                </div>
-                <div className="col-md-6">
-                  <input
-                    type="text"
-                    className="form-control"
-                    value="@erlanggakencana"
-                    placeholder="tiwtter"
-                  />
-                </div>
-              </div>
-              <div className="mt-5 text-right">
-                <button
-                  className="btn btn-primary profile-button"
-                  type="button"
-                >
-                  Save Profile
-                </button>
-              </div>
+              </form>
             </div>
           </div>
         </div>

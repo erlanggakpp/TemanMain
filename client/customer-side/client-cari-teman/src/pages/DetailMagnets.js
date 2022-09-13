@@ -14,8 +14,12 @@ export default function DetailMagnets() {
   const { loading } = useSelector((e) => e.events);
   const { magnetDetail } = useSelector((e) => e.magnets);
   const [users, setUsers] = useState([]);
+  const [selectedUser, setSelectedUser] = useState(0);
   const [banner, setBanner] = useState([]);
+  const { loggedUser } = useSelector((e) => e.users);
 
+  // console.log(magnetDetail, "magnet deteail");
+  // console.log(loggedUser, "LOGGED USER");
   useEffect(() => {
     dispatch(fetchAllUsers())
       .then((data) => {
@@ -95,47 +99,69 @@ export default function DetailMagnets() {
     setBanner(gambarBanner[angkaNgasal]);
   }, []);
 
-  return (
-    <>
-      {loading ? (
-        <h1>Loading...</h1>
-      ) : (
-        <>
-          <Outlet />
-          {JSON.stringify(users)}
-          {JSON.stringify(magnetDetail)}
-          <div className="containet-fluid">
-            <div className="container">
-              <div className="row  justify-content-center">
-                <div
-                  className="col-md-12 bg-warning p-0"
-                  style={{ height: "300px" }}
-                >
-                  <img
-                    src={banner}
-                    alt=""
-                    className="img-fill card-img-top h-100 p-0"
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
-                <div
-                  style={{
-                    width: "50%",
-                    height: "200px",
-                    position: "absolute",
-                    margin: "200px 0px",
-                  }}
-                  className="bg-primary"
-                >
-                  <div className="row">
-                    <div className="col-md-4 bg-dark h-100">
-                      <h1 className="text-white">
+  const inviteUser = (e) => {
+    e.preventDefault();
+    console.log(selectedUser, "<<<<<<<<<<<<<<");
+  };
+
+  // console.log(magnetDetail, "ajsdjpasdjapsdjpasdj")
+  if (!magnetDetail) return(<h1>Loading...</h1>)
+    return (
+      <>
+        {loading ? (
+          <h1>Loading...</h1>
+        ) : (
+          <>
+            <Outlet />
+            {/* {JSON.stringify(users)} */}
+            {/* {JSON.stringify(magnetDetail)} */}
+            <div className="containet-fluid">
+              <div className="container">
+                <div className="row  justify-content-center">
+                  <div className="col-md-12  p-0" style={{ height: "300px" }}>
+                    <img
+                      src={banner}
+                      alt=""
+                      className="img-fill card-img-top h-100 p-0"
+                      style={{ objectFit: "cover", borderRadius: "40px" }}
+                    />
+                  </div>
+                  <div
+                    style={{
+                      width: "50%",
+                      height: "200px",
+                      position: "absolute",
+                      margin: "200px 0px",
+                    }}
+                  >
+                    <div className="row">
+                      <div className="col-md-4 h-100 d-flex justify-content-end">
+                        {/* <h1 className="text-white">
                         ini buat gambar yagesya sip aasd
-                      </h1>
-                    </div>
-                    <div className="col-md-8 bg-success">
-                      {" "}
-                      {magnetDetail.specialRequirement}
+                      </h1> */}
+                      <div style={{ width: "200px", height: "200px" }}>
+                        <img
+                          src={magnetDetail.User.profilePict}
+                          alt=""
+                          className="h-100 rounded-circle"
+                        />
+                      </div>
+                      <div
+                        className="col-md-6 bg-light d-flex justify-content-center align-items-center"
+                        style={{ borderRadius: "30px", opacity: "85%" }}
+                      >
+                        <h3 className="display-6">
+                          {" "}
+                          <strong>
+                            {magnetDetail.User.firstName}{" "}
+                            {magnetDetail.User.lastName}
+                          </strong>
+                        </h3>
+                        {/* {magnetDetail.specialRequirement} */}
+                        <div className="row">
+                          <div className="col-8  h-100 w"></div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -149,7 +175,10 @@ export default function DetailMagnets() {
                       <p className="p-4">{magnetDetail.magnetDescription}</p>
                       <br />
                       <br />
-                      <RoomChat magnetId={magnetDetail.id} />
+                      <RoomChat
+                        magnetId={magnetDetail.id}
+                        magnetDetail={magnetDetail}
+                      />
                     </div>
                     <div className="col-md-4">
                       <div className="position-sticky" style={{ top: "2rem" }}>
@@ -162,9 +191,8 @@ export default function DetailMagnets() {
                               className="bg-warning"
                             >
                               <strong>
-                                {magnetDetail.participant -
-                                  magnetDetail.vacantParticipant}{" "}
-                                / {magnetDetail.participant}
+                                {magnetDetail.vacantParticipant} /{" "}
+                                {magnetDetail.participant}
                               </strong>
                             </div>
                           </p>
@@ -181,24 +209,32 @@ export default function DetailMagnets() {
                           </div>
                           <h3>invite : </h3>
                           <div>
-                            <form action="" className="d-flex">
+                            <form
+                              onSubmit={(e) => inviteUser(e)}
+                              className="d-flex"
+                            >
                               <input
                                 type="text"
                                 list="data"
                                 class="form-control"
                                 placeholder="Type to search..."
                                 id="exampleDataList"
+                                onChange={(e) =>
+                                  setSelectedUser(e.target.value)
+                                }
                               />
                               <datalist id="data">
                                 {users.map((item, key) => (
-                                  <option key={key} value={item.email} />
+                                  <option key={key} value={item.id}>
+                                    {item.email}
+                                  </option>
                                 ))}
                               </datalist>
                               <button
                                 type="submit"
                                 class="btn btn-dark text-white"
                               >
-                                send
+                                Send
                               </button>
                             </form>
                           </div>

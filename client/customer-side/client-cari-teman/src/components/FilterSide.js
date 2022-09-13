@@ -1,56 +1,146 @@
-export default function FilterSide() {
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { loadingSet } from "../store/action/events";
+import { fetchCategory } from "../store/action/categories";
+
+// const { categories } = useSelector((e) => e.categories);
+// console.log(categories);
+// useEffect(() => {
+//   dispatch(fetchCategory()).finally(() => {
+//     dispatch(loadingSet(false));
+//   });
+// }, []);
+
+export default function FilterSide({ categoryFiltering, magnetFiltering }) {
+  const dispatch = useDispatch();
+  const { categories } = useSelector((e) => e.categories);
+  const { loading } = useSelector((e) => e.events);
+  // console.log(categories);
+  useEffect(() => {
+    dispatch(fetchCategory()).finally(() => {
+      dispatch(loadingSet(false));
+    });
+  }, []);
   return (
-    <div className="container">
-      <div id="mobile-filter">
-        <div>
-          <h6 className="p-1 border-bottom">Age</h6>
-          <ul className="list-group">
-            <li className="list-group-item list-group-item-action mb-2 rounded">
-              <a href="#">
-                <span className="fa fa-circle pr-1" id="red"></span>10-18
-              </a>
-            </li>
-            <li className="list-group-item list-group-item-action mb-2 rounded">
-              <a href="#">
-                <span className="fa fa-circle pr-1" id="teal"></span>19-25
-              </a>
-            </li>
-            <li className="list-group-item list-group-item-action mb-2 rounded">
-              <a href="#">
-                <span className="fa fa-circle pr-1" id="blue"></span>26-40
-              </a>
-            </li>
-            <li className="list-group-item list-group-item-action mb-2 rounded">
-              <a href="#">
-                <span className="fa fa-circle pr-1" id="blue"></span>41-70
-              </a>
-            </li>
-          </ul>
+    <>
+      {loading ? (
+        <h1>Loading...</h1>
+      ) : (
+        <div className="container">
+          <div id="mobile-filter">
+            <div>
+              <h6 className="p-1 border-bottom"></h6>
+              <h4>Category</h4>
+              <ul className="list-group">
+                <li
+                  className="list-group-item list-group-item-action mb-2 rounded"
+                  onClick={() => categoryFiltering(0)}
+                >
+                  <span className="fa fa-circle pr-1" id="red">
+                    Show All
+                  </span>
+                </li>
+                {categories.map((e) => {
+                  return (
+                    <li
+                      key={e.id}
+                      className="list-group-item list-group-item-action mb-2 rounded"
+                      onClick={() => categoryFiltering(e.id)}
+                    >
+                      <span className="fa fa-circle pr-1" id="red">
+                        {e.name}
+                      </span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+            <div>
+              {/* <h6 className="p-1 border-bottom"></h6> */}
+              <hr />
+              <h4>Age</h4>
+              <ul className="list-group">
+                <li
+                  onClick={() => magnetFiltering({ name: "age", filter: 10 })}
+                  className="list-group-item list-group-item-action mb-2 rounded"
+                >
+                  <a>
+                    <span className="fa fa-circle pr-1" id="red"></span>
+                    <p>10 - 18</p>
+                  </a>
+                </li>
+                <li
+                  onClick={() => magnetFiltering({ name: "age", filter: 19 })}
+                  className="list-group-item list-group-item-action mb-2 rounded"
+                >
+                  <a>
+                    <span className="fa fa-circle pr-1" id="teal"></span>
+                    <p>19 - 25</p>
+                  </a>
+                </li>
+                <li
+                  onClick={() => magnetFiltering({ name: "age", filter: 26 })}
+                  className="list-group-item list-group-item-action mb-2 rounded"
+                >
+                  <a>
+                    <span className="fa fa-circle pr-1" id="blue"></span>
+                    <p>26 - 40</p>
+                  </a>
+                </li>
+                <li
+                  onClick={() => magnetFiltering({ name: "age", filter: 41 })}
+                  className="list-group-item list-group-item-action mb-2 rounded"
+                >
+                  <a>
+                    <span className="fa fa-circle pr-1" id="blue"></span>
+                    <p>41 - 70</p>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              {/* <h4 className="p-1 border-bottom"></h4> */}
+              <hr />
+              <h4>Gender</h4>
+              <form className="ml-md-2">
+                <div
+                  className="form-inline border rounded p-sm-2 my-2"
+                  onClick={() =>
+                    magnetFiltering({ name: "gender", filter: "All Gender" })
+                  }
+                >
+                  <input type="radio" name="type" id="boring" />
+                  <label htmlFor="boring" className="pl-1 pt-sm-0 pt-1">
+                    All Gender
+                  </label>
+                </div>
+                <div
+                  onClick={() =>
+                    magnetFiltering({ name: "gender", filter: "Man Only" })
+                  }
+                  className="form-inline border rounded p-sm-2 my-2"
+                >
+                  <input type="radio" name="type" id="ugly" />
+                  <label htmlFor="ugly" className="pl-1 pt-sm-0 pt-1">
+                    Man Only
+                  </label>
+                </div>
+                <div
+                  onClick={() =>
+                    magnetFiltering({ name: "gender", filter: "Woman Only" })
+                  }
+                  className="form-inline border rounded p-md-2 p-sm-1"
+                >
+                  <input type="radio" name="type" id="notugly" />
+                  <label htmlFor="notugly" className="pl-1 pt-sm-0 pt-1">
+                    Woman Only
+                  </label>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
-        <div>
-          <h6>Gender</h6>
-          <form className="ml-md-2">
-            <div className="form-inline border rounded p-sm-2 my-2">
-              <input type="radio" name="type" id="boring" />
-              <label htmlFor="boring" className="pl-1 pt-sm-0 pt-1">
-                All Gender
-              </label>
-            </div>
-            <div className="form-inline border rounded p-sm-2 my-2">
-              <input type="radio" name="type" id="ugly" />
-              <label htmlFor="ugly" className="pl-1 pt-sm-0 pt-1">
-                Man Only
-              </label>
-            </div>
-            <div className="form-inline border rounded p-md-2 p-sm-1">
-              <input type="radio" name="type" id="notugly" />
-              <label htmlFor="notugly" className="pl-1 pt-sm-0 pt-1">
-                Woman Only
-              </label>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 }

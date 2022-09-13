@@ -2,6 +2,7 @@ const axios = require("axios");
 
 async function authenticator(req, res, next) {
   try {
+    console.log("MASUUUUKK");
     const { access_token } = req.headers;
     if (!access_token) {
       throw {
@@ -21,6 +22,7 @@ async function authenticator(req, res, next) {
       },
     });
     req.user = user;
+    console.log(req.user, " <<<<<<<<<<<<<<");
     next();
   } catch (error) {
     const { status, data } = error.response;

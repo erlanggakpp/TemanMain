@@ -76,7 +76,7 @@ class UserController {
   static async showUser(req, res, next) {
     try {
       const { id } = req.params;
-
+      console.log(id, "<<<<<<<<<<<<<<<<<<<<<");
       const findUser = await User.findByPk(+id, {
         attributes: { exclude: ["createdAt", "updatedAt", "password"] },
       });
@@ -259,7 +259,7 @@ class UserController {
         access_token,
         age,
         gender: findUser.gender,
-        name: findUser.firstName + " " + findUser.lastName
+        name: findUser.firstName + " " + findUser.lastName,
       });
     } catch (error) {
       next(error);

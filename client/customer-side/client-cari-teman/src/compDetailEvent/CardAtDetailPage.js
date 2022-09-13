@@ -10,9 +10,9 @@ export default function CardAtDetailPage({ magnets }) {
   useEffect(() => {
     dispatch(detailEvent(params.id)).finally(() => dispatch(loadingSet(false)));
   }, []);
-  useEffect(() => {
-    console.log(magnets, "dari card detail magnet");
-  }, []);
+  // useEffect(() => {
+  //   console.log(magnets, "dari card detail magnet");
+  // }, []);
 
   return (
     <>

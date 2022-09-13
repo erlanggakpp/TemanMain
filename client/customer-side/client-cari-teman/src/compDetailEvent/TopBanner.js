@@ -8,18 +8,23 @@ export default function TopBanner({ eventDetail }) {
   }
   return (
     <>
-      <div className="p-4 p-md-5 mb-4 text-white rounded bg-dark">
+      <div
+        className="p-4 p-md-5 mb-4 text-white rounded"
+        style={{ backgroundColor: "#2e94d1" }}
+      >
         <div className="row">
           <div
             className="col-md-6 px-0 d-flex justify-content-center align-items-center"
             style={{ flexDirection: "column" }}
           >
-            <h1 className="display-4 fst-italic">{eventDetail.name}</h1>
-            <h6 className="lead my-3">{eventDetail.Category.name}</h6>
-            <div class="d-grid gap-2">
+            <h1 className="display-4 fst-italic">
+              <strong>{eventDetail.name}</strong>
+            </h1>
+            <h3>{eventDetail.Category.name}</h3>
+            <div class="d-grid gap-2 mt-4">
               {/* <p>{eventDetail.eventHomePageLink}</p> */}
               <button
-                class="btn btn-warning"
+                class="btn btn-light p-3 px-5"
                 type="button"
                 // onClick={() => move(eventDetail.eventHomepageLink)}
               >
@@ -27,7 +32,7 @@ export default function TopBanner({ eventDetail }) {
                   href={eventDetail.eventHomepageLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{"text-decoration" : "none"}}
+                  style={{ "text-decoration": "none" }}
                   className="text-dark"
                 >
                   <strong>go to offcial website...</strong>

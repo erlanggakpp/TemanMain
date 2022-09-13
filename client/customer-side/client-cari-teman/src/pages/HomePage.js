@@ -58,7 +58,7 @@ export default function HomePage() {
             <div className="col-12">
               <div
                 style={{ height: '150px', backgroundColor: '#2e94d1' }}
-                className="d-flex justify-content-center mb-2"
+                className="d-flex justify-content-center mb-4 mt-4"
               >
                 <img
                   src="https://cdn.discordapp.com/attachments/1015235714780246077/1018164301342720091/bannerTemanMain.jpg"
@@ -67,18 +67,17 @@ export default function HomePage() {
                 />
               </div>
               <CarouselComp />
-              <CategoryCarou categoryFiltering={categoryFiltering} />
+              {/* <CategoryCarou categoryFiltering={categoryFiltering} /> */}
             </div>
           </div>
         </div>
         <div className="container">
           <div className="row">
-            <div className="col-3">
-              <h1>ini buat filter</h1>
+            <div className="col-3 mt-5">
               <FilterSide />
             </div>
             <div className="col-9">
-              <h1 className="display-4 mt-2">on going events</h1>
+              {/* <h1 className="display-4 mt-2">on going events</h1> */}
               <MainCard displayedEvents={displayedEvents} />
             </div>
           </div>

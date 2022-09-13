@@ -82,7 +82,7 @@ console.log(user, "<<<<<<<<<<<<");
               </div>
             </div>
           </div>
-          <div className="col-md-12 bg-light" style={{ height: "150px" }}></div>
+          <div className="col-md-12" style={{ height: "150px" }}></div>
         </div>
         <div className="row d-flex justify-content-center mt-5">
           <div className="col-10 bg-light d-flex justify-content-center p-0">
@@ -136,6 +136,83 @@ console.log(user, "<<<<<<<<<<<<");
                       </tbody>
                     </table>
                   </div>
+                </div>
+                <div className="col-12 bg-secondary rounded d-flex mt-5 align-item-center justify-content-start  p-1 text-light">
+                  <h4 className="mx-3">My request</h4>
+                </div>
+                <div>
+                  <table className="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Event</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>zaki</td>
+                        <td>blaszture</td>
+
+                        <td>
+                          <div
+                            className="btn-group"
+                            role="group"
+                            aria-label="Basic example"
+                          >
+                            <button type="button" className="btn btn-danger">
+                              reject
+                            </button>
+                            <button type="button" className="btn btn-success">
+                              accept
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>azam</td>
+                        <td>smile motions</td>
+
+                        <td>
+                          <div
+                            className="btn-group"
+                            role="group"
+                            aria-label="Basic example"
+                          >
+                            <button type="button" className="btn btn-danger">
+                              reject
+                            </button>
+                            <button type="button" className="btn btn-success">
+                              accept
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>jarwo</td>
+                        <td>sweep and hike</td>
+
+                        <td>
+                          <div
+                            className="btn-group"
+                            role="group"
+                            aria-label="Basic example"
+                          >
+                            <button type="button" className="btn btn-danger">
+                              reject
+                            </button>
+                            <button type="button" className="btn btn-success">
+                              accept
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
                 <div className="col-12 bg-warning rounded d-flex mt-5 align-item-center justify-content-start  p-1 text-dark">
                   <h4 className="mx-3">Invitaion</h4>

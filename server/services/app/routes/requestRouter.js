@@ -10,6 +10,7 @@ const {
   eventChecker,
   magnetChecker,
   alreadyMadeRequest,
+  requestChecker,
 } = require("../middlewares/checker");
 
 router.get("/user", RequestController.getRequestByUserId);
@@ -26,7 +27,11 @@ router.put(
   requestAuthorization,
   RequestController.editRequestDescription
 );
-router.get("/public/:requestId", RequestController.findOneRequest);
+router.get(
+  "/public/:requestId",
+  requestChecker,
+  RequestController.findOneRequest
+);
 router.delete(
   "/:requestId",
   requestAuthorization,

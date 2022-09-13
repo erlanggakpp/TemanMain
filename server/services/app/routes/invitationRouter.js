@@ -9,6 +9,7 @@ const {
   magnetChecker,
   eventChecker,
   alreadyMadeInvitation,
+  invitationChecker,
 } = require("../middlewares/checker");
 
 const router = require("express").Router();
@@ -27,7 +28,11 @@ router.put(
   invitationAuthorization,
   InvitationController.editInvitationDescription
 );
-router.get("/:invitationId", InvitationController.findOneInvitation);
+router.get(
+  "/:invitationId",
+  invitationChecker,
+  InvitationController.findOneInvitation
+);
 router.delete(
   "/:invitationId",
   invitationAuthorization,

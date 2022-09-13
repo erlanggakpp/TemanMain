@@ -61,6 +61,17 @@ export default function CardAtDetailPage({ magnets }) {
                       href="#"
                       className="stretched-link"
                     ></Link>
+                    <div>
+                      
+                      <button
+                        type="button"
+                        className="btn btn-success text-white w-100 opacity-50 mt-3"
+                        data-bs-toggle="modal"
+                        data-bs-target="#exampleModal"
+                      >
+                        <h6>click me!</h6>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>

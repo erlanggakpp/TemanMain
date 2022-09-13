@@ -1,23 +1,23 @@
 // import NavBar from "../components/NavBar";
-import CarouselComp from '../components/CarouselComp';
-import CategoryCarou from '../components/CategoryCarou';
-import FilterSide from '../components/FilterSide';
-import MainCard from '../components/MainCard';
+import CarouselComp from "../components/CarouselComp";
+import CategoryCarou from "../components/CategoryCarou";
+import FilterSide from "../components/FilterSide";
+import MainCard from "../components/MainCard";
 
-import { useEffect, useState } from 'react';
-import { detailEvent, fetchEvent, loadingSet } from '../store/action/events';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchCategory } from '../store/action/categories';
-import { detailMagnet, fetchMagnet } from '../store/action/magnets';
+import { useEffect, useState } from "react";
+import { detailEvent, fetchEvent, loadingSet } from "../store/action/events";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCategory } from "../store/action/categories";
+import { detailMagnet, fetchMagnet } from "../store/action/magnets";
 
 // const styleRound = {width : 20%}
 
 export default function HomePage() {
   const dispatch = useDispatch();
   const { events, eventDetail, loading } = useSelector((e) => e.events);
-  const [displayedEvents, setDisplayedEvents] = useState([]);
   const { magnets, magnetDetail } = useSelector((e) => e.magnets);
   const [showEvents, setShowEvents] = useState([]);
+  const [displayedEvents, setDisplayedEvents] = useState([]);
 
   const categoryFiltering = (id) => {
     if (+id === 0) {
@@ -29,6 +29,11 @@ export default function HomePage() {
   };
 
   useEffect(() => {
+    dispatch(fetchMagnet()).finally(() => {
+      dispatch(loadingSet(false));
+    });
+  }, []);
+  useEffect(() => {
     dispatch(fetchEvent())
       .then((data) => {
         setDisplayedEvents(data);
@@ -36,12 +41,13 @@ export default function HomePage() {
       .finally(() => {
         dispatch(loadingSet(false));
       });
+
     // dispatch(detailEvent(2)).finally(() => {
     //   dispatch(loadingSet(false));
     // });
-    dispatch(fetchMagnet()).finally(() => {
-      dispatch(loadingSet(false));
-    });
+    // dispatch(fetchMagnet()).finally(() => {
+    //   dispatch(loadingSet(false));
+    // });
 
     // dispatch(detailMagnet(1)).finally(() => {
     //   console.log(magnetDetail);
@@ -49,7 +55,7 @@ export default function HomePage() {
     // });
   }, []);
   // if(events.length == 0) return(<h1>Loading...</h1>)
-
+  // console.log(displayedEvents);
   return (
     <>
       <div className="container-fluid">
@@ -57,7 +63,7 @@ export default function HomePage() {
           <div className="row">
             <div className="col-12">
               <div
-                style={{ height: '150px', backgroundColor: '#2e94d1' }}
+                style={{ height: "150px", backgroundColor: "#2e94d1" }}
                 className="d-flex justify-content-center mb-4 mt-4"
               >
                 <img
@@ -74,7 +80,7 @@ export default function HomePage() {
         <div className="container">
           <div className="row">
             <div className="col-3 mt-5">
-              <FilterSide />
+              <FilterSide categoryFiltering={categoryFiltering} />
             </div>
             <div className="col-9">
               {/* <h1 className="display-4 mt-2">on going events</h1> */}

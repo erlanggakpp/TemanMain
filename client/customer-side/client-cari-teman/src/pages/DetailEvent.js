@@ -13,6 +13,7 @@ export default function DetailEvent() {
   useEffect(() => {
     dispatch(detailEvent(params.id)).finally(() => dispatch(loadingSet(false)));
   }, []);
+  console.log(eventDetail);
   return (
     // <h1>hallo</h1>
     <>
@@ -31,12 +32,14 @@ export default function DetailEvent() {
                 <h1>Loading...</h1>
               )}
               <div className="row">
-                <div className="col-8 bg-warning" style={{ height: "5px" }}>
-                  
-                </div>
-                <div className="col-4 bg-primary" style={{ height: "5px" }}>
-                  
-                </div>
+                <div
+                  className="col-8 bg-warning"
+                  style={{ height: "5px" }}
+                ></div>
+                <div
+                  className="col-4 bg-primary"
+                  style={{ height: "5px" }}
+                ></div>
               </div>
 
               <div className="row g-5">

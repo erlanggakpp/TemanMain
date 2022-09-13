@@ -56,7 +56,7 @@ export default function MainCard({ displayedEvents }) {
                           type="button"
                           className="btn w-75 mt-2"
                           onClick={() => pindahHalaman(e.id)}
-                          style={{ backgroundColor: "#2E94D1", color : "white" }}
+                          style={{ backgroundColor: "#2E94D1", color: "white" }}
                         >
                           {/* <Link to={`/events/${e.id}`} style={{textDecorationLine : "none", color : "white"}}>
                               Detail

@@ -1,14 +1,14 @@
-const userRouter = require('express').Router()
-const UserController = require('../controllers/UserController.js')
+const userRouter = require("express").Router();
+const UserController = require("../controllers/UserController.js");
 const authenticator = require("../middlewares/authenticator");
 
-
-userRouter.get("/", UserController.readAllUser)
-userRouter.post("/", UserController.createUser)
-userRouter.get("/:id", UserController.showUser) 
-userRouter.get("/my-profile", authenticator, UserController.showUser) 
-userRouter.put('/:id', UserController.updateUser)
-userRouter.delete('/:id', UserController.deleteUser)
+userRouter.get("/", UserController.readAllUser);
+userRouter.post("/", UserController.createUser);
+userRouter.get("/:id", UserController.showUser2);
+userRouter.get("/my-profile", authenticator, UserController.showUser);
+// userRouter.get("/:userId", authenticator, UserController.showUser2);
+userRouter.put("/:id", UserController.updateUser);
+userRouter.delete("/:id", UserController.deleteUser);
 
 userRouter.post("/register", UserController.registerAdmin);
 userRouter.post("/login", UserController.loginAdmin);

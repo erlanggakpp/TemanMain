@@ -1,14 +1,14 @@
 const { Magnet, Request, Invitation } = require("../models");
 
 class MagnetController {
-  static async getAllMagnets(req, res, next) {
-    try {
-      const magnets = await Magnet.findAll();
-      res.status(200).json(magnets);
-    } catch (error) {
-      next(error);
-    }
-  }
+  // static async getAllMagnets(req, res, next) {
+  //   try {
+  //     const magnets = await Magnet.findAll();
+  //     res.status(200).json(magnets);
+  //   } catch (error) {
+  //     next(error);
+  //   }
+  // }
   static async createMagnet(req, res, next) {
     try {
       const {

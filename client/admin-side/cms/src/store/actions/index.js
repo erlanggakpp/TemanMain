@@ -5,8 +5,8 @@ import {
   CATEGORY_DETAILID,
   USER_DETAILID,
   EVENT_DETAILID,
-} from './actionType';
-import axios from 'axios';
+} from "./actionType";
+import axios from "axios";
 
 export const fetchevent = (payload) => {
   return {
@@ -17,47 +17,46 @@ export const fetchevent = (payload) => {
 
 export const fetchEvents = () => {
   return (dispatch) => {
-    return axios.get('http://localhost:4000/events', {
-      headers: {
-        access_token: localStorage.getItem('access_token')
-      }
-    }).then((data) => {
-      dispatch(fetchevent(data));
-    });
+    return axios
+      .get("http://localhost:4000/events", {
+        headers: {
+          access_token: localStorage.getItem("access_token"),
+        },
+      })
+      .then((data) => {
+        dispatch(fetchevent(data));
+      });
   };
 };
 
 export const deleteEvents = (id) => {
   return (dispatch) => {
-    console.log(id, 'from action');
-    return axios
-      .delete(`http://localhost:4000/events/${id}`, {
-        headers: {
-          access_token: localStorage.getItem('access_token')
-        },
-      })
+    console.log(id, "from action");
+    return axios.delete(`http://localhost:4000/events/${id}`, {
+      headers: {
+        access_token: localStorage.getItem("access_token"),
+      },
+    });
   };
 };
 
 export const deleteCategory = (id) => {
   return (dispatch) => {
-    return axios
-      .delete(`http://localhost:4000/categories/${id}`, {
-        headers: {
-          access_token: localStorage.getItem('access_token')
-        },
-      })
+    return axios.delete(`http://localhost:4000/categories/${id}`, {
+      headers: {
+        access_token: localStorage.getItem("access_token"),
+      },
+    });
   };
 };
 
 export const postEvent = (input) => {
   return (dispatch) => {
-    return axios
-      .post('http://localhost:4000/events', input, {
-        headers: {
-          access_token: localStorage.getItem('access_token')
-        },
-      })
+    return axios.post("http://localhost:4000/events", input, {
+      headers: {
+        access_token: localStorage.getItem("access_token"),
+      },
+    });
   };
 };
 
@@ -70,24 +69,25 @@ export const detailEvent = (payload) => {
 
 export const fetchEventById = (id) => {
   return (dispatch) => {
-    return axios.get(`http://localhost:4000/events/${id}`, {
-      headers: {
-        access_token: localStorage.getItem('access_token')
-      }
-    }).then((data) => {
-      dispatch(detailEvent(data));
-    });
+    return axios
+      .get(`http://localhost:4000/events/${id}`, {
+        headers: {
+          access_token: localStorage.getItem("access_token"),
+        },
+      })
+      .then((data) => {
+        dispatch(detailEvent(data));
+      });
   };
 };
 
 export const updateEvent = (id, input) => {
   return (dispatch) => {
-    return axios
-      .put(`http://localhost:4000/events/${id}`, input, {
-        headers: {
-          access_token: localStorage.getItem('access_token')
-        },
-      })
+    return axios.put(`http://localhost:4000/events/${id}`, input, {
+      headers: {
+        access_token: localStorage.getItem("access_token"),
+      },
+    });
   };
 };
 
@@ -100,13 +100,15 @@ export const fetchuser = (payload) => {
 
 export const fetchUsers = () => {
   return (dispatch) => {
-    return axios.get('http://localhost:4000/users', {
-      headers: {
-        access_token: localStorage.getItem('access_token')
-      }
-    }).then((data) => {
-      dispatch(fetchuser(data));
-    });
+    return axios
+      .get("http://localhost:4000/users", {
+        headers: {
+          access_token: localStorage.getItem("access_token"),
+        },
+      })
+      .then((data) => {
+        dispatch(fetchuser(data));
+      });
   };
 };
 
@@ -119,24 +121,25 @@ export const fetchcategory = (payload) => {
 
 export const fetchCategories = () => {
   return (dispatch) => {
-    return axios.get('http://localhost:4000/categories', {
-      headers: {
-        access_token: localStorage.getItem('access_token')
-      }
-    }).then((data) => {
-      dispatch(fetchcategory(data));
-    })
+    return axios
+      .get("http://localhost:4000/categories", {
+        headers: {
+          access_token: localStorage.getItem("access_token"),
+        },
+      })
+      .then((data) => {
+        dispatch(fetchcategory(data));
+      });
   };
 };
 
 export const postCategory = (input) => {
   return (dispatch) => {
-    return axios
-      .post('http://localhost:4000/categories', input, {
-        headers: {
-          access_token: localStorage.getItem('access_token')
-        },
-      })
+    return axios.post("http://localhost:4000/categories", input, {
+      headers: {
+        access_token: localStorage.getItem("access_token"),
+      },
+    });
   };
 };
 export const detailCategory = (payload) => {
@@ -148,46 +151,45 @@ export const detailCategory = (payload) => {
 
 export const fetchCategoryById = (categoryId) => {
   return (dispatch) => {
-    return axios.get(`http://localhost:4000/categories/${categoryId}`, {
-      headers: {
-        access_token: localStorage.getItem('access_token')
-      }
-    }).then((data) => {
-      dispatch(detailCategory(data));
-    });
+    return axios
+      .get(`http://localhost:4000/categories/${categoryId}`, {
+        headers: {
+          access_token: localStorage.getItem("access_token"),
+        },
+      })
+      .then((data) => {
+        dispatch(detailCategory(data));
+      });
   };
 };
 
 export const updateCategory = (id, input) => {
   return (dispatch) => {
-    return axios
-      .put(`http://localhost:4000/categories/${id}`, input, {
-        headers: {
-          access_token: localStorage.getItem('access_token')
-        },
-      })
+    return axios.put(`http://localhost:4000/categories/${id}`, input, {
+      headers: {
+        access_token: localStorage.getItem("access_token"),
+      },
+    });
   };
 };
 
 export const postUser = (input) => {
   return (dispatch) => {
-    return axios
-      .post('http://localhost:4000/users', input, {
-        headers: {
-          access_token: localStorage.getItem('access_token')
-        },
-      })
+    return axios.post("http://localhost:4000/users", input, {
+      headers: {
+        access_token: localStorage.getItem("access_token"),
+      },
+    });
   };
 };
 
 export const deleteUser = (id) => {
   return (dispatch) => {
-    return axios
-      .delete(`http://localhost:4000/users/${id}`, {
-        headers: {
-          access_token: localStorage.getItem('access_token')
-        },
-      })
+    return axios.delete(`http://localhost:4000/users/${id}`, {
+      headers: {
+        access_token: localStorage.getItem("access_token"),
+      },
+    });
     // .then((res) => {
     //   console.log(res.data);
     // })
@@ -206,32 +208,32 @@ export const detailuser = (payload) => {
 
 export const fetchuserbyid = (id) => {
   return (dispatch) => {
-    return axios.get(`http://localhost:4000/users/${id}`, {
-      headers: {
-        access_token: localStorage.getItem('access_token')
-      }
-    }).then((data) => {
-      dispatch(detailuser(data));
-    });
+    return axios
+      .get(`http://localhost:4000/users/${id}`, {
+        headers: {
+          access_token: localStorage.getItem("access_token"),
+        },
+      })
+      .then((data) => {
+        dispatch(detailuser(data));
+      });
   };
 };
 
 export const updateUser = (id, input) => {
   return (dispatch) => {
-    return axios
-      .put(`http://localhost:4000/users/${id}`, input, {
-        headers: {
-          access_token: localStorage.getItem('access_token')
-        },
-      })
+    return axios.put(`http://localhost:4000/users/${id}`, input, {
+      headers: {
+        access_token: localStorage.getItem("access_token"),
+      },
+    });
   };
 };
 
 export const login = (value) => {
-  return axios
-    .post(`http://localhost:4000/users/login`, value, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
+  return axios.post(`http://localhost:4000/users/login`, value, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 };

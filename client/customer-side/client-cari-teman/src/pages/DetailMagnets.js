@@ -105,7 +105,7 @@ export default function DetailMagnets() {
           <>
             <Outlet />
             {/* {JSON.stringify(users)} */}
-            {JSON.stringify(magnetDetail)}
+            {/* {JSON.stringify(magnetDetail)} */}
             <div className="containet-fluid">
               <div className="container">
                 <div className="row  justify-content-center">
@@ -114,7 +114,7 @@ export default function DetailMagnets() {
                       src={banner}
                       alt=""
                       className="img-fill card-img-top h-100 p-0"
-                      style={{ objectFit: "cover" }}
+                      style={{ objectFit: "cover", borderRadius: "40px" }}
                     />
                   </div>
                   <div
@@ -138,17 +138,20 @@ export default function DetailMagnets() {
                           />
                         </div>
                       </div>
-                      <div className="col-md-6 bg-light opacity-100 rounded d-flex justify-content-center align-items-center">
-                        <p className="display-6">
+                      <div
+                        className="col-md-6 bg-light d-flex justify-content-center align-items-center"
+                        style={{ borderRadius: "30px", opacity: "85%" }}
+                      >
+                        <h3 className="display-6">
                           {" "}
                           <strong>
                             {magnetDetail.User.firstName}{" "}
                             {magnetDetail.User.lastName}
                           </strong>
-                        </p>
+                        </h3>
                         {/* {magnetDetail.specialRequirement} */}
                         <div className="row">
-                          <div className="col-8  h-100 w">-</div>
+                          <div className="col-8  h-100 w"></div>
                         </div>
                       </div>
                     </div>

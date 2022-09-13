@@ -60,7 +60,7 @@ export default function RoomChat({ magnetId }) {
           <div class="col-12">
             <div class="card" id="chat1" style={{ "border-radius": "15px" }}>
               <div
-                class="card-header d-flex justify-content-between align-items-center p-3 bg-info text-white border-bottom-0"
+                class="card-header d-flex justify-content-between align-items-center p-3 bg-primary text-white border-bottom-0"
                 style={{
                   "border-top-left-radius": "15px",
                   "border-top-right-radius": "15px",
@@ -98,8 +98,6 @@ export default function RoomChat({ magnetId }) {
                 );
               })}
               <div class="card-body">
-
-
                 {/* ini chat kanan */}
                 {/* <div class="d-flex flex-row justify-content-end mb-4">
                   <div
@@ -122,17 +120,18 @@ export default function RoomChat({ magnetId }) {
                   <div>
                     <div className="messageInput d-flex">
                       <form onSubmit={sendMessage}>
-                      <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Message..."
-                        onChange={(e) => {
-                          setChat(e.target.value);
-                        }}
-                      />
-                      <button className="btn btn-primary" >
-                        Send
-                      </button>
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Message..."
+                          onChange={(e) => {
+                            setChat(e.target.value);
+                          }}
+                        />
+                        <button className="btn btn-primary">Send</button>
+                        <button className="btn btn-danger" onClick={leaveRoom}>
+                          leave
+                        </button>
                       </form>
                     </div>
                   </div>

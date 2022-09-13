@@ -8,7 +8,7 @@ export default function CategoryCarou({ categoryFiltering }) {
   const dispatch = useDispatch();
 
   const { categories } = useSelector((e) => e.categories);
-  console.log(categories);
+  // console.log(categories);
   useEffect(() => {
     dispatch(fetchCategory()).finally(() => {
       dispatch(loadingSet(false));

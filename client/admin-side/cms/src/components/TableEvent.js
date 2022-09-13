@@ -15,9 +15,6 @@ export default function TableEvent() {
 
     useEffect(() => {
         dispatch(fetchEvents())
-            .then((_) => {
-                console.log('Success')
-            })
             .finally(() => setLoading(false))
     }, [])
 

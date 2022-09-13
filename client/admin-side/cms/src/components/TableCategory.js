@@ -14,9 +14,6 @@ export default function TableCategory() {
 
     useEffect(() => {
         dispatch(fetchCategories())
-            // .then((_) => {
-            //     console.log('success')
-            // })
             .finally(() => setLoading(false))
     }, [])
 

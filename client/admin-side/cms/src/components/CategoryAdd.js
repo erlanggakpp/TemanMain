@@ -34,8 +34,8 @@ export default function CategoryAdd() {
     dispatch(postCategory(addCategory))
       .then((data) => {
         Swal.fire(
+          'success',
           data.data.message,
-          'You clicked the button!',
           'success'
         )
       })

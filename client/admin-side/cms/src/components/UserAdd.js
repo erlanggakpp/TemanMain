@@ -34,7 +34,6 @@ export default function UserAdd() {
 
   const changeInputUser = (e) => {
     const { name, value } = e.target;
-    // console.log(name);
     setAddUser({
       ...addUser,
       [name]: value,
@@ -46,8 +45,8 @@ export default function UserAdd() {
     dispatch(postUser(addUser))
       .then((data) => {
         Swal.fire(
+          'success',
           data.data.message,
-          'You clicked the button!',
           'success'
         )
       })

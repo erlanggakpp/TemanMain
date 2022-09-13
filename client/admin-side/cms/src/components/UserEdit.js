@@ -41,7 +41,6 @@ export default function UserEdit() {
 
     const changeInputUser = (e) => {
         const { name, value } = e.target;
-        console.log(name)
         setEditUser({
             ...editUser,
             [name]: value
@@ -53,13 +52,12 @@ export default function UserEdit() {
         dispatch(updateUser(id, editUser))
             .then((data) => {
                 Swal.fire(
+                    'success',
                     data.data.message,
-                    'You clicked the button!',
                     'success'
                 )
             })
             .then((_) => {
-                console.log('success')
                 navigate('/listuser')
             })
             .catch((err) => {

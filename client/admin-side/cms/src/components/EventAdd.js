@@ -34,9 +34,6 @@ export default function EventAdd() {
   });
   useEffect(() => {
     dispatch(fetchCategories())
-      .then((_) => {
-        console.log('success');
-      })
       .finally(() => setLoading(false));
   }, []);
 
@@ -52,8 +49,8 @@ export default function EventAdd() {
     dispatch(postEvent(addEvent))
       .then((data) => {
         Swal.fire(
+          'success',
           data.data.message,
-          'You clicked the button!',
           'success'
         )
       })

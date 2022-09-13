@@ -37,8 +37,8 @@ export default function LoginPages() {
     login(loginForm)
       .then(({ data }) => {
         Swal.fire(
+          'success',
           data.message,
-          'You clicked the button!',
           'success'
         )
         localStorage.setItem('access_token', data.access_token);

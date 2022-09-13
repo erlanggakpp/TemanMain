@@ -15,9 +15,6 @@ export default function TableUser() {
 
     useEffect(() => {
         dispatch(fetchUsers())
-            .then((_) => {
-                console.log('success')
-            })
             .finally(() => setLoading(false))
     }, [])
 

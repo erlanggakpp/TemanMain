@@ -7,6 +7,8 @@ userRouter.post("/", UserController.createUser);
 userRouter.get("/my-profile", authenticator, UserController.showUser);
 userRouter.get("/:id", UserController.showUser2);
 // userRouter.get("/:userId", authenticator, UserController.showUser2);
+userRouter.put("/my-profil", authenticator, UserController.updateUserProfile);
+userRouter.get("/:id", UserController.showUser);
 userRouter.put("/:id", UserController.updateUser);
 userRouter.delete("/:id", UserController.deleteUser);
 

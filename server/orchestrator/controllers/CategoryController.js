@@ -115,7 +115,7 @@ class CategoryController {
           },
         };
       }
-      res.status(200).json(targetCategory)
+      res.status(200).json(targetCategory);
     } catch (error) {
       const { status, data } = error.response;
       res.status(status).json(data);

@@ -100,6 +100,33 @@ class UserController {
       const { id } = req.params;
       const data = req.body;
       const { access_token } = req.headers;
+      console.log(data, "--------------------");
+      const { data: user } = await axios({
+        method: "PUT",
+        url: "http://localhost:4001/users/" + id,
+        data,
+        headers: {
+          access_token,
+        },
+      });
+
+      await redis.del("user:users");
+
+      res.status(200).json(user);
+    } catch (error) {
+      const { status, data } = error.response;
+
+      res.status(status).json(data);
+    }
+  }
+
+  static async updateUserProfile(req, res) {
+    try {
+      console.log("masokkk pak ekooo");
+      const { id } = req.user;
+      const { access_token } = req.headers;
+
+      const data = req.body;
 
       const { data: user } = await axios({
         method: "PUT",

@@ -22,7 +22,7 @@ export default function DetailEvent() {
         <>
           <Outlet />
           {/* <p>{JSON.stringify(eventDetail)}</p> */}
-          <div className="container">
+          <div className="container" style={{marginTop : "100px"}} >
             <div className="container">
               <TopBanner eventDetail={eventDetail} />
               {eventDetail.Magnets ? (
@@ -30,14 +30,6 @@ export default function DetailEvent() {
               ) : (
                 <h1>Loading...</h1>
               )}
-              <div className="row">
-                <div className="col-8 bg-warning" style={{ height: "5px" }}>
-                  
-                </div>
-                <div className="col-4 bg-primary" style={{ height: "5px" }}>
-                  
-                </div>
-              </div>
 
               <div className="row g-5">
                 <div className="col-md-8">
@@ -45,10 +37,7 @@ export default function DetailEvent() {
                   <p>{eventDetail.description}</p>
                   <br />
                   <br />
-                  {/* <div className="row">
-                    <div className="col-6 bg-warning">test</div>
-                    <div className="col-6 bg-primary">haha</div>
-                  </div> */}
+            
                 </div>
                 <SideMenu
                   toSide={{

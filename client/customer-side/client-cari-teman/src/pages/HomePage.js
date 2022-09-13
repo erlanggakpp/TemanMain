@@ -51,9 +51,8 @@ export default function HomePage() {
   // if(events.length == 0) return(<h1>Loading...</h1>)
 
   return (
-    <>
-      <div className="container-fluid">
-        <div className="container">
+    <><div className='container-fluid'>
+    <div >
           <div className="row">
             <div className="col-12">
               <div

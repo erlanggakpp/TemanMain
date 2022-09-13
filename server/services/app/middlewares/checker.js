@@ -66,6 +66,18 @@ async function invitationChecker(req, res, next) {
     next(error);
   }
 }
+async function requestChecker(req, res, next) {
+  try {
+    const { requestId } = req.params;
+    const targetRequest = await Request.findByPk(requestId);
+    if (!targetRequest) {
+      throw { name: "requestNotFound" };
+    }
+    next();
+  } catch (error) {
+    next(error);
+  }
+}
 async function alreadyMadeRequest(req, res, next) {
   try {
     const { magnetId } = req.params;
@@ -111,4 +123,5 @@ module.exports = {
   magnetChecker,
   alreadyMadeRequest,
   alreadyMadeInvitation,
+  requestChecker,
 };

@@ -2,12 +2,12 @@ const request = require("supertest");
 const app = require("../app");
 const { sequelize } = require("../models");
 const { queryInterface } = sequelize;
-const { Categories } = require("../../../../db.json");
-const { events } = require("../../../../db.json");
-const { magnets } = require("../../../../db.json");
-const { users } = require("../../../../db.json");
-const { requests } = require("../../../../db.json");
-const { invitations } = require("../../../../db.json");
+const { Categories } = require("../DB MANTAP.json");
+const { events } = require("../DB MANTAP.json");
+const { magnets } = require("../DB MANTAP.json");
+const { users } = require("../DB MANTAP.json");
+const { requests } = require("../DB MANTAP.json");
+const { invitations } = require("../DB MANTAP.json");
 beforeAll(async () => {
   try {
     Categories.forEach((el) => {
@@ -100,7 +100,7 @@ describe("GET /requests/user", () => {
 
 describe("POST /requests/event/:eventId/magnet/:magnetId", () => {
   describe("POST /requests/event/:eventId/magnet/:magnetId - Success", () => {
-    it("Should return 'Successfully created invitation'", async () => {
+    it("Should return 'Successfully created request'", async () => {
       const payload = {
         requestDescription: "TEST",
       };
@@ -241,6 +241,33 @@ describe("POST /requests/event/:eventId/magnet/:magnetId", () => {
   });
 });
 
+describe("GET /requests/:requestId", () => {
+  describe("GET /requests/:requestId - Success", () => {
+    it("Should return object of specific request", async () => {
+      const response = await request(app).get("/requests/public/1");
+      // console.log(response.body, "<<<<<<<<<<<<<<<< ini  response");
+      expect(response.status).toBe(200);
+      expect(response.body).toEqual(expect.any(Object));
+      expect(response.body).toHaveProperty("UserId", expect.any(Number));
+      expect(response.body).toHaveProperty("EventId", expect.any(Number));
+      expect(response.body).toHaveProperty("MagnetId", expect.any(Number));
+      expect(response.body).toHaveProperty("status", expect.any(String));
+      expect(response.body).toHaveProperty(
+        "requestDescription",
+        expect.any(String)
+      );
+    });
+  });
+  describe("GET /requests/:requestId - Error", () => {
+    it("Should return 'Request not found'", async () => {
+      const response = await request(app).get("/requests/public/99");
+      // console.log(response.body, "<<<<<<<<<<<<<<<< ini  response");
+      expect(response.status).toBe(404);
+      expect(response.body).toEqual(expect.any(Object));
+      expect(response.body).toHaveProperty("message", "Request not found");
+    });
+  });
+});
 describe("PUT /requests/:requestId", () => {
   describe("PUT /requests/:requestId - Success", () => {
     it("Should return 'Successfully edited request'", async () => {
@@ -568,10 +595,10 @@ describe("POST /invitations/event/:eventId/magnet/:magnetId/user/:userId", () =>
         invitationDescription: "",
       };
       const response = await request(app)
-        .post("/invitations/event/1/magnet/1/user/4")
+        .post("/invitations/event/1/magnet/4/user/4")
         .set({
           target_user_age: 19,
-          user_id: 3,
+          user_id: 5,
         })
         .send(payload);
       // console.log(response, "<<<<<<<<<<<<<<<< ini  response");
@@ -585,10 +612,10 @@ describe("POST /invitations/event/:eventId/magnet/:magnetId/user/:userId", () =>
     it("Should return 'Invitation description is required'", async () => {
       const payload = {};
       const response = await request(app)
-        .post("/invitations/event/1/magnet/1/user/4")
+        .post("/invitations/event/1/magnet/4/user/4")
         .set({
           target_user_age: 19,
-          user_id: 3,
+          user_id: 5,
         })
         .send(payload);
       // console.log(response, "<<<<<<<<<<<<<<<< ini  response");
@@ -628,6 +655,34 @@ describe("POST /invitations/event/:eventId/magnet/:magnetId/user/:userId", () =>
       expect(response.status).toBe(404);
 
       expect(response.body).toHaveProperty("message", "Magnet not found");
+    });
+  });
+});
+
+describe("GET /invitations/:invitationId", () => {
+  describe("GET /invitations/:invitationId - Success", () => {
+    it("Should return object of specific request", async () => {
+      const response = await request(app).get("/invitations/1");
+      // console.log(response.body, "<<<<<<<<<<<<<<<< ini  response");
+      expect(response.status).toBe(200);
+      expect(response.body).toEqual(expect.any(Object));
+      expect(response.body).toHaveProperty("UserId", expect.any(Number));
+      expect(response.body).toHaveProperty("EventId", expect.any(Number));
+      expect(response.body).toHaveProperty("MagnetId", expect.any(Number));
+      expect(response.body).toHaveProperty("status", expect.any(String));
+      expect(response.body).toHaveProperty(
+        "invitationDescription",
+        expect.any(String)
+      );
+    });
+  });
+  describe("GET /requests/:invitationId - Error", () => {
+    it("Should return 'Invitation not found'", async () => {
+      const response = await request(app).get("/invitations/99");
+      // console.log(response.body, "<<<<<<<<<<<<<<<< ini  response");
+      expect(response.status).toBe(404);
+      expect(response.body).toEqual(expect.any(Object));
+      expect(response.body).toHaveProperty("message", "Invitation not found");
     });
   });
 });

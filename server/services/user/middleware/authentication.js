@@ -8,9 +8,7 @@ async function Authentication(req, res, next) {
     if (!access_token) {
       throw { name: "NoToken" };
     }
-    console.log("masooooooooooooooooooook");
     const payload = verifyToken(access_token);
-    console.log(payload, "cokkkkkkkkkkkkkkkkkkkkks");
     const findUser = await User.findByPk(+payload.id);
 
     if (!findUser) {

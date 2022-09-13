@@ -8,7 +8,13 @@ import Row from 'react-bootstrap/Row';
 import { useState } from 'react';
 import { login } from '../store/actions';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import Swal from 'sweetalert2'
+
+
+
 export default function LoginPages() {
+  const dispatch = useDispatch()
   const container = {
     padding: '150px',
   };
@@ -28,9 +34,26 @@ export default function LoginPages() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    login(loginForm, () => {
-      navigate('/listevent');
-    });
+    login(loginForm)
+      .then(({ data }) => {
+        Swal.fire(
+          data.message,
+          'You clicked the button!',
+          'success'
+        )
+        localStorage.setItem('access_token', data.access_token);
+      })
+      .then((_) => {
+        navigate('/listevent')
+      })
+      .catch((err) => {
+        console.log(err)
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err.response.data.error,
+        })
+      });
   };
 
   return (
@@ -49,7 +72,6 @@ export default function LoginPages() {
                   name="email"
                   type="email"
                   placeholder="Email"
-                  value={loginForm.email}
                   onChange={changeInputLogin}
                 />
               </Form.Group>
@@ -62,7 +84,6 @@ export default function LoginPages() {
                   name="password"
                   type="password"
                   placeholder="Password"
-                  value={loginForm.password}
                   onChange={changeInputLogin}
                 />
               </Form.Group>

@@ -60,25 +60,37 @@ export default function FilterSide({ categoryFiltering, magnetFiltering }) {
               <hr />
               <h4>Age</h4>
               <ul className="list-group">
-                <li className="list-group-item list-group-item-action mb-2 rounded">
+                <li
+                  onClick={() => magnetFiltering({ name: "age", filter: 10 })}
+                  className="list-group-item list-group-item-action mb-2 rounded"
+                >
                   <a>
                     <span className="fa fa-circle pr-1" id="red"></span>
                     <p>10 - 18</p>
                   </a>
                 </li>
-                <li className="list-group-item list-group-item-action mb-2 rounded">
+                <li
+                  onClick={() => magnetFiltering({ name: "age", filter: 19 })}
+                  className="list-group-item list-group-item-action mb-2 rounded"
+                >
                   <a>
                     <span className="fa fa-circle pr-1" id="teal"></span>
                     <p>19 - 25</p>
                   </a>
                 </li>
-                <li className="list-group-item list-group-item-action mb-2 rounded">
+                <li
+                  onClick={() => magnetFiltering({ name: "age", filter: 26 })}
+                  className="list-group-item list-group-item-action mb-2 rounded"
+                >
                   <a>
                     <span className="fa fa-circle pr-1" id="blue"></span>
                     <p>26 - 40</p>
                   </a>
                 </li>
-                <li className="list-group-item list-group-item-action mb-2 rounded">
+                <li
+                  onClick={() => magnetFiltering({ name: "age", filter: 41 })}
+                  className="list-group-item list-group-item-action mb-2 rounded"
+                >
                   <a>
                     <span className="fa fa-circle pr-1" id="blue"></span>
                     <p>41 - 70</p>

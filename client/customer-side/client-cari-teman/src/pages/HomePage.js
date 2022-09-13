@@ -70,9 +70,35 @@ export default function HomePage() {
         }
       });
     } else {
-      // magnets.forEach((el) => {
-      //   el.specialRequirement == filt.filter ? res.push(el) : "";
-      // });
+      magnets.forEach((el) => {
+        if (
+          el.ageRequirement >= filt.filter &&
+          el.ageRequirement <= 18 &&
+          filt.filter == 10
+        ) {
+          res.push(el);
+        } else if (
+          el.ageRequirement >= filt.filter &&
+          el.ageRequirement <= 25 &&
+          filt.filter == 19
+        ) {
+          res.push(el);
+        }
+        if (
+          el.ageRequirement >= filt.filter &&
+          el.ageRequirement <= 40 &&
+          filt.filter == 26
+        ) {
+          res.push(el);
+        }
+        if (
+          el.ageRequirement >= filt.filter &&
+          el.ageRequirement <= 70 &&
+          filt.filter == 41
+        ) {
+          res.push(el);
+        }
+      });
     }
 
     setDisplayedMagnets(res);

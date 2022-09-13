@@ -16,8 +16,7 @@ export const addInvitation = function (data) {
       },
       {
         headers: {
-          access_token:
-            localStorage.access_token
+          access_token: localStorage.access_token,
         },
       }
     );
@@ -26,16 +25,34 @@ export const addInvitation = function (data) {
 export const getMyInvitation = function (data) {
   return function (dispatch) {
     dispatch(loadingSet(true));
-    return axios.get(
-      `${baseUrl}/invitations/your-invitations`,
-      {
+    return axios
+      .get(`${baseUrl}/invitations/your-invitations`, {
         headers: {
-          access_token:
-            localStorage.access_token
+          access_token: localStorage.access_token,
         },
-      }
-    ).then( (data) => {
-      return data
-            });
+      })
+      .then((data) => {
+        return data;
+      });
   };
-}
+};
+
+export const acceptInvitationFromStore = function (id) {
+  // console.log(id, "<<<<<<<<<");
+  return function (dispatch) {
+    dispatch(loadingSet(true));
+    return axios
+      .put(
+        `${baseUrl}/invitations/${id}/accept`,
+        {},
+        {
+          headers: {
+            access_token: localStorage.getItem("access_token"),
+          },
+        }
+      )
+      .then((data) => {
+        return data;
+      });
+  };
+};

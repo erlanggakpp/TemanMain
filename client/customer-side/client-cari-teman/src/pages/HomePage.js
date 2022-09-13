@@ -18,6 +18,7 @@ export default function HomePage() {
   const { magnets, magnetDetail } = useSelector((e) => e.magnets);
   const [showEvents, setShowEvents] = useState([]);
   const [displayedEvents, setDisplayedEvents] = useState([]);
+  const [displayedMagnets, setDisplayedMagnets] = useState([]);
 
   const categoryFiltering = (id) => {
     if (+id === 0) {
@@ -29,10 +30,15 @@ export default function HomePage() {
   };
 
   useEffect(() => {
-    dispatch(fetchMagnet()).finally(() => {
-      dispatch(loadingSet(false));
-    });
+    dispatch(fetchMagnet())
+      .then(() => {
+        setDisplayedMagnets(magnets);
+      })
+      .finally(() => {
+        dispatch(loadingSet(false));
+      });
   }, []);
+  console.log(displayedMagnets, "masoook");
   useEffect(() => {
     dispatch(fetchEvent())
       .then((data) => {
@@ -54,8 +60,23 @@ export default function HomePage() {
     //   dispatch(loadingSet(false));
     // });
   }, []);
-  // if(events.length == 0) return(<h1>Loading...</h1>)
-  // console.log(displayedEvents);
+  const magnetFiltering = (filt) => {
+    let res = [];
+
+    if (filt.name == "gender") {
+      magnets.forEach((el) => {
+        if (el.specialRequirement == filt.filter) {
+          res.push(el);
+        }
+      });
+    } else {
+      // magnets.forEach((el) => {
+      //   el.specialRequirement == filt.filter ? res.push(el) : "";
+      // });
+    }
+
+    setDisplayedMagnets(res);
+  };
   return (
     <>
       <div className="container-fluid">
@@ -80,7 +101,10 @@ export default function HomePage() {
         <div className="container">
           <div className="row">
             <div className="col-3 mt-5">
-              <FilterSide categoryFiltering={categoryFiltering} />
+              <FilterSide
+                categoryFiltering={categoryFiltering}
+                magnetFiltering={magnetFiltering}
+              />
             </div>
             <div className="col-9">
               {/* <h1 className="display-4 mt-2">on going events</h1> */}

@@ -15,27 +15,46 @@ export default function EventTableRow({ data, i }) {
     width: '300px',
     height: '150px',
   };
-  const handleDelete = (e, id) => {
-    e.preventDefault();
-    dispatch(deleteEvents(id))
-      .then((res) => {
-        Swal.fire(
-          res.data.message,
-          'You clicked the button!',
-          'success'
-        )
-      })
-      .then((data) => {
-        dispatch(fetchEvents(data))
-      })
-      .catch((err) => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: err.response.data.message,
-        })
-      })
-  };
+
+  const deleteHandler = (id) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      background: '#000',
+      color: '#fff',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(deleteEvents(id))
+          .then(res => {
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              background: '#000',
+              color: '#fff',
+              title: res.data.message,
+              showConfirmButton: true,
+              timer: 1000
+            })
+              .then(data => {
+                dispatch(fetchEvents())
+              })
+          }).catch(err => {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: err.response.data.message,
+            })
+          })
+      }
+    })
+  }
+
+
 
   const handleEdit = (id) => {
     navigate(`/event/${id}`);
@@ -68,7 +87,7 @@ export default function EventTableRow({ data, i }) {
           <Button
             variant="danger"
             className="justify-center"
-            onClick={(e) => handleDelete(e, data.id)}
+            onClick={() => deleteHandler(data.id)}
           >
             Delete
           </Button>

@@ -13,27 +13,48 @@ export default function CategoryTableRow({ category, i }) {
     width: '300px',
     height: '150px',
   };
-  const handleDelete = (e, id) => {
-    e.preventDefault();
-    dispatch(deleteCategory(id))
-      .then((res) => {
-        Swal.fire(
-          res.data.message,
-          'You clicked the button!',
-          'success'
-        )
-      })
-      .then((data) => {
-        dispatch(fetchCategories(data))
-      })
-      .catch((err) => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: err.response.data.message,
-        })
-      })
-  };
+
+  const deleteHandler = (id) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      background: '#000',
+      color: '#fff',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(deleteCategory(id))
+          .then(res => {
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              background: '#000',
+              color: '#fff',
+              title: res.data.message,
+              showConfirmButton: true,
+              timer: 1000
+            })
+              .then(data => {
+                dispatch(fetchCategories())
+              })
+          }).catch(err => {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: err.response.data.message,
+            })
+          })
+      }
+
+    })
+
+
+  }
+
 
   const handleEdit = (id) => {
     navigate(`/category/${id}`);
@@ -57,7 +78,7 @@ export default function CategoryTableRow({ category, i }) {
           <Button
             variant="danger"
             className="justify-center"
-            onClick={(e) => handleDelete(e, category.id)}
+            onClick={() => deleteHandler(category.id)}
           >
             Delete
           </Button>

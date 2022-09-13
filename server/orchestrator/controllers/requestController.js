@@ -217,7 +217,6 @@ class RequestController {
 
       res.status(200).json(data);
     } catch (error) {
-      console.log(error);
       const { status, data } = error.response;
 
       res.status(status).json(data);

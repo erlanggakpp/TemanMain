@@ -34,7 +34,6 @@ export default function UserAdd() {
 
   const changeInputUser = (e) => {
     const { name, value } = e.target;
-    // console.log(name);
     setAddUser({
       ...addUser,
       [name]: value,
@@ -47,7 +46,6 @@ export default function UserAdd() {
       .then((data) => {
         Swal.fire(
           data.data.message,
-          'You clicked the button!',
           'success'
         )
       })

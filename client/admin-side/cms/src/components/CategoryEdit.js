@@ -39,7 +39,6 @@ export default function CategoryEdit() {
       .then((data) => {
         Swal.fire(
           data.data.message,
-          'You clicked the button!',
           'success'
         )
       })

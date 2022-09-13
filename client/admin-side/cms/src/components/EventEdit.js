@@ -26,9 +26,6 @@ export default function EventEdit() {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     dispatch(fetchCategories())
-      .then((_) => {
-        console.log('success');
-      })
       .finally(() => setLoading(false));
   }, []);
   const [editEvent, setEditEvent] = useState({
@@ -55,10 +52,8 @@ export default function EventEdit() {
     e.preventDefault();
     dispatch(updateEvent(id, editEvent))
       .then((data) => {
-        console.log(data)
         Swal.fire(
           data.data.message,
-          'You clicked the button!',
           'success'
         )
       })

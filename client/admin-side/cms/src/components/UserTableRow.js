@@ -18,10 +18,9 @@ export default function UserTableRow({ user, i }) {
     const deleteHandler = (id) => {
         Swal.fire({
             title: 'Are you sure?',
-            text: "You won't be able to revert this!",
             icon: 'warning',
-            background: '#000',
-            color: '#fff',
+            background: '#fff',
+            color: '#000',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -31,10 +30,10 @@ export default function UserTableRow({ user, i }) {
                 dispatch(deleteUser(id))
                     .then(res => {
                         Swal.fire({
-                            position: 'top-end',
+                            position: 'center',
                             icon: 'success',
-                            background: '#000',
-                            color: '#fff',
+                            background: '#fff',
+                            color: '#000',
                             title: res.data.message,
                             showConfirmButton: true,
                             timer: 1000
@@ -50,10 +49,7 @@ export default function UserTableRow({ user, i }) {
                         })
                     })
             }
-
         })
-
-
     }
 
 

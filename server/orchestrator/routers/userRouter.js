@@ -4,8 +4,8 @@ const authenticator = require("../middlewares/authenticator");
 
 userRouter.get("/", UserController.readAllUser);
 userRouter.post("/", UserController.createUser);
-userRouter.get("/:id", UserController.showUser2);
 userRouter.get("/my-profile", authenticator, UserController.showUser);
+userRouter.get("/:id", UserController.showUser2);
 // userRouter.get("/:userId", authenticator, UserController.showUser2);
 userRouter.put("/:id", UserController.updateUser);
 userRouter.delete("/:id", UserController.deleteUser);

@@ -31,40 +31,19 @@ export default function SideMenu({ toSide }) {
       ) : (
         <div className="col-md-4">
           <div className="position-sticky" style={{ top: "2rem" }}>
-            <div className="p-4 mt-4 mb-4 rounded">
-              <h4 className="fst-italic">create magnets</h4>
+            <div className="p-4 mt-4  rounded">
+              <h5 className="">Create Magnets</h5>
 
               <button
                 type="button"
-                className="btn btn-primary text-white w-100"
+                className="btn text-primary w-100 mt-2"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
+                style={{ backgroundColor: "#EAF6F6" }}
               >
                 <h3>+ magnets</h3>
               </button>
               {/* form nya ditaro di bawah tulisan magnets di halaman sebelah*/}
-            </div>
-            <div className="p-4 mb-3 rounded">
-              <table class="table">
-                <tbody>
-                  <tr>
-                    <td>Date</td>
-                    <th className="bg-dark text-white">
-                      {toSide.eventDate.toLocaleString().slice(0, 10)}
-                    </th>
-                  </tr>
-                  <tr>
-                    <td>Duration</td>
-                    <th className="bg-dark text-white">
-                      {toSide.eventDuration}
-                    </th>
-                  </tr>
-                  <tr>
-                    <td>Price</td>
-                    <th className="bg-dark text-white">{toSide.price}</th>
-                  </tr>
-                </tbody>
-              </table>
             </div>
 
             <div
@@ -76,7 +55,7 @@ export default function SideMenu({ toSide }) {
                 width: "100%",
               }}
             >
-              <h4 className="fst-italic">Maps</h4>
+              <h4 className="mb-3">Maps</h4>
               <iframe
                 src={mapAttr}
                 style={{
@@ -91,6 +70,28 @@ export default function SideMenu({ toSide }) {
                 marginheight="0"
                 marginwidth="0"
               ></iframe>
+            </div>
+            <div className="p-4 mb-3 rounded">
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td>Date</td>
+                    <th className="bg-secondary text-white">
+                      {toSide.eventDate.toLocaleString().slice(0, 10)}
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>Duration</td>
+                    <th className="bg-secondary text-white">
+                      {toSide.eventDuration}
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>Price</td>
+                    <th className="bg-secondary text-white">{toSide.price}</th>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>

@@ -105,38 +105,38 @@ export default function DetailMagnets() {
   };
 
   // console.log(magnetDetail, "ajsdjpasdjapsdjpasdj")
-  if (!magnetDetail) return <h1>Loading...</h1>;
-  return (
-    <>
-      {loading ? (
-        <h1>Loading...</h1>
-      ) : (
-        <>
-          <Outlet />
-          {/* {JSON.stringify(users)} */}
-          {/* {JSON.stringify(magnetDetail)} */}
-          <div className="containet-fluid">
-            <div className="container">
-              <div className="row  justify-content-center">
-                <div className="col-md-12  p-0" style={{ height: "300px" }}>
-                  <img
-                    src={banner}
-                    alt=""
-                    className="img-fill card-img-top h-100 p-0"
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
-                <div
-                  style={{
-                    width: "50%",
-                    height: "200px",
-                    position: "absolute",
-                    margin: "200px 0px",
-                  }}
-                >
-                  <div className="row">
-                    <div className="col-md-4 h-100 d-flex justify-content-end">
-                      {/* <h1 className="text-white">
+  if (!magnetDetail) return(<h1>Loading...</h1>)
+    return (
+      <>
+        {loading ? (
+          <h1>Loading...</h1>
+        ) : (
+          <>
+            <Outlet />
+            {/* {JSON.stringify(users)} */}
+            {/* {JSON.stringify(magnetDetail)} */}
+            <div className="containet-fluid">
+              <div className="container">
+                <div className="row  justify-content-center">
+                  <div className="col-md-12  p-0" style={{ height: "300px" }}>
+                    <img
+                      src={banner}
+                      alt=""
+                      className="img-fill card-img-top h-100 p-0"
+                      style={{ objectFit: "cover", borderRadius: "40px" }}
+                    />
+                  </div>
+                  <div
+                    style={{
+                      width: "50%",
+                      height: "200px",
+                      position: "absolute",
+                      margin: "200px 0px",
+                    }}
+                  >
+                    <div className="row">
+                      <div className="col-md-4 h-100 d-flex justify-content-end">
+                        {/* <h1 className="text-white">
                         ini buat gambar yagesya sip aasd
                       </h1> */}
                       <div style={{ width: "200px", height: "200px" }}>
@@ -146,18 +146,21 @@ export default function DetailMagnets() {
                           className="h-100 rounded-circle"
                         />
                       </div>
-                    </div>
-                    <div className="col-md-6 bg-light opacity-100 rounded d-flex justify-content-center align-items-center">
-                      <p className="display-6">
-                        {" "}
-                        <strong>
-                          {magnetDetail.User.firstName}{" "}
-                          {magnetDetail.User.lastName}
-                        </strong>
-                      </p>
-                      {/* {magnetDetail.specialRequirement} */}
-                      <div className="row">
-                        <div className="col-8  h-100 w">-</div>
+                      <div
+                        className="col-md-6 bg-light d-flex justify-content-center align-items-center"
+                        style={{ borderRadius: "30px", opacity: "85%" }}
+                      >
+                        <h3 className="display-6">
+                          {" "}
+                          <strong>
+                            {magnetDetail.User.firstName}{" "}
+                            {magnetDetail.User.lastName}
+                          </strong>
+                        </h3>
+                        {/* {magnetDetail.specialRequirement} */}
+                        <div className="row">
+                          <div className="col-8  h-100 w"></div>
+                        </div>
                       </div>
                     </div>
                   </div>

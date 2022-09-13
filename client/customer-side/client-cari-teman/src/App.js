@@ -10,6 +10,7 @@ import FormTest from "./pages/FormTest";
 import FormProfile from "./pages/FormProfile";
 import UserPage from "./pages/UserPage";
 import LoginPage from "./pages/LoginPage";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         <Route path="profile" element={<FormProfile />} />
         <Route path="login" element={<LoginPage />} />
       </Routes>
+      <Footer/>
     </div>
   );
 }

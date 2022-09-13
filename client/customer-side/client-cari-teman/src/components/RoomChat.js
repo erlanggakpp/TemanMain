@@ -82,7 +82,7 @@ export default function RoomChat({ magnetDetail, magnetId }) {
           <div class="col-12">
             <div class="card" id="chat1" style={{ "border-radius": "15px" }}>
               <div
-                class="card-header d-flex justify-content-between align-items-center p-3 bg-info text-white border-bottom-0"
+                class="card-header d-flex justify-content-between align-items-center p-3 bg-primary text-white border-bottom-0"
                 style={{
                   "border-top-left-radius": "15px",
                   "border-top-right-radius": "15px",
@@ -151,6 +151,9 @@ export default function RoomChat({ magnetDetail, magnetId }) {
                           }}
                         />
                         <button className="btn btn-primary">Send</button>
+                        <button className="btn btn-danger" onClick={leaveRoom}>
+                          leave
+                        </button>
                       </form>
                     </div>
                   </div>

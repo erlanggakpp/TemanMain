@@ -95,6 +95,8 @@ export default function DetailMagnets() {
     setBanner(gambarBanner[angkaNgasal]);
   }, []);
 
+  // console.log(magnetDetail, "ajsdjpasdjapsdjpasdj")
+
   return (
     <>
       {loading ? (
@@ -102,7 +104,7 @@ export default function DetailMagnets() {
       ) : (
         <>
           <Outlet />
-          {JSON.stringify(users)}
+          {/* {JSON.stringify(users)} */}
           {JSON.stringify(magnetDetail)}
           <div className="containet-fluid">
             <div className="container">
@@ -162,7 +164,7 @@ export default function DetailMagnets() {
                               className="bg-warning"
                             >
                               <strong>
-                                {magnetDetail.participant -
+                                {
                                   magnetDetail.vacantParticipant}{" "}
                                 / {magnetDetail.participant}
                               </strong>

@@ -68,13 +68,13 @@ class UserController {
           access_token,
         },
       });
-console.log(user);
+      console.log(user);
       res.status(200).json(user);
     } catch (error) {
       // console.log(error);
       const { status, data } = error.response;
 
-      // res.status(status).json(data);
+      res.status(status).json(data);
     }
   }
 

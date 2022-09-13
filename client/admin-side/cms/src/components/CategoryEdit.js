@@ -38,6 +38,7 @@ export default function CategoryEdit() {
     dispatch(updateCategory(id, editCategory))
       .then((data) => {
         Swal.fire(
+          'success',
           data.data.message,
           'success'
         )

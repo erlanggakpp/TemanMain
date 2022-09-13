@@ -52,6 +52,7 @@ export default function UserEdit() {
         dispatch(updateUser(id, editUser))
             .then((data) => {
                 Swal.fire(
+                    'success',
                     data.data.message,
                     'success'
                 )

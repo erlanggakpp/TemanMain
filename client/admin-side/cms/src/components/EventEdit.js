@@ -53,6 +53,7 @@ export default function EventEdit() {
     dispatch(updateEvent(id, editEvent))
       .then((data) => {
         Swal.fire(
+          'success',
           data.data.message,
           'success'
         )

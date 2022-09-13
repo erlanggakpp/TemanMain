@@ -45,6 +45,7 @@ export default function UserAdd() {
     dispatch(postUser(addUser))
       .then((data) => {
         Swal.fire(
+          'success',
           data.data.message,
           'success'
         )

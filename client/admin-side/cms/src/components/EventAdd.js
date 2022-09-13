@@ -49,6 +49,7 @@ export default function EventAdd() {
     dispatch(postEvent(addEvent))
       .then((data) => {
         Swal.fire(
+          'success',
           data.data.message,
           'success'
         )

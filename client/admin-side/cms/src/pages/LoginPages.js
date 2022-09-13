@@ -37,6 +37,7 @@ export default function LoginPages() {
     login(loginForm)
       .then(({ data }) => {
         Swal.fire(
+          'success',
           data.message,
           'success'
         )

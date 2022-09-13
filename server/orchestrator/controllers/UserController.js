@@ -24,8 +24,8 @@ class UserController {
         res.status(200).json(users);
       }
     } catch (error) {
+      console.log(error);
       const { status, data } = error.response;
-
       res.status(status).json(data);
     }
   }
@@ -47,6 +47,7 @@ class UserController {
 
       res.status(201).json(newUser);
     } catch (error) {
+
       const { status, data } = error.response;
 
       res.status(status).json(data);
@@ -67,13 +68,13 @@ class UserController {
           access_token,
         },
       });
-
+console.log(user);
       res.status(200).json(user);
     } catch (error) {
       // console.log(error);
       const { status, data } = error.response;
 
-      res.status(status).json(data);
+      // res.status(status).json(data);
     }
   }
 

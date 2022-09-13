@@ -19,6 +19,7 @@ class RequestController {
           user_id: user_id,
         },
       });
+      console.log(data, '<<<<<<<<<<<<<<<<<<');
       const targetUserId = data.magnet.UserId;
       // console.log(data, "<<<<<<<<<<<<");
       let usersCache = await redis.get("user:users");
@@ -38,6 +39,7 @@ class RequestController {
       }
       const targetUser = usersCache.find((el) => el.id === targetUserId);
       const currentUser = usersCache.find((el) => el.id === user_id);
+
       let eventsCache = await redis.get("event:events");
       if (eventsCache) {
         // console.log("CACHE");

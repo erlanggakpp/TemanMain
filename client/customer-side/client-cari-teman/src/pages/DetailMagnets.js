@@ -13,7 +13,8 @@ export default function DetailMagnets() {
   const dispatch = useDispatch();
   const { loading } = useSelector((e) => e.events);
   const { magnetDetail } = useSelector((e) => e.magnets);
-  const [users, setUsers] = useState([]);
+const [users, setUsers] = useState([])
+const [banner, setBanner] = useState([])
 
   useEffect(() => {
     dispatch(fetchAllUsers())
@@ -81,6 +82,19 @@ export default function DetailMagnets() {
     });
   };
 
+  const gambarBanner = [
+    "https://lovelytab.com/wp-content/uploads/2019/01/Tumblr-Aesthetic-Wallpapers-Free-1024x576.jpg",
+    "https://studywithme.io/aesthetic-pomodoro-timer/8c50f8e334f43eee3272.jpg",
+    "https://www.dictionary.com/e/wp-content/uploads/2019/07/Aesthetic_1000x700.jpg",
+    "https://www.thespruce.com/thmb/DOr4WekPF1gxbfxKlE4Jw7jgv04=/420x0/filters:no_upscale():max_bytes(150000):strip_icc()/herzenstimmebedroom-0dbee000e5bf4f74b95a75078da74c76-3b0681f9eaf642e2b6b55e26cf897a97.jpg",
+    "https://i.pinimg.com/736x/73/55/a0/7355a06b3c04bb8c006a0746d0ee74bd.jpg",
+  ];
+
+  useEffect(() => {
+    const angkaNgasal = Math.floor(Math.random()*5)
+    setBanner(gambarBanner[angkaNgasal])
+  }, [])
+
   return (
     <>
       {loading ? (
@@ -88,15 +102,21 @@ export default function DetailMagnets() {
       ) : (
         <>
           <Outlet />
+          {JSON.stringify(users)}
+          {JSON.stringify(magnetDetail)}
           <div className="containet-fluid">
             <div className="container">
-              <div className="row d-flex justify-content-center">
+              <div className="row  justify-content-center">
                 <div
-                  className="col-md-12 bg-warning"
-                  style={{ height: '300px' }}
+                  className="col-md-12 bg-warning p-0"
+                  style={{ height: "300px" }}
                 >
-                  <h1>ini untuk background</h1>
-                  {JSON.stringify(users)}
+                  <img
+                    src={banner}
+                    alt=""
+                    className="img-fill card-img-top h-100 p-0"
+                    style={{ objectFit: "cover" }}
+                  />
                 </div>
                 <div
                   style={{
@@ -138,7 +158,7 @@ export default function DetailMagnets() {
                           <p className="mb-0">
                             Total Participant :
                             <div
-                              style={{ padding: 20, borderRadius: '30px' }}
+                              style={{ padding: 15, borderRadius: "30px" }}
                               className="bg-warning"
                             >
                               <strong>
@@ -149,16 +169,38 @@ export default function DetailMagnets() {
                             </div>
                           </p>
                           <div>
-                            <br />
-                            <br />
                             <button
                               type="button"
-                              class="btn btn-primary"
+                              class="btn btn-primary my-2  w-100"
                               data-bs-toggle="modal"
                               data-bs-target="#exampleModal"
+                              style={{ padding: 15, borderRadius: "30px" }}
                             >
                               request to join
                             </button>
+                          </div>
+                          <h3>invite : </h3>
+                          <div>
+                            <form action="" className="d-flex">
+                              <input
+                                type="text"
+                                list="data"
+                                class="form-control"
+                                placeholder="Type to search..."
+                                id="exampleDataList"
+                              />
+                              <datalist id="data">
+                                {users.map((item, key) => (
+                                  <option key={key} value={item.email} />
+                                ))}
+                              </datalist>
+                              <button
+                                type="submit"
+                                class="btn btn-dark text-white"
+                              >
+                                send
+                              </button>
+                            </form>
                           </div>
                         </div>
 

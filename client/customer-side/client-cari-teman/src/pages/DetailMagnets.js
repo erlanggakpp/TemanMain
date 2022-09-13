@@ -1,28 +1,29 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams , Outlet} from "react-router-dom";
-import { loadingSet } from "../store/action/events";
-import { detailMagnet } from "../store/action/magnets";
-import { fetchAllUsers } from "../store/action/users";
-import RoomChat from "../components/RoomChat";
-import { addRequest } from "../store/action/requests";
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams, Outlet } from 'react-router-dom';
+import { loadingSet } from '../store/action/events';
+import { detailMagnet } from '../store/action/magnets';
+import { fetchAllUsers } from '../store/action/users';
+import RoomChat from '../components/RoomChat';
+import { addRequest } from '../store/action/requests';
+const Swal = require('sweetalert2');
 
 export default function DetailMagnets() {
   const params = useParams();
   const dispatch = useDispatch();
   const { loading } = useSelector((e) => e.events);
   const { magnetDetail } = useSelector((e) => e.magnets);
-const [users, setUsers] = useState([])
+  const [users, setUsers] = useState([]);
 
-useEffect(() => {
-dispatch(fetchAllUsers()).then((data) => {
-  setUsers(data.data)
-
-}).catch((err) => {
-  console.log(err);
-})
-
-}, [])
+  useEffect(() => {
+    dispatch(fetchAllUsers())
+      .then((data) => {
+        setUsers(data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   useEffect(() => {
     dispatch(detailMagnet(params.magnetId)).finally(() =>
       dispatch(loadingSet(false))
@@ -32,7 +33,7 @@ dispatch(fetchAllUsers()).then((data) => {
   const [requestForm, setRequestForm] = useState({
     EventId: params.id,
     MagnetId: params.magnetId,
-    requestDescription: "",
+    requestDescription: '',
   });
   const changeRequestForm = (e) => {
     const { name, value } = e.target;
@@ -43,11 +44,40 @@ dispatch(fetchAllUsers()).then((data) => {
   };
   const formRequest = (e) => {
     e.preventDefault();
-    dispatch(addRequest(requestForm))
-    .then(({data})=>console.log(data, 'aaaaaaaaa'))
-    .catch((err)=>console.log(err, 'errrr'))
-    .finally(() => {
-      dispatch(loadingSet(false));
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, request   it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(addRequest(requestForm))
+          .then(({ data }) => {
+            console.log(data, 'aaaaaaaaa');
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Success send request!',
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          })
+          .catch((err) => {
+            console.log(err, 'errrr');
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: err.response.data.message,
+            });
+            console.log(err.response.data.message, '<<err');
+          })
+          .finally(() => {
+            dispatch(loadingSet(false));
+          });
+      }
     });
   };
 
@@ -63,17 +93,17 @@ dispatch(fetchAllUsers()).then((data) => {
               <div className="row d-flex justify-content-center">
                 <div
                   className="col-md-12 bg-warning"
-                  style={{ height: "300px" }}
+                  style={{ height: '300px' }}
                 >
                   <h1>ini untuk background</h1>
                   {JSON.stringify(users)}
                 </div>
                 <div
                   style={{
-                    width: "50%",
-                    height: "200px",
-                    position: "absolute",
-                    margin: "200px 0px",
+                    width: '50%',
+                    height: '200px',
+                    position: 'absolute',
+                    margin: '200px 0px',
                   }}
                   className="bg-primary"
                 >
@@ -84,16 +114,16 @@ dispatch(fetchAllUsers()).then((data) => {
                       </h1>
                     </div>
                     <div className="col-md-8 bg-success">
-                      {" "}
+                      {' '}
                       {magnetDetail.specialRequirement}
                     </div>
                   </div>
                 </div>
-                <div className="col-md-12" style={{ height: "150px" }}></div>
+                <div className="col-md-12" style={{ height: '150px' }}></div>
               </div>
               <div className="row d-flex justify-content-center">
                 <div className="col-10  d-flex justify-content-center p-0">
-                  <div className="row g-5" style={{ width: "100%" }}>
+                  <div className="row g-5" style={{ width: '100%' }}>
                     <div className="col-md-8">
                       <h1>in isi ygy</h1>
                       <p className="p-4">{magnetDetail.magnetDescription}</p>
@@ -102,18 +132,18 @@ dispatch(fetchAllUsers()).then((data) => {
                       <RoomChat magnetId={magnetDetail.id} />
                     </div>
                     <div className="col-md-4">
-                      <div className="position-sticky" style={{ top: "2rem" }}>
+                      <div className="position-sticky" style={{ top: '2rem' }}>
                         <div className="p-4 mb-3 rounded">
                           <h4 className="fst-italic">Avaiable to join</h4>
                           <p className="mb-0">
                             Total Participant :
                             <div
-                              style={{ padding: 20, borderRadius: "30px" }}
+                              style={{ padding: 20, borderRadius: '30px' }}
                               className="bg-warning"
                             >
                               <strong>
                                 {magnetDetail.participant -
-                                  magnetDetail.vacantParticipant}{" "}
+                                  magnetDetail.vacantParticipant}{' '}
                                 / {magnetDetail.participant}
                               </strong>
                             </div>

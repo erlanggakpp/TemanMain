@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
-import { detailEvent, loadingSet } from "../store/action/events";
-import { addMagnets } from "../store/action/magnets";
-
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { detailEvent, loadingSet } from '../store/action/events';
+import { addMagnets } from '../store/action/magnets';
+const Swal = require('sweetalert2');
 export default function ModalMagnets() {
   const params = useParams();
   const dispatch = useDispatch();
@@ -11,13 +11,13 @@ export default function ModalMagnets() {
   const [dataForm, setDataForm] = useState({
     UserId: 3,
     EventId: params.id,
-    confirmationDate: "2022/10/03",
-    ageRequirement: "",
-    specialRequirement: "",
-    magnetDescription: "",
-    participant: "",
-    vacantParticipant: "",
-    participantDescription: "",
+    confirmationDate: '2022/10/03',
+    ageRequirement: '',
+    specialRequirement: '',
+    magnetDescription: '',
+    participant: '',
+    vacantParticipant: '',
+    participantDescription: '',
   });
   const changeForm = (e) => {
     const { name, value } = e.target;
@@ -26,21 +26,50 @@ export default function ModalMagnets() {
       [name]: value,
     });
   };
+
   const formSubmit = (e) => {
     e.preventDefault();
-    dispatch(addMagnets(dataForm))
-      .then(() => {
-        dispatch(detailEvent(params.id));
-      })
-      .finally(() => {
-        dispatch(loadingSet(false));
-        navigate(`/events/${params.id}`);
-      });
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, create it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(addMagnets(dataForm))
+          .then(() => {
+            dispatch(detailEvent(params.id));
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Success create Magnet',
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          })
+          .catch((err) => {
+            console.log(err, 'errrr');
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: err.response.data.message,
+            });
+            console.log(err.response.data.message, '<<err');
+          })
+          .finally(() => {
+            dispatch(loadingSet(false));
+            navigate(`/events/${params.id}`);
+          });
+      }
+    });
   };
 
   return (
     <>
-      {" "}
+      {' '}
       <div
         className="modal fade"
         id="exampleModal"
@@ -102,9 +131,9 @@ export default function ModalMagnets() {
                               <option hidden defaultValue>
                                 -- Select --
                               </option>
-                              <option value={"All Gender"}>All Gender</option>
-                              <option value={"Man Only"}>Man Only</option>
-                              <option value={"Female Only"}>Female Only</option>
+                              <option value={'All Gender'}>All Gender</option>
+                              <option value={'Man Only'}>Man Only</option>
+                              <option value={'Female Only'}>Female Only</option>
                             </select>
                           </div>
                           <div className="mb-3">
@@ -126,7 +155,7 @@ export default function ModalMagnets() {
                           </div>
                           <div className="row">
                             <div className="col-6">
-                              {" "}
+                              {' '}
                               <div>
                                 <label
                                   htmlFor="disabledTextInput"
@@ -145,7 +174,7 @@ export default function ModalMagnets() {
                               </div>
                             </div>
                             <div className="col-6">
-                              {" "}
+                              {' '}
                               <div>
                                 <label
                                   htmlFor="disabledTextInput"

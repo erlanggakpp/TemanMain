@@ -1,8 +1,9 @@
-import axios from "axios";
-import { fetch_magnets, detail_magnet } from "./actionType";
-import { fetchEvent, loadingSet } from "./events";
+import axios from 'axios';
+import { fetch_magnets, detail_magnet } from './actionType';
+import { fetchEvent, loadingSet } from './events';
+const Swal = require('sweetalert2');
 
-const baseUrl = "http://localhost:4000";
+const baseUrl = 'http://localhost:4000';
 
 export const getMagnets = function (payload) {
   return {
@@ -58,8 +59,7 @@ export const addMagnets = function (data) {
       },
       {
         headers: {
-          access_token:
-            localStorage.access_token,
+          access_token: localStorage.access_token,
         },
       }
     );
@@ -72,8 +72,8 @@ export const detailMagnet = function (id) {
     return axios
       .get(`${baseUrl}/magnets/${id}`, {
         headers: {
-          access_token:
-localStorage.getItem('access_token')        },
+          access_token: localStorage.getItem('access_token'),
+        },
       })
       .then(({ data }) => {
         dispatch(getDetailMagnet(data));
@@ -82,16 +82,17 @@ localStorage.getItem('access_token')        },
   };
 };
 
-export const fetchMagnetsByUserId = function(){
-  return function (dispatch){
+export const fetchMagnetsByUserId = function () {
+  return function (dispatch) {
     dispatch(loadingSet(true));
     return axios
       .get(`${baseUrl}/magnets/user`, {
         headers: {
-          access_token:
-localStorage.getItem('access_token')        },
-      })      .then(({ data }) => {
-        return data
+          access_token: localStorage.getItem('access_token'),
+        },
+      })
+      .then(({ data }) => {
+        return data;
       });
-  }
-}
+  };
+};

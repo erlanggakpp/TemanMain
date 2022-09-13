@@ -84,6 +84,7 @@ export const detailMagnet = function (id) {
 };
 
 export const fetchMagnetsByUserId = function () {
+  console.log("MASUUUK");
   return function (dispatch) {
     dispatch(loadingSet(true));
     return axios
@@ -92,7 +93,8 @@ export const fetchMagnetsByUserId = function () {
           access_token: localStorage.getItem("access_token"),
         },
       })
-      .then(({ data }) => {
+      .then((data) => {
+        console.log(data, "dari action");
         return data;
       });
   };

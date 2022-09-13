@@ -13,6 +13,7 @@ export default function DetailEvent() {
   useEffect(() => {
     dispatch(detailEvent(params.id)).finally(() => dispatch(loadingSet(false)));
   }, []);
+
   return (
     // <h1>hallo</h1>
     <>

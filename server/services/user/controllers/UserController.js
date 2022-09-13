@@ -76,7 +76,7 @@ class UserController {
   static async showUser(req, res, next) {
     try {
       const { id } = req.params;
-      console.log(id, "<<<<<<<<<<<<<<<<<<<<<");
+      // console.log(id, "<<<<<<<<<<<<<<<<<<<<<");
       const findUser = await User.findByPk(+id, {
         attributes: { exclude: ["createdAt", "updatedAt", "password"] },
       });

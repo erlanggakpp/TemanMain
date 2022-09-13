@@ -1,22 +1,21 @@
 import { useState } from "react";
 // import "../assets/LoginPage.css";
 // import { loginHandlerAction } from "../store/action/userAction";
-import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 // import Swal from "sweetalert2";
 // import { useEffect } from 'react'
 import { loadingSet } from "../store/action/events";
-import { loginUser } from "../store/action/users";
+import { loginUser, fetchMyProfile } from "../store/action/users";
 
 function LoginPage() {
-
   const [loginInput, setLoginInput] = useState({
-    email : "",
-    password : ""
-  })
+    email: "",
+    password: "",
+  });
 
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const changeUser = (e) => {
     const { name, value } = e.target;
     setLoginInput({
@@ -24,19 +23,23 @@ function LoginPage() {
       [name]: value,
     });
   };
-  
+
   const userSubmit = (e) => {
     e.preventDefault();
     dispatch(loginUser(loginInput))
       .then(() => {
+        return dispatch(fetchMyProfile());
+      })
+      .then((data) => {
+        console.log(data);
         navigate("/");
       })
       .catch((error) => {
-console.log(error);
+        console.log(error);
       })
       .finally(() => dispatch(loadingSet(false)));
   };
-  
+
   // useEffect(() => dispatch(loginHandlerAction(loginInput)), [setLoginInput]);
 
   // function onChangeAtForm(e) {
@@ -84,7 +87,6 @@ console.log(error);
               type="password"
               class="input-login"
               placeholder="password"
-      
               name="password"
               value={loginInput.price}
               onChange={changeUser}

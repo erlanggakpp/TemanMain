@@ -14,8 +14,12 @@ export default function DetailMagnets() {
   const { loading } = useSelector((e) => e.events);
   const { magnetDetail } = useSelector((e) => e.magnets);
   const [users, setUsers] = useState([]);
+  const [selectedUser, setSelectedUser] = useState(0);
   const [banner, setBanner] = useState([]);
+  const { loggedUser } = useSelector((e) => e.users);
 
+  // console.log(magnetDetail, "magnet deteail");
+  // console.log(loggedUser, "LOGGED USER");
   useEffect(() => {
     dispatch(fetchAllUsers())
       .then((data) => {
@@ -95,6 +99,11 @@ export default function DetailMagnets() {
     setBanner(gambarBanner[angkaNgasal]);
   }, []);
 
+  const inviteUser = (e) => {
+    e.preventDefault();
+    console.log(selectedUser, "<<<<<<<<<<<<<<");
+  };
+
   // console.log(magnetDetail, "ajsdjpasdjapsdjpasdj")
   if (!magnetDetail) return(<h1>Loading...</h1>)
     return (
@@ -130,13 +139,12 @@ export default function DetailMagnets() {
                         {/* <h1 className="text-white">
                         ini buat gambar yagesya sip aasd
                       </h1> */}
-                        <div style={{ width: "200px", height: "200px" }}>
-                          <img
-                            src={magnetDetail.User.profilePict}
-                            alt=""
-                            className="h-100 rounded-circle"
-                          />
-                        </div>
+                      <div style={{ width: "200px", height: "200px" }}>
+                        <img
+                          src={magnetDetail.User.profilePict}
+                          alt=""
+                          className="h-100 rounded-circle"
+                        />
                       </div>
                       <div
                         className="col-md-6 bg-light d-flex justify-content-center align-items-center"
@@ -156,99 +164,105 @@ export default function DetailMagnets() {
                       </div>
                     </div>
                   </div>
-                  <div className="col-md-12" style={{ height: "150px" }}></div>
                 </div>
-                <div className="row d-flex justify-content-center">
-                  <div className="col-10  d-flex justify-content-center p-0">
-                    <div className="row g-5" style={{ width: "100%" }}>
-                      <div className="col-md-8">
-                        <h1>in isi ygy</h1>
-                        <p className="p-4">{magnetDetail.magnetDescription}</p>
-                        <br />
-                        <br />
-                        <RoomChat magnetId={magnetDetail.id} />
-                      </div>
-                      <div className="col-md-4">
-                        <div
-                          className="position-sticky"
-                          style={{ top: "2rem" }}
-                        >
-                          <div className="p-4 mb-3 rounded">
-                            <h4 className="fst-italic">Avaiable to join</h4>
-                            <p className="mb-0">
-                              Total Participant :
-                              <div
-                                style={{ padding: 15, borderRadius: "30px" }}
-                                className="bg-warning"
-                              >
-                                <strong>
-                                  {magnetDetail.vacantParticipant} /{" "}
-                                  {magnetDetail.participant}
-                                </strong>
-                              </div>
-                            </p>
-                            <div>
+                <div className="col-md-12" style={{ height: "150px" }}></div>
+              </div>
+              <div className="row d-flex justify-content-center">
+                <div className="col-10  d-flex justify-content-center p-0">
+                  <div className="row g-5" style={{ width: "100%" }}>
+                    <div className="col-md-8">
+                      <h1>in isi ygy</h1>
+                      <p className="p-4">{magnetDetail.magnetDescription}</p>
+                      <br />
+                      <br />
+                      <RoomChat
+                        magnetId={magnetDetail.id}
+                        magnetDetail={magnetDetail}
+                      />
+                    </div>
+                    <div className="col-md-4">
+                      <div className="position-sticky" style={{ top: "2rem" }}>
+                        <div className="p-4 mb-3 rounded">
+                          <h4 className="fst-italic">Avaiable to join</h4>
+                          <p className="mb-0">
+                            Total Participant :
+                            <div
+                              style={{ padding: 15, borderRadius: "30px" }}
+                              className="bg-warning"
+                            >
+                              <strong>
+                                {magnetDetail.vacantParticipant} /{" "}
+                                {magnetDetail.participant}
+                              </strong>
+                            </div>
+                          </p>
+                          <div>
+                            <button
+                              type="button"
+                              class="btn btn-primary my-2  w-100"
+                              data-bs-toggle="modal"
+                              data-bs-target="#exampleModal"
+                              style={{ padding: 15, borderRadius: "30px" }}
+                            >
+                              request to join
+                            </button>
+                          </div>
+                          <h3>invite : </h3>
+                          <div>
+                            <form
+                              onSubmit={(e) => inviteUser(e)}
+                              className="d-flex"
+                            >
+                              <input
+                                type="text"
+                                list="data"
+                                class="form-control"
+                                placeholder="Type to search..."
+                                id="exampleDataList"
+                                onChange={(e) =>
+                                  setSelectedUser(e.target.value)
+                                }
+                              />
+                              <datalist id="data">
+                                {users.map((item, key) => (
+                                  <option key={key} value={item.id}>
+                                    {item.email}
+                                  </option>
+                                ))}
+                              </datalist>
                               <button
-                                type="button"
-                                class="btn btn-primary my-2  w-100"
-                                data-bs-toggle="modal"
-                                data-bs-target="#exampleModal"
-                                style={{ padding: 15, borderRadius: "30px" }}
+                                type="submit"
+                                class="btn btn-dark text-white"
                               >
-                                request to join
+                                Send
                               </button>
-                            </div>
-                            <h3>invite : </h3>
-                            <div>
-                              <form action="" className="d-flex">
-                                <input
-                                  type="text"
-                                  list="data"
-                                  class="form-control"
-                                  placeholder="Type to search..."
-                                  id="exampleDataList"
-                                />
-                                <datalist id="data">
-                                  {users.map((item, key) => (
-                                    <option key={key} value={item.email} />
-                                  ))}
-                                </datalist>
-                                <button
-                                  type="submit"
-                                  class="btn btn-dark text-white"
-                                >
-                                  send
-                                </button>
-                              </form>
-                            </div>
+                            </form>
                           </div>
+                        </div>
 
-                          <div className="p-4">
-                            <h4 className="fst-italic">Participant List:</h4>
-                            <ol className="list-unstyled mb-0">
-                              <li>
-                                <a href="#">
-                                  Erlangga Teacher Goat Babat Habis
-                                </a>
-                              </li>
-                              <br></br>
-                              <li>
-                                <a href="#"></a>
-                              </li>
-                              <li>
-                                <a href="#">Tomi Golok</a>
-                              </li>
-                              <li>
-                                <a href="#">Winardo Celurit</a>
-                              </li>
-                              <li>
-                                <a href="#">Mamat</a>
-                              </li>
-                              <li>
-                                <a href="#">Rysaldi Codet</a>
-                              </li>
-                            </ol>
-                          </div>
+                        <div className="p-4">
+                          <h4 className="fst-italic">Participant List:</h4>
+                          <ol className="list-unstyled mb-0">
+                            <li>
+                              <a href="#">Erlangga Teacher Goat Babat Habis</a>
+                            </li>
+                            <br></br>
+                            <li>
+                              <a href="#"></a>
+                            </li>
+                            <li>
+                              <a href="#">Tomi Golok</a>
+                            </li>
+                            <li>
+                              <a href="#">Winardo Celurit</a>
+                            </li>
+                            <li>
+                              <a href="#">Mamat</a>
+                            </li>
+                            <li>
+                              <a href="#">Rysaldi Codet</a>
+                            </li>
+                          </ol>
                         </div>
                       </div>
                     </div>
@@ -256,63 +270,64 @@ export default function DetailMagnets() {
                 </div>
               </div>
             </div>
-          </>
-        )}
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">
-                  New message
-                </h5>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body">
-                <form onSubmit={formRequest}>
-                  <div class="mb-3">
-                    <label for="message-text" class="col-form-label">
-                      Message:
-                    </label>
-                    <textarea
-                      value={requestForm.requestDescription}
-                      onChange={changeRequestForm}
-                      name="requestDescription"
-                      class="form-control"
-                      id="message-text"
-                    ></textarea>
-                  </div>
-                  <div class="modal-footer">
-                    <button
-                      type="button"
-                      class="btn btn-secondary"
-                      data-bs-dismiss="modal"
-                    >
-                      Close
-                    </button>
-                    <button
-                      type="submit"
-                      class="btn btn-primary"
-                      data-bs-dismiss="modal"
-                    >
-                      Send message
-                    </button>
-                  </div>
-                </form>
-              </div>
+          </div>
+        </>
+      )}
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">
+                New message
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form onSubmit={formRequest}>
+                <div class="mb-3">
+                  <label for="message-text" class="col-form-label">
+                    Message:
+                  </label>
+                  <textarea
+                    value={requestForm.requestDescription}
+                    onChange={changeRequestForm}
+                    name="requestDescription"
+                    class="form-control"
+                    id="message-text"
+                  ></textarea>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button
+                    type="submit"
+                    class="btn btn-primary"
+                    data-bs-dismiss="modal"
+                  >
+                    Send message
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
-      </>
-    );
+      </div>
+    </>
+  );
 }

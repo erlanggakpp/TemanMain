@@ -33,9 +33,9 @@ class MagnetController {
 
       const { data: magnets } = await axios({
         method: "GET",
-        url: "http://localhost:4002/magnets",
+        url: "http://localhost:4002/magnets/user",
         headers: {
-          userId,
+          user_id: userId,
         },
       });
 

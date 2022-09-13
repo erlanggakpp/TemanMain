@@ -13,10 +13,7 @@ class UserController {
       } else {
         const { data: users } = await axios({
           method: "GET",
-          url: "http://localhost:4001/users",
-          headers: {
-            access_token,
-          },
+          url: "http://localhost:4001/public/users",
         });
 
         await redis.set("user:users", JSON.stringify(users));
@@ -47,7 +44,6 @@ class UserController {
 
       res.status(201).json(newUser);
     } catch (error) {
-
       const { status, data } = error.response;
 
       res.status(status).json(data);
@@ -60,6 +56,27 @@ class UserController {
       // console.log(req.user);
       const { id } = req.user;
       const { access_token } = req.headers;
+      const { data: user } = await axios({
+        method: "GET",
+        url: "http://localhost:4001/users/" + id,
+        headers: {
+          access_token,
+        },
+      });
+      res.status(200).json(user);
+    } catch (error) {
+      // console.log(error);
+      const { status, data } = error.response;
+
+      res.status(status).json(data);
+    }
+  }
+  static async showUser2(req, res) {
+    try {
+      const { id } = req.params;
+      // console.log(req.user);
+      // const { id } = req.user;
+      const { access_token } = req.headers;
 
       const { data: user } = await axios({
         method: "GET",
@@ -68,13 +85,13 @@ class UserController {
           access_token,
         },
       });
-console.log(user);
+      console.log(user);
       res.status(200).json(user);
     } catch (error) {
       // console.log(error);
       const { status, data } = error.response;
 
-      // res.status(status).json(data);
+      res.status(status).json(data);
     }
   }
 
@@ -83,6 +100,33 @@ console.log(user);
       const { id } = req.params;
       const data = req.body;
       const { access_token } = req.headers;
+      console.log(data, "--------------------");
+      const { data: user } = await axios({
+        method: "PUT",
+        url: "http://localhost:4001/users/" + id,
+        data,
+        headers: {
+          access_token,
+        },
+      });
+
+      await redis.del("user:users");
+
+      res.status(200).json(user);
+    } catch (error) {
+      const { status, data } = error.response;
+
+      res.status(status).json(data);
+    }
+  }
+
+  static async updateUserProfile(req, res) {
+    try {
+      console.log("masokkk pak ekooo");
+      const { id } = req.user;
+      const { access_token } = req.headers;
+
+      const data = req.body;
 
       const { data: user } = await axios({
         method: "PUT",
@@ -141,7 +185,6 @@ console.log(user);
 
       res.status(201).json(newUser);
     } catch (error) {
-      console.log(error.response.data);
       const { status, data } = error.response;
 
       res.status(status).json(data);
@@ -198,7 +241,6 @@ console.log(user);
       res.status(200).json(user);
     } catch (error) {
       const { status, data } = error.response;
-
       res.status(status).json(data);
     }
   }

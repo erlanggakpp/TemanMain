@@ -10,5 +10,4 @@ router.use("/events", EventRouter);
 router.use("/magnets", MagnetRouter);
 router.use("/requests", RequestRouter);
 router.use("/invitations", InvitationRouter);
-
 module.exports = router;

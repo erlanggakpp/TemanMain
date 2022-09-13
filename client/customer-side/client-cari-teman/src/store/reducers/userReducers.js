@@ -1,9 +1,15 @@
-import { fetch_user, detail_user, loading_set } from "../action/actionType";
+import {
+  fetch_user,
+  detail_user,
+  loading_set,
+  logged_user,
+} from "../action/actionType";
 
 const initialState = {
   users: [],
   detailuser: "",
   loading: false,
+  loggedUser: {},
 };
 
 function userReducers(state = initialState, action) {
@@ -23,7 +29,14 @@ function userReducers(state = initialState, action) {
         ...state,
         loading: action.payload,
       };
+    case logged_user:
+      return {
+        ...state,
+        loggedUser: action.payload,
+      };
     default:
       return state;
   }
 }
+
+export default userReducers;

@@ -1,9 +1,9 @@
-import axios from 'axios';
-import { fetch_magnets, detail_magnet } from './actionType';
-import { fetchEvent, loadingSet } from './events';
-const Swal = require('sweetalert2');
+import axios from "axios";
+import { fetch_magnets, detail_magnet } from "./actionType";
+import { fetchEvent, loadingSet } from "./events";
+const Swal = require("sweetalert2");
 
-const baseUrl = 'http://localhost:4000';
+const baseUrl = "http://localhost:4000";
 
 export const getMagnets = function (payload) {
   return {
@@ -72,11 +72,12 @@ export const detailMagnet = function (id) {
     return axios
       .get(`${baseUrl}/magnets/${id}`, {
         headers: {
-          access_token: localStorage.getItem('access_token'),
+          access_token: localStorage.getItem("access_token"),
         },
       })
       .then(({ data }) => {
         dispatch(getDetailMagnet(data));
+        return data;
       });
     // .finally(() => dispatch(loadingSet(false)));
   };
@@ -88,7 +89,7 @@ export const fetchMagnetsByUserId = function () {
     return axios
       .get(`${baseUrl}/magnets/user`, {
         headers: {
-          access_token: localStorage.getItem('access_token'),
+          access_token: localStorage.getItem("access_token"),
         },
       })
       .then(({ data }) => {

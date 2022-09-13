@@ -4,7 +4,7 @@ const { magnetChecker } = require("../middlewares/checker");
 
 const router = require("express").Router();
 
-router.get("/", MagnetController.getAllMagnets);
+// router.get("/", MagnetController.getAllMagnets);
 router.get("/user", MagnetController.getMagnetByUserId);
 router.get("/:magnetId", magnetChecker, MagnetController.findOneMagnet);
 router.post("/", MagnetController.createMagnet);

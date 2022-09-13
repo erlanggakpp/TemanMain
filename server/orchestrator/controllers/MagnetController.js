@@ -94,13 +94,9 @@ class MagnetController {
       const creatorMagnet = await usersCache.find(
         (el) => el.id === magnet.UserId
       );
-      magnet.Requests.forEach((req) => {
+      magnet.Participant.forEach((req) => {
         const reqCreator = usersCache.find((el) => el.id === req.UserId);
         req.User = reqCreator;
-      });
-      magnet.Invitations.forEach((inv) => {
-        const invCreator = usersCache.find((el) => el.id === req.UserId);
-        inv.User = invCreator;
       });
       magnet.User = creatorMagnet;
       res.status(200).json(magnet);

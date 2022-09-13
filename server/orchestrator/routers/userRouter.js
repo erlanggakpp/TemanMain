@@ -1,9 +1,10 @@
 const userRouter = require("express").Router();
 const UserController = require("../controllers/UserController.js");
-const authenticator = require("../middlewares/authenticator.js");
+const authenticator = require("../middlewares/authenticator");
 
 userRouter.get("/", UserController.readAllUser);
 userRouter.post("/", UserController.createUser);
+userRouter.get("/:id", UserController.showUser2);
 userRouter.get("/my-profile", authenticator, UserController.showUser);
 userRouter.put("/my-profil", authenticator, UserController.updateUserProfile);
 userRouter.get("/:id", UserController.showUser);

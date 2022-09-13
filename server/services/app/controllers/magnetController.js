@@ -1,14 +1,14 @@
 const { Magnet, Request, Invitation } = require("../models");
 
 class MagnetController {
-  static async getAllMagnets(req, res, next) {
-    try {
-      const magnets = await Magnet.findAll();
-      res.status(200).json(magnets);
-    } catch (error) {
-      next(error);
-    }
-  }
+  // static async getAllMagnets(req, res, next) {
+  //   try {
+  //     const magnets = await Magnet.findAll();
+  //     res.status(200).json(magnets);
+  //   } catch (error) {
+  //     next(error);
+  //   }
+  // }
   static async createMagnet(req, res, next) {
     try {
       const {
@@ -32,12 +32,10 @@ class MagnetController {
         participant,
         vacantParticipant,
       });
-      res
-        .status(201)
-        .json({
-          message: "Successfully created new magnet",
-          magnet: createdMagnet,
-        });
+      res.status(201).json({
+        message: "Successfully created new magnet",
+        magnet: createdMagnet,
+      });
     } catch (error) {
       //   console.log(error);
       next(error);
@@ -138,20 +136,29 @@ class MagnetController {
       const { magnetId } = req.params;
       const magnet = await Magnet.findOne({
         where: {
-          id: magnetId,
+          id: +magnetId,
         },
-        include: [
-          {
-            model: Request,
-          },
-          {
-            model: Invitation,
-          },
-          // {
-          //   model: User,
-          // },
-        ],
       });
+      const targetRequests = await Request.findAll({
+        where: {
+          status: "Accepted",
+          MagnetId: +magnetId,
+        },
+      });
+      const targetInvitations = await Invitation.findAll({
+        where: {
+          status: "Accepted",
+          MagnetId: +magnetId,
+        },
+      });
+      magnet.dataValues.Participant = [];
+      targetRequests.forEach((el) => {
+        magnet.Participant.push(el);
+      });
+      targetInvitations.forEach((el) => {
+        magnet.Participant.push(el);
+      });
+
       res.status(200).json(magnet);
     } catch (error) {
       // console.log(error);

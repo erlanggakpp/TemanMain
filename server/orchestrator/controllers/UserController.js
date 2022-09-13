@@ -24,8 +24,8 @@ class UserController {
         res.status(200).json(users);
       }
     } catch (error) {
+      console.log(error);
       const { status, data } = error.response;
-
       res.status(status).json(data);
     }
   }
@@ -67,7 +67,30 @@ class UserController {
           access_token,
         },
       });
+      console.log(user);
+      res.status(200).json(user);
+    } catch (error) {
+      // console.log(error);
+      const { status, data } = error.response;
 
+      res.status(status).json(data);
+    }
+  }
+  static async showUser2(req, res) {
+    try {
+      const { id } = req.params;
+      // console.log(req.user);
+      // const { id } = req.user;
+      const { access_token } = req.headers;
+
+      const { data: user } = await axios({
+        method: "GET",
+        url: "http://localhost:4001/users/" + id,
+        headers: {
+          access_token,
+        },
+      });
+      console.log(user);
       res.status(200).json(user);
     } catch (error) {
       // console.log(error);

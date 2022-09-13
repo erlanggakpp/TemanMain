@@ -8,6 +8,8 @@ import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { postCategory } from '../store/actions';
 import { Link, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'
+
 export default function CategoryAdd() {
   const container = {
     padding: '150px',
@@ -16,6 +18,7 @@ export default function CategoryAdd() {
   const navigate = useNavigate();
   const [addCategory, setAddCategory] = useState({
     name: '',
+    image: ''
   });
 
   const changeInputEvent = (e) => {
@@ -29,12 +32,22 @@ export default function CategoryAdd() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(postCategory(addCategory))
+      .then((data) => {
+        Swal.fire(
+          data.data.message,
+          'You clicked the button!',
+          'success'
+        )
+      })
       .then((_) => {
-        console.log('success');
         navigate('/listcategory');
       })
       .catch((err) => {
-        console.log(err.response.data);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err.response.data.message,
+        })
       });
   };
 
@@ -54,6 +67,18 @@ export default function CategoryAdd() {
                   name="name"
                   type="text"
                   placeholder="Name Of Category"
+                  onChange={changeInputEvent}
+                />
+              </Form.Group>
+              <Form.Group
+                className="mb-1"
+                controlId="exampleForm.ControlInput1"
+              >
+                <Form.Label>Image</Form.Label>
+                <Form.Control
+                  name="image"
+                  type="text"
+                  placeholder="Image Url"
                   onChange={changeInputEvent}
                 />
               </Form.Group>

@@ -7,8 +7,11 @@ import Row from 'react-bootstrap/Row';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUser } from '../store/actions';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import { fetchuserbyid } from '../store/actions';
+import Swal from 'sweetalert2'
+
+
 
 export default function UserEdit() {
     const container = {
@@ -48,11 +51,23 @@ export default function UserEdit() {
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(updateUser(id, editUser))
+            .then((data) => {
+                Swal.fire(
+                    data.data.message,
+                    'You clicked the button!',
+                    'success'
+                )
+            })
             .then((_) => {
                 console.log('success')
+                navigate('/listuser')
             })
             .catch((err) => {
-                console.log(err.response.data)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: err.response.data.message,
+                })
             })
     }
 
@@ -143,7 +158,9 @@ export default function UserEdit() {
                             </Form.Select>
                             <Stack gap={2} direction="horizontal">
                                 <Button variant="primary" className="justify-center" type="submit">Save</Button>
-                                <Button variant="primary" className="justify-center">Cancel</Button>
+                                <Link to={'/listuser'}>
+                                    <Button variant="primary" className="justify-center">Cancel</Button>
+                                </Link>
                             </Stack>
                         </div>
                     </Col>

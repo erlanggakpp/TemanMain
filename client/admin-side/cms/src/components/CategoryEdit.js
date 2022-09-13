@@ -9,6 +9,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { fetchCategoryById, updateCategory } from '../store/actions';
+import Swal from 'sweetalert2'
+
 
 export default function CategoryEdit() {
   const container = {
@@ -18,9 +20,10 @@ export default function CategoryEdit() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { detailcategories } = useSelector((state) => state.category);
-  // console.log(detailevents);
+
   const [editCategory, setEditCategory] = useState({
     name: '',
+    image: ''
   });
   const changeInputEvent = (e) => {
     const { name, value } = e.target;
@@ -33,12 +36,22 @@ export default function CategoryEdit() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(updateCategory(id, editCategory))
+      .then((data) => {
+        Swal.fire(
+          data.data.message,
+          'You clicked the button!',
+          'success'
+        )
+      })
       .then((_) => {
-        console.log('success');
         navigate(`/listcategory`);
       })
       .catch((err) => {
-        console.log(err.response.data);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err.response.data.message,
+        })
       });
   };
 
@@ -49,6 +62,7 @@ export default function CategoryEdit() {
   useEffect(() => {
     setEditCategory({
       name: detailcategories?.data?.name,
+      image: detailcategories?.data?.image,
     });
   }, [detailcategories]);
   return (
@@ -66,9 +80,22 @@ export default function CategoryEdit() {
                 <Form.Control
                   name="name"
                   type="text"
-                  placeholder="Name Of Event"
+                  placeholder="Name Of Category"
                   onChange={changeInputEvent}
                   value={editCategory.name}
+                />
+              </Form.Group>
+              <Form.Group
+                className="mb-1"
+                controlId="exampleForm.ControlInput1"
+              >
+                <Form.Label>Image</Form.Label>
+                <Form.Control
+                  name="image"
+                  type="text"
+                  placeholder="Image Url"
+                  onChange={changeInputEvent}
+                  value={editCategory.image}
                 />
               </Form.Group>
 

@@ -97,7 +97,7 @@ class CategoryController {
       } else {
         const { data: categoriesData } = await axios({
           method: "GET",
-          url: `http://localhost:4002/categories`,
+          url: "http://localhost:4002/categories" + categoryId,
         });
 
         await redis.set("app:categories", JSON.stringify(categories));
@@ -115,6 +115,7 @@ class CategoryController {
           },
         };
       }
+      res.status(200).json(targetCategory)
     } catch (error) {
       const { status, data } = error.response;
       res.status(status).json(data);

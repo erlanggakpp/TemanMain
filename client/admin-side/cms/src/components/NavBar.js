@@ -12,8 +12,8 @@ export default function NavBar() {
     }
 
     return (
-        <Navbar style={{ background: '#2e94d1', color: 'white' }} expand="lg">
-            <Container style={{ color: 'white' }}>
+        <Navbar bg='secondary' expand="lg">
+            <Container>
                 <Navbar.Brand href="">Admin Teman Main</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 {localStorage.getItem("access_token") ? (

@@ -76,6 +76,7 @@ class EventController {
       });
       res.status(200).json(event);
     } catch (error) {
+      console.log(error, "<<<<<<<<");
       const { status, data } = error.response;
       res.status(status).json(data);
     }

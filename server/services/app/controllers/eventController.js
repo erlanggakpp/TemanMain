@@ -31,6 +31,7 @@ class EventController {
           },
         ],
       });
+
       res.status(200).json(targetEvent);
     } catch (error) {
       next(error);

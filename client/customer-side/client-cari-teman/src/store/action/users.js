@@ -45,7 +45,6 @@ export const fetchMyProfile = function () {
 };
 
 export const editMyProfile = function (data) {
-  console.log(data, "masook");
   return function (dispatch) {
     dispatch(loadingSet(true));
     return axios.put(`${baseUrl}/users/my-profil`, data, {

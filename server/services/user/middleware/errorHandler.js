@@ -18,6 +18,10 @@ function errorHandler(error, req, res, next) {
     error.name === "JsonWebTokenError"
   ) {
     res.status(401).json({ error: "Invalid token" });
+  } else if (error.name === "notAllowedtoLogin") {
+    res
+      .status(401)
+      .json({ error: "You are not allowed to login on this site" });
   } else {
     res.status(500).json({ error: "Internal server error" });
   }

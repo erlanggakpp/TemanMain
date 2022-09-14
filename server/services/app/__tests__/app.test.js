@@ -815,7 +815,6 @@ describe("PUT /invitations/:invitationId/accept", () => {
       const response = await request(app).put("/invitations/2/accept").set({
         user_id: 5,
       });
-      console.log(response, "<<<<<<<<<<<<<<<< ini  response");
       expect(response.status).toBe(400);
 
       expect(response.body).toHaveProperty(

@@ -22,7 +22,6 @@ async function authenticator(req, res, next) {
     });
     // console.log(user, "<<<<<<<<<<<<<<<<<<<<<");
     req.user = user;
-    // console.log(req.user, "<<<<<<<<<<<<<<<<<<<<<");
     next();
   } catch (error) {
     const { status, data } = error.response;

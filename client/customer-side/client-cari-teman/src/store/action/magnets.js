@@ -24,6 +24,7 @@ export const fetchMagnet = function () {
     dispatch(loadingSet(true));
     return axios.get(`${baseUrl}/magnets`).then(({ data }) => {
       dispatch(getMagnets(data));
+      return data;
     });
 
     // .finally(() => dispatch(loadingSet(false)));
@@ -84,7 +85,6 @@ export const detailMagnet = function (id) {
 };
 
 export const fetchMagnetsByUserId = function () {
-  console.log("MASUUUK");
   return function (dispatch) {
     dispatch(loadingSet(true));
     return axios
@@ -94,7 +94,59 @@ export const fetchMagnetsByUserId = function () {
         },
       })
       .then((data) => {
-        console.log(data, "dari action");
+        return data;
+      });
+  };
+};
+
+export const deleteMagnetFromStore = function (id) {
+  return function (dispatch) {
+    dispatch(loadingSet(true));
+    return axios
+      .delete(`${baseUrl}/magnets/${id}`, {
+        headers: {
+          access_token: localStorage.getItem("access_token"),
+        },
+      })
+      .then((data) => {
+        return data;
+      });
+  };
+};
+
+export const editMagnet = function (data) {
+  return function (dispatch) {
+    const {
+      UserId,
+      EventId,
+      confirmationDate,
+      ageRequirement,
+      specialRequirement,
+      magnetDescription,
+      participant,
+      vacantParticipant,
+    } = data;
+    dispatch(loadingSet(true));
+    return axios
+      .put(
+        `${baseUrl}/magnets/${data.id}`,
+        {
+          UserId,
+          EventId,
+          confirmationDate,
+          ageRequirement,
+          specialRequirement,
+          magnetDescription,
+          participant,
+          vacantParticipant,
+        },
+        {
+          headers: {
+            access_token: localStorage.access_token,
+          },
+        }
+      )
+      .then((data) => {
         return data;
       });
   };

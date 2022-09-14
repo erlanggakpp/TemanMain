@@ -15,25 +15,55 @@ export default function DetailMagnets() {
   const { magnetDetail } = useSelector((e) => e.magnets);
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(0);
+  const [flag, setFlag] = useState(false);
   const [banner, setBanner] = useState([]);
   const { loggedUser } = useSelector((e) => e.users);
 
   console.log(magnetDetail, "magnet deteail");
-  // console.log(loggedUser, "LOGGED USER");
+  console.log(loggedUser, "LOGGED USER");
   useEffect(() => {
-    dispatch(fetchAllUsers())
+    dispatch(detailMagnet(params.magnetId))
+      .then((data) => {
+        if (loggedUser.id === data.UserId) {
+          setFlag(true);
+        } else {
+          const targetParticipant = data.Participant.find(
+            (el) => el.UserId === loggedUser.id
+          );
+          if (targetParticipant) {
+            setFlag(true);
+          }
+        }
+        return dispatch(fetchAllUsers());
+      })
       .then((data) => {
         setUsers(data.data);
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        dispatch(loadingSet(false));
       });
   }, []);
-  useEffect(() => {
-    dispatch(detailMagnet(params.magnetId)).finally(() =>
-      dispatch(loadingSet(false))
-    );
-  }, []);
+
+  // useEffect(() => {
+  //   if (loggedUser.id === magnetDetail.UserId) {
+  //     setFlag(true);
+  //   } else {
+  //     const targetParticipant = magnetDetail.Participant.find(
+  //       (el) => el.UserId === loggedUser.id
+  //     );
+  //     if (targetParticipant) {
+  //       setFlag(true);
+  //     }
+  //   }
+  // }, []);
+  // useEffect(() => {
+  //   dispatch(detailMagnet(params.magnetId)).finally(() =>
+  //     dispatch(loadingSet(false))
+  //   );
+  // }, []);
 
   const [requestForm, setRequestForm] = useState({
     EventId: params.id,
@@ -122,7 +152,7 @@ export default function DetailMagnets() {
               <div className="row  justify-content-center">
                 <div className="col-md-12  p-0" style={{ height: "300px" }}>
                   <img
-                    src={banner}
+                    src={magnetDetail.Event.image}
                     alt=""
                     className="img-fill card-img-top h-100 p-0"
                     style={{ objectFit: "cover", borderRadius: "40px" }}
@@ -149,16 +179,16 @@ export default function DetailMagnets() {
                         className="col-md-6 bg-light d-flex justify-content-center align-items-center"
                         style={{ borderRadius: "30px", opacity: "85%" }}
                       >
-                        <h3 className="display-6">
-                          {" "}
-                          <strong>
-                            {magnetDetail.User.firstName}{" "}
-                            {magnetDetail.User.lastName}
-                          </strong>
-                        </h3>
                         {/* {magnetDetail.specialRequirement} */}
                         <div className="row">
-                          <div className="col-8  h-100 w"></div>
+                          <div className="col-8  h-100 w">
+                            <h3 className="display-6">
+                              <strong>
+                                {magnetDetail.User.firstName}{" "}
+                                {magnetDetail.User.lastName}
+                              </strong>
+                            </h3>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -173,21 +203,25 @@ export default function DetailMagnets() {
                       <p className="p-4">{magnetDetail.magnetDescription}</p>
                       <br />
                       <br />
-                      <RoomChat
-                        magnetId={magnetDetail.id}
-                        magnetDetail={magnetDetail}
-                      />
+                      {flag === true && (
+                        <RoomChat
+                          magnetId={magnetDetail.id}
+                          magnetDetail={magnetDetail}
+                        />
+                      )}
                       <br />
                       <br />
-                      <div>
-                        <button
-                          type="button"
-                          className="btn btn-primary btn-lg btn-block mt-10"
-                          onClick={joinVideoCall}
-                        >
-                          Join Video Call
-                        </button>
-                      </div>
+                      {flag === true && (
+                        <div>
+                          <button
+                            type="button"
+                            className="btn btn-primary btn-lg btn-block mt-10"
+                            onClick={joinVideoCall}
+                          >
+                            Join Video Call
+                          </button>
+                        </div>
+                      )}
                     </div>
                     <div className="col-md-4">
                       <div className="position-sticky" style={{ top: "2rem" }}>
@@ -216,63 +250,60 @@ export default function DetailMagnets() {
                               request to join
                             </button>
                           </div>
-                          <h3>invite : </h3>
-                          <div>
-                            <form
-                              onSubmit={(e) => inviteUser(e)}
-                              className="d-flex"
-                            >
-                              <input
-                                type="text"
-                                list="data"
-                                class="form-control"
-                                placeholder="Type to search..."
-                                id="exampleDataList"
-                                onChange={(e) =>
-                                  setSelectedUser(e.target.value)
-                                }
-                              />
-                              <datalist id="data">
-                                {users.map((item, key) => (
-                                  <option key={key} value={item.id}>
-                                    {item.email}
-                                  </option>
-                                ))}
-                              </datalist>
-                              <button
-                                type="submit"
-                                class="btn btn-dark text-white"
-                              >
-                                Send
-                              </button>
-                            </form>
+                          {magnetDetail.UserId === loggedUser.id && (
+                            <>
+                              <h3>invite : </h3>
+                              <div>
+                                <form
+                                  onSubmit={(e) => inviteUser(e)}
+                                  className="d-flex"
+                                >
+                                  <input
+                                    type="text"
+                                    list="data"
+                                    class="form-control"
+                                    placeholder="Type to search..."
+                                    id="exampleDataList"
+                                    onChange={(e) =>
+                                      setSelectedUser(e.target.value)
+                                    }
+                                  />
+                                  <datalist id="data">
+                                    {users.map((item, key) => (
+                                      <option key={key} value={item.id}>
+                                        {item.email}
+                                      </option>
+                                    ))}
+                                  </datalist>
+                                  <button
+                                    type="submit"
+                                    class="btn btn-dark text-white"
+                                  >
+                                    Send
+                                  </button>
+                                </form>
+                              </div>
+                            </>
+                          )}
+                        </div>
+                        {magnetDetail.Participant.length === 0 && (
+                          <h4 className="fst-italic">
+                            There are no TemanMaine-ers that particpated on this
+                            magnet yet
+                          </h4>
+                        )}
+                        {magnetDetail.Participant.length !== 0 && (
+                          <div className="p-4">
+                            <h4 className="fst-italic">Participant List:</h4>
+                            <ol className="list-unstyled mb-0">
+                              {magnetDetail.Participant.map((el) => (
+                                <li>
+                                  {el.User.firstName} {el.User.lastName}
+                                </li>
+                              ))}
+                            </ol>
                           </div>
-                        </div>
-
-                        <div className="p-4">
-                          <h4 className="fst-italic">Participant List:</h4>
-                          <ol className="list-unstyled mb-0">
-                            <li>
-                              <a href="#">Erlangga Teacher Goat Babat Habis</a>
-                            </li>
-                            <br></br>
-                            <li>
-                              <a href="#"></a>
-                            </li>
-                            <li>
-                              <a href="#">Tomi Golok</a>
-                            </li>
-                            <li>
-                              <a href="#">Winardo Celurit</a>
-                            </li>
-                            <li>
-                              <a href="#">Mamat</a>
-                            </li>
-                            <li>
-                              <a href="#">Rysaldi Codet</a>
-                            </li>
-                          </ol>
-                        </div>
+                        )}
                       </div>
                     </div>
                   </div>

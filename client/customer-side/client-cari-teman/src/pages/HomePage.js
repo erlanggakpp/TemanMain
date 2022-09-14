@@ -32,14 +32,15 @@ export default function HomePage() {
 
   useEffect(() => {
     dispatch(fetchMagnet())
-      .then(() => {
-        setDisplayedMagnets(magnets);
+      .then((data) => {
+        console.log(data, "<<<<<<<<<<<<");
+        setDisplayedMagnets(data);
       })
       .finally(() => {
         dispatch(loadingSet(false));
       });
   }, []);
-  console.log(displayedMagnets, "masoook");
+  // console.log(displayedMagnets, "masoook");
   useEffect(() => {
     dispatch(fetchEvent())
       .then((data) => {
@@ -105,12 +106,13 @@ export default function HomePage() {
     setDisplayedMagnets(res);
   };
   return (
-    <><div className='container-fluid'>
-    <div >
+    <>
+      <div className="container-fluid">
+        <div>
           <div className="row">
             <div className="col-12 mt-5">
               <div
-                style={{ height: '150px', backgroundColor: '#2e94d1'}}
+                style={{ height: "150px", backgroundColor: "#2e94d1" }}
                 className="d-flex justify-content-center mb-4 mt-4"
               >
                 <img

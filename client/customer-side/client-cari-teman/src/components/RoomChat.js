@@ -80,16 +80,22 @@ export default function RoomChat({ magnetDetail, magnetId }) {
       {openChat ? (
         <section style={{ "background-color": "white" }}>
           <div class="col-12">
-            <div class="card" id="chat1" style={{ "border-radius": "15px" }}>
+            <div>
+              <img
+                src="https://cdn.discordapp.com/attachments/1015235714780246077/1019592908053151874/livechataaa.jpg"
+                alt=""
+                className="w-100 p-0"
+              />
+            </div>
+            <div class="card mt-0" id="chat1">
               <div
-                class="card-header d-flex justify-content-between align-items-center p-3 bg-primary text-white border-bottom-0"
-                style={{
-                  "border-top-left-radius": "15px",
-                  "border-top-right-radius": "15px",
-                }}
+                class="card-header d-flex justify-content-between align-items-center p-0 bg-primary text-white border-0"
+                // style={{
+                //   "border-top-left-radius": "15px",
+                //   "border-top-right-radius": "15px",
+                // }}
               >
                 <i class="fas fa-angle-left"></i>
-                <p class="mb-0 fw-bold">Live chat</p>
                 <i class="fas fa-times"></i>
               </div>
               {messageList.map((el, idx) => {
@@ -141,21 +147,25 @@ export default function RoomChat({ magnetDetail, magnetId }) {
                 <div className="chatContainer flex-grow-0 py-3 px-4 border-top">
                   <div>
                     <div className="messageInput d-flex">
-                      <form onSubmit={sendMessage}>
+                      <form onSubmit={sendMessage} className="d-flex w-100">
                         <input
                           type="text"
-                          class="form-control"
+                          className="form-control"
+                          style={{ height: "50px" }}
                           placeholder="Message..."
                           onChange={(e) => {
                             setChat(e.target.value);
                           }}
                         />
                         <button className="btn btn-primary">Send</button>
-                        <button className="btn btn-danger" onClick={leaveRoom}>
-                          leave
-                        </button>
                       </form>
                     </div>
+                    <button
+                      className="btn btn-danger mt-5 px-4"
+                      onClick={leaveRoom}
+                    >
+                      <h3 className="p-0"> close chat</h3>
+                    </button>
                   </div>
 
                   {/* <button onClick={leaveRoom}>Leave</button> */}
@@ -165,14 +175,18 @@ export default function RoomChat({ magnetDetail, magnetId }) {
           </div>
         </section>
       ) : (
-        <div>
-          <button
+        <div className="border rounded p-5">
+          <div
             type="button"
-            className="btn btn-primary btn-lg btn-block"
+            className=""
             onClick={joinGroupChat}
           >
-            Join Group Chat
-          </button>
+            <img
+              src="https://cdn.discordapp.com/attachments/1015235714780246077/1019615959448830114/livechatbutton.jpg"
+              alt=""
+              className="w-100"
+            />
+          </div>
         </div>
       )}
     </>

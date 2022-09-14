@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, Outlet } from "react-router-dom";
+import { useParams, Outlet, useNavigate } from "react-router-dom";
+
 import { loadingSet } from "../store/action/events";
-import { detailMagnet } from "../store/action/magnets";
+import { detailMagnet, createToken } from "../store/action/magnets";
 import { fetchAllUsers } from "../store/action/users";
 import RoomChat from "../components/RoomChat";
 import { addRequest } from "../store/action/requests";
 const Swal = require("sweetalert2");
 
 export default function DetailMagnets() {
+  const navigate = useNavigate()
   const params = useParams();
   const dispatch = useDispatch();
   const { loading } = useSelector((e) => e.events);
@@ -104,8 +106,10 @@ export default function DetailMagnets() {
     console.log(selectedUser, "<<<<<<<<<<<<<<");
   };
 
-  const joinVideoCall = () => {
-    console.log("masuukk");
+  const joinVideoCall = async () => {
+    const channel = `Magnet${magnetDetail.id}`
+    await dispatch(createToken({ channel }))
+    navigate("/video-call")
   };
 
   // console.log(magnetDetail, "ajsdjpasdjapsdjpasdj")

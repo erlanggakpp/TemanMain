@@ -11,6 +11,7 @@ import FormProfile from "./pages/FormProfile";
 import UserPage from "./pages/UserPage";
 import LoginPage from "./pages/LoginPage";
 import Footer from "./components/Footer";
+import VideoCall from './pages/VideoCall';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
         <Route path="my-page" element={<UserPage />} />
         <Route path="profile" element={<FormProfile />} />
         <Route path="login" element={<LoginPage />} />
+        <Route path="video-call" element={<VideoCall />} />
       </Routes>
       <Footer />
     </div>

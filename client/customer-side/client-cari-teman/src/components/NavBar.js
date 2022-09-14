@@ -3,19 +3,46 @@ import { FaHome } from "react-icons/fa";
 import { CgProfile, CgLogIn, CgLogOut } from "react-icons/cg";
 import { SiGnuprivacyguard } from "react-icons/si";
 import { VscInfo } from "react-icons/vsc";
+import { useEffect } from "react";
 
 export default function NavBar() {
+  
   const navigate = useNavigate();
   const logout = () => {
     localStorage.clear();
     navigate("/login");
   };
+
+  const styleA = {
+    width: "100%",
+    position: "fixed",
+    transition: "0.3s ease-in-out",
+  };
+
+  const styleB = {
+    width: "100%",
+    position: "fixed",
+    transition: "0.3s ease-in-out",
+    "background-color": "#fff",
+    "box-shadow": "5px -1px 12px -5px grey",
+    height: "80px",
+  };
+
+  const styleNav = {}
+
+  useEffect(() => {
+    const { pageYOffset } = window;
+    if (pageYOffset > 10) console.log("holla");
+  }, [window.pageYOffset]);
   return (
     <header>
       <div className="container-fluid  mb-5">
         <div className="row">
           <div className="col-12 d-flex justify-content-center">
-            <nav class="px-3 py-0 fixed-top navbar-expand-lg">
+            <nav
+              class="px-3 py-0 fixed-top navbar-expand-lg"
+              style={styleB}
+            >
               <div class="container navbar d-flex ">
                 <div class="d-flex justify-content-end">
                   <div>

@@ -40,12 +40,12 @@ export default function ModalMagnets() {
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch(addMagnets(dataForm))
-          .then(() => {
+          .then((data) => {
             dispatch(detailEvent(params.id));
             Swal.fire({
               position: "top-end",
               icon: "success",
-              title: "Success create Magnet",
+              title: data.data.message,
               showConfirmButton: false,
               timer: 1500,
             });

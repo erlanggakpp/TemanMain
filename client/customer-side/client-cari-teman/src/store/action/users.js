@@ -48,10 +48,14 @@ export const fetchMyProfile = function () {
 export const editMyProfile = function (data) {
   return function (dispatch) {
     dispatch(loadingSet(true));
-    return axios.put(`${baseUrl}/users/my-profil`, data, {
-      headers: {
-        access_token: localStorage.getItem("access_token"),
-      },
-    });
+    return axios
+      .put(`${baseUrl}/users/my-profil`, data, {
+        headers: {
+          access_token: localStorage.getItem("access_token"),
+        },
+      })
+      .then((data) => {
+        return data;
+      });
   };
 };

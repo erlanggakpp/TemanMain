@@ -25,11 +25,12 @@ class ChatController {
         order: [["id", "ASC"]],
         include: {
           model: User,
-          attributes: ["firstName", "lastName", "email"],
+          attributes: ["firstName", "lastName", "email", "profilePict"],
         },
       });
       chatList.forEach((el) => {
-        el.dataValues.author = el.dataValues.User.firstName + " " + el.dataValues.User.lastName;
+        el.dataValues.author =
+          el.dataValues.User.firstName + " " + el.dataValues.User.lastName;
       });
       res.status(201).json(chatList);
     } catch (error) {

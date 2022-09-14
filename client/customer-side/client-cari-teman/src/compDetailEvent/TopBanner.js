@@ -8,25 +8,35 @@ export default function TopBanner({ eventDetail }) {
   }
   return (
     <>
+      <div className="container">
+        <img
+          src="https://cdn.discordapp.com/attachments/1015235714780246077/1019521891997843466/topEventDetail.jpg"
+          alt=""
+          className="w-100"
+        />
+      </div>
       <div
-        className="p-4 p-md-5 text-white mt-4"
-        style={{ backgroundColor: "#EAF6F6", borderRadius: "30px" }}
+        className="p-4 p-md-5 text-white"
+        style={{ backgroundColor: "#365E81"}}
       >
         <div className="row">
           <div
             className="col-md-6 px-0 d-flex justify-content-center align-items-center"
             style={{ flexDirection: "column" }}
           >
-            <h1 className="display-5  text-dark">
+            <h1
+              className="display-5  text-light"
+              style={{ fontWeight: "bold" }}
+            >
               <strong>{eventDetail.name}</strong>
             </h1>
-            <h3 className="text-dark">- {eventDetail.Category.name} -</h3>
+            <h3 className="text-light">- {eventDetail.Category.name} -</h3>
             <div class="d-grid gap-2 mt-4">
               {/* <p>{eventDetail.eventHomePageLink}</p> */}
               <button
                 class="btn pt-3 px-5"
                 type="button"
-                style={{ backgroundColor: "#2e94d1", borderRadius : "25px" }}
+                style={{ backgroundColor: "#2e94d1", borderRadius: "25px" }}
                 // onClick={() => move(eventDetail.eventHomepageLink)}
               >
                 <a
@@ -36,7 +46,9 @@ export default function TopBanner({ eventDetail }) {
                   style={{ "text-decoration": "none" }}
                   className="text-dark"
                 >
-                  <p style={{fontSize : "18px"}} className="text-white">go to offcial website...</p>
+                  <p style={{ fontSize: "18px" }} className="text-white">
+                    go to offcial website...
+                  </p>
                 </a>
               </button>
             </div>

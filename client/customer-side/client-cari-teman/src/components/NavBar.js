@@ -12,10 +12,10 @@ export default function NavBar() {
   };
   return (
     <header>
-      <div className="container-fluid">
+      <div className="container-fluid  mb-5">
         <div className="row">
           <div className="col-12 d-flex justify-content-center">
-            <nav class="px-3 py-0 bg-light fixed-top navbar-expand-lg">
+            <nav class="px-3 py-0 fixed-top navbar-expand-lg">
               <div class="container navbar d-flex ">
                 <div class="d-flex justify-content-end">
                   <div>

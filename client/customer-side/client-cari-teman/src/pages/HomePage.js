@@ -121,8 +121,22 @@ export default function HomePage() {
                   className="img-fluid"
                 />
               </div>
-              <CarouselComp />
               {/* <CategoryCarou categoryFiltering={categoryFiltering} /> */}
+              <div className="container">
+                <img
+                  src="https://cdn.discordapp.com/attachments/1015235714780246077/1019508603910103050/fixBanner_2.jpg"
+                  alt=""
+                  className="w-100"
+                />
+              </div>
+              <CarouselComp />
+              <div className="container mt-5">
+                <img
+                  src="https://cdn.discordapp.com/attachments/956894472120205352/1019499617710252093/stipevent.jpg"
+                  alt=""
+                  className="w-100"
+                />
+              </div>
             </div>
           </div>
         </div>

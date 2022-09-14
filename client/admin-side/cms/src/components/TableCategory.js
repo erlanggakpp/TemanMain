@@ -49,9 +49,8 @@ export default function TableCategory() {
                             {
                                 categories.data.map((category, i) => {
                                     return (
-                                        <CategoryTableRow key={i} category={category} i={i} />
+                                        <CategoryTableRow key={category.id} category={category} i={i} />
                                     )
-
                                 })
                             }
                         </tbody>

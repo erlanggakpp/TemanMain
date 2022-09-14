@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, Outlet } from "react-router-dom";
+import { useParams, Outlet, useNavigate } from "react-router-dom";
+
 import { loadingSet } from "../store/action/events";
-import { detailMagnet } from "../store/action/magnets";
+import { detailMagnet, createToken } from "../store/action/magnets";
 import { fetchAllUsers } from "../store/action/users";
 import RoomChat from "../components/RoomChat";
 import { addRequest } from "../store/action/requests";
 const Swal = require("sweetalert2");
 
 export default function DetailMagnets() {
+  const navigate = useNavigate();
   const params = useParams();
   const dispatch = useDispatch();
   const { loading } = useSelector((e) => e.events);
@@ -134,8 +136,11 @@ export default function DetailMagnets() {
     console.log(selectedUser, "<<<<<<<<<<<<<<");
   };
 
-  const joinVideoCall = () => {
-    console.log("masuukk");
+  const joinVideoCall = async () => {
+    const channel = `Magnet${magnetDetail.id}`;
+    localStorage.setItem("channelName", channel);
+    await dispatch(createToken({ channel }));
+    navigate("/video-call");
   };
 
   // console.log(magnetDetail, "ajsdjpasdjapsdjpasdj")
@@ -147,7 +152,19 @@ export default function DetailMagnets() {
       ) : (
         <>
           <Outlet />
+
           <div className="containet-fluid">
+            <div className="container p-0">
+              <div className="row">
+                <div className="col-12">
+                  <img
+                    src="https://cdn.discordapp.com/attachments/1015235714780246077/1019535630235095121/topdetailmagnetsa.jpg"
+                    alt=""
+                    className="w-100"
+                  />
+                </div>
+              </div>
+            </div>
             <div className="container">
               <div className="row  justify-content-center">
                 <div className="col-md-12  p-0" style={{ height: "300px" }}>
@@ -155,7 +172,7 @@ export default function DetailMagnets() {
                     src={magnetDetail.Event.image}
                     alt=""
                     className="img-fill card-img-top h-100 p-0"
-                    style={{ objectFit: "cover", borderRadius: "40px" }}
+                    style={{ objectFit: "cover" }}
                   />
                 </div>
                 <div
@@ -166,9 +183,15 @@ export default function DetailMagnets() {
                     margin: "200px 0px",
                   }}
                 >
-                  <div className="row">
-                    <div className="col-md-4 h-100 d-flex justify-content-end">
-                      <div style={{ width: "200px", height: "200px" }}>
+                  <div className="row d-flex justify-content-center">
+                    <div className="col-md-4 h-100 d-flex justify-content-center">
+                      <div
+                        style={{
+                          width: "200px",
+                          height: "200px",
+                          position: "center",
+                        }}
+                      >
                         <img
                           src={magnetDetail.User.profilePict}
                           alt=""
@@ -176,8 +199,14 @@ export default function DetailMagnets() {
                         />
                       </div>
                       <div
-                        className="col-md-6 bg-light d-flex justify-content-center align-items-center"
-                        style={{ borderRadius: "30px", opacity: "85%" }}
+                        className="col-md-6  text-light d-flex justify-content-center align-items-center w-100 mx-4"
+                        style={{
+                          borderRadius: "0 0 20px 20px",
+                          opacity: "95%",
+                          height: "100px",
+                          marginTop: "100px",
+                          backgroundColor: "#23496D",
+                        }}
                       >
                         {/* {magnetDetail.specialRequirement} */}
                         <div className="row">
@@ -196,11 +225,42 @@ export default function DetailMagnets() {
                 </div>
                 <div className="col-md-12" style={{ height: "150px" }}></div>
               </div>
+
               <div className="row d-flex justify-content-center">
-                <div className="col-10  d-flex justify-content-center p-0">
+                <div className="col-12  d-flex justify-content-center p-0">
                   <div className="row g-5" style={{ width: "100%" }}>
                     <div className="col-md-8">
+                      <div className="mt-0">
+                        <img
+                          src="https://cdn.discordapp.com/attachments/1015235714780246077/1019532597556150312/topdetailmagnets.jpg"
+                          alt=""
+                          className="w-100"
+                        />
+                      </div>
+                      <h1
+                        className="w-100 text-white py-4"
+                        style={{ backgroundColor: "#2E5274" }}
+                      >
+                        Description
+                      </h1>
                       <p className="p-4">{magnetDetail.magnetDescription}</p>
+                      <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Labore ipsa similique molestiae officia molestias
+                        distinctio eveniet delectus dignissimos. Amet ratione
+                        fuga quod repellendus hic exercitationem ad repellat
+                        eius, vero numquam, temporibus aperiam impedit ab rem
+                        aspernatur necessitatibus, unde dolore voluptates.
+                        Laborum pariatur minus aut quae provident explicabo
+                        dolorum est earum perferendis aperiam vero nobis beatae
+                        repellendus atque, nesciunt, quas optio, debitis ipsum
+                        commodi! Nobis error, quam aspernatur iusto ea aut
+                        maxime quibusdam laudantium, repudiandae sequi cumque
+                        illum rem atque nisi quae quos quia! Dicta vitae
+                        doloribus quidem! Quia odit inventore libero est aperiam
+                        magni rerum consequatur blanditiis voluptas repudiandae.
+                        Quis.
+                      </p>
                       <br />
                       <br />
                       {flag === true && (
@@ -212,28 +272,62 @@ export default function DetailMagnets() {
                       <br />
                       <br />
                       {flag === true && (
-                        <div>
-                          <button
+                        <div className="border p-5 rounded">
+                          <div
                             type="button"
-                            className="btn btn-primary btn-lg btn-block mt-10"
+                            className="w-100 bg-warning mt-10"
                             onClick={joinVideoCall}
                           >
-                            Join Video Call
-                          </button>
+                            <img
+                              src="https://cdn.discordapp.com/attachments/1015235714780246077/1019615959201349652/vidcall.jpg"
+                              alt=""
+                              className="w-100"
+                            />
+                          </div>
                         </div>
                       )}
                     </div>
                     <div className="col-md-4">
                       <div className="position-sticky" style={{ top: "2rem" }}>
                         <div className="p-4 mb-3 rounded">
-                          <h4 className="fst-italic">Avaiable to join</h4>
+                          {magnetDetail.vacantParticipant !== 0 && (
+                            <div className="mb-5 border rounded mt-2">
+                              <h4 className="bg-secondary text-white  p-3">
+                                request for joining
+                              </h4>
+                              <div className="d-flex justify-content-center align-items-center">
+                                <h4 className="fst-italic">Available</h4>
+                                <img
+                                  src="https://cdn.discordapp.com/attachments/1015235714780246077/1019603591872401509/goyangjos.gif"
+                                  alt=""
+                                  className="w-25 p-2"
+                                />
+                              </div>
+                            </div>
+                          )}
+                          {magnetDetail.vacantParticipant === 0 && (
+                            <div className="mb-5 border rounded mt-2">
+                              <h4 className="bg-secondary text-white  p-3">
+                                request for joining
+                              </h4>
+                              <div className="d-flex justify-content-center align-items-center">
+                                <h4 className="fst-italic">Not Available</h4>
+                                <img
+                                  src="https://media.baamboozle.com/uploads/images/488165/1634770703_15917_gif-url.gif"
+                                  alt=""
+                                  className="w-25 p-2"
+                                />
+                              </div>
+                            </div>
+                          )}
+
                           <p className="mb-0">
-                            Total Participant :
+                            <h4 className="mb-4">Total Participant :</h4>
                             <div
-                              style={{ padding: 15, borderRadius: "30px" }}
+                              style={{ padding: 15, borderRadius: "5px" }}
                               className="bg-warning"
                             >
-                              <strong>
+                              <strong style={{ fontSize: "24px" }}>
                                 {magnetDetail.vacantParticipant} /{" "}
                                 {magnetDetail.participant}
                               </strong>
@@ -245,14 +339,52 @@ export default function DetailMagnets() {
                               class="btn btn-primary my-2  w-100"
                               data-bs-toggle="modal"
                               data-bs-target="#exampleModal"
-                              style={{ padding: 15, borderRadius: "30px" }}
+                              style={{ padding: 15, borderRadius: "5px" }}
                             >
                               request to join
                             </button>
                           </div>
                           {magnetDetail.UserId === loggedUser.id && (
                             <>
-                              <h3>invite : </h3>
+                              <div className="mt-5 border pt-3 rounded">
+                                <img
+                                  src="https://cdn.discordapp.com/attachments/1015235714780246077/1019591312774803550/doWantTojoin.jpg"
+                                  alt=""
+                                  className="w-100"
+                                />
+                                <div className="p-2 pt-0">
+                                  <form
+                                    onSubmit={(e) => inviteUser(e)}
+                                    className="d-flex"
+                                  >
+                                    <input
+                                      type="text"
+                                      list="data"
+                                      class="form-control"
+                                      placeholder="Type to search..."
+                                      id="exampleDataList"
+                                      onChange={(e) =>
+                                        setSelectedUser(e.target.value)
+                                      }
+                                    />
+                                    <datalist id="data">
+                                      {users.map((item, key) => (
+                                        <option key={key} value={item.id}>
+                                          {item.email}
+                                        </option>
+                                      ))}
+                                    </datalist>
+                                    <button
+                                      type="submit"
+                                      class="btn btn-dark text-white"
+                                    >
+                                      Send
+                                    </button>
+                                  </form>
+                                </div>
+                              </div>
+
+                              {/* <h3>invite : </h3>
                               <div>
                                 <form
                                   onSubmit={(e) => inviteUser(e)}
@@ -282,7 +414,7 @@ export default function DetailMagnets() {
                                     Send
                                   </button>
                                 </form>
-                              </div>
+                              </div> */}
                             </>
                           )}
                         </div>
@@ -292,17 +424,36 @@ export default function DetailMagnets() {
                             magnet yet
                           </h4>
                         )}
+
                         {magnetDetail.Participant.length !== 0 && (
-                          <div className="p-4">
-                            <h4 className="fst-italic">Participant List:</h4>
-                            <ol className="list-unstyled mb-0">
-                              {magnetDetail.Participant.map((el) => (
-                                <li>
-                                  {el.User.firstName} {el.User.lastName}
-                                </li>
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th
+                                  scope="col"
+                                  className="bg-secondary text-white"
+                                >
+                                  No
+                                </th>
+                                <th scope="col">Participant List :</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {magnetDetail.Participant.map((el, idx) => (
+                                <tr>
+                                  <th
+                                    scope="row"
+                                    className="bg-secondary text-white"
+                                  >
+                                    {idx + 1}
+                                  </th>
+                                  <td>
+                                    {el.User.firstName} {el.User.lastName}
+                                  </td>
+                                </tr>
                               ))}
-                            </ol>
-                          </div>
+                            </tbody>
+                          </table>
                         )}
                       </div>
                     </div>

@@ -19,19 +19,18 @@ export default function CardAtDetailPage({ magnets }) {
       {loading ? (
         <h1>Loading...</h1>
       ) : (
-        <div className="row mb-2">
+        <div className="row mb-2 d-flex justify-content-center">
           <div
             className="row d-flex justify-content-center mb-5"
             style={{ marginLeft: "0" }}
           >
-            <div
-              className="col-12 d-flex align-item-center justify-content-center mt-5 py-2 text-light"
-              style={{
-                backgroundColor: "#2e94d1",
-                borderRadius: "30px 30px 0 0 ",
-              }}
-            >
-              <h1>Magnets</h1>
+            <div className="col-12 d-flex align-item-center justify-content-center mt-5 p-0 text-light">
+              {/* <h1>Magnets</h1> */}
+              <img
+                src="https://cdn.discordapp.com/attachments/1015235714780246077/1019524724109361192/magnetstrips.jpg"
+                alt=""
+                className="w-100"
+              />
               {/* <p>{JSON.stringify(magnets)}</p> */}
             </div>
             {magnets.length === 0 && <h1>Sorry, there's no open magnet</h1>}

@@ -53,7 +53,7 @@ export default function TableUser() {
                             {
                                 users.data.map((user, i) => {
                                     return (
-                                        <UserTableRow key={i} user={user} i={i} />
+                                        <UserTableRow key={user.id} user={user} i={i} />
                                     )
                                 })
                             }

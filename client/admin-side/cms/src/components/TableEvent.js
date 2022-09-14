@@ -52,7 +52,7 @@ export default function TableEvent() {
                         <tbody>
                             {events.data.map((event, i) => {
                                 return (
-                                    <EventTableRow key={i} data={event} i={i} />
+                                    <EventTableRow key={event.id} data={event} i={i} />
                                 )
                             })
                             }

@@ -23,22 +23,29 @@ export default function DetailEvent() {
         <>
           <Outlet />
           {/* <p>{JSON.stringify(eventDetail)}</p> */}
-          <div className="container" style={{marginTop : "100px"}} >
+          <div className="container" style={{ marginTop: "100px" }}>
             <div className="container">
               <TopBanner eventDetail={eventDetail} />
               {eventDetail.Magnets ? (
-                <CardAtDetailPage magnets={eventDetail.Magnets} />
+                <div className="container d-flex justify-content-center align-items-center">
+                  <CardAtDetailPage magnets={eventDetail.Magnets} />
+                </div>
               ) : (
                 <h1>Loading...</h1>
               )}
 
               <div className="row g-5">
                 <div className="col-md-8">
-                  <h1 className="m-5">Description</h1>
+                  <div>
+                    <img
+                      src="https://cdn.discordapp.com/attachments/1015235714780246077/1019549816092626974/descriptionStdOut.jpg"
+                      alt=""
+                      className="w-100 mb-5"
+                    />
+                  </div>
                   <p>{eventDetail.description}</p>
                   <br />
                   <br />
-            
                 </div>
                 <SideMenu
                   toSide={{

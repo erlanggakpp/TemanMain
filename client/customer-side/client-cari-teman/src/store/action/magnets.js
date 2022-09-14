@@ -1,5 +1,5 @@
 import axios from "axios";
-import { fetch_magnets, detail_magnet } from "./actionType";
+import { fetch_magnets, detail_magnet, token_agora } from "./actionType";
 import { fetchEvent, loadingSet } from "./events";
 const Swal = require("sweetalert2");
 
@@ -15,6 +15,13 @@ export const getMagnets = function (payload) {
 export const getDetailMagnet = function (payload) {
   return {
     type: detail_magnet,
+    payload,
+  };
+};
+
+export const postToken = function (payload) {
+  return {
+    type: token_agora,
     payload,
   };
 };
@@ -149,5 +156,28 @@ export const editMagnet = function (data) {
       .then((data) => {
         return data;
       });
+  };
+};
+
+export const createToken = function (data) {
+  return function (dispatch) {
+    const { channel } = data;
+    return axios({
+      method: "POST",
+      url: `${baseUrl}/rtctoken`,
+      data: {
+        isPublisher: 1,
+        channel,
+      },
+      headers: {
+        access_token: localStorage.getItem("access_token"),
+      },
+    }).then(({ data }) => {
+      dispatch(postToken(data));
+      localStorage.setItem("uid", data.uid);
+      localStorage.setItem("token", data.token);
+      return data;
+    });
+    // .finally(() => dispatch(loadingSet(false)));
   };
 };

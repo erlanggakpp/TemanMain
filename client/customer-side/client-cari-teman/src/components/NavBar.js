@@ -12,10 +12,10 @@ export default function NavBar() {
   };
   return (
     <header>
-      <div className="container-fluid">
+      <div className="container-fluid  mb-5">
         <div className="row">
           <div className="col-12 d-flex justify-content-center">
-            <nav class="px-3 py-0 bg-light fixed-top navbar-expand-lg">
+            <nav class="px-3 py-0 fixed-top navbar-expand-lg">
               <div class="container navbar d-flex ">
                 <div class="d-flex justify-content-end">
                   <div>
@@ -132,7 +132,7 @@ export default function NavBar() {
                       </li>
                     )}
                     <li className="nav-item">
-                      <a href="#" class="nav-link text-dark">
+                      <Link to="/register" class="nav-link text-dark">
                         <svg
                           class="bi d-block mx-auto mb-1"
                           width="24"
@@ -141,7 +141,7 @@ export default function NavBar() {
                           <SiGnuprivacyguard />
                         </svg>
                         Register
-                      </a>
+                      </Link>
                     </li>
                     {localStorage.getItem("access_token") && (
                       <li className="nav-item" onClick={logout}>

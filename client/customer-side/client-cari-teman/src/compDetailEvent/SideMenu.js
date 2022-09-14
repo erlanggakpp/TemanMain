@@ -79,7 +79,7 @@ export default function SideMenu({ toSide }) {
               ></iframe>
             </div>
             <div className="p-4 mb-3 rounded">
-              <table class="table">
+              <table className="table">
                 <tbody>
                   <tr>
                     <td>Date</td>

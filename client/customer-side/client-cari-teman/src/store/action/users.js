@@ -55,3 +55,14 @@ export const editMyProfile = function (data) {
     });
   };
 };
+
+export const addUser = function (userData) {
+  return function (dispatch) {
+    dispatch(loadingSet(true));
+    return axios.post(`${baseUrl}/users`, userData, {
+      headers: {
+        access_token: localStorage.access_token,
+      },
+    });
+  };
+};

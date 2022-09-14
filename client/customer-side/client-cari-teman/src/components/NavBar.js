@@ -21,10 +21,10 @@ export default function NavBar() {
                   <div>
                     <a
                       href="/"
-                      class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-dark text-decoration-none"
+                      className="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-dark text-decoration-none"
                     >
                       <svg
-                        class="bi me-2"
+                        className="bi me-2"
                         width="40"
                         height="32"
                         role="img"
@@ -45,7 +45,7 @@ export default function NavBar() {
                   </div>
                   <div style={{ padding: 10, marginLeft: 100 }}>
                     <button
-                      class="navbar-toggler"
+                      className="navbar-toggler"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#navbarsExample03"
@@ -58,17 +58,17 @@ export default function NavBar() {
                   </div>
                 </div>
                 <div
-                  className="collapse navbar-collapse d-flex justify-content-end"
+                  // className="collapse navbar-collapse d-flex justify-content-end"
                   // id="navbarSupportedContent"
-                  style={{ float: "buttom", "flex-grow": 0 }}
-                  class="collapse navbar-collapse"
+                  style={{ float: "buttom", flexGrow: 0 }}
+                  className="collapse navbar-collapse"
                   id="navbarsExample03"
                 >
-                  <ul class="nav col-12 col-lg-auto my-2 d-flex justify-content-center my-md-0 text-small navbar-nav me-auto mb-2 mb-lg-0">
+                  <ul className="nav col-12 col-lg-auto my-2 d-flex justify-content-center my-md-0 text-small navbar-nav me-auto mb-2 mb-lg-0">
                     <li className="nav-item">
                       <Link to="/" class="nav-link text-dark">
                         <svg
-                          class="bi d-block mx-auto mb-1"
+                          className="bi d-block mx-auto mb-1"
                           width="24"
                           height="24"
                         >
@@ -95,7 +95,7 @@ export default function NavBar() {
                       <li className="nav-item">
                         <Link to="/my-page" class="nav-link text-dark">
                           <svg
-                            class="bi d-block mx-auto mb-1"
+                            className="bi d-block mx-auto mb-1"
                             width="24"
                             height="24"
                           >
@@ -106,9 +106,9 @@ export default function NavBar() {
                       </li>
                     )}
                     <li className="nav-item">
-                      <a href="#" class="nav-link text-dark">
+                      <a href="#" className="nav-link text-dark">
                         <svg
-                          class="bi d-block mx-auto mb-1"
+                          className="bi d-block mx-auto mb-1"
                           width="24"
                           height="24"
                         >
@@ -134,7 +134,7 @@ export default function NavBar() {
                     <li className="nav-item">
                       <Link to="/register" class="nav-link text-dark">
                         <svg
-                          class="bi d-block mx-auto mb-1"
+                          className="bi d-block mx-auto mb-1"
                           width="24"
                           height="24"
                         >

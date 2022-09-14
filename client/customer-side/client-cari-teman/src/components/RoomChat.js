@@ -173,16 +173,16 @@ export default function RoomChat({ magnetDetail, magnetId }) {
                       />
 
                       <div
-                        class="p-3 ms-3"
+                        className="p-3 ms-3"
                         style={{
                           "border-radius": "15px",
                           "background-color": "rgba(57, 192, 237,.2)",
                         }}
                       >
-                        <p class="small mb-0">
+                        <p className="small mb-0">
                           <strong>{el.author}</strong>
                         </p>
-                        <p class="small mb-0">{el.chat}</p>
+                        <p className="small mb-0">{el.chat}</p>
                       </div>
                     </div> */}
                     </>
@@ -190,15 +190,15 @@ export default function RoomChat({ magnetDetail, magnetId }) {
                 })}
 
                 {/* ini chat kanan */}
-                {/* <div class="d-flex flex-row justify-content-end mb-4">
+                {/* <div className="d-flex flex-row justify-content-end mb-4">
                   <div
-                    class="p-3 me-3 border"
+                    className="p-3 me-3 border"
                     style={{
                       "border-radius": "15px",
                       "background-color": "#fbfbfb",
                     }}
                   >
-                    <p class="small mb-0">kaya pernah denger, yang mana sih?</p>
+                    <p className="small mb-0">kaya pernah denger, yang mana sih?</p>
                   </div>
                   <img
                     src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
@@ -240,11 +240,7 @@ export default function RoomChat({ magnetDetail, magnetId }) {
         </section>
       ) : (
         <div className="border rounded p-5">
-          <div
-            type="button"
-            className=""
-            onClick={joinGroupChat}
-          >
+          <div type="button" className="" onClick={joinGroupChat}>
             <img
               src="https://cdn.discordapp.com/attachments/1015235714780246077/1019615959448830114/livechatbutton.jpg"
               alt=""

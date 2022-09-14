@@ -1,10 +1,9 @@
 import { useNavigate, Link } from "react-router-dom";
 
-
 export default function TopBanner({ eventDetail }) {
-  const navigate = useNavigate()
-  function move(url){
-    navigate(url)
+  const navigate = useNavigate();
+  function move(url) {
+    navigate(url);
   }
   return (
     <>
@@ -17,7 +16,7 @@ export default function TopBanner({ eventDetail }) {
       </div>
       <div
         className="p-4 p-md-5 text-white"
-        style={{ backgroundColor: "#365E81"}}
+        style={{ backgroundColor: "#365E81" }}
       >
         <div className="row">
           <div
@@ -34,7 +33,7 @@ export default function TopBanner({ eventDetail }) {
             <div class="d-grid gap-2 mt-4">
               {/* <p>{eventDetail.eventHomePageLink}</p> */}
               <button
-                class="btn pt-3 px-5"
+                className="btn pt-3 px-5"
                 type="button"
                 style={{ backgroundColor: "#2e94d1", borderRadius: "25px" }}
                 // onClick={() => move(eventDetail.eventHomepageLink)}

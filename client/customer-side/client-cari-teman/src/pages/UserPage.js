@@ -17,7 +17,8 @@ import {
 } from "../store/action/requests";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
+// import EditMagnet from "../compDetailEvent/EditMagnet";
+import { addMagnets, detailMagnet } from "../store/action/magnets";
 const Swal = require("sweetalert2");
 
 export default function UserPage() {
@@ -293,6 +294,7 @@ export default function UserPage() {
                             <tbody>
                               {myMagnets.map((el, idx) => (
                                 <tr>
+                                  {/* <EditMagnet updateMagnet={el} /> */}
                                   <th scope="row">{idx + 1}</th>
                                   <td>{el.Event.name}</td>
                                   <td>
@@ -827,6 +829,15 @@ export default function UserPage() {
                         rem a. Sequi ipsum temporibus soluta minima error
                         doloremque ullam rerum optio quis, sunt est.
                       </p>
+
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#exampleModal"
+                      >
+                        Launch demo modal
+                      </button>
                     </div>
                   </div>
                 </div>

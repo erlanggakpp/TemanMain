@@ -108,6 +108,9 @@ async function acceptRequestAuthorization2(req, res, next) {
     if (+user_id !== targetRequest.Magnet.UserId) {
       throw { name: "acceptRequestUnauthorized" };
     }
+    if (targetRequest.Magnet.vacantParticipant === 0) {
+      throw { name: "magnetCurrentlyClosed" };
+    }
     req.targetMagnetId = targetRequest.Magnet.id;
 
     next();

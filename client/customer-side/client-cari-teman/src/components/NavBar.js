@@ -90,6 +90,20 @@ export default function NavBar() {
                       </a>
                     </li>
                     <li className="nav-item">
+                      <a>
+                        <Link to="/my-page" class="nav-link text-dark">
+                          <svg
+                            class="bi d-block mx-auto mb-1"
+                            width="24"
+                            height="24"
+                          >
+                            <CgProfile />
+                          </svg>
+                          My Page
+                        </Link>
+                      </a>
+                    </li>
+                    <li className="nav-item">
                       <a href="#" class="nav-link text-dark">
                         <svg
                           class="bi d-block mx-auto mb-1"

@@ -136,31 +136,46 @@ class RequestController {
 
     try {
       const { requestId } = req.params;
-      const editedRequest = await Request.update(
-        {
-          status: "Cancelled",
-        },
-        {
-          where: {
-            id: requestId,
+      const targetRequest = await Request.findByPk(requestId);
+      if (targetRequest.dataValues.status === "Not Accepted") {
+        const editedRequest = await Request.update(
+          {
+            status: "Cancelled",
           },
-          transaction: t,
-        }
-      );
-      const targetMagnet = await Magnet.findByPk(req.targetMagnetId);
-      //   console.log(targetMagnet);
-      const updateMagnet = await Magnet.update(
-        {
-          vacantParticipant: targetMagnet.vacantParticipant + 1,
-        },
-        {
-          where: {
-            id: req.targetMagnetId,
+          {
+            where: {
+              id: requestId,
+            },
+          }
+        );
+        res.status(200).json({ message: "Successfully cancelled invitation" });
+      } else if (targetRequest.dataValues.status === "Accepted") {
+        const editedRequest = await Request.update(
+          {
+            status: "Cancelled",
           },
-        }
-      );
-      await t.commit();
-      res.status(200).json({ message: "Successfully cancelled invitation" });
+          {
+            where: {
+              id: requestId,
+            },
+            transaction: t,
+          }
+        );
+        const targetMagnet = await Magnet.findByPk(req.targetMagnetId);
+        //   console.log(targetMagnet);
+        const updateMagnet = await Magnet.update(
+          {
+            vacantParticipant: targetMagnet.vacantParticipant + 1,
+          },
+          {
+            where: {
+              id: req.targetMagnetId,
+            },
+          }
+        );
+        await t.commit();
+        res.status(200).json({ message: "Successfully cancelled invitation" });
+      }
     } catch (error) {
       await t.rollback();
       next(error);

@@ -21,8 +21,6 @@ export default function DetailMagnets() {
   const [banner, setBanner] = useState([]);
   const { loggedUser } = useSelector((e) => e.users);
 
-  console.log(magnetDetail, "magnet deteail");
-  console.log(loggedUser, "LOGGED USER");
   useEffect(() => {
     dispatch(detailMagnet(params.magnetId))
       .then((data) => {
@@ -109,7 +107,6 @@ export default function DetailMagnets() {
               title: "Oops...",
               text: err.response.data.message,
             });
-            console.log(err.response.data.message, "<<err");
           })
           .finally(() => {
             dispatch(loadingSet(false));

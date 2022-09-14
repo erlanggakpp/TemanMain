@@ -73,7 +73,7 @@ export default function RoomChat({ magnetDetail, magnetId }) {
       access_token: localStorage.access_token,
     });
   };
-
+  console.log(messageList);
   const sendMessage = async (e) => {
     e.preventDefault();
     let messageContent = {
@@ -82,6 +82,7 @@ export default function RoomChat({ magnetDetail, magnetId }) {
         UserId: loggedUser.id,
         author: `${loggedUser.firstName} ${loggedUser.lastName}`,
         chat: chat,
+        profilePict: loggedUser.profilePict,
       },
       access_token: localStorage.access_token,
       magnetId: magnetId,
@@ -94,7 +95,6 @@ export default function RoomChat({ magnetDetail, magnetId }) {
     setOpenChat(false);
     socket.emit("leave_room", magnetId);
   };
-  console.log(messageList);
   return (
     <>
       {openChat ? (
@@ -137,7 +137,7 @@ export default function RoomChat({ magnetDetail, magnetId }) {
                             <p class="small mb-0">{el.chat}</p>
                           </div>
                           <img
-                            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
+                            src={el.User.profilePict}
                             alt="avatar 1"
                             style={{ width: "45px", height: "100%" }}
                           />
@@ -145,7 +145,7 @@ export default function RoomChat({ magnetDetail, magnetId }) {
                       ) : (
                         <div class="d-flex flex-row justify-content-start mb-4 p-3">
                           <img
-                            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                            src={el.User.profilePict}
                             alt="avatar 1"
                             style={{ width: "45px", height: "100%" }}
                           />

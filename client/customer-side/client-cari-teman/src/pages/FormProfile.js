@@ -1,8 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { editMyProfile, fetchMyProfile } from "../store/action/users";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+const Swal = require("sweetalert2");
 
 export default function FormProfile() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [user, setUser] = useState({
     address: "",
@@ -54,9 +57,20 @@ export default function FormProfile() {
     });
   };
   const formUser = (e) => {
-    console.log("masooookkkk");
     e.preventDefault();
-    dispatch(editMyProfile(user));
+    dispatch(editMyProfile(user))
+      .then((data) => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: data.data.message,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      })
+      .then(() => {
+        navigate("/");
+      });
   };
   return (
     <>

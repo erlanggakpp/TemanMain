@@ -13,7 +13,7 @@ class UserController {
       } else {
         const { data: users } = await axios({
           method: "GET",
-          url: "http://localhost:4001/public/users",
+          url: "http://localhost:4001/public",
         });
 
         await redis.set("user:users", JSON.stringify(users));

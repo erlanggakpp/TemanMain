@@ -4,15 +4,26 @@ async function ageAuthorizationBeforeCreateInvitation(req, res, next) {
   try {
     // console.log(req.baseUrl);
     // console.log("MASUK AUTH");0
-    const { target_user_age } = req.headers;
+    const { target_user_age, gender } = req.headers;
     const { magnetId } = req.params;
     const targetMagnet = await Magnet.findByPk(magnetId);
-    if (targetMagnet.ageRequirement > target_user_age) {
+    if (+targetMagnet.ageRequirement > +target_user_age) {
       if (req.baseUrl === "/invitations") {
         throw { name: "underage" };
       } else {
         throw { name: "underageReq" };
       }
+    } else if (
+      targetMagnet.specialRequirement !== "All gender" &&
+      gender !== targetMagnet.specialRequirement
+    ) {
+      // console.log(
+      //   targetMagnet.specialRequirement,
+      //   gender,
+      //   "<<<<<<<<<<<<<<<<<<<<"
+      // );
+      // console.log("masuk validasi inii");
+      throw { name: "genderFail" };
     } else {
       next();
     }

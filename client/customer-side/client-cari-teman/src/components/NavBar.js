@@ -66,7 +66,7 @@ export default function NavBar() {
                 >
                   <ul class="nav col-12 col-lg-auto my-2 d-flex justify-content-center my-md-0 text-small navbar-nav me-auto mb-2 mb-lg-0">
                     <li className="nav-item">
-                      <a href="#" class="nav-link text-dark">
+                      <Link to="/" class="nav-link text-dark">
                         <svg
                           class="bi d-block mx-auto mb-1"
                           width="24"
@@ -75,22 +75,24 @@ export default function NavBar() {
                           <FaHome />
                         </svg>
                         Home
-                      </a>
+                      </Link>
                     </li>
-                    <li className="nav-item">
-                      <a href="#" class="nav-link text-dark">
-                        <svg
-                          class="bi d-block mx-auto mb-1"
-                          width="24"
-                          height="24"
-                        >
-                          <CgProfile />
-                        </svg>
-                        Profile
-                      </a>
-                    </li>
-                    <li className="nav-item">
-                      <a>
+                    {localStorage.getItem("access_token") && (
+                      <li className="nav-item">
+                        <Link to="/profile" class="nav-link text-dark">
+                          <svg
+                            class="bi d-block mx-auto mb-1"
+                            width="24"
+                            height="24"
+                          >
+                            <CgProfile />
+                          </svg>
+                          Profile
+                        </Link>
+                      </li>
+                    )}
+                    {localStorage.getItem("access_token") && (
+                      <li className="nav-item">
                         <Link to="/my-page" class="nav-link text-dark">
                           <svg
                             class="bi d-block mx-auto mb-1"
@@ -101,8 +103,8 @@ export default function NavBar() {
                           </svg>
                           My Page
                         </Link>
-                      </a>
-                    </li>
+                      </li>
+                    )}
                     <li className="nav-item">
                       <a href="#" class="nav-link text-dark">
                         <svg
@@ -115,20 +117,22 @@ export default function NavBar() {
                         About
                       </a>
                     </li>
+                    {!localStorage.getItem("access_token") && (
+                      <li className="nav-item">
+                        <Link to="/login" class="nav-link text-dark">
+                          <svg
+                            class="bi d-block mx-auto mb-1"
+                            width="24"
+                            height="24"
+                          >
+                            <CgLogIn />
+                          </svg>
+                          Login
+                        </Link>
+                      </li>
+                    )}
                     <li className="nav-item">
-                      <a href="#" class="nav-link text-dark">
-                        <svg
-                          class="bi d-block mx-auto mb-1"
-                          width="24"
-                          height="24"
-                        >
-                          <CgLogIn />
-                        </svg>
-                        Login
-                      </a>
-                    </li>
-                    <li className="nav-item">
-                      <a href="#" class="nav-link text-dark">
+                      <Link to="/register" class="nav-link text-dark">
                         <svg
                           class="bi d-block mx-auto mb-1"
                           width="24"
@@ -137,20 +141,22 @@ export default function NavBar() {
                           <SiGnuprivacyguard />
                         </svg>
                         Register
-                      </a>
+                      </Link>
                     </li>
-                    <li className="nav-item">
-                      <a href="#" class="nav-link text-dark">
-                        <svg
-                          class="bi d-block mx-auto mb-1"
-                          width="24"
-                          height="24"
-                        >
-                          <CgLogOut />
-                        </svg>
-                        Logout
-                      </a>
-                    </li>
+                    {localStorage.getItem("access_token") && (
+                      <li className="nav-item" onClick={logout}>
+                        <a class="nav-link text-dark">
+                          <svg
+                            class="bi d-block mx-auto mb-1"
+                            width="24"
+                            height="24"
+                          >
+                            <CgLogOut />
+                          </svg>
+                          Logout
+                        </a>
+                      </li>
+                    )}
                   </ul>
                 </div>
               </div>

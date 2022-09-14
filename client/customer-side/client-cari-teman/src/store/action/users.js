@@ -35,6 +35,7 @@ export const fetchMyProfile = function () {
         },
       })
       .then((data) => {
+        console.log(data.data, " <<<<<<<<<<<<<<<<<<<<<<");
         dispatch({
           type: logged_user,
           payload: data.data,
@@ -45,7 +46,6 @@ export const fetchMyProfile = function () {
 };
 
 export const editMyProfile = function (data) {
-  console.log(data, "masook");
   return function (dispatch) {
     dispatch(loadingSet(true));
     return axios.put(`${baseUrl}/users/my-profil`, data, {

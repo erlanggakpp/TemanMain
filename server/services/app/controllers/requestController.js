@@ -51,7 +51,6 @@ class RequestController {
           id: magnetId,
         },
       });
-      console.log(targetMagnet, magnetId, "======================");
       res.status(201).json({
         message: "Successfully created request",
         magnet: targetMagnet,
@@ -113,6 +112,18 @@ class RequestController {
       );
       const targetMagnet = await Magnet.findByPk(req.targetMagnetId);
       // console.log(targetMagnet.vacantParticipant, "target controller");
+      if (targetMagnet.dataValues.vacantParticipant === 1) {
+        const updateMagnet = await Magnet.update(
+          {
+            status: false,
+          },
+          {
+            where: {
+              id: req.targetMagnetId,
+            },
+          }
+        );
+      }
 
       const updateMagnet = await Magnet.update(
         {
@@ -163,6 +174,19 @@ class RequestController {
         );
         const targetMagnet = await Magnet.findByPk(req.targetMagnetId);
         //   console.log(targetMagnet);
+        if (targetMagnet.dataValues.vacantParticipant === 0) {
+          const updateMagnet = await Magnet.update(
+            {
+              status: true,
+            },
+            {
+              where: {
+                id: req.targetMagnetId,
+              },
+            }
+          );
+        }
+
         const updateMagnet = await Magnet.update(
           {
             vacantParticipant: targetMagnet.vacantParticipant + 1,

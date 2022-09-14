@@ -31,7 +31,6 @@ function LoginPage() {
         return dispatch(fetchMyProfile());
       })
       .then((data) => {
-        console.log(data);
         navigate("/");
       })
       .catch((error) => {

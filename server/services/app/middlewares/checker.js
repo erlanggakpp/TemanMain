@@ -25,7 +25,6 @@ async function magnetChecker(req, res, next) {
         id: magnetId,
       },
     });
-    console.log(targetMagnet, ":INIII TARGETT");
     if (!targetMagnet) {
       throw { name: "magnetNotFound" };
     } else {
@@ -115,6 +114,17 @@ async function alreadyMadeInvitation(req, res, next) {
     next(error);
   }
 }
+async function createMagnetCheker(req, res, next) {
+  try {
+    const { participant, vacantParticipant } = req.body;
+    if (+vacantParticipant >= +participant) {
+      throw { name: "invalidVacant" };
+    }
+    next();
+  } catch (error) {
+    next(error);
+  }
+}
 
 module.exports = {
   eventChecker,
@@ -124,4 +134,5 @@ module.exports = {
   alreadyMadeRequest,
   alreadyMadeInvitation,
   requestChecker,
+  createMagnetCheker,
 };

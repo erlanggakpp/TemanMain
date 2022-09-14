@@ -50,6 +50,9 @@ export const acceptRequestFromStore = function (id) {
       )
       .then((data) => {
         return data;
+      })
+      .catch((err) => {
+        throw err;
       });
   };
 };
@@ -69,6 +72,9 @@ export const rejectRequestFromStore = function (id) {
       )
       .then((data) => {
         return data;
+      })
+      .catch((err) => {
+        throw err;
       });
   };
 };

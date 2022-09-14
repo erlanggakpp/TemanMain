@@ -274,6 +274,8 @@ class UserController {
       const findUser = await User.findByPk(+id, {
         attributes: { exclude: ["createdAt", "updatedAt", "password"] },
       });
+      const age = AgeFormat(findUser.birthdate);
+      findUser.dataValues.age = age;
       res.status(200).json(findUser);
     } catch (error) {
       next(error);

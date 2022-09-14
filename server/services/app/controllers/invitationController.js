@@ -73,6 +73,18 @@ class InvitationController {
       );
       const targetMagnet = await Magnet.findByPk(req.targetMagnetId);
       //   console.log(targetMagnet);
+      if (targetMagnet.dataValues.vacantParticipant === 1) {
+        const updateMagnet = await Magnet.update(
+          {
+            status: false,
+          },
+          {
+            where: {
+              id: req.targetMagnetId,
+            },
+          }
+        );
+      }
       const updateMagnet = await Magnet.update(
         {
           vacantParticipant: targetMagnet.vacantParticipant - 1,
@@ -107,6 +119,18 @@ class InvitationController {
       );
       const targetMagnet = await Magnet.findByPk(req.targetMagnetId);
       //   console.log(targetMagnet);
+      if (targetMagnet.dataValues.vacantParticipant === 0) {
+        const updateMagnet = await Magnet.update(
+          {
+            status: true,
+          },
+          {
+            where: {
+              id: req.targetMagnetId,
+            },
+          }
+        );
+      }
       const updateMagnet = await Magnet.update(
         {
           vacantParticipant: targetMagnet.vacantParticipant + 1,

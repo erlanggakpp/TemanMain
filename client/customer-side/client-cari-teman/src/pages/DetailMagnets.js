@@ -10,32 +10,62 @@ import { addRequest } from "../store/action/requests";
 const Swal = require("sweetalert2");
 
 export default function DetailMagnets() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const params = useParams();
   const dispatch = useDispatch();
   const { loading } = useSelector((e) => e.events);
   const { magnetDetail } = useSelector((e) => e.magnets);
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(0);
+  const [flag, setFlag] = useState(false);
   const [banner, setBanner] = useState([]);
   const { loggedUser } = useSelector((e) => e.users);
 
   console.log(magnetDetail, "magnet deteail");
-  // console.log(loggedUser, "LOGGED USER");
+  console.log(loggedUser, "LOGGED USER");
   useEffect(() => {
-    dispatch(fetchAllUsers())
+    dispatch(detailMagnet(params.magnetId))
+      .then((data) => {
+        if (loggedUser.id === data.UserId) {
+          setFlag(true);
+        } else {
+          const targetParticipant = data.Participant.find(
+            (el) => el.UserId === loggedUser.id
+          );
+          if (targetParticipant) {
+            setFlag(true);
+          }
+        }
+        return dispatch(fetchAllUsers());
+      })
       .then((data) => {
         setUsers(data.data);
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        dispatch(loadingSet(false));
       });
   }, []);
-  useEffect(() => {
-    dispatch(detailMagnet(params.magnetId)).finally(() =>
-      dispatch(loadingSet(false))
-    );
-  }, []);
+
+  // useEffect(() => {
+  //   if (loggedUser.id === magnetDetail.UserId) {
+  //     setFlag(true);
+  //   } else {
+  //     const targetParticipant = magnetDetail.Participant.find(
+  //       (el) => el.UserId === loggedUser.id
+  //     );
+  //     if (targetParticipant) {
+  //       setFlag(true);
+  //     }
+  //   }
+  // }, []);
+  // useEffect(() => {
+  //   dispatch(detailMagnet(params.magnetId)).finally(() =>
+  //     dispatch(loadingSet(false))
+  //   );
+  // }, []);
 
   const [requestForm, setRequestForm] = useState({
     EventId: params.id,
@@ -107,9 +137,10 @@ export default function DetailMagnets() {
   };
 
   const joinVideoCall = async () => {
-    const channel = `Magnet${magnetDetail.id}`
-    await dispatch(createToken({ channel }))
-    navigate("/video-call")
+    const channel = `Magnet${magnetDetail.id}`;
+    localStorage.setItem("channelName", channel);
+    await dispatch(createToken({ channel }));
+    navigate("/video-call");
   };
 
   // console.log(magnetDetail, "ajsdjpasdjapsdjpasdj")
@@ -138,7 +169,7 @@ export default function DetailMagnets() {
               <div className="row  justify-content-center">
                 <div className="col-md-12  p-0" style={{ height: "300px" }}>
                   <img
-                    src={banner}
+                    src={magnetDetail.Event.image}
                     alt=""
                     className="img-fill card-img-top h-100 p-0"
                     style={{ objectFit: "cover" }}
@@ -180,10 +211,9 @@ export default function DetailMagnets() {
                         {/* {magnetDetail.specialRequirement} */}
                         <div className="row">
                           <div className="col-8  h-100 w">
-                            {" "}
                             <h3 className="display-6">
                               <strong>
-                                {magnetDetail.User.firstName}
+                                {magnetDetail.User.firstName}{" "}
                                 {magnetDetail.User.lastName}
                               </strong>
                             </h3>
@@ -233,121 +263,169 @@ export default function DetailMagnets() {
                       </p>
                       <br />
                       <br />
-                      <RoomChat
-                        magnetId={magnetDetail.id}
-                        magnetDetail={magnetDetail}
-                      />
+                      {flag === true && (
+                        <RoomChat
+                          magnetId={magnetDetail.id}
+                          magnetDetail={magnetDetail}
+                        />
+                      )}
                       <br />
                       <br />
-                      <div className="border p-5 rounded">
-                        <div
-                          type="button"
-                          className="w-100 bg-warning mt-10"
-                          onClick={joinVideoCall}
-                        >
-                          <img
-                            src="https://cdn.discordapp.com/attachments/1015235714780246077/1019615959201349652/vidcall.jpg"
-                            alt=""
-                            className="w-100"
-                          />
+                      {flag === true && (
+                        <div className="border p-5 rounded">
+                          <div
+                            type="button"
+                            className="w-100 bg-warning mt-10"
+                            onClick={joinVideoCall}
+                          >
+                            <img
+                              src="https://cdn.discordapp.com/attachments/1015235714780246077/1019615959201349652/vidcall.jpg"
+                              alt=""
+                              className="w-100"
+                            />
+                          </div>
                         </div>
-                      </div>
+                      )}
                     </div>
                     <div className="col-md-4">
                       <div className="position-sticky" style={{ top: "2rem" }}>
                         <div className="p-4 mb-3 rounded">
-                          <div className="mb-5 border rounded mt-2">
-                            <h4 className="bg-secondary text-white  p-3">
-                              request for joining
-                            </h4>
-                            <div className="d-flex justify-content-center align-items-center">
-                              <h4 className="fst-italic">Available</h4>
-                              <img
-                                src="https://cdn.discordapp.com/attachments/1015235714780246077/1019603591872401509/goyangjos.gif"
-                                alt=""
-                                className="w-25 p-2"
-                              />
-                            </div>
-                          </div>
-                          <div className="mb-5 border rounded mt-2">
-                            <h4 className="bg-secondary text-white  p-3">
-                              request for joining
-                            </h4>
-                            <div className="d-flex justify-content-center align-items-center">
-                              <h4 className="fst-italic">Not Available</h4>
-                              <img
-                                src="https://media.baamboozle.com/uploads/images/488165/1634770703_15917_gif-url.gif"
-                                alt=""
-                                className="w-25 p-2"
-                              />
-                            </div>
-                          </div>
-
-                          <div className="border rounded p-3">
-                            <p className="mb-0">
-                              <h4 className="mb-4">Total Participant :</h4>
-                              <div
-                                style={{ padding: 15, borderRadius: "5px" }}
-                                className="bg-warning"
-                              >
-                                <strong style={{ fontSize: "24px" }}>
-                                  {magnetDetail.vacantParticipant} /{" "}
-                                  {magnetDetail.participant}
-                                </strong>
-                              </div>
-                            </p>
-                            <div>
-                              <button
-                                type="button"
-                                class="btn btn-primary my-2  w-100"
-                                data-bs-toggle="modal"
-                                data-bs-target="#exampleModal"
-                                style={{ padding: 15, borderRadius: "5px" }}
-                              >
-                                request to join
-                              </button>
-                            </div>
-                          </div>
-                          <div className="mt-5 border pt-3 rounded">
-                            <img
-                              src="https://cdn.discordapp.com/attachments/1015235714780246077/1019591312774803550/doWantTojoin.jpg"
-                              alt=""
-                              className="w-100"
-                            />
-                            <div className="p-2 pt-0">
-                              <form
-                                onSubmit={(e) => inviteUser(e)}
-                                className="d-flex"
-                              >
-                                <input
-                                  type="text"
-                                  list="data"
-                                  class="form-control"
-                                  placeholder="Type to search..."
-                                  id="exampleDataList"
-                                  onChange={(e) =>
-                                    setSelectedUser(e.target.value)
-                                  }
+                          {magnetDetail.vacantParticipant !== 0 && (
+                            <div className="mb-5 border rounded mt-2">
+                              <h4 className="bg-secondary text-white  p-3">
+                                request for joining
+                              </h4>
+                              <div className="d-flex justify-content-center align-items-center">
+                                <h4 className="fst-italic">Available</h4>
+                                <img
+                                  src="https://cdn.discordapp.com/attachments/1015235714780246077/1019603591872401509/goyangjos.gif"
+                                  alt=""
+                                  className="w-25 p-2"
                                 />
-                                <datalist id="data">
-                                  {users.map((item, key) => (
-                                    <option key={key} value={item.id}>
-                                      {item.email}
-                                    </option>
-                                  ))}
-                                </datalist>
-                                <button
-                                  type="submit"
-                                  class="btn btn-dark text-white"
-                                >
-                                  Send
-                                </button>
-                              </form>
+                              </div>
                             </div>
-                          </div>
-                        </div>
+                          )}
+                          {magnetDetail.vacantParticipant === 0 && (
+                            <div className="mb-5 border rounded mt-2">
+                              <h4 className="bg-secondary text-white  p-3">
+                                request for joining
+                              </h4>
+                              <div className="d-flex justify-content-center align-items-center">
+                                <h4 className="fst-italic">Not Available</h4>
+                                <img
+                                  src="https://media.baamboozle.com/uploads/images/488165/1634770703_15917_gif-url.gif"
+                                  alt=""
+                                  className="w-25 p-2"
+                                />
+                              </div>
+                            </div>
+                          )}
 
-                        <div className="p-4">
+                          <p className="mb-0">
+                            <h4 className="mb-4">Total Participant :</h4>
+                            <div
+                              style={{ padding: 15, borderRadius: "5px" }}
+                              className="bg-warning"
+                            >
+                              <strong style={{ fontSize: "24px" }}>
+                                {magnetDetail.vacantParticipant} /{" "}
+                                {magnetDetail.participant}
+                              </strong>
+                            </div>
+                          </p>
+                          <div>
+                            <button
+                              type="button"
+                              class="btn btn-primary my-2  w-100"
+                              data-bs-toggle="modal"
+                              data-bs-target="#exampleModal"
+                              style={{ padding: 15, borderRadius: "5px" }}
+                            >
+                              request to join
+                            </button>
+                          </div>
+                          {magnetDetail.UserId === loggedUser.id && (
+                            <>
+                              <div className="mt-5 border pt-3 rounded">
+                                <img
+                                  src="https://cdn.discordapp.com/attachments/1015235714780246077/1019591312774803550/doWantTojoin.jpg"
+                                  alt=""
+                                  className="w-100"
+                                />
+                                <div className="p-2 pt-0">
+                                  <form
+                                    onSubmit={(e) => inviteUser(e)}
+                                    className="d-flex"
+                                  >
+                                    <input
+                                      type="text"
+                                      list="data"
+                                      class="form-control"
+                                      placeholder="Type to search..."
+                                      id="exampleDataList"
+                                      onChange={(e) =>
+                                        setSelectedUser(e.target.value)
+                                      }
+                                    />
+                                    <datalist id="data">
+                                      {users.map((item, key) => (
+                                        <option key={key} value={item.id}>
+                                          {item.email}
+                                        </option>
+                                      ))}
+                                    </datalist>
+                                    <button
+                                      type="submit"
+                                      class="btn btn-dark text-white"
+                                    >
+                                      Send
+                                    </button>
+                                  </form>
+                                </div>
+                              </div>
+
+                              {/* <h3>invite : </h3>
+                              <div>
+                                <form
+                                  onSubmit={(e) => inviteUser(e)}
+                                  className="d-flex"
+                                >
+                                  <input
+                                    type="text"
+                                    list="data"
+                                    class="form-control"
+                                    placeholder="Type to search..."
+                                    id="exampleDataList"
+                                    onChange={(e) =>
+                                      setSelectedUser(e.target.value)
+                                    }
+                                  />
+                                  <datalist id="data">
+                                    {users.map((item, key) => (
+                                      <option key={key} value={item.id}>
+                                        {item.email}
+                                      </option>
+                                    ))}
+                                  </datalist>
+                                  <button
+                                    type="submit"
+                                    class="btn btn-dark text-white"
+                                  >
+                                    Send
+                                  </button>
+                                </form>
+                              </div> */}
+                            </>
+                          )}
+                        </div>
+                        {magnetDetail.Participant.length === 0 && (
+                          <h4 className="fst-italic">
+                            There are no TemanMaine-ers that particpated on this
+                            magnet yet
+                          </h4>
+                        )}
+
+                        {magnetDetail.Participant.length !== 0 && (
                           <table class="table">
                             <thead>
                               <tr>
@@ -361,37 +439,22 @@ export default function DetailMagnets() {
                               </tr>
                             </thead>
                             <tbody>
-                              <tr>
-                                <th
-                                  scope="row"
-                                  className="bg-secondary text-white"
-                                >
-                                  1
-                                </th>
-                                <td>Mark</td>
-                              </tr>
-                              <tr>
-                                <th
-                                  scope="row"
-                                  className="bg-secondary text-white"
-                                >
-                                  2
-                                </th>
-                                <td>Jacob</td>
-                              </tr>
-                              <tr>
-                                <th
-                                  scope="row"
-                                  className="bg-secondary text-white"
-                                >
-                                  3
-                                </th>
-
-                                <td>Tomi</td>
-                              </tr>
+                              {magnetDetail.Participant.map((el, idx) => (
+                                <tr>
+                                  <th
+                                    scope="row"
+                                    className="bg-secondary text-white"
+                                  >
+                                    {idx + 1}
+                                  </th>
+                                  <td>
+                                    {el.User.firstName} {el.User.lastName}
+                                  </td>
+                                </tr>
+                              ))}
                             </tbody>
                           </table>
-                        </div>
+                        )}
                       </div>
                     </div>
                   </div>

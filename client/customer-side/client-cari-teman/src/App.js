@@ -11,9 +11,22 @@ import FormProfile from "./pages/FormProfile";
 import UserPage from "./pages/UserPage";
 import LoginPage from "./pages/LoginPage";
 import Footer from "./components/Footer";
-import VideoCall from './pages/VideoCall';
+import VideoCall from "./pages/VideoCall";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { fetchMyProfile } from "./store/action/users";
+import { createToken } from "./store/action/magnets";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (localStorage.getItem("access_token")) {
+      dispatch(fetchMyProfile());
+    }
+    if (localStorage.getItem("channelName")) {
+      dispatch(createToken({ channel: localStorage.getItem("channelName") }));
+    }
+  }, []);
   return (
     <div className="App">
       <div className="container-fluid">

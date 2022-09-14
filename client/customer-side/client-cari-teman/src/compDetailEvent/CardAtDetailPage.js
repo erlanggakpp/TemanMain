@@ -33,55 +33,59 @@ export default function CardAtDetailPage({ magnets }) {
               />
               {/* <p>{JSON.stringify(magnets)}</p> */}
             </div>
+            {magnets.length === 0 && <h1>Sorry, there's no open magnet</h1>}
             <ModalMagnets />
           </div>
-          {magnets.map((el) => {
-            return (
-              <div className="col-md-3" key={el.id}>
-                <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                  <div className="col p-4 d-flex flex-column position-static m-2">
-                    <div className=" d-flex justify-content-center">
-                      <img
-                        src={el.User.profilePict}
-                        alt=""
-                        className="img-fluid rounded-circle h-100 p-4"
-                      />
-                    </div>
-                    <h3 className="mb-0">
-                      {el.User.firstName} {el.User.lastName}
-                    </h3>
-                    <div className="mb-1 text-muted">{el.corfirmationDate}</div>
-                    <p className="card-text mb-auto">
-                      {" "}
-                      participants :{" "}
-                      <strong>
-                        {el.vacantParticipant} / {el.participant}
+          {magnets.length !== 0 &&
+            magnets.map((el) => {
+              return (
+                <div className="col-md-3" key={el.id}>
+                  <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div className="col p-4 d-flex flex-column position-static m-2">
+                      <div className=" d-flex justify-content-center">
+                        <img
+                          src={el.User.profilePict}
+                          alt=""
+                          className="img-fluid rounded-circle h-100 p-4"
+                        />
+                      </div>
+                      <h3 className="mb-0">
+                        {el.User.firstName} {el.User.lastName}
+                      </h3>
+                      <div className="mb-1 text-muted">
+                        {el.corfirmationDate}
+                      </div>
+                      <p className="card-text mb-auto">
+                        {" "}
+                        participants :{" "}
+                        <strong>
+                          {el.vacantParticipant} / {el.participant}
+                        </strong>
+                      </p>
+                      <strong className="d-inline-block mb-2 text-primary">
+                        {el.specialRequirement}
                       </strong>
-                    </p>
-                    <strong className="d-inline-block mb-2 text-primary">
-                      {el.specialRequirement}
-                    </strong>
-                    <Link
-                      to={`magnets/${el.id}`}
-                      href="#"
-                      className="stretched-link"
-                    ></Link>
-                    <div>
-                      <button
-                        type="button"
-                        className="btn w-100 text-white mt-3"
-                        data-bs-toggle="modal"
-                        data-bs-target="#exampleModal"
-                        style={{ backgroundColor: "#2e94d1" }}
-                      >
-                        <h6 style={{ color: "#white" }}>click me!</h6>
-                      </button>
+                      <Link
+                        to={`magnets/${el.id}`}
+                        href="#"
+                        className="stretched-link"
+                      ></Link>
+                      <div>
+                        <button
+                          type="button"
+                          className="btn w-100 text-white mt-3"
+                          data-bs-toggle="modal"
+                          data-bs-target="#exampleModal"
+                          style={{ backgroundColor: "#2e94d1" }}
+                        >
+                          <h6 style={{ color: "#white" }}>click me!</h6>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
         </div>
       )}
     </>

@@ -32,14 +32,15 @@ export default function HomePage() {
 
   useEffect(() => {
     dispatch(fetchMagnet())
-      .then(() => {
-        setDisplayedMagnets(magnets);
+      .then((data) => {
+        console.log(data, "<<<<<<<<<<<<");
+        setDisplayedMagnets(data);
       })
       .finally(() => {
         dispatch(loadingSet(false));
       });
   }, []);
-  console.log(displayedMagnets, "masoook");
+  // console.log(displayedMagnets, "masoook");
   useEffect(() => {
     dispatch(fetchEvent())
       .then((data) => {
@@ -105,12 +106,13 @@ export default function HomePage() {
     setDisplayedMagnets(res);
   };
   return (
-    <><div className='container-fluid'>
-    <div >
+    <>
+      <div className="container-fluid">
+        <div>
           <div className="row">
             <div className="col-12 mt-5">
               <div
-                style={{ height: '150px', backgroundColor: '#2e94d1'}}
+                style={{ height: "150px", backgroundColor: "#2e94d1" }}
                 className="d-flex justify-content-center mb-4 mt-4"
               >
                 <img
@@ -119,8 +121,22 @@ export default function HomePage() {
                   className="img-fluid"
                 />
               </div>
-              <CarouselComp />
               {/* <CategoryCarou categoryFiltering={categoryFiltering} /> */}
+              <div className="container">
+                <img
+                  src="https://cdn.discordapp.com/attachments/1015235714780246077/1019508603910103050/fixBanner_2.jpg"
+                  alt=""
+                  className="w-100"
+                />
+              </div>
+              <CarouselComp />
+              <div className="container mt-5">
+                <img
+                  src="https://cdn.discordapp.com/attachments/956894472120205352/1019499617710252093/stipevent.jpg"
+                  alt=""
+                  className="w-100"
+                />
+              </div>
             </div>
           </div>
         </div>

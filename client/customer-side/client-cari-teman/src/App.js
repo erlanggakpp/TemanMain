@@ -15,8 +15,22 @@ import RegisterPage from "./pages/RegisterPage";
 import ProtectedLogin from "./components/ProtectedLogin";
 import ProtectedUser from "./components/ProtectedUser";
 import EditMagnet from "./compDetailEvent/EditMagnet";
+import VideoCall from "./pages/VideoCall";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { fetchMyProfile } from "./store/action/users";
+import { createToken } from "./store/action/magnets";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (localStorage.getItem("access_token")) {
+      dispatch(fetchMyProfile());
+    }
+    if (localStorage.getItem("channelName")) {
+      dispatch(createToken({ channel: localStorage.getItem("channelName") }));
+    }
+  }, []);
   return (
     <div className="App">
       <div className="container-fluid">
@@ -71,6 +85,14 @@ function App() {
             <ProtectedLogin>
               <RegisterPage />
             </ProtectedLogin>
+          }
+        />
+        <Route
+          path="video-call"
+          element={
+            <ProtectedUser>
+              <VideoCall />
+            </ProtectedUser>
           }
         />
       </Routes>

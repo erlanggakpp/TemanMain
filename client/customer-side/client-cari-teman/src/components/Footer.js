@@ -1,10 +1,21 @@
 export default function Footer() {
   return (
     <>
-      <div className="container" style={{ marginTop: "100px" }}>
-        <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 my-5 border-top">
-          <p className="col-md-4 mb-0 text-muted">
-            copyright © 2022 - TemanMain
+      <div
+        class="container "
+        style={{
+          marginTop: "100px",
+          marginBottom: "50px",
+          backgroundColor: "#F8C456",
+          height: "150px",
+        }}
+      >
+        <footer
+          class="d-flex flex-wrap justify-content-between align-items-center  my-5 border-top"
+          style={{ paddingTop: "50px" }}
+        >
+          <p class="col-md-4 mb-0 text-light">
+            <strong>copyright © 2022 - TemanMain</strong>
           </p>
 
           <a
@@ -19,30 +30,33 @@ export default function Footer() {
             />
           </a>
 
-          <ul className="nav col-md-4 justify-content-end">
-            <li className="nav-item">
-              <a href="#" className="nav-link px-2 text-muted">
-                Home
+          <ul
+            class="nav col-md-4 justify-content-end"
+            style={{ paddingRight: "20px" }}
+          >
+            <li class="nav-item">
+              <a href="#" class="nav-link px-2 text-white">
+                <strong>Home</strong>
               </a>
             </li>
-            <li className="nav-item">
-              <a href="#" className="nav-link px-2 text-muted">
-                Features
+            <li class="nav-item">
+              <a href="#" class="nav-link px-2 text-white">
+                <strong>Features</strong>
               </a>
             </li>
-            <li className="nav-item">
-              <a href="#" className="nav-link px-2 text-muted">
-                Pricing
+            <li class="nav-item">
+              <a href="#" class="nav-link px-2 text-white">
+                <strong>Features</strong>
               </a>
             </li>
-            <li className="nav-item">
-              <a href="#" className="nav-link px-2 text-muted">
-                FAQs
+            <li class="nav-item">
+              <a href="#" class="nav-link px-2 text-white">
+                <strong>FAQs</strong>
               </a>
             </li>
-            <li className="nav-item">
-              <a href="#" className="nav-link px-2 text-muted">
-                About
+            <li class="nav-item">
+              <a href="#" class="nav-link px-2 text-white">
+                <strong>Features</strong>
               </a>
             </li>
           </ul>

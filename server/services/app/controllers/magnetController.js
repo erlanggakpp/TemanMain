@@ -140,6 +140,9 @@ class MagnetController {
         where: {
           id: +magnetId,
         },
+        include: {
+          model: Event,
+        },
       });
       const targetRequests = await Request.findAll({
         where: {
@@ -160,7 +163,6 @@ class MagnetController {
       targetInvitations.forEach((el) => {
         magnet.dataValues.Participant.push(el);
       });
-
       res.status(200).json(magnet);
     } catch (error) {
       // console.log(error);

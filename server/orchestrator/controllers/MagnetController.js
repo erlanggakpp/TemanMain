@@ -76,7 +76,6 @@ class MagnetController {
         method: "GET",
         url: "http://localhost:4002/magnets/" + magnetId,
       });
-      //   console.log(magnet);
       let usersCache = await redis.get("user:users");
       if (usersCache) {
         usersCache = JSON.parse(usersCache);

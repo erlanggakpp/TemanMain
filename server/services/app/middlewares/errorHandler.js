@@ -7,10 +7,19 @@ function errorHandler(err, req, res, next) {
     return res.status(400).json({ message: err.errors[0].message });
   } else if (err.name === "magnetsNotExist") {
     return res.status(400).json({ message: "Can't find magnet list" });
+  } else if (err.name === "invalidVacant") {
+    return res.status(400).json({
+      message:
+        "Number of vacant participant cannot be higher than participant number",
+    });
   } else if (err.name === "magnetCurrentlyClosed") {
     return res
       .status(400)
       .json({ message: "There is no empty slot for this magnet" });
+  } else if (err.name === "genderFail") {
+    return res
+      .status(400)
+      .json({ message: "You do not pass gender requirement" });
   } else if (err.name === "alreadyAcceptedInvitation") {
     return res.status(400).json({ message: "Invitation already accepted" });
   } else if (err.name === "alreadyAcceptedRequest") {

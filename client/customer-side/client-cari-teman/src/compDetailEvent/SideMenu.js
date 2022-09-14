@@ -31,15 +31,22 @@ export default function SideMenu({ toSide }) {
       ) : (
         <div className="col-md-4">
           <div className="position-sticky" style={{ top: "2rem" }}>
-            <div className="p-4 mt-4  rounded">
-              <h5 className="">Create Magnets</h5>
+            <div className="p-4  rounded" style={{ marginTop: "68px" }}>
+              {/* <h5 className="">Create Magnets</h5> */}
+              <div className="div">
+                <img
+                  src="https://cdn.discordapp.com/attachments/1015235714780246077/1019544347768786944/createMagnets.jpg"
+                  alt=""
+                  className="w-100"
+                />
+              </div>
 
               <button
                 type="button"
-                className="btn text-primary w-100 mt-2"
-                data-bs-toggle="modal1"
+                className="btn text-white w-100 mt-2"
+                data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
-                style={{ backgroundColor: "#EAF6F6" }}
+                style={{ backgroundColor: "#F8C456" }}
               >
                 <h3>+ magnets</h3>
               </button>
@@ -76,19 +83,30 @@ export default function SideMenu({ toSide }) {
                 <tbody>
                   <tr>
                     <td>Date</td>
-                    <th className="bg-secondary text-white">
+                    <th
+                      className="text-white"
+                      style={{ backgroundColor: "#23496D" }}
+                    >
                       {toSide.eventDate.toLocaleString().slice(0, 10)}
                     </th>
                   </tr>
                   <tr>
                     <td>Duration</td>
-                    <th className="bg-secondary text-white">
+                    <th
+                      className=" text-white"
+                      style={{ backgroundColor: "#23496D" }}
+                    >
                       {toSide.eventDuration}
                     </th>
                   </tr>
                   <tr>
                     <td>Price</td>
-                    <th className="bg-secondary text-white">{toSide.price}</th>
+                    <th
+                      className=" text-white"
+                      style={{ backgroundColor: "#23496D" }}
+                    >
+                      {toSide.price}
+                    </th>
                   </tr>
                 </tbody>
               </table>

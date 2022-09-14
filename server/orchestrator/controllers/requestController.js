@@ -6,7 +6,7 @@ class RequestController {
   static async createRequest(req, res) {
     try {
       const { eventId, magnetId } = req.params;
-      const { id: user_id } = req.user;
+      const { id: user_id, age, gender } = req.user;
       const { requestDescription } = req.body;
       const { access_token } = req.headers;
       const { data } = await axios({
@@ -17,6 +17,8 @@ class RequestController {
         },
         headers: {
           user_id: user_id,
+          target_user_age: age,
+          gender: gender,
         },
       });
       const targetUserId = data.magnet.UserId;

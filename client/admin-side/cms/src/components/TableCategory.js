@@ -51,7 +51,6 @@ export default function TableCategory() {
                                     return (
                                         <CategoryTableRow key={category.id} category={category} i={i} />
                                     )
-
                                 })
                             }
                         </tbody>

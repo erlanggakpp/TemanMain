@@ -79,24 +79,28 @@ export default function RoomChat({ magnetDetail, magnetId }) {
     <>
       {openChat ? (
         <section style={{ "background-color": "white" }}>
-          <div class="col-12">
-            <div class="card" id="chat1" style={{ "border-radius": "15px" }}>
+          <div className="col-12">
+            <div
+              className="card"
+              id="chat1"
+              style={{ "border-radius": "15px" }}
+            >
               <div
-                class="card-header d-flex justify-content-between align-items-center p-3 bg-primary text-white border-bottom-0"
+                className="card-header d-flex justify-content-between align-items-center p-3 bg-primary text-white border-bottom-0"
                 style={{
                   "border-top-left-radius": "15px",
                   "border-top-right-radius": "15px",
                 }}
               >
-                <i class="fas fa-angle-left"></i>
-                <p class="mb-0 fw-bold">Live chat</p>
-                <i class="fas fa-times"></i>
+                <i className="fas fa-angle-left"></i>
+                <p className="mb-0 fw-bold">Live chat</p>
+                <i className="fas fa-times"></i>
               </div>
               {messageList.map((el, idx) => {
                 return (
                   <>
                     {/* ini chat kiri */}
-                    <div class="d-flex flex-row justify-content-start mb-4 p-3">
+                    <div className="d-flex flex-row justify-content-start mb-4 p-3">
                       <img
                         src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
                         alt="avatar 1"
@@ -104,32 +108,32 @@ export default function RoomChat({ magnetDetail, magnetId }) {
                       />
 
                       <div
-                        class="p-3 ms-3"
+                        className="p-3 ms-3"
                         style={{
                           "border-radius": "15px",
                           "background-color": "rgba(57, 192, 237,.2)",
                         }}
                       >
-                        <p class="small mb-0">
+                        <p className="small mb-0">
                           <strong>{el.author}</strong>
                         </p>
-                        <p class="small mb-0">{el.chat}</p>
+                        <p className="small mb-0">{el.chat}</p>
                       </div>
                     </div>
                   </>
                 );
               })}
-              <div class="card-body">
+              <div className="card-body">
                 {/* ini chat kanan */}
-                {/* <div class="d-flex flex-row justify-content-end mb-4">
+                {/* <div className="d-flex flex-row justify-content-end mb-4">
                   <div
-                    class="p-3 me-3 border"
+                    className="p-3 me-3 border"
                     style={{
                       "border-radius": "15px",
                       "background-color": "#fbfbfb",
                     }}
                   >
-                    <p class="small mb-0">kaya pernah denger, yang mana sih?</p>
+                    <p className="small mb-0">kaya pernah denger, yang mana sih?</p>
                   </div>
                   <img
                     src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
@@ -144,7 +148,7 @@ export default function RoomChat({ magnetDetail, magnetId }) {
                       <form onSubmit={sendMessage}>
                         <input
                           type="text"
-                          class="form-control"
+                          className="form-control"
                           placeholder="Message..."
                           onChange={(e) => {
                             setChat(e.target.value);

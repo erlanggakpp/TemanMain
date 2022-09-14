@@ -65,7 +65,7 @@ function LoginPage() {
 
   return (
     <div className="login-page" id="box-login">
-      <div class="item">
+      <div className="item">
         <div id="img-login">
           <img
             src="https://media.discordapp.net/attachments/1015235714780246077/1018784654372913182/loginTemanMain.jpg?width=483&height=683"
@@ -77,7 +77,7 @@ function LoginPage() {
           <form onSubmit={userSubmit}>
             <input
               type="text"
-              class="input-login"
+              className="input-login"
               placeholder="email"
               name="email"
               value={loginInput.description}
@@ -85,7 +85,7 @@ function LoginPage() {
             />
             <input
               type="password"
-              class="input-login"
+              className="input-login"
               placeholder="password"
               name="password"
               value={loginInput.price}
@@ -93,7 +93,7 @@ function LoginPage() {
             />
             <br />
 
-            <button class="btn-login">Login</button>
+            <button className="btn-login">Login</button>
           </form>
           <div id="btn-google">
             <div id="google-button-login"></div>

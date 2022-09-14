@@ -1,14 +1,14 @@
 const { Magnet, Request, Invitation, Event } = require("../models");
 
 class MagnetController {
-  // static async getAllMagnets(req, res, next) {
-  //   try {
-  //     const magnets = await Magnet.findAll();
-  //     res.status(200).json(magnets);
-  //   } catch (error) {
-  //     next(error);
-  //   }
-  // }
+  static async getAllMagnets(req, res, next) {
+    try {
+      const magnets = await Magnet.findAll();
+      res.status(200).json(magnets);
+    } catch (error) {
+      next(error);
+    }
+  }
   static async createMagnet(req, res, next) {
     try {
       const {
@@ -73,9 +73,9 @@ class MagnetController {
       if (!vacantParticipant) {
         throw { name: "emptyMagVac" };
       }
-      if (status === undefined || status === null || status === "") {
-        throw { name: "emptyMagStatus" };
-      }
+      // if (status === undefined || status === null || status === "") {
+      //   throw { name: "emptyMagStatus" };
+      // }
       const createdMagnet = await Magnet.update(
         {
           confirmationDate,

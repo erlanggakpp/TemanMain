@@ -99,3 +99,37 @@ export const fetchMagnetsByUserId = function () {
       });
   };
 };
+
+export const editMagnet = function (data) {
+  return function (dispatch) {
+    const {
+      UserId,
+      EventId,
+      confirmationDate,
+      ageRequirement,
+      specialRequirement,
+      magnetDescription,
+      participant,
+      vacantParticipant,
+    } = data;
+    dispatch(loadingSet(true));
+    return axios.put(
+      `${baseUrl}/magnets/${data.id}`,
+      {
+        UserId,
+        EventId,
+        confirmationDate,
+        ageRequirement,
+        specialRequirement,
+        magnetDescription,
+        participant,
+        vacantParticipant,
+      },
+      {
+        headers: {
+          access_token: localStorage.access_token,
+        },
+      }
+    );
+  };
+};

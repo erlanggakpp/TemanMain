@@ -37,7 +37,7 @@ export default function SideMenu({ toSide }) {
               <button
                 type="button"
                 className="btn text-primary w-100 mt-2"
-                data-bs-toggle="modal"
+                data-bs-toggle="modal1"
                 data-bs-target="#exampleModal"
                 style={{ backgroundColor: "#EAF6F6" }}
               >
@@ -72,7 +72,7 @@ export default function SideMenu({ toSide }) {
               ></iframe>
             </div>
             <div className="p-4 mb-3 rounded">
-              <table class="table">
+              <table className="table">
                 <tbody>
                   <tr>
                     <td>Date</td>

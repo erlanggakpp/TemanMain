@@ -44,7 +44,7 @@ export default function LoginPages() {
         localStorage.setItem('access_token', data.access_token);
       })
       .then((_) => {
-        navigate('/listevent')
+        navigate('/')
       })
       .catch((err) => {
         console.log(err)

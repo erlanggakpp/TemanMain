@@ -11,6 +11,10 @@ export default function NavBar() {
         navigate('/login')
     }
 
+    const home = () => {
+        navigate('/')
+    }
+
     return (
         <Navbar bg='secondary' expand="lg">
             <Container>
@@ -19,7 +23,7 @@ export default function NavBar() {
                 {localStorage.getItem("access_token") ? (
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
-                            <Nav.Link href="">Home</Nav.Link>
+                            <Nav.Link onClick={() => { home() }}>Home</Nav.Link>
                             <NavDropdown title="User" id="basic-nav-dropdown">
                                 <NavDropdown.Item>
                                     <Link to="/listuser">

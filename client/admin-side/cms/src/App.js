@@ -13,6 +13,7 @@ import CategoryEdit from './components/CategoryEdit';
 import LoginPages from './pages/LoginPages';
 import AuthAdmin from './components/AuthAdmin';
 import AuthDashboard from './components/AuthDashboard';
+import HomePages from './pages/HomePages';
 
 
 function App() {
@@ -24,6 +25,11 @@ function App() {
           <AuthDashboard>
             <LoginPages />
           </AuthDashboard>
+        } />
+        <Route path="/" element={
+          <AuthAdmin>
+            <HomePages />
+          </AuthAdmin>
         } />
         <Route path="/listevent" element={
           <AuthAdmin>

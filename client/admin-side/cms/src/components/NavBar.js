@@ -16,7 +16,7 @@ export default function NavBar() {
     }
 
     return (
-        <Navbar bg='secondary' expand="lg">
+        <Navbar style={{ backgroundColor: '#F8C456' }} expand="lg">
             <Container>
                 <Navbar.Brand href="">Admin Teman Main</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />

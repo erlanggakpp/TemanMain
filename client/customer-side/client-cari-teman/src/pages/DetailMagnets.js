@@ -18,7 +18,7 @@ export default function DetailMagnets() {
   const [banner, setBanner] = useState([]);
   const { loggedUser } = useSelector((e) => e.users);
 
-  // console.log(magnetDetail, "magnet deteail");
+  console.log(magnetDetail, "magnet deteail");
   // console.log(loggedUser, "LOGGED USER");
   useEffect(() => {
     dispatch(fetchAllUsers())
@@ -104,41 +104,40 @@ export default function DetailMagnets() {
     console.log(selectedUser, "<<<<<<<<<<<<<<");
   };
 
+  const joinVideoCall = () => {
+    console.log("masuukk");
+  };
+
   // console.log(magnetDetail, "ajsdjpasdjapsdjpasdj")
-  if (!magnetDetail) return(<h1>Loading...</h1>)
-    return (
-      <>
-        {loading ? (
-          <h1>Loading...</h1>
-        ) : (
-          <>
-            <Outlet />
-            {/* {JSON.stringify(users)} */}
-            {/* {JSON.stringify(magnetDetail)} */}
-            <div className="containet-fluid">
-              <div className="container">
-                <div className="row  justify-content-center">
-                  <div className="col-md-12  p-0" style={{ height: "300px" }}>
-                    <img
-                      src={banner}
-                      alt=""
-                      className="img-fill card-img-top h-100 p-0"
-                      style={{ objectFit: "cover", borderRadius: "40px" }}
-                    />
-                  </div>
-                  <div
-                    style={{
-                      width: "50%",
-                      height: "200px",
-                      position: "absolute",
-                      margin: "200px 0px",
-                    }}
-                  >
-                    <div className="row">
-                      <div className="col-md-4 h-100 d-flex justify-content-end">
-                        {/* <h1 className="text-white">
-                        ini buat gambar yagesya sip aasd
-                      </h1> */}
+  if (!magnetDetail) return <h1>Loading...</h1>;
+  return (
+    <>
+      {loading ? (
+        <h1>Loading...</h1>
+      ) : (
+        <>
+          <Outlet />
+          <div className="containet-fluid">
+            <div className="container">
+              <div className="row  justify-content-center">
+                <div className="col-md-12  p-0" style={{ height: "300px" }}>
+                  <img
+                    src={banner}
+                    alt=""
+                    className="img-fill card-img-top h-100 p-0"
+                    style={{ objectFit: "cover", borderRadius: "40px" }}
+                  />
+                </div>
+                <div
+                  style={{
+                    width: "50%",
+                    height: "200px",
+                    position: "absolute",
+                    margin: "200px 0px",
+                  }}
+                >
+                  <div className="row">
+                    <div className="col-md-4 h-100 d-flex justify-content-end">
                       <div style={{ width: "200px", height: "200px" }}>
                         <img
                           src={magnetDetail.User.profilePict}
@@ -171,7 +170,6 @@ export default function DetailMagnets() {
                 <div className="col-10  d-flex justify-content-center p-0">
                   <div className="row g-5" style={{ width: "100%" }}>
                     <div className="col-md-8">
-                      <h1>in isi ygy</h1>
                       <p className="p-4">{magnetDetail.magnetDescription}</p>
                       <br />
                       <br />
@@ -179,6 +177,17 @@ export default function DetailMagnets() {
                         magnetId={magnetDetail.id}
                         magnetDetail={magnetDetail}
                       />
+                      <br />
+                      <br />
+                      <div>
+                        <button
+                          type="button"
+                          className="btn btn-primary btn-lg btn-block mt-10"
+                          onClick={joinVideoCall}
+                        >
+                          Join Video Call
+                        </button>
+                      </div>
                     </div>
                     <div className="col-md-4">
                       <div className="position-sticky" style={{ top: "2rem" }}>

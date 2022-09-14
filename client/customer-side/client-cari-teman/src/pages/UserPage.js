@@ -219,12 +219,12 @@ export default function UserPage() {
                     <h4 className="mx-3">My request</h4>
                   </div>
                   <div>
-                    {!myRequests.length === 0 && (
+                    {myRequests.length === 0 && (
                       <>
                         <h1>You do not have any request yet</h1>
                       </>
                     )}
-                    {myRequests.length && (
+                    {myRequests.length !== 0 && (
                       <>
                         <table className="table">
                           <thead>
@@ -283,13 +283,11 @@ export default function UserPage() {
                     <h4 className="mx-3">My Invitations</h4>
                   </div>
                   <div>
-                    {!myInvitations.length === 0 && (
-                      <>
-                        <h1>You do not have any invitation yet</h1>
-                      </>
+                    {myInvitations.length === 0 && (
+                      <h1>You do not have any invitation yet</h1>
                     )}
 
-                    {myInvitations.length && (
+                    {myInvitations.length !== 0 && (
                       <>
                         <table className="table">
                           <thead>

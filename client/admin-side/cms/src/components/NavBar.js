@@ -17,14 +17,14 @@ export default function NavBar() {
 
     return (
         <Navbar style={{ backgroundColor: '#F8C456' }} expand="lg">
-            <Container>
+            <Container style={{ color: '#000000' }}>
                 <Navbar.Brand href="">Admin Teman Main</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 {localStorage.getItem("access_token") ? (
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
-                            <Nav.Link onClick={() => { home() }}>Home</Nav.Link>
-                            <NavDropdown title="User" id="basic-nav-dropdown">
+                            <Nav.Link className="text-black" onClick={() => { home() }}>Home</Nav.Link>
+                            <NavDropdown className="text-black" title="User" id="basic-nav-dropdown">
                                 <NavDropdown.Item>
                                     <Link to="/listuser">
                                         List User
@@ -36,7 +36,7 @@ export default function NavBar() {
                                     </Link>
                                 </NavDropdown.Item>
                             </NavDropdown>
-                            <NavDropdown title="Event" id="basic-nav-dropdown">
+                            <NavDropdown className="text-black" title="Event" id="basic-nav-dropdown">
                                 <NavDropdown.Item>
                                     <Link to="/listevent">
                                         List Event
@@ -48,7 +48,7 @@ export default function NavBar() {
                                     </Link>
                                 </NavDropdown.Item>
                             </NavDropdown>
-                            <NavDropdown title="Category" id="basic-nav-dropdown">
+                            <NavDropdown className="text-black" title="Category" id="basic-nav-dropdown">
                                 <NavDropdown.Item>
                                     <Link to="/listcategory">
                                         List Category

@@ -57,7 +57,7 @@ export default function CarouselHome() {
                                     style={image}
                                     alt="First slide"
                                 />
-                                <Carousel.Caption className="text-light">
+                                <Carousel.Caption style={{ textDecorationColor: '#1a4065' }}>
                                     <h5>{event.name}</h5>
                                 </Carousel.Caption>
                             </Carousel.Item>

@@ -250,9 +250,8 @@ class UserController {
         role: findUser.role,
         email: findUser.email,
       };
-
       const access_token = createToken(payload);
-      const age = AgeFormat(findUser.birthdate);
+      const age = AgeFormat(findUser.dataValues.birthdate);
 
       res.status(200).json({
         message: `Successfully login as ${findUser.firstName}`,

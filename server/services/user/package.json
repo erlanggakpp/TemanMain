@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npx nodemon ./bin/www",
-    "test": "jest --runInBand --forceExit"
+    "test": "jest --runInBand --forceExit --coverage"
   },
   "keywords": [],
   "author": "",

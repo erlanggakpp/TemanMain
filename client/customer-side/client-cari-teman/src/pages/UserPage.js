@@ -1,25 +1,25 @@
-import { useEffect, useState } from "react";
-import { detailEvent, fetchEvent, loadingSet } from "../store/action/events";
+import { useEffect, useState } from 'react';
+import { detailEvent, fetchEvent, loadingSet } from '../store/action/events';
 import {
   deleteMagnetFromStore,
   editMagnet,
   fetchMagnetsByUserId,
-} from "../store/action/magnets";
+} from '../store/action/magnets';
 import {
   getMyInvitation,
   acceptInvitationFromStore,
-} from "../store/action/invitation";
-import { fetchMyProfile } from "../store/action/users";
+} from '../store/action/invitation';
+import { fetchMyProfile } from '../store/action/users';
 import {
   getMyRequest,
   acceptRequestFromStore,
   rejectRequestFromStore,
-} from "../store/action/requests";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+} from '../store/action/requests';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 // import EditMagnet from "../compDetailEvent/EditMagnet";
-import { addMagnets, detailMagnet } from "../store/action/magnets";
-const Swal = require("sweetalert2");
+import { addMagnets, detailMagnet } from '../store/action/magnets';
+const Swal = require('sweetalert2');
 
 export default function UserPage() {
   const navigate = useNavigate();
@@ -31,15 +31,15 @@ export default function UserPage() {
   const [myInvitations, setMyInvitations] = useState([]);
 
   const [dataForm, setDataForm] = useState({
-    id: "",
-    UserId: "",
-    EventId: "",
-    confirmationDate: "2022/10/03",
-    ageRequirement: "",
-    specialRequirement: "",
-    magnetDescription: "",
-    participant: "",
-    vacantParticipant: "",
+    id: '',
+    UserId: '',
+    EventId: '',
+    confirmationDate: '2022/10/03',
+    ageRequirement: '',
+    specialRequirement: '',
+    magnetDescription: '',
+    participant: '',
+    vacantParticipant: '',
   });
 
   const changeForm = (e) => {
@@ -79,13 +79,13 @@ export default function UserPage() {
     e.preventDefault();
     console.log(dataForm);
     Swal.fire({
-      title: "Are you sure?",
+      title: 'Are you sure?',
       text: "You won't be able to revert this!",
-      icon: "warning",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, create it!",
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, create it!',
     }).then((result) => {
       if (result.isConfirmed) {
         // dispatch()
@@ -93,8 +93,8 @@ export default function UserPage() {
           .then((data) => {
             // dispatch(detailEvent(dataForm.EventId));
             Swal.fire({
-              position: "top-end",
-              icon: "success",
+              position: 'top-end',
+              icon: 'success',
               title: data.data.message,
               showConfirmButton: false,
               timer: 1500,
@@ -102,11 +102,11 @@ export default function UserPage() {
           })
           .catch((err) => {
             Swal.fire({
-              icon: "error",
-              title: "Oops...",
+              icon: 'error',
+              title: 'Oops...',
               text: err.response.data.message,
             });
-            console.log(err.response.data.message, "<<err");
+            console.log(err.response.data.message, '<<err');
           })
           .finally(() => {
             dispatch(loadingSet(false));
@@ -141,79 +141,146 @@ export default function UserPage() {
     navigate(`/events/${data.eventId}/magnets/${data.magnetId}`);
   };
   const acceptRequest = (id) => {
-    dispatch(acceptRequestFromStore(id))
-      .then((data) => {
-        dispatch(loadingSet(true));
-        return dispatch(getMyRequest());
-      })
-      .then((data) => {
-        setMyRequests(data.data);
-      })
-      .catch((err) => console.log(err, "<<<<<<<<<<<<<<<<<"))
-      .finally(() => {
-        dispatch(loadingSet(false));
-      });
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, accept it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(acceptRequestFromStore(id))
+          .then((data) => {
+            dispatch(loadingSet(true));
+            return dispatch(getMyRequest());
+          })
+          .then((data) => {
+            setMyRequests(data.data);
+            Swal.fire({
+              icon: 'success',
+              title: 'Success accept request!',
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          })
+          .catch((err) => console.log(err, '<<<<<<<<<<<<<<<<<'))
+          .finally(() => {
+            dispatch(loadingSet(false));
+          });
+      }
+    });
   };
   const rejectRequest = (id) => {
-    dispatch(rejectRequestFromStore(id))
-      .then((data) => {
-        console.log(data);
-        return dispatch(getMyRequest());
-      })
-      .then((data) => {
-        setMyRequests(data.data);
-      })
-      .catch((err) => console.log(err))
-      .finally(() => {
-        dispatch(loadingSet(false));
-      });
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Reject it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(rejectRequestFromStore(id))
+          .then((data) => {
+            console.log(data);
+            return dispatch(getMyRequest());
+          })
+          .then((data) => {
+            setMyRequests(data.data);
+            Swal.fire({
+              icon: 'success',
+              title: 'Success reject request!',
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          })
+          .catch((err) => console.log(err))
+          .finally(() => {
+            dispatch(loadingSet(false));
+          });
+      }
+    });
   };
   const acceptInvitation = (id) => {
     // console.log(id);
-    dispatch(acceptInvitationFromStore(id))
-      .then((data) => {
-        console.log(data);
-        return dispatch(getMyInvitation());
-      })
-      .then((data) => {
-        setMyInvitations(data.data);
-      })
-      .catch((err) => console.log(err))
-      .finally(() => {
-        dispatch(loadingSet(false));
-      });
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Accept it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(acceptInvitationFromStore(id))
+          .then((data) => {
+            console.log(data, 'acc1');
+            return dispatch(getMyInvitation());
+          })
+          .then((data) => {
+            console.log(data, 'acc2');
+            setMyInvitations(data.data);
+            Swal.fire({
+              icon: 'success',
+              title: 'Success accept invitation!',
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          })
+          .catch((err) => console.log(err))
+          .finally(() => {
+            dispatch(loadingSet(false));
+          });
+      }
+    });
   };
   const deleteMagnet = (id) => {
-    dispatch(deleteMagnetFromStore(id))
-      .then((data) => {
-        console.log(data);
-        Swal.fire({
-          icon: "success",
-          title: data.data.message,
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        return dispatch(fetchMagnetsByUserId());
-      })
-      .then((data) => {
-        setMyMagnets(data.data);
-        return dispatch(getMyInvitation());
-      })
-      .then((data) => {
-        setMyInvitations(data.data);
-        return dispatch(getMyRequest());
-      })
-      .then((data) => {
-        setMyRequests(data.data);
-        return dispatch(fetchMyProfile());
-      })
-      .then((data) => {
-        setUser(data.data);
-      })
-      .catch((err) => console.log(err))
-      .finally(() => {
-        dispatch(loadingSet(false));
-      });
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(deleteMagnetFromStore(id))
+          .then((data) => {
+            console.log(data);
+            Swal.fire({
+              icon: 'success',
+              title: data.data.message,
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            return dispatch(fetchMagnetsByUserId());
+          })
+          .then((data) => {
+            setMyMagnets(data.data);
+            return dispatch(getMyInvitation());
+          })
+          .then((data) => {
+            setMyInvitations(data.data);
+            return dispatch(getMyRequest());
+          })
+          .then((data) => {
+            setMyRequests(data.data);
+            return dispatch(fetchMyProfile());
+          })
+          .then((data) => {
+            setUser(data.data);
+          })
+          .catch((err) => console.log(err))
+          .finally(() => {
+            dispatch(loadingSet(false));
+          });
+      }
+    });
   };
   // console.log(myRequests, "Ini requests");
   return (
@@ -223,20 +290,20 @@ export default function UserPage() {
       ) : (
         <div className="container">
           <div className="row d-flex justify-content-center">
-            <div className="col-md-12" style={{ height: "300px" }}>
+            <div className="col-md-12" style={{ height: '300px' }}>
               <img
                 className="img-fill card-img-top"
                 src="https://wallpaperaccess.com/full/1382359.jpg"
                 alt=""
-                style={{ objectFit: "cover", height: "100%", margin: 0 }}
+                style={{ objectFit: 'cover', height: '100%', margin: 0 }}
               />
             </div>
             <div
               style={{
-                width: "50%",
-                height: "200px",
-                position: "absolute",
-                margin: "200px 0px",
+                width: '50%',
+                height: '200px',
+                position: 'absolute',
+                margin: '200px 0px',
               }}
               className=""
             >
@@ -247,9 +314,9 @@ export default function UserPage() {
                     src="https://media-exp1.licdn.com/dms/image/C4E03AQEA2hq7k-y8iQ/profile-displayphoto-shrink_200_200/0/1625029397449?e=2147483647&v=beta&t=ZFojw_cAobe7-gi_NJ-gMOoheyV85ucCW6PQWwOVxbc"
                     alt=""
                     style={{
-                      width: "200px",
-                      height: "200px",
-                      objectFit: "cover",
+                      width: '200px',
+                      height: '200px',
+                      objectFit: 'cover',
                     }}
                   />
                 </div>
@@ -263,7 +330,7 @@ export default function UserPage() {
                 </div>
               </div>
             </div>
-            <div className="col-md-12" style={{ height: "150px" }}></div>
+            <div className="col-md-12" style={{ height: '150px' }}></div>
           </div>
           <div className="row d-flex justify-content-center mt-5">
             <div className="col-10 bg-light d-flex justify-content-center p-0">
@@ -299,7 +366,7 @@ export default function UserPage() {
                                   <td>{el.Event.name}</td>
                                   <td>
                                     <strong>
-                                      {el.vacantParticipant}/{el.participant}{" "}
+                                      {el.vacantParticipant}/{el.participant}{' '}
                                     </strong>
                                   </td>
                                   <td>
@@ -325,7 +392,7 @@ export default function UserPage() {
                                       className="btn text-primary"
                                       data-bs-toggle="modal"
                                       data-bs-target={`#editMagnet${el.id}`}
-                                      style={{ backgroundColor: "#EAF6F6" }}
+                                      style={{ backgroundColor: '#EAF6F6' }}
                                       onClick={() => setDataForm(el)}
                                     >
                                       Edit
@@ -404,19 +471,19 @@ export default function UserPage() {
                                                             </option>
                                                             <option
                                                               value={
-                                                                "All Gender"
+                                                                'All Gender'
                                                               }
                                                             >
                                                               All Gender
                                                             </option>
                                                             <option
-                                                              value={"Man Only"}
+                                                              value={'Man Only'}
                                                             >
                                                               Man Only
                                                             </option>
                                                             <option
                                                               value={
-                                                                "Female Only"
+                                                                'Female Only'
                                                               }
                                                             >
                                                               Female Only
@@ -446,7 +513,7 @@ export default function UserPage() {
                                                         </div>
                                                         <div className="row">
                                                           <div className="col-6">
-                                                            {" "}
+                                                            {' '}
                                                             <div>
                                                               <label
                                                                 htmlFor="disabledTextInput"
@@ -469,7 +536,7 @@ export default function UserPage() {
                                                             </div>
                                                           </div>
                                                           <div className="col-6">
-                                                            {" "}
+                                                            {' '}
                                                             <div>
                                                               <label
                                                                 htmlFor="disabledTextInput"
@@ -608,7 +675,7 @@ export default function UserPage() {
                                     className="btn text-primary"
                                     data-bs-toggle="modal"
                                     data-bs-target={`#modalReq${el.id}`}
-                                    style={{ groundColor: "#EAF6F6" }}
+                                    style={{ groundColor: '#EAF6F6' }}
                                   >
                                     Descriptions
                                   </button>
@@ -624,11 +691,11 @@ export default function UserPage() {
                                       className="btn btn-danger"
                                       onClick={() => rejectRequest(el.id)}
                                     >
-                                      {el.status !== "Accepted"
-                                        ? "Reject"
-                                        : "Remove"}
+                                      {el.status !== 'Accepted'
+                                        ? 'Reject'
+                                        : 'Remove'}
                                     </button>
-                                    {el.status !== "Accepted" ? (
+                                    {el.status !== 'Accepted' ? (
                                       <button
                                         type="button"
                                         className="btn btn-success"
@@ -714,13 +781,13 @@ export default function UserPage() {
                                 </td>
                                 <td>{el.Magnet.Event.name}</td>
                                 <td>
-                                  {" "}
+                                  {' '}
                                   <button
                                     type="button"
                                     className="btn text-primary"
                                     data-bs-toggle="modal"
                                     data-bs-target={`#modalInv${el.id}`}
-                                    style={{ backgroundColor: "#EAF6F6" }}
+                                    style={{ backgroundColor: '#EAF6F6' }}
                                   >
                                     Descriptions
                                   </button>
@@ -797,7 +864,7 @@ export default function UserPage() {
                   <br />
                 </div>
                 <div className="col-md-4">
-                  <div className="position-sticky" style={{ top: "2rem" }}>
+                  <div className="position-sticky" style={{ top: '2rem' }}>
                     <div className="p-4">
                       <h4 className="fst-italic">Social Media:</h4>
                       <ol className="list-unstyled mb-0">

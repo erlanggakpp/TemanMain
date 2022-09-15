@@ -68,14 +68,14 @@ export default function SideMenu({ toSide }) {
                 style={{
                   width: "100%",
                   height: "auto",
-                  frameborder: 0,
+                  frameBorder: 0,
                   border: 0,
                   objectFit: "cover",
                 }}
-                frameborder="0"
+                frameBorder="0"
                 scrolling="no"
-                marginheight="0"
-                marginwidth="0"
+                marginHeight="0"
+                marginWidth="0"
               ></iframe>
             </div>
             <div className="p-4 mb-3 rounded">

@@ -86,7 +86,6 @@ export default function EventEdit() {
   };
 
   const formatdate = (date) => {
-    // console.log(date)
     const newdate = new Date(date).toISOString().split('T')[0]
     return newdate
   };
@@ -109,7 +108,7 @@ export default function EventEdit() {
 
 
   return (
-    <Container sm>
+    <Container sm="true">
       <Form onSubmit={handleSubmit}>
         <Col md={{ span: 7, offset: 3 }}>
           {loading ? (
@@ -119,7 +118,7 @@ export default function EventEdit() {
           ) : (
             <Row style={container}>
               <h2 style={{ textAlign: 'center' }}>Form Edit Event</h2>
-              <div classname="container-sm mt-5">
+              <div className="container-sm mt-5">
                 <Form.Group
                   className="mb-1"
                   controlId="exampleForm.ControlInput1"
@@ -241,7 +240,7 @@ export default function EventEdit() {
                       <h1>Loading bang</h1>
                     ) : (
                       categories.data.map((el) => (
-                        <option value={el.id}>{el.name}</option>
+                        <option key={el.id} value={el.id}>{el.name}</option>
                       ))
                     )}
                   </Form.Select>

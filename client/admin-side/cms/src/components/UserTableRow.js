@@ -52,12 +52,9 @@ export default function UserTableRow({ user, i }) {
         })
     }
 
-
-
     const handleEdit = (id) => {
         navigate(`/user/${id}`)
     }
-
 
     return (
         <tr>

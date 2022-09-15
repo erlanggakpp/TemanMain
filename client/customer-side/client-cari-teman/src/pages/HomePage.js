@@ -33,14 +33,12 @@ export default function HomePage() {
   useEffect(() => {
     dispatch(fetchMagnet())
       .then((data) => {
-        console.log(data, "<<<<<<<<<<<<");
         setDisplayedMagnets(data);
       })
       .finally(() => {
         dispatch(loadingSet(false));
       });
   }, []);
-  // console.log(displayedMagnets, "masoook");
   useEffect(() => {
     dispatch(fetchEvent())
       .then((data) => {

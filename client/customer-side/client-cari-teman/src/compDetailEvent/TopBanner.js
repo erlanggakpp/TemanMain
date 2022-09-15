@@ -1,10 +1,6 @@
-import { useNavigate, Link } from "react-router-dom";
 
 export default function TopBanner({ eventDetail }) {
-  const navigate = useNavigate();
-  function move(url) {
-    navigate(url);
-  }
+
   return (
     <>
       <div className="container">
@@ -36,13 +32,13 @@ export default function TopBanner({ eventDetail }) {
                 className="btn pt-3 px-5"
                 type="button"
                 style={{ backgroundColor: "#2e94d1", borderRadius: "25px" }}
-                // onClick={() => move(eventDetail.eventHomepageLink)}
+              // onClick={() => move(eventDetail.eventHomepageLink)}
               >
                 <a
                   href={eventDetail.eventHomepageLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ "text-decoration": "none" }}
+                  style={{ "textDecoration": "none" }}
                   className="text-dark"
                 >
                   <p style={{ fontSize: "18px" }} className="text-white">

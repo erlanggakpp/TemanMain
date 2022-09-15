@@ -41,7 +41,7 @@ export default function CarouselHome() {
     }
 
     return (
-        <Container lg={true} style={container}>
+        <Container lg="true" style={container}>
             <Carousel variant="dark">
                 {loading ? (
                     <Container style={spinnercontainer}>
@@ -50,7 +50,7 @@ export default function CarouselHome() {
                 ) : (
                     events.data.map((event) => {
                         return (
-                            <Carousel.Item className="justify-content-center">
+                            <Carousel.Item className="justify-content-center" key={event.id}>
                                 <img
                                     className="d-flex h-50 w-50 justify-content-center"
                                     src={event.image}

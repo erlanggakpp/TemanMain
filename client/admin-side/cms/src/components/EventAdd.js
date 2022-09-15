@@ -67,12 +67,12 @@ export default function EventAdd() {
   };
 
   return (
-    <Container sm>
+    <Container sm="true">
       <Form onSubmit={handleSubmit}>
         <Row style={container}>
           <Col md={{ span: 7, offset: 3 }}>
             <h2 style={{ textAlign: 'center' }}>Form Add Event</h2>
-            <div classname="container-sm mt-5">
+            <div className="container-sm mt-5">
               <Form.Group
                 className="mb-1"
                 controlId="exampleForm.ControlInput1"
@@ -182,12 +182,12 @@ export default function EventAdd() {
                   placeholder="Ticket Price"
                   onChange={changeInputEvent}
                 >
-                  <option disabled selected>-----Select Category----</option>
+                  <option defaultValue disabled selected>-----Select Category----</option>
                   {loading ? (
                     <h1>Loading cuy</h1>
                   ) : (
                     categories.data.map((el) => (
-                      <option value={el.id}>{el.name}</option>
+                      <option key={el.id} value={el.id}>{el.name}</option>
                     ))
                   )}
                 </Form.Select>

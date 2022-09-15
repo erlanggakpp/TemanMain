@@ -78,7 +78,6 @@ export default function UserEdit() {
         if (detailusers?.data?.email) {
             setEditUser({
                 email: detailusers?.data?.email,
-                password: detailusers?.data?.password,
                 firstName: detailusers?.data?.firstName,
                 lastName: detailusers?.data?.lastName,
                 address: detailusers?.data?.address,
@@ -96,12 +95,12 @@ export default function UserEdit() {
 
 
     return (
-        <Container sm>
+        <Container sm="true">
             <Form onSubmit={handleSubmit}>
                 <Row style={container}>
                     <Col md={{ span: 7, offset: 3 }}>
                         <h2 style={{ textAlign: 'center' }}>Form Edit User</h2>
-                        <div classname="container-sm mt-5">
+                        <div className="container-sm mt-5">
                             <Form.Group className="mb-1" controlId="email">
                                 <Form.Label>Email</Form.Label>
                                 <Form.Control name="email" type="Email" placeholder="Email must like this example@example.com"
@@ -110,7 +109,7 @@ export default function UserEdit() {
                             </Form.Group>
                             <Form.Group className="mb-1" controlId="password">
                                 <Form.Label>Password</Form.Label>
-                                <Form.Control name="password" type="password" placeholder="password " onChange={changeInputUser} value={editUser.password} />
+                                <Form.Control name="password" type="password" placeholder="password " onChange={changeInputUser} />
                             </Form.Group>
                             <Form.Group className="mb-1" controlId="firstName">
                                 <Form.Label>First Name</Form.Label>

@@ -14,7 +14,6 @@ import Swal from 'sweetalert2'
 
 
 export default function LoginPages() {
-  const dispatch = useDispatch()
   const container = {
     padding: '150px',
   };
@@ -47,7 +46,6 @@ export default function LoginPages() {
         navigate('/')
       })
       .catch((err) => {
-        console.log(err)
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
@@ -57,12 +55,12 @@ export default function LoginPages() {
   };
 
   return (
-    <Container sm>
+    <Container sm="true">
       <Form onSubmit={submitHandler}>
         <Row style={container}>
           <Col md={{ span: 7, offset: 3 }}>
             <h2 style={{ textAlign: 'center' }}>Login</h2>
-            <div classname="container-sm mt-5">
+            <div className="container-sm mt-5">
               <Form.Group
                 className="mb-1"
                 controlId="exampleForm.ControlInput1"

@@ -35,7 +35,6 @@ export const fetchMyProfile = function () {
         },
       })
       .then((data) => {
-        console.log(data.data, " <<<<<<<<<<<<<<<<<<<<<<");
         dispatch({
           type: logged_user,
           payload: data.data,

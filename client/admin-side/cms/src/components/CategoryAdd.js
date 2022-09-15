@@ -52,12 +52,12 @@ export default function CategoryAdd() {
   };
 
   return (
-    <Container sm>
+    <Container sm="true">
       <Form onSubmit={handleSubmit}>
         <Row style={container}>
           <Col md={{ span: 7, offset: 3 }}>
             <h2 style={{ textAlign: 'center' }}>Form Add Category</h2>
-            <div classname="container-sm mt-5">
+            <div className="container-sm mt-5">
               <Form.Group
                 className="mb-1"
                 controlId="exampleForm.ControlInput1"

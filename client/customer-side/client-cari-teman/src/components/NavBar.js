@@ -6,7 +6,7 @@ import { VscInfo } from "react-icons/vsc";
 import { useEffect } from "react";
 
 export default function NavBar() {
-  
+
   const navigate = useNavigate();
   const logout = () => {
     localStorage.clear();
@@ -23,8 +23,8 @@ export default function NavBar() {
     width: "100%",
     position: "fixed",
     transition: "0.3s ease-in-out",
-    "background-color": "#fff",
-    "box-shadow": "5px -1px 12px -5px grey",
+    "backgroundColor": "#fff",
+    "boxShadow": "5px -1px 12px -5px grey",
     height: "80px",
   };
 
@@ -32,7 +32,7 @@ export default function NavBar() {
 
   useEffect(() => {
     const { pageYOffset } = window;
-    if (pageYOffset > 10) console.log("holla");
+    if (pageYOffset > 10);
   }, [window.pageYOffset]);
   return (
     <header>
@@ -40,11 +40,11 @@ export default function NavBar() {
         <div className="row">
           <div className="col-12 d-flex justify-content-center">
             <nav
-              class="px-3 py-0 fixed-top navbar-expand-lg"
+              className="px-3 py-0 fixed-top navbar-expand-lg"
               style={styleB}
             >
-              <div class="container navbar d-flex ">
-                <div class="d-flex justify-content-end">
+              <div className="container navbar d-flex ">
+                <div className="d-flex justify-content-end">
                   <div>
                     <a
                       href="/"
@@ -85,15 +85,13 @@ export default function NavBar() {
                   </div>
                 </div>
                 <div
-                  // className="collapse navbar-collapse d-flex justify-content-end"
-                  // id="navbarSupportedContent"
                   style={{ float: "buttom", flexGrow: 0 }}
                   className="collapse navbar-collapse"
                   id="navbarsExample03"
                 >
                   <ul className="nav col-12 col-lg-auto my-2 d-flex justify-content-center my-md-0 text-small navbar-nav me-auto mb-2 mb-lg-0">
                     <li className="nav-item">
-                      <Link to="/" class="nav-link text-dark">
+                      <Link to="/" className="nav-link text-dark">
                         <svg
                           className="bi d-block mx-auto mb-1"
                           width="24"
@@ -106,9 +104,9 @@ export default function NavBar() {
                     </li>
                     {localStorage.getItem("access_token") && (
                       <li className="nav-item">
-                        <Link to="/profile" class="nav-link text-dark">
+                        <Link to="/profile" className="nav-link text-dark">
                           <svg
-                            class="bi d-block mx-auto mb-1"
+                            className="bi d-block mx-auto mb-1"
                             width="24"
                             height="24"
                           >
@@ -120,7 +118,7 @@ export default function NavBar() {
                     )}
                     {localStorage.getItem("access_token") && (
                       <li className="nav-item">
-                        <Link to="/my-page" class="nav-link text-dark">
+                        <Link to="/my-page" className="nav-link text-dark">
                           <svg
                             className="bi d-block mx-auto mb-1"
                             width="24"
@@ -146,9 +144,9 @@ export default function NavBar() {
                     </li>
                     {!localStorage.getItem("access_token") && (
                       <li className="nav-item">
-                        <Link to="/login" class="nav-link text-dark">
+                        <Link to="/login" className="nav-link text-dark">
                           <svg
-                            class="bi d-block mx-auto mb-1"
+                            className="bi d-block mx-auto mb-1"
                             width="24"
                             height="24"
                           >
@@ -159,7 +157,7 @@ export default function NavBar() {
                       </li>
                     )}
                     <li className="nav-item">
-                      <Link to="/register" class="nav-link text-dark">
+                      <Link to="/register" className="nav-link text-dark">
                         <svg
                           className="bi d-block mx-auto mb-1"
                           width="24"
@@ -172,9 +170,9 @@ export default function NavBar() {
                     </li>
                     {localStorage.getItem("access_token") && (
                       <li className="nav-item" onClick={logout}>
-                        <a class="nav-link text-dark">
+                        <a className="nav-link text-dark">
                           <svg
-                            class="bi d-block mx-auto mb-1"
+                            className="bi d-block mx-auto mb-1"
                             width="24"
                             height="24"
                           >

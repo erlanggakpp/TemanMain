@@ -61,7 +61,6 @@ export default function RoomChat({ magnetDetail, magnetId }) {
   });
   useEffect(() => {
     socket.on("init_chat", (data) => {
-      console.log(data);
       setMessageList(data);
     });
   }, []);
@@ -73,7 +72,7 @@ export default function RoomChat({ magnetDetail, magnetId }) {
       access_token: localStorage.access_token,
     });
   };
-  console.log(messageList);
+  // console.log(messageList);
   const sendMessage = async (e) => {
     e.preventDefault();
     let messageContent = {
@@ -98,8 +97,8 @@ export default function RoomChat({ magnetDetail, magnetId }) {
   return (
     <>
       {openChat ? (
-        <section style={{ "background-color": "white" }}>
-          <div class="col-12">
+        <section style={{ "backgroundColor": "white" }}>
+          <div className="col-12">
             <div>
               <img
                 src="https://cdn.discordapp.com/attachments/1015235714780246077/1019592908053151874/livechataaa.jpg"
@@ -107,34 +106,34 @@ export default function RoomChat({ magnetDetail, magnetId }) {
                 className="w-100 p-0"
               />
             </div>
-            <div class="card mt-0" id="chat1">
+            <div className="card mt-0" id="chat1">
               <div
-                class="card-header d-flex justify-content-between align-items-center p-0 bg-primary text-white border-0"
-                // style={{
-                //   "border-top-left-radius": "15px",
-                //   "border-top-right-radius": "15px",
-                // }}
+                className="card-header d-flex justify-content-between align-items-center p-0 bg-primary text-white border-0"
+              // style={{
+              //   "border-top-left-radius": "15px",
+              //   "border-top-right-radius": "15px",
+              // }}
               >
-                <i class="fas fa-angle-left"></i>
-                <i class="fas fa-times"></i>
+                <i className="fas fa-angle-left"></i>
+                <i className="fas fa-times"></i>
               </div>
-              <div class="card-body">
+              <div className="card-body">
                 {messageList.map((el, idx) => {
                   return (
                     <>
                       {loggedUser.id === el.UserId ? (
-                        <div class="d-flex flex-row justify-content-end mb-4">
+                        <div className="d-flex flex-row justify-content-end mb-4">
                           <div
-                            class="p-3 me-3 border"
+                            className="p-3 me-3 border"
                             style={{
                               "border-radius": "15px",
-                              "background-color": "#fbfbfb",
+                              "backgroundColor": "#fbfbfb",
                             }}
                           >
-                            <p class="small mb-0">
+                            <p className="small mb-0">
                               <strong>{el.author}</strong>
                             </p>
-                            <p class="small mb-0">{el.chat}</p>
+                            <p className="small mb-0">{el.chat}</p>
                           </div>
                           <img
                             src={el.User.profilePict}
@@ -143,7 +142,7 @@ export default function RoomChat({ magnetDetail, magnetId }) {
                           />
                         </div>
                       ) : (
-                        <div class="d-flex flex-row justify-content-start mb-4 p-3">
+                        <div className="d-flex flex-row justify-content-start mb-4 p-3">
                           <img
                             src={el.User.profilePict}
                             alt="avatar 1"
@@ -151,21 +150,21 @@ export default function RoomChat({ magnetDetail, magnetId }) {
                           />
 
                           <div
-                            class="p-3 ms-3"
+                            className="p-3 ms-3"
                             style={{
                               "border-radius": "15px",
-                              "background-color": "rgba(57, 192, 237,.2)",
+                              "backgroundColor": "rgba(57, 192, 237,.2)",
                             }}
                           >
-                            <p class="small mb-0">
+                            <p className="small mb-0">
                               <strong>{el.author}</strong>
                             </p>
-                            <p class="small mb-0">{el.chat}</p>
+                            <p className="small mb-0">{el.chat}</p>
                           </div>
                         </div>
                       )}
                       {/* ini chat kiri */}
-                      {/* <div class="d-flex flex-row justify-content-start mb-4 p-3">
+                      {/* <div className="d-flex flex-row justify-content-start mb-4 p-3">
                       <img
                         src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
                         alt="avatar 1"

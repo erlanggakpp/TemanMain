@@ -130,7 +130,6 @@ export default function DetailMagnets() {
 
   const inviteUser = (e) => {
     e.preventDefault();
-    console.log(selectedUser, "<<<<<<<<<<<<<<");
   };
 
   const joinVideoCall = async () => {
@@ -140,7 +139,6 @@ export default function DetailMagnets() {
     navigate("/video-call");
   };
 
-  // console.log(magnetDetail, "ajsdjpasdjapsdjpasdj")
   if (!magnetDetail) return <h1>Loading...</h1>;
   return (
     <>
@@ -209,10 +207,10 @@ export default function DetailMagnets() {
                         <div className="row">
                           <div className="col-12  h-100 d-flex">
                             <h3 className="display-6">
-                            
-                                {magnetDetail.User.firstName}{" "}
-                                {magnetDetail.User.lastName}
-                              
+
+                              {magnetDetail.User.firstName}{" "}
+                              {magnetDetail.User.lastName}
+
                             </h3>
                           </div>
                         </div>
@@ -357,7 +355,7 @@ export default function DetailMagnets() {
                                     <input
                                       type="text"
                                       list="data"
-                                      class="form-control"
+                                      className="form-control"
                                       placeholder="Type to search..."
                                       id="exampleDataList"
                                       onChange={(e) =>
@@ -373,7 +371,7 @@ export default function DetailMagnets() {
                                     </datalist>
                                     <button
                                       type="submit"
-                                      class="btn btn-dark text-white"
+                                      className="btn btn-dark text-white"
                                     >
                                       Send
                                     </button>
@@ -390,7 +388,7 @@ export default function DetailMagnets() {
                                   <input
                                     type="text"
                                     list="data"
-                                    class="form-control"
+                                    className="form-control"
                                     placeholder="Type to search..."
                                     id="exampleDataList"
                                     onChange={(e) =>
@@ -406,7 +404,7 @@ export default function DetailMagnets() {
                                   </datalist>
                                   <button
                                     type="submit"
-                                    class="btn btn-dark text-white"
+                                    className="btn btn-dark text-white"
                                   >
                                     Send
                                   </button>
@@ -423,7 +421,7 @@ export default function DetailMagnets() {
                         )}
 
                         {magnetDetail.Participant.length !== 0 && (
-                          <table class="table">
+                          <table className="table">
                             <thead>
                               <tr>
                                 <th
@@ -464,7 +462,7 @@ export default function DetailMagnets() {
       <div
         className="modal fade"
         id="exampleModal"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
@@ -484,7 +482,7 @@ export default function DetailMagnets() {
             <div className="modal-body">
               <form onSubmit={formRequest}>
                 <div className="mb-3">
-                  <label for="message-text" className="col-form-label">
+                  <label htmlFor="message-text" className="col-form-label">
                     Message:
                   </label>
                   <textarea

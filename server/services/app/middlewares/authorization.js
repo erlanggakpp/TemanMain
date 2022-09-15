@@ -45,7 +45,8 @@ async function magnetAuthorization(req, res, next) {
     if (!targetMagnet) {
       throw { name: "magnetNotFound" };
     }
-    if (+user_id !== targetMagnet.UserId) {
+    console.log(user_id, targetMagnet, "dari middleware");
+    if (+user_id !== targetMagnet.dataValues.UserId) {
       throw { name: "magnetUnauthorized" };
     }
     next();

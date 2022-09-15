@@ -141,11 +141,37 @@ export default function DetailMagnets() {
   };
 
   // console.log(magnetDetail, "ajsdjpasdjapsdjpasdj")
-  if (!magnetDetail) return <h1>Loading...</h1>;
+  if (!magnetDetail) return (
+     <>
+          <div className="container d-flex justify-content-center align-items-center">
+            <div
+              style={{ width: "200px", height: "200px", marginTop: "50px" }}
+            >
+              <img
+                src="https://cdn.discordapp.com/attachments/1015235714780246077/1018164300940062790/loading.jpg"
+                alt=""
+                className="img-fluid rounded-circle"
+              />
+            </div>
+          </div>
+        </>
+  );
   return (
     <>
       {loading ? (
-        <h1>Loading...</h1>
+         <>
+          <div className="container d-flex justify-content-center align-items-center">
+            <div
+              style={{ width: "200px", height: "200px", marginTop: "50px" }}
+            >
+              <img
+                src="https://cdn.discordapp.com/attachments/1015235714780246077/1018164300940062790/loading.jpg"
+                alt=""
+                className="img-fluid rounded-circle"
+              />
+            </div>
+          </div>
+        </>
       ) : (
         <>
           <Outlet />

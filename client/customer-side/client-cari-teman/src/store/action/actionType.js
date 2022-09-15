@@ -9,3 +9,5 @@ export const token_agora = "post/createToken"
 export const fetch_user = "get/users";
 export const detail_user = "get/detailUsers";
 export const logged_user = "get/logged_user";
+
+export const category_loading = "category/loading"

@@ -14,42 +14,44 @@ import { detailMagnet, fetchMagnet } from "../store/action/magnets";
 
 export default function HomePage() {
   const dispatch = useDispatch();
-  const { events, eventDetail, loading } = useSelector((e) => e.events);
-  const { magnets, magnetDetail } = useSelector((e) => e.magnets);
+  const { events, eventDetail, loading: loadingEvent } = useSelector((e) => e.events);
+  const { magnets, magnetDetail, loading: loadingMagnet } = useSelector((e) => e.magnets);
+  const { categories, loading: loadingCategory } = useSelector((e) => e.categories);
   const { loggedUser } = useSelector((e) => e.users);
   const [showEvents, setShowEvents] = useState([]);
   const [displayedEvents, setDisplayedEvents] = useState([]);
   const [displayedMagnets, setDisplayedMagnets] = useState([]);
+  const [categoryIdFilter, setCategoryIdFilter] = useState("0");
 
   const categoryFiltering = (id) => {
-    if (+id === 0) {
-      setDisplayedEvents(events);
-    } else {
-      const filteredEvents = events.filter((el) => el.CategoryId === id);
-      setDisplayedEvents(filteredEvents);
-    }
+    setCategoryIdFilter(id)
   };
 
   useEffect(() => {
-    dispatch(fetchMagnet())
-      .then((data) => {
-        console.log(data, "<<<<<<<<<<<<");
-        setDisplayedMagnets(data);
-      })
-      .finally(() => {
-        dispatch(loadingSet(false));
-      });
-  }, []);
+    if (+categoryIdFilter === 0) {
+      setDisplayedEvents(events);
+    } else {
+      const filteredEvents = events.filter((el) => el.CategoryId === categoryIdFilter);
+      setDisplayedEvents(filteredEvents);
+    }
+  }, [events, categoryIdFilter])
+
+  //use effect created magnets
+  // useEffect(() => {
+  //   dispatch(fetchMagnet())
+  //     .then((data) => {
+  //       console.log(data, "<<<<<<<<<<<<");
+  //       setDisplayedMagnets(data);
+  //     })
+  //     .finally(() => {
+  //       dispatch(loadingSet(false));
+  //     });
+  // }, []);
   // console.log(displayedMagnets, "masoook");
+
   useEffect(() => {
     dispatch(fetchEvent())
-      .then((data) => {
-        setDisplayedEvents(data);
-      })
-      .finally(() => {
-        dispatch(loadingSet(false));
-      });
-
+    dispatch(fetchCategory())
     // dispatch(detailEvent(2)).finally(() => {
     //   dispatch(loadingSet(false));
     // });
@@ -62,6 +64,7 @@ export default function HomePage() {
     //   dispatch(loadingSet(false));
     // });
   }, []);
+
   const magnetFiltering = (filt) => {
     let res = [];
 
@@ -105,6 +108,7 @@ export default function HomePage() {
 
     setDisplayedMagnets(res);
   };
+
   return (
     <>
       <div className="container-fluid">
@@ -142,16 +146,36 @@ export default function HomePage() {
         </div>
         <div className="container">
           <div className="row">
-            <div className="col-3 mt-5">
-              <FilterSide
-                categoryFiltering={categoryFiltering}
-                magnetFiltering={magnetFiltering}
-              />
-            </div>
-            <div className="col-9">
-              {/* <h1 className="display-4 mt-2">on going events</h1> */}
-              <MainCard displayedEvents={displayedEvents} />
-            </div>
+            {loadingEvent && !loadingCategory &&
+              <>
+                <div className="container d-flex justify-content-center align-items-center">
+                  <div
+                    style={{ width: "200px", height: "200px", marginTop: "50px" }}
+                  >
+                    <img
+                      src="https://cdn.discordapp.com/attachments/1015235714780246077/1018164300940062790/loading.jpg"
+                      alt=""
+                      className="img-fluid rounded-circle"
+                    />
+                  </div>
+                </div>
+              </>
+            }
+            {!loadingEvent && !loadingCategory &&
+              <>
+                <div className="col-3 mt-5">
+                  <FilterSide
+                    categories = {categories}
+                    categoryFiltering={categoryFiltering}
+                    magnetFiltering={magnetFiltering}
+                  />
+                </div>
+                <div className="col-9">
+                  {/* <h1 className="display-4 mt-2">on going events</h1> */}
+                  <MainCard displayedEvents={displayedEvents} />
+                </div>
+              </>
+            }
           </div>
         </div>
       </div>

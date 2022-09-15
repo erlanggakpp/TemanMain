@@ -219,7 +219,19 @@ export default function UserPage() {
   return (
     <div className="containet-fluid">
       {loading ? (
-        <h1>Loading ... </h1>
+        <>
+          <div className="container d-flex justify-content-center align-items-center">
+            <div
+              style={{ width: "200px", height: "200px", marginTop: "50px" }}
+            >
+              <img
+                src="https://cdn.discordapp.com/attachments/1015235714780246077/1018164300940062790/loading.jpg"
+                alt=""
+                className="img-fluid rounded-circle"
+              />
+            </div>
+          </div>
+        </>
       ) : (
         <div className="container">
           <div className="row d-flex justify-content-center">

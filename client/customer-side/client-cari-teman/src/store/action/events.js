@@ -26,7 +26,7 @@ export const loadingSet = function (payload) {
 
 export const fetchEvent = function () {
   return (dispatch) => {
-    dispatch(loadingSet(true));
+    // dispatch(loadingSet(true));
     return axios
       .get(`${baseUrl}/events`, {
         headers: {
@@ -36,8 +36,11 @@ export const fetchEvent = function () {
       })
       .then(({ data }) => {
         dispatch(getEvent(data));
-return data
-      });
+        // return data
+      })
+      .finally(() => {
+        dispatch(loadingSet(false))
+      })
 
     // .finally(() => dispatch(loadingSet(false)));
   };
@@ -45,7 +48,6 @@ return data
 
 export const detailEvent = function (id) {
   return function (dispatch) {
-    dispatch(loadingSet(true));
     return axios
       .get(`${baseUrl}/events/${id}`, {
         headers: {
@@ -55,7 +57,10 @@ export const detailEvent = function (id) {
       })
       .then(({ data }) => {
         dispatch(getDetail(data));
-      });
+      })
+      .finally(() => {
+        dispatch(loadingSet(false))
+      })
     // .finally(() => dispatch(loadingSet(false)));
   };
 };

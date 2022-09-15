@@ -1,31 +1,6 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { loadingSet } from "../store/action/events";
-import { fetchCategory } from "../store/action/categories";
-
-// const { categories } = useSelector((e) => e.categories);
-// console.log(categories);
-// useEffect(() => {
-//   dispatch(fetchCategory()).finally(() => {
-//     dispatch(loadingSet(false));
-//   });
-// }, []);
-
-export default function FilterSide({ categoryFiltering, magnetFiltering }) {
-  const dispatch = useDispatch();
-  const { categories } = useSelector((e) => e.categories);
-  const { loading } = useSelector((e) => e.events);
-  // console.log(categories);
-  useEffect(() => {
-    dispatch(fetchCategory()).finally(() => {
-      dispatch(loadingSet(false));
-    });
-  }, []);
+export default function FilterSide({ categoryFiltering, magnetFiltering, categories }) {
   return (
     <>
-      {loading ? (
-        <h1>Loading...</h1>
-      ) : (
         <div className="container">
           <div id="mobile-filter">
             <div>
@@ -172,7 +147,6 @@ export default function FilterSide({ categoryFiltering, magnetFiltering }) {
             </div>
           </div>
         </div>
-      )}
     </>
   );
 }

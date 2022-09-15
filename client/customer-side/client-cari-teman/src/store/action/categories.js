@@ -1,6 +1,6 @@
 import axios from "axios";
-import { fetch_category } from "./actionType";
-import { loadingSet } from "./events";
+import { fetch_category, category_loading } from "./actionType";
+// import { loadingSet } from "./events";
 
 const baseUrl = "http://localhost:4000";
 
@@ -11,9 +11,16 @@ export const getCategory = function (payload) {
   };
 };
 
+export const setLoading = function (payload) {
+  return {
+    type: category_loading,
+    payload
+  }
+}
+
 export const fetchCategory = function () {
   return (dispatch) => {
-    dispatch(loadingSet(true));
+    // dispatch(loadingSet(true));
     return axios
       .get(`${baseUrl}/categories`, {
         headers: {
@@ -22,7 +29,10 @@ export const fetchCategory = function () {
       })
       .then(({ data }) => {
         dispatch(getCategory(data));
-      });
+      })
+      .finally(() => {
+        dispatch(setLoading(false))
+      })
 
     // .finally(() => dispatch(loadingSet(false)));
   };

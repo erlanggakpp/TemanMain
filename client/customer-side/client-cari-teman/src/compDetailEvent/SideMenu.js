@@ -27,7 +27,19 @@ export default function SideMenu({ toSide }) {
   return (
     <>
       {loading ? (
-        <h1>Loading...</h1>
+        <>
+          <div className="container d-flex justify-content-center align-items-center">
+            <div
+              style={{ width: "200px", height: "200px", marginTop: "50px" }}
+            >
+              <img
+                src="https://cdn.discordapp.com/attachments/1015235714780246077/1018164300940062790/loading.jpg"
+                alt=""
+                className="img-fluid rounded-circle"
+              />
+            </div>
+          </div>
+        </>
       ) : (
         <div className="col-md-4">
           <div className="position-sticky" style={{ top: "2rem" }}>

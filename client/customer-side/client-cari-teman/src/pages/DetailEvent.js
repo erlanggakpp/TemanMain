@@ -10,28 +10,54 @@ export default function DetailEvent() {
   const params = useParams();
   const dispatch = useDispatch();
   const { loading, eventDetail } = useSelector((e) => e.events);
+
   useEffect(() => {
-    dispatch(detailEvent(params.id)).finally(() => dispatch(loadingSet(false)));
+    dispatch(detailEvent(params.id))
+    // dispatch(detailEvent(params.id)).finally(() => dispatch(loadingSet(false)));
   }, []);
 
   return (
     // <h1>hallo</h1>
     <>
       {!eventDetail ? (
-        <h1>Loading...</h1>
+        <>
+          <div className="container d-flex justify-content-center align-items-center">
+            <div
+              style={{ width: "200px", height: "200px", marginTop: "50px" }}
+            >
+              <img
+                src="https://cdn.discordapp.com/attachments/1015235714780246077/1018164300940062790/loading.jpg"
+                alt=""
+                className="img-fluid rounded-circle"
+              />
+            </div>
+          </div>
+        </>
       ) : (
         <>
           <Outlet />
           {/* <p>{JSON.stringify(eventDetail)}</p> */}
           <div className="container" style={{ marginTop: "100px" }}>
-            <div className="container">
+              <div className="container">
               <TopBanner eventDetail={eventDetail} />
               {eventDetail.Magnets ? (
                 <div className="container d-flex justify-content-center align-items-center">
                   <CardAtDetailPage magnets={eventDetail.Magnets} />
                 </div>
               ) : (
-                <h1>Loading...</h1>
+                <>
+                  <div className="container d-flex justify-content-center align-items-center">
+                    <div
+                      style={{ width: "200px", height: "200px", marginTop: "50px" }}
+                    >
+                      <img
+                        src="https://cdn.discordapp.com/attachments/1015235714780246077/1018164300940062790/loading.jpg"
+                        alt=""
+                        className="img-fluid rounded-circle"
+                      />
+                    </div>
+                  </div>
+                </>
               )}
 
               <div className="row g-5">

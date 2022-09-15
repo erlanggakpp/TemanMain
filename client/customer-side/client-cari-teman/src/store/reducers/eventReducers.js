@@ -3,7 +3,7 @@ import { fetch_detail, fetch_event, loading_set } from "../action/actionType";
 const initialState = {
   events: [],
   eventDetail: "",
-  loading: false,
+  loading: true,
 };
 
 function eventReducers(state = initialState, action) {

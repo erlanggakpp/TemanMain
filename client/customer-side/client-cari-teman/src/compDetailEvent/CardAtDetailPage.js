@@ -5,7 +5,7 @@ import { detailEvent, loadingSet } from "../store/action/events";
 import ModalMagnets from "./ModalMagnets";
 
 export default function CardAtDetailPage({ magnets }) {
-  const [showMagnets, setShowMagnets] = useState([])
+  const [showMagnets, setShowMagnets] = useState([]);
   // const [input, setInput] = useState({
   //   age: "0",
   //   gender: "All Gender"
@@ -22,22 +22,22 @@ export default function CardAtDetailPage({ magnets }) {
   const filterMagnet = (filt) => {
     let res = [];
 
-   if (filt.name == "gender") {
-     if (filt.filter === "All") {
-         magnets.forEach((el) => {
-           res.push(el); 
-       });
-        setShowMagnets(magnets)
-     } else {
-       magnets.forEach((el) => {
-         if (el.specialRequirement == filt.filter) {
-           res.push(el);
-         }
-       });
+    if (filt.name == "gender") {
+      if (filt.filter === "All") {
+        magnets.forEach((el) => {
+          res.push(el);
+        });
+        setShowMagnets(magnets);
+      } else {
+        magnets.forEach((el) => {
+          if (el.specialRequirement == filt.filter) {
+            res.push(el);
+          }
+        });
+      }
     }
-   } 
 
-   if(filt.name == "age") {
+    if (filt.name == "age") {
       magnets.forEach((el) => {
         if (
           +el.ageRequirement >= +filt.filter &&
@@ -68,7 +68,7 @@ export default function CardAtDetailPage({ magnets }) {
         }
       });
     }
-  
+
     setShowMagnets(res);
   };
   // useEffect(() => {
@@ -87,7 +87,7 @@ export default function CardAtDetailPage({ magnets }) {
   // const dispatch = useDispatch();
 
   useEffect(() => {
-    setShowMagnets(magnets)
+    setShowMagnets(magnets);
     // dispatch(detailEvent(params.id)).finally(() => dispatch(loadingSet(false)));
   }, []);
 
@@ -116,20 +116,20 @@ export default function CardAtDetailPage({ magnets }) {
       ) : (
       )} */}
 
-        <div className="row mb-2 d-flex justify-content-center">
-          <div
-            className="row d-flex justify-content-center mb-5"
-            style={{ marginLeft: "0" }}
-          >
-            <div className="col-12 d-flex align-item-center justify-content-center mt-5 p-0 text-light">
-              <img
-                src="https://cdn.discordapp.com/attachments/1015235714780246077/1019524724109361192/magnetstrips.jpg"
-                alt=""
-                className="w-100"
-              />
-              </div>
-              
-              <div className="py-5 px-5">
+      <div className="row mb-2 d-flex justify-content-center">
+        <div
+          className="row d-flex justify-content-center mb-5"
+          style={{ marginLeft: "0" }}
+        >
+          <div className="col-12 d-flex align-item-center justify-content-center mt-5 p-0 text-light">
+            <img
+              src="https://cdn.discordapp.com/attachments/1015235714780246077/1019524724109361192/magnetstrips.jpg"
+              alt=""
+              className="w-100"
+            />
+          </div>
+
+          {/* <div className="py-5 px-5">
                 <div className="row">
               <div className="col-md-6">
                     <p onClick={() => filterMagnet({ name: "gender", filter: "All" })}>All</p>
@@ -145,61 +145,61 @@ export default function CardAtDetailPage({ magnets }) {
                 <p onClick={() => filterMagnet({ name: "age", filter: "41" })}>41 yo - 70 yo</p>
                   </div>
                 </div>
-              </div>
-            {showMagnets.length === 0 && <h1>Sorry, there's no open magnet</h1>}
-            <ModalMagnets />
-          </div>
-          {showMagnets.length !== 0 &&
-            showMagnets.map((el) => {
-              return (
-                <div className="col-md-3" key={el.id}>
-                  <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                    <div className="col p-4 d-flex flex-column position-static m-2">
-                      <div className=" d-flex justify-content-center">
-                        <img
-                          src={el.User.profilePict}
-                          alt=""
-                          className="img-fluid rounded-circle h-100 p-4"
-                        />
-                      </div>
-                      <h3 className="mb-0">
-                        {el.User.firstName} {el.User.lastName}
-                      </h3>
-                      <div className="mb-1 text-muted">
-                        {el.corfirmationDate}
-                      </div>
-                      <p className="card-text mb-auto">
-                        {" "}
-                        participants :{" "}
-                        <strong>
-                          {el.vacantParticipant} / {el.participant}
-                        </strong>
-                      </p>
-                      <strong className="d-inline-block mb-2 text-primary">
-                        {el.specialRequirement}
+              </div> */}
+          {showMagnets.length === 0 && (
+            <h1 className="mt-5">Sorry, there's no open magnet</h1>
+          )}
+          <ModalMagnets />
+        </div>
+        {showMagnets.length !== 0 &&
+          showMagnets.map((el) => {
+            return (
+              <div className="col-md-3" key={el.id}>
+                <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                  <div className="col p-4 d-flex flex-column position-static m-2">
+                    <div className=" d-flex justify-content-center">
+                      <img
+                        src={el.User.profilePict}
+                        alt=""
+                        className="img-fluid rounded-circle h-100 p-4"
+                      />
+                    </div>
+                    <h3 className="mb-0">
+                      {el.User.firstName} {el.User.lastName}
+                    </h3>
+                    <div className="mb-1 text-muted">{el.corfirmationDate}</div>
+                    <p className="card-text mb-auto">
+                      {" "}
+                      participants :{" "}
+                      <strong>
+                        {el.vacantParticipant} / {el.participant}
                       </strong>
-                      <Link
-                        to={`magnets/${el.id}`}
-                        href="#"
-                        className="stretched-link"
-                      ></Link>
-                      <div>
-                        <button
-                          type="button"
-                          className="btn w-100 text-white mt-3"
-                          data-bs-toggle="modal"
-                          data-bs-target="#exampleModal"
-                          style={{ backgroundColor: "#2e94d1" }}
-                        >
-                          <h6 style={{ color: "#white" }}>click me!</h6>
-                        </button>
-                      </div>
+                    </p>
+                    <strong className="d-inline-block mb-2 text-primary">
+                      {el.specialRequirement}
+                    </strong>
+                    <Link
+                      to={`magnets/${el.id}`}
+                      href="#"
+                      className="stretched-link"
+                    ></Link>
+                    <div>
+                      <button
+                        type="button"
+                        className="btn w-100 text-white mt-3"
+                        data-bs-toggle="modal"
+                        data-bs-target="#exampleModal"
+                        style={{ backgroundColor: "#2e94d1" }}
+                      >
+                        <h6 style={{ color: "#white" }}>click me!</h6>
+                      </button>
                     </div>
                   </div>
                 </div>
-              );
-            })}
-        </div>
+              </div>
+            );
+          })}
+      </div>
     </>
   );
 }

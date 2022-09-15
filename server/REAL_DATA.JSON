@@ -1,0 +1,341 @@
+{
+  "users": [
+    {
+      "email": "admin1@mail.com",
+      "password": "12345",
+      "firstName": "admin1",
+      "lastName": "admin1",
+      "address": "Jakarta",
+      "birthdate": "01/01/1990",
+      "profilePict": "https://i.pravatar.cc/300",
+      "instagramAccount": "@admin1",
+      "twitterAccount": "@admin1",
+      "phoneNumber": "0812345",
+      "gender": "Male",
+      "role": "Admin"
+    },
+    {
+      "email": "admin2@mail.com",
+      "password": "12345",
+      "firstName": "admin2",
+      "lastName": "admin2",
+      "address": "Jakarta",
+      "birthdate": "01/01/1990",
+      "profilePict": "https://i.pravatar.cc/300",
+      "instagramAccount": "@admin2",
+      "twitterAccount": "@admin2",
+      "phoneNumber": "0812345",
+      "gender": "Female",
+      "role": "Admin"
+    },
+    {
+      "email": "user1@mail.com",
+      "password": "12345",
+      "firstName": "user1",
+      "lastName": "user1",
+      "address": "Bandung",
+      "birthdate": "01/01/1990",
+      "profilePict": "https://i.pravatar.cc/300",
+      "instagramAccount": "@user1",
+      "twitterAccount": "@user1",
+      "phoneNumber": "0812345",
+      "gender": "Male",
+      "role": "Visitor"
+    },
+    {
+      "email": "user2@mail.com",
+      "password": "12345",
+      "firstName": "user2",
+      "lastName": "user2",
+      "address": "Surabaya",
+      "birthdate": "01/01/2005",
+      "profilePict": "https://i.pravatar.cc/300",
+      "instagramAccount": "@user2",
+      "twitterAccount": "@user2",
+      "phoneNumber": "0812345",
+      "gender": "Female",
+      "role": "Visitor"
+    },
+    {
+      "email": "user3@mail.com",
+      "password": "12345",
+      "firstName": "user3",
+      "lastName": "user3",
+      "address": "Bandung",
+      "birthdate": "01/01/2005",
+      "profilePict": "https://i.pravatar.cc/300",
+      "instagramAccount": "@user3",
+      "twitterAccount": "@user3",
+      "phoneNumber": "0812345",
+      "gender": "Female",
+      "role": "Visitor"
+    }
+  ],
+  "categories": [
+    {
+      "name": "Music",
+      "image": "https://cdn.kiostix.com/media/18304/conversions/medium.jpg"
+    },
+    {
+      "name": "Attraction",
+      "image": "https://cdn.kiostix.com/media/18304/conversions/medium.jpg"
+    },
+    {
+      "name": "Playground",
+      "image": "https://cdn.kiostix.com/media/18304/conversions/medium.jpg"
+    },
+    {
+      "name": "Workshop and Education",
+      "image": "https://cdn.kiostix.com/media/18304/conversions/medium.jpg"
+    },
+    {
+      "name": "Tours",
+      "image": "https://cdn.kiostix.com/media/18304/conversions/medium.jpg"
+    }
+  ],
+  "events": [
+    {
+      "CategoryId": 1,
+      "name": "Synchronize Fest",
+      "location": "Kemayoran, Jakarta",
+      "description": "Synchronize Fest is an annual multi-genre music festival on a national scale that invites tens of thousands of audiences to celebrate the diversity of live music on five stages for three days, three nights, enjoying 100s of curated performances from the country's favorite and best artists from the decade of the '70s, '80s, '90s to 2000s. All popular music genres will be featured at the Synchronize Fest.",
+      "eventDate": "2022/10/08",
+      "eventHomepageLink": "https://synchronizefestival.com",
+      "eventDuration": "3 Days",
+      "AdminId": 1,
+      "image": "http://vradiofm.com/uploads/news/730b2923-60ed-41f4-8895-04d6c49c325c78805a221a988e79ef3f42d7c5bfd418.jpg",
+      "ticketPrice": 500000
+    },
+    {
+      "CategoryId": 1,
+      "name": "Joyland Fest",
+      "location": "Senayan, Jakarta",
+      "description": "Joyland Festival is returning to Jakarta! Joyland is a music and arts festival usually held in November in the grassy grounds of Senayan, Jakarta. The event will showcase three days of live music, comedy, film, workshops, and activities, along with a marketplace, across various areas inside the venue. As an environmentally conscious festival, Joyland is also committed in producing a sustainable experience that leaves minimal environmental impact. The idea of Joyland Festival was born out of the desire to pioneer a multisensory festival of medium scale set in idyllic green space that combines and collaborates with artists in various creative fields. The event is organized in such a way that attendees can explore and relish the festival in its entirety from start to finish.",
+      "eventDate": "2022/11/04",
+      "eventHomepageLink": "https://joylandfest.com/",
+      "eventDuration": "2 Days",
+      "AdminId": 1,
+      "image": "https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20220824095137.jpg",
+      "ticketPrice": 500000
+    },
+    {
+      "CategoryId": 1,
+      "name": "The Sounds Project",
+      "location": "Ancol, Jakarta",
+      "description": "The Sounds Project bermula pada tahun 2015 dimana empat orang anak muda dari satu kampus yang bermimpi untuk membuat platform musik berbasis kampus-komunitas, yang bisa diterima oleh publik dan pecinta musik secara universal. Dengan hanya berlandaskan semangat dan passion, mereka mulai menginisiasi gigs-gigs kecil dan event berskala medium secara lokal. Seiring berjalannya waktu, dari gigs lokal, maupun internal kampus, The Sounds Project terus berkelanjutan dan di-manage oleh para pendirinya setelah mereka lulus kuliah. Dan melalui belasan trial-error event, The Sounds Project menjelma menjadi kolektif musik yang sedikit demi sedikit dikenal oleh para penikmat, sebagai platform penyelenggara konser yang konsisten di area Jakarta dan Depok.",
+      "eventDate": "2022/8/22",
+      "eventHomepageLink": "https://www.thesoundsproject.com",
+      "eventDuration": "3 Days",
+      "AdminId": 2,
+      "image": "https://cdn.kiostix.com/media/18304/conversions/medium.jpg",
+      "ticketPrice": 800000
+    },
+    {
+      "CategoryId": 5,
+      "name": "Labuan Bajo",
+      "location": "Nusa Tenggara Timur",
+      "description": "Labuan Bajo is one of small town in Indonesia, so calm and beautiful. The town is the gateway into the charm of Flores to complete travel from the west. However, if only want to enjoy the Varanus Komodoensis, which has been determined to be one of the World's Seven Wonders of Nature, in its natural habitat. Labuan Bajo is an important starting point and the only one of the most convenient and comfortable. Located on the western tip of Flores, Labuan Bajo is a small town that very recommended to explore exotica Flores started Varanus Komodoensis, Komodo National Park with the beauty underwater life on the western tip of Flores, until Hunting Whales tradition in Lembata, at the eastern tip of Nusa Nipa (Snake Island) Flores. The last decade, Labuan Bajo can be said a small town. Some even say Labuan Bajo is a big village or regency that was wriggling build to grow into a city. Become a tourism city for a period not too far away. Different to other cities in Indonesia, Labuan Bajo has some uniqueness. First, it is a port city storied. Labuan is not a city with vast lowlands. The lowlands of the coast is not very widely followed slope that supports the vast plains on it. This condition creates a beautiful city landscape. Second, Labuan Bajo fortified by uninhabited small islands. The existence of islands creates the beauty of Labuan Bajo so it is no exaggeration to say that is beautiful city. Third, Labuan Bajo is a safe city. At least until now there has been no complaint from the tourists associated with pickpocketing or other criminal acts are synonymous with the urban world. So do not be afraid to come to Labuan Bajo. Beside to secure, you will also find hospitality of locals Flores. When you meet with others unknown though, the locals Flores always give a smile. You to respond to each other with a smile anyway did not impress to be haughty.",
+      "eventDate": "2022/12/12",
+      "eventHomepageLink": "https://www.indonesia.travel/id/id/destinasi/bali-nusa-tenggara/labuan-bajo",
+      "eventDuration": "5 Days",
+      "AdminId": 1,
+      "image": "https://img.jakpost.net/c/2017/08/02/2017_08_02_30495_1501654303._large.jpg",
+      "ticketPrice": 15000000
+    },
+    {
+      "CategoryId": 5,
+      "name": "Karimun Jawa",
+      "location": "Jepara, Jawa Tengah",
+      "description": "Karimunjawa is and island chain stretching in a northwesterly direction 83 km from Jepara. Central Java. This archipelago is a cluster of 27 islands in the java sea. Only seven of the islands are inhabited. The reefs are a mixture of fringing, barrier, and patch with bottom depths ranging from 15 to 40 meters. The name of Karimunjawa is taken from Javanese language 'Kremun kremun saking tanah Jawi' addressed by one of Wali Songo (the Nine Saints who had introduced Islam in Java) to describe how far this mini archipelago from Java, to be exact from Semarang and Jepara. Stands from 27 islands, this mini archipelago became marine national park and it's like a treasure for those who love marine life. Here can be found protected coral reefs (very colorful plateaus and plains in deep and shallow waters), secluded and tranquil white beaches, pelican and hornbill, sea grass and kinds of sea creatures, from crabs, anchovy, starfish, sharks, stingray, jellyfish, red snappers, etc. The Marine National Park Karimun Jawa is 110,000 ha and lies 90 km north east of Jepara in Central Java. We will find mangrove forest and beach forest. The park is named after the largest island Karimun Jawa. The vegetation consists mainly of mangrove and beach forest, although there is some lowland rain forest on Karimun Jawa. Most of the islands are surrounded by sandy beaches and fringing coral reefs. Fresh water is confined to a few small wells and forest streams on Karimun Jawa. A number of endemic animals live on the island while on the beaches sea turtles lay their eggs. The average tidal range is 92 cm. The archipelagic Karimunjawa, thought not as known the Marine reserves near Ambon and Manado, has unexpectedly good beaches, reefs and lovely sea scopes. Corals seem to blossom in to gardens, with an Amazing variety of form and color fishers and marine plants. It lies 90 km away from Jepara and can reached by `KM. Adison I & KM Kota Ukir` boat, the only ferryboat connecting Karimunjawa and Jepara. The resort offers stunning dives and snorkeling trips for all sorts of divers from novice to experience. Fringing reefs, atolls, wrecks and an excellent variety of different species make diving in Karimunjawa an unforgettable adventure.",
+      "eventDate": "2022/12/12",
+      "eventHomepageLink": "https://www.indonesia-tourism.com/central-java/karimunjawa.html",
+      "eventDuration": "5 Days",
+      "AdminId": 1,
+      "image": "https://www.indonesia-tourism.com/central-java/images/karimun-jawa.jpg",
+      "ticketPrice": 5000000
+    },
+    {
+      "CategoryId": 3,
+      "name": "Dunia Fantasi",
+      "location": "Ancol, Jakarta",
+      "description": "Dunia Fantasi is Jakarta`s own theme park, complete with over 30 rides and attractions. The theme park is divided into eight regions, which are Jakarta, Indonesia, Asia, Africa, America, Europe and the Fantasi Hikayat (Legendary Fantasy) region, featuring Ancient Greek and Ancient Egyptian architecture. The theme park complies with international standards through ISO 9001:2000 certification. In 2013, Dunia Fantasi (Dufan) added one more area (Indoor Dufan), equipped with an Ice Age ride and Kontiki, and in 2014 and 2015 Dufan added Hello Kitty Adventure and Dufan Glow.",
+      "eventDate": "2022/11/02",
+      "eventHomepageLink": "https://synchronizefestival.com",
+      "eventDuration": "1 Day",
+      "AdminId": 2,
+      "image": "https://s-light.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/rsfit19201280gsm/events/2021/12/08/9c6ae660-1799-4276-b81d-f8b0b85669d6-1638949473006-1e6c55a1b1edca6bf250012af2cc79e2.jpg",
+      "ticketPrice": 200000
+    },
+    {
+      "CategoryId": 3,
+      "name": "Taman Safari",
+      "location": "Cisarua, Jakarta",
+      "description": "Taman Safari Indonesia (Bogor) is located in the mountainous area of Cisarua, Bogor regency, West Java. The vast complex is a zoo and animal theme park that has become a popular destination, drawing visitors from nearby areas as well as from across the nation and even from abroad. Taman Safari Bogor is one of three safari parks in Indonesia, the two others being Taman Safari Prigen in East Java and the Bali Safari and Marine Park.",
+      "eventDate": "2022/11/02",
+      "eventHomepageLink": "https://synchronizefestival.com",
+      "eventDuration": "1 Day",
+      "AdminId": 2,
+      "image": "https://s-light.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/rsfit19201280gsm/events/2021/12/08/9c6ae660-1799-4276-b81d-f8b0b85669d6-1638949473006-1e6c55a1b1edca6bf250012af2cc79e2.jpg",
+      "ticketPrice": 200000
+    }
+  ],
+  "magnets": [
+    {
+      "UserId": 3,
+      "EventId": 1,
+      "confirmationDate": "2022/10/03",
+      "status": true,
+      "ageRequirement": "18",
+      "specialRequirement": "Male or Female",
+      "magnetDescription": "Pengen nonton tapi gapunya temen, ayo temenin! Kesononya naik bis",
+      "participant": 4,
+      "vacantParticipant": 3
+    },
+    {
+      "UserId": 3,
+      "EventId": 2,
+      "confirmationDate": "2022/10/03",
+      "status": true,
+      "ageRequirement": "18",
+      "specialRequirement": "Male or Female",
+      "magnetDescription": "Pengen nonton tapi gapunya temen, ayo temenin! Kesononya naik bis",
+      "participant": 4,
+      "vacantParticipant": 3
+    },
+    {
+      "UserId": 4,
+      "EventId": 1,
+      "confirmationDate": "2022/10/03",
+      "status": true,
+      "ageRequirement": "18",
+      "specialRequirement": "Female",
+      "magnetDescription": "Cari teman untuk nonton konser, transportasi saya tanggung",
+      "participant": 2,
+      "vacantParticipant": 0
+    },
+    {
+      "UserId": 5,
+      "EventId": 1,
+      "confirmationDate": "2022/10/03",
+      "status": true,
+      "ageRequirement": "18",
+      "specialRequirement": "Male or Female",
+      "magnetDescription": "Synchronize fest, akomodasi di hotel bintang 3",
+      "participant": 6,
+      "vacantParticipant": 3,
+      "participantDescription": "Mencari 3 orang, 2 wanita 1 Pria untuk nonton bareng! Yang ikut baru saya, kakak saya(perempuan) dan adik saya(perempuan)"
+    },
+    {
+      "UserId": 3,
+      "EventId": 1,
+      "confirmationDate": "2022/10/03",
+      "status": "open",
+      "ageRequirement": "19",
+      "specialRequirement": "Female",
+      "magnetDescription": "apawe",
+      "participant": "6",
+      "vacantParticipant": "5",
+      "participantDescription": "asdasdasd",
+      "id": 4
+    },
+    {
+      "UserId": 3,
+      "EventId": "1",
+      "confirmationDate": "2022/10/03",
+      "status": "open",
+      "ageRequirement": "19",
+      "specialRequirement": "All Gender",
+      "magnetDescription": "dadadawkdoa askdaskdjh",
+      "participant": "5",
+      "vacantParticipant": "4",
+      "participantDescription": "drimsesn sadkjsdh",
+      "id": 5
+    },
+    {
+      "UserId": 3,
+      "EventId": "2",
+      "confirmationDate": "2022/10/03",
+      "status": "open",
+      "ageRequirement": "97",
+      "specialRequirement": "All Gender",
+      "magnetDescription": "hohouuu",
+      "participant": "10",
+      "vacantParticipant": "9",
+      "participantDescription": "lalala",
+      "id": 6
+    },
+    {
+      "UserId": 3,
+      "EventId": "2",
+      "confirmationDate": "2022/10/03",
+      "status": "open",
+      "ageRequirement": "20",
+      "specialRequirement": "All Gender",
+      "magnetDescription": "aman aman",
+      "participant": "9",
+      "vacantParticipant": "7",
+      "participantDescription": "ygy",
+      "id": 7
+    },
+    {
+      "UserId": 3,
+      "EventId": "3",
+      "confirmationDate": "2022/10/03",
+      "status": "open",
+      "ageRequirement": "21",
+      "specialRequirement": "All Gender",
+      "magnetDescription": "gg gemink",
+      "participant": "1",
+      "vacantParticipant": "21",
+      "participantDescription": "ha ha ha",
+      "id": 8
+    },
+    {
+      "UserId": 3,
+      "EventId": "3",
+      "confirmationDate": "2022/10/03",
+      "status": "open",
+      "ageRequirement": "123",
+      "specialRequirement": "Man Only",
+      "magnetDescription": "sadsad",
+      "participant": "213",
+      "participantDescription": "scxzczc",
+      "id": 9,
+      "vacantParticipant": 1
+    }
+  ],
+  "requests": [
+    {
+      "EventId": 1,
+      "UserId": 4,
+      "MagnetId": 1,
+      "requestDescription": "i req join",
+      "status": "open"
+    },
+    {
+      "UserId": 3,
+      "EventId": 3,
+      "MagnetId": 1,
+      "requestDescription": "mencoba ygy",
+      "status": "wokee",
+      "id": 2
+    }
+  ],
+  "invitations": [
+    {
+      "EventId": 1,
+      "UserId": 5,
+      "MagnetId": 1,
+      "invitationDescription": "i invit u",
+      "status": "open"
+    },
+    {
+      "UserId": 3,
+      "EventId": 3,
+      "MagnetId": 1,
+      "invitationDescription": "ayok ayokk",
+      "status": "open",
+      "id": 3
+    }
+  ]
+}

@@ -42,7 +42,7 @@ export default function ModalMagnets() {
         dispatch(addMagnets(dataForm))
           .then((data) => {
             dispatch(detailEvent(params.id));
-            Swal.fire({
+            return Swal.fire({
               position: "top-end",
               icon: "success",
               title: data.data.message,

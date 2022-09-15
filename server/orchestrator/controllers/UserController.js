@@ -30,14 +30,10 @@ class UserController {
   static async createUser(req, res) {
     try {
       const data = req.body;
-      const { access_token } = req.headers;
       const { data: newUser } = await axios({
         method: "POST",
         url: "http://localhost:4001/users",
         data,
-        headers: {
-          access_token,
-        },
       });
 
       await redis.del("user:users");

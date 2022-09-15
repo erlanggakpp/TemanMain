@@ -3,7 +3,7 @@ import { useState } from "react";
 // import { loginHandlerAction } from "../store/action/userAction";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-// import Swal from "sweetalert2";
+import Swal from "sweetalert2";
 // import { useEffect } from 'react'
 import { loadingSet } from "../store/action/events";
 import { loginUser, fetchMyProfile } from "../store/action/users";
@@ -27,14 +27,25 @@ function LoginPage() {
   const userSubmit = (e) => {
     e.preventDefault();
     dispatch(loginUser(loginInput))
-      .then(() => {
+      .then((data) => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: data.data.message,
+          showConfirmButton: false,
+          timer: 1500,
+        });
         return dispatch(fetchMyProfile());
       })
       .then((data) => {
         navigate("/");
       })
       .catch((error) => {
-        console.log(error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: error.response.data.error,
+        });
       })
       .finally(() => dispatch(loadingSet(false)));
   };

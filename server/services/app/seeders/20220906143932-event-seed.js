@@ -1,5 +1,5 @@
 "use strict";
-const { events } = require("../../../../db.json");
+const { events } = require("../real_data.json");
 
 module.exports = {
   async up(queryInterface, Sequelize) {

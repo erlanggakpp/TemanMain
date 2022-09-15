@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { loadingSet } from "../store/action/events";
 import { addUser } from "../store/action/users";
+const Swal = require("sweetalert2");
 
 export default function RegisterPage() {
   const [userData, setUserData] = useState({
@@ -32,12 +33,26 @@ export default function RegisterPage() {
   };
   const userSubmit = (e) => {
     e.preventDefault();
-    console.log(userData);
     dispatch(addUser(userData))
       .then((data) => {
-        console.log(data);
+        return Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: data.data.message,
+          showConfirmButton: false,
+          timer: 1500,
+        });
       })
-      .catch((error) => {})
+      .then(() => {
+        navigate("/login");
+      })
+      .catch((err) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: err.response.data.message,
+        });
+      })
       .finally(() => dispatch(loadingSet(false)));
   };
   return (
@@ -140,6 +155,9 @@ export default function RegisterPage() {
                   className="form-control"
                   placeholder="gender"
                 >
+                  <option value={""} disabled>
+                    Please Select Gender
+                  </option>
                   <option value={"Male"}>Male</option>
                   <option value={"Female"}>Female</option>
                 </select>

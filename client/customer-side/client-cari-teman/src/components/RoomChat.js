@@ -15,7 +15,7 @@ export default function RoomChat({ magnetDetail, magnetId }) {
   const [openChat, setOpenChat] = useState(false);
   const { loggedUser } = useSelector((e) => e.users);
 
-  // console.log(loggedUser.id, magnetDetail.UserId, "<<<<<<<<<<");
+  console.log(loggedUser, "<<<<<<<<<<");
 
   const joinGroupChat = () => {
     let flag = false;
@@ -49,7 +49,6 @@ export default function RoomChat({ magnetDetail, magnetId }) {
       }
     }
   };
-
   useEffect(() => {
     socket = io(CONNECTION_PORT);
   }, [CONNECTION_PORT]);
@@ -73,7 +72,7 @@ export default function RoomChat({ magnetDetail, magnetId }) {
       access_token: localStorage.access_token,
     });
   };
-  console.log(messageList);
+  console.log(messageList, "<<<<<<<<<<");
   const sendMessage = async (e) => {
     e.preventDefault();
     let messageContent = {
@@ -82,7 +81,9 @@ export default function RoomChat({ magnetDetail, magnetId }) {
         UserId: loggedUser.id,
         author: `${loggedUser.firstName} ${loggedUser.lastName}`,
         chat: chat,
-        profilePict: loggedUser.profilePict,
+        User: {
+          profilePict: loggedUser.profilePict,
+        },
       },
       access_token: localStorage.access_token,
       magnetId: magnetId,

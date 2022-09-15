@@ -4,6 +4,7 @@ import { loadingSet } from "./events";
 const baseUrl = "http://localhost:4000";
 
 export const loginUser = function (userData) {
+  // console.log(userData);
   return function (dispatch) {
     dispatch(loadingSet(true));
     return axios(`${baseUrl}/users/public/login`, {
@@ -12,6 +13,7 @@ export const loginUser = function (userData) {
     }).then((data) => {
       // console.log(data, 'hasilLogin');
       localStorage.setItem("access_token", data.data.access_token);
+      return data;
     });
   };
 };
@@ -35,7 +37,6 @@ export const fetchMyProfile = function () {
         },
       })
       .then((data) => {
-        console.log(data.data, " <<<<<<<<<<<<<<<<<<<<<<");
         dispatch({
           type: logged_user,
           payload: data.data,
@@ -63,10 +64,13 @@ export const editMyProfile = function (data) {
 export const addUser = function (userData) {
   return function (dispatch) {
     dispatch(loadingSet(true));
-    return axios.post(`${baseUrl}/users`, userData, {
-      headers: {
-        access_token: localStorage.access_token,
-      },
-    });
+    return axios
+      .post(`${baseUrl}/users/public/register`, userData)
+      .then((data) => {
+        return data;
+      })
+      .catch((err) => {
+        throw err;
+      });
   };
 };

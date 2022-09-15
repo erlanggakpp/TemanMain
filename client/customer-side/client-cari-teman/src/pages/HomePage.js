@@ -14,9 +14,19 @@ import { detailMagnet, fetchMagnet } from "../store/action/magnets";
 
 export default function HomePage() {
   const dispatch = useDispatch();
-  const { events, eventDetail, loading: loadingEvent } = useSelector((e) => e.events);
-  const { magnets, magnetDetail, loading: loadingMagnet } = useSelector((e) => e.magnets);
-  const { categories, loading: loadingCategory } = useSelector((e) => e.categories);
+  const {
+    events,
+    eventDetail,
+    loading: loadingEvent,
+  } = useSelector((e) => e.events);
+  const {
+    magnets,
+    magnetDetail,
+    loading: loadingMagnet,
+  } = useSelector((e) => e.magnets);
+  const { categories, loading: loadingCategory } = useSelector(
+    (e) => e.categories
+  );
   const { loggedUser } = useSelector((e) => e.users);
   const [showEvents, setShowEvents] = useState([]);
   const [displayedEvents, setDisplayedEvents] = useState([]);
@@ -24,17 +34,19 @@ export default function HomePage() {
   const [categoryIdFilter, setCategoryIdFilter] = useState("0");
 
   const categoryFiltering = (id) => {
-    setCategoryIdFilter(id)
+    setCategoryIdFilter(id);
   };
 
   useEffect(() => {
     if (+categoryIdFilter === 0) {
       setDisplayedEvents(events);
     } else {
-      const filteredEvents = events.filter((el) => el.CategoryId === categoryIdFilter);
+      const filteredEvents = events.filter(
+        (el) => el.CategoryId === categoryIdFilter
+      );
       setDisplayedEvents(filteredEvents);
     }
-  }, [events, categoryIdFilter])
+  }, [events, categoryIdFilter]);
 
   //use effect created magnets
   // useEffect(() => {
@@ -50,8 +62,8 @@ export default function HomePage() {
   // console.log(displayedMagnets, "masoook");
 
   useEffect(() => {
-    dispatch(fetchEvent())
-    dispatch(fetchCategory())
+    dispatch(fetchEvent());
+    dispatch(fetchCategory());
     // dispatch(detailEvent(2)).finally(() => {
     //   dispatch(loadingSet(false));
     // });
@@ -115,7 +127,7 @@ export default function HomePage() {
         <div>
           <div className="row">
             <div className="col-12 mt-5">
-              <div
+              {/* <div
                 style={{ height: "150px", backgroundColor: "#2e94d1" }}
                 className="d-flex justify-content-center mb-4 mt-4"
               >
@@ -124,7 +136,7 @@ export default function HomePage() {
                   alt=""
                   className="img-fluid"
                 />
-              </div>
+              </div> */}
               {/* <CategoryCarou categoryFiltering={categoryFiltering} /> */}
               <div className="container">
                 <img
@@ -146,11 +158,15 @@ export default function HomePage() {
         </div>
         <div className="container">
           <div className="row">
-            {loadingEvent && !loadingCategory &&
+            {loadingEvent && !loadingCategory && (
               <>
                 <div className="container d-flex justify-content-center align-items-center">
                   <div
-                    style={{ width: "200px", height: "200px", marginTop: "50px" }}
+                    style={{
+                      width: "200px",
+                      height: "200px",
+                      marginTop: "50px",
+                    }}
                   >
                     <img
                       src="https://cdn.discordapp.com/attachments/1015235714780246077/1018164300940062790/loading.jpg"
@@ -160,12 +176,12 @@ export default function HomePage() {
                   </div>
                 </div>
               </>
-            }
-            {!loadingEvent && !loadingCategory &&
+            )}
+            {!loadingEvent && !loadingCategory && (
               <>
                 <div className="col-3 mt-5">
                   <FilterSide
-                    categories = {categories}
+                    categories={categories}
                     categoryFiltering={categoryFiltering}
                     magnetFiltering={magnetFiltering}
                   />
@@ -175,7 +191,7 @@ export default function HomePage() {
                   <MainCard displayedEvents={displayedEvents} />
                 </div>
               </>
-            }
+            )}
           </div>
         </div>
       </div>

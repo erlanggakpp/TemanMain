@@ -1,5 +1,5 @@
 "use strict";
-const { categories } = require("../../../../db.json");
+const { categories } = require("../real_data.json");
 
 module.exports = {
   async up(queryInterface, Sequelize) {

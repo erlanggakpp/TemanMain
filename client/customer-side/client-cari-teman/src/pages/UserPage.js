@@ -63,6 +63,7 @@ export default function UserPage() {
         return dispatch(getMyRequest());
       })
       .then((data) => {
+        console.log();
         setMyRequests(data.data);
         return dispatch(fetchMyProfile());
       })
@@ -74,7 +75,6 @@ export default function UserPage() {
         dispatch(loadingSet(false));
       });
   }, []);
-
   const formSubmit = (e) => {
     e.preventDefault();
     console.log(dataForm);
@@ -85,14 +85,14 @@ export default function UserPage() {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, create it!",
+      confirmButtonText: "Yes!",
     }).then((result) => {
       if (result.isConfirmed) {
         // dispatch()
         dispatch(editMagnet(dataForm))
           .then((data) => {
             // dispatch(detailEvent(dataForm.EventId));
-            Swal.fire({
+            return Swal.fire({
               position: "top-end",
               icon: "success",
               title: data.data.message,
@@ -100,13 +100,19 @@ export default function UserPage() {
               timer: 1500,
             });
           })
+          .then(() => {
+            return dispatch(fetchMagnetsByUserId());
+          })
+          .then((data) => {
+            // console.log(data, "IMI DATA");
+            setMyMagnets(data.data);
+          })
           .catch((err) => {
             Swal.fire({
               icon: "error",
               title: "Oops...",
               text: err.response.data.message,
             });
-            console.log(err.response.data.message, "<<err");
           })
           .finally(() => {
             dispatch(loadingSet(false));
@@ -215,15 +221,27 @@ export default function UserPage() {
         dispatch(loadingSet(false));
       });
   };
-  // console.log(myRequests, "Ini requests");
+  // if (!user.firstName) {
+  //   return (
+  //     <>
+  //       <div className="container d-flex justify-content-center align-items-center">
+  //         <div style={{ width: "200px", height: "200px", marginTop: "50px" }}>
+  //           <img
+  //             src={"https://cdn.discordapp.com/attachments/1015235714780246077/1018164300940062790/loading.jpg"}
+  //             alt=""
+  //             className="img-fluid rounded-circle"
+  //           />
+  //         </div>
+  //       </div>
+  //     </>
+  //   );
+  // }
   return (
     <div className="containet-fluid">
       {loading ? (
         <>
           <div className="container d-flex justify-content-center align-items-center">
-            <div
-              style={{ width: "200px", height: "200px", marginTop: "50px" }}
-            >
+            <div style={{ width: "200px", height: "200px", marginTop: "50px" }}>
               <img
                 src="https://cdn.discordapp.com/attachments/1015235714780246077/1018164300940062790/loading.jpg"
                 alt=""
@@ -256,7 +274,7 @@ export default function UserPage() {
                 <div className="col-md-4 h-100 mb-3 d-flex justify-content-end">
                   <img
                     className="rounded-circle"
-                    src="https://media-exp1.licdn.com/dms/image/C4E03AQEA2hq7k-y8iQ/profile-displayphoto-shrink_200_200/0/1625029397449?e=2147483647&v=beta&t=ZFojw_cAobe7-gi_NJ-gMOoheyV85ucCW6PQWwOVxbc"
+                    src={user.profilePict}
                     alt=""
                     style={{
                       width: "200px",
@@ -266,7 +284,7 @@ export default function UserPage() {
                   />
                 </div>
                 <div className="col-md-8 d-flex justify-content-center align-items-center">
-                  <div className="border-4 py-4 px-5 rounded bg-primary opacity-100 text-white">
+                  <div className="border-4 py-4 px-5 rounded bg-light opacity-100 text-secondary">
                     <h1>
                       {user.firstName} {user.lastName}
                     </h1>
@@ -278,20 +296,24 @@ export default function UserPage() {
             <div className="col-md-12" style={{ height: "150px" }}></div>
           </div>
           <div className="row d-flex justify-content-center mt-5">
-            <div className="col-10 bg-light d-flex justify-content-center p-0">
-              <div className="row g-5">
-                <div className="col-md-8">
+            <div className="col-12 w-100 d-flex justify-content-center p-0">
+              <div className="row g-5 w-75">
+                <div className="col-md-12 w-100">
                   <div>
-                    <div className="col-12 bg-dark rounded d-flex align-item-center justify-content-center py-2 text-light opacity-49">
-                      <h2>My Magnets</h2>
+                    <div className="col-12 bg-dark rounded d-flex align-item-center justify-content-start px-3 py-2 text-light opacity-49">
+                      <h4>My Magnets</h4>
                     </div>
-                    <div className="d-flex align-item-center justify-content-start">
-                      {!myMagnets.length === 0 && (
+                    <div className="d-flex align-item-center justify-content-center">
+                      {myMagnets.length === 0 && (
                         <>
-                          <h1>You haven't created any magnet yet</h1>
+                          <div className="text-center d-flex align-item-center justify-content-start">
+                            <h1 className="text-center">
+                              You haven't created any magnet yet
+                            </h1>
+                          </div>
                         </>
                       )}
-                      {myMagnets.length && (
+                      {myMagnets.length !== 0 && (
                         <>
                           <table className="table">
                             <thead>
@@ -697,7 +719,7 @@ export default function UserPage() {
                       </>
                     )}
                   </div>
-                  <div className="col-12 bg-warning rounded d-flex mt-5 align-item-center justify-content-start  p-1 text-dark">
+                  <div className="col-12 bg-warning rounded d-flex mt-5 align-item-center justify-content-start p-1 text-dark">
                     <h4 className="mx-3">My Invitations</h4>
                   </div>
                   <div>
@@ -807,51 +829,6 @@ export default function UserPage() {
                   </div>
                   <br />
                   <br />
-                </div>
-                <div className="col-md-4">
-                  <div className="position-sticky" style={{ top: "2rem" }}>
-                    <div className="p-4">
-                      <h4 className="fst-italic">Social Media:</h4>
-                      <ol className="list-unstyled mb-0">
-                        <li>
-                          <a href="#">Instagram</a>
-                        </li>
-                        <li>
-                          <a href="#">FaceBook</a>
-                        </li>
-                        <li>
-                          <a href="#">Twitter</a>
-                        </li>
-                        <li>
-                          <a href="#">Tinder</a>
-                        </li>
-                        <li>
-                          <a href="#">Grinder</a>
-                        </li>
-                        <li>
-                          <a href="#">GoFWB</a>
-                        </li>
-                      </ol>
-                    </div>
-                    <div className="p-4">
-                      <h4 className="fst-italic">description apa gitu:</h4>
-                      <p>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing
-                        elit. Quis eum reiciendis sequi quibusdam suscipit quo
-                        rem a. Sequi ipsum temporibus soluta minima error
-                        doloremque ullam rerum optio quis, sunt est.
-                      </p>
-
-                      <button
-                        type="button"
-                        class="btn btn-primary"
-                        data-bs-toggle="modal"
-                        data-bs-target="#exampleModal"
-                      >
-                        Launch demo modal
-                      </button>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>

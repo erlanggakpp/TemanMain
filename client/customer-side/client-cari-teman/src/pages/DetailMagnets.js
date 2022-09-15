@@ -40,7 +40,11 @@ export default function DetailMagnets() {
         setUsers(data.data);
       })
       .catch((err) => {
-        console.log(err);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: err.response.data.message,
+        });
       })
       .finally(() => {
         dispatch(loadingSet(false));
@@ -91,11 +95,10 @@ export default function DetailMagnets() {
       if (result.isConfirmed) {
         dispatch(addRequest(requestForm))
           .then(({ data }) => {
-            console.log(data, "aaaaaaaaa");
             Swal.fire({
               position: "top-end",
               icon: "success",
-              title: "Success send request!",
+              title: data.data.message,
               showConfirmButton: false,
               timer: 1500,
             });
@@ -141,29 +144,26 @@ export default function DetailMagnets() {
   };
 
   // console.log(magnetDetail, "ajsdjpasdjapsdjpasdj")
-  if (!magnetDetail) return (
-     <>
-          <div className="container d-flex justify-content-center align-items-center">
-            <div
-              style={{ width: "200px", height: "200px", marginTop: "50px" }}
-            >
-              <img
-                src="https://cdn.discordapp.com/attachments/1015235714780246077/1018164300940062790/loading.jpg"
-                alt=""
-                className="img-fluid rounded-circle"
-              />
-            </div>
+  if (!magnetDetail)
+    return (
+      <>
+        <div className="container d-flex justify-content-center align-items-center">
+          <div style={{ width: "200px", height: "200px", marginTop: "50px" }}>
+            <img
+              src="https://cdn.discordapp.com/attachments/1015235714780246077/1018164300940062790/loading.jpg"
+              alt=""
+              className="img-fluid rounded-circle"
+            />
           </div>
-        </>
-  );
+        </div>
+      </>
+    );
   return (
     <>
       {loading ? (
-         <>
+        <>
           <div className="container d-flex justify-content-center align-items-center">
-            <div
-              style={{ width: "200px", height: "200px", marginTop: "50px" }}
-            >
+            <div style={{ width: "200px", height: "200px", marginTop: "50px" }}>
               <img
                 src="https://cdn.discordapp.com/attachments/1015235714780246077/1018164300940062790/loading.jpg"
                 alt=""
@@ -235,10 +235,8 @@ export default function DetailMagnets() {
                         <div className="row">
                           <div className="col-12  h-100 d-flex">
                             <h3 className="display-6">
-                            
-                                {magnetDetail.User.firstName}{" "}
-                                {magnetDetail.User.lastName}
-                              
+                              {magnetDetail.User.firstName}{" "}
+                              {magnetDetail.User.lastName}
                             </h3>
                           </div>
                         </div>
@@ -267,23 +265,6 @@ export default function DetailMagnets() {
                         Description
                       </h1>
                       <p className="p-4">{magnetDetail.magnetDescription}</p>
-                      <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Labore ipsa similique molestiae officia molestias
-                        distinctio eveniet delectus dignissimos. Amet ratione
-                        fuga quod repellendus hic exercitationem ad repellat
-                        eius, vero numquam, temporibus aperiam impedit ab rem
-                        aspernatur necessitatibus, unde dolore voluptates.
-                        Laborum pariatur minus aut quae provident explicabo
-                        dolorum est earum perferendis aperiam vero nobis beatae
-                        repellendus atque, nesciunt, quas optio, debitis ipsum
-                        commodi! Nobis error, quam aspernatur iusto ea aut
-                        maxime quibusdam laudantium, repudiandae sequi cumque
-                        illum rem atque nisi quae quos quia! Dicta vitae
-                        doloribus quidem! Quia odit inventore libero est aperiam
-                        magni rerum consequatur blanditiis voluptas repudiandae.
-                        Quis.
-                      </p>
                       <br />
                       <br />
                       {flag === true && (
@@ -351,8 +332,9 @@ export default function DetailMagnets() {
                               className="bg-warning"
                             >
                               <strong style={{ fontSize: "24px" }}>
-                                {magnetDetail.vacantParticipant} /{" "}
-                                {magnetDetail.participant}
+                                {magnetDetail.participant -
+                                  magnetDetail.vacantParticipant}{" "}
+                                / {magnetDetail.participant}
                               </strong>
                             </div>
                           </p>

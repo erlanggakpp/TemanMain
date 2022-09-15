@@ -29,9 +29,7 @@ export default function SideMenu({ toSide }) {
       {loading ? (
         <>
           <div className="container d-flex justify-content-center align-items-center">
-            <div
-              style={{ width: "200px", height: "200px", marginTop: "50px" }}
-            >
+            <div style={{ width: "200px", height: "200px", marginTop: "50px" }}>
               <img
                 src="https://cdn.discordapp.com/attachments/1015235714780246077/1018164300940062790/loading.jpg"
                 alt=""
@@ -111,7 +109,7 @@ export default function SideMenu({ toSide }) {
                       {toSide.eventDuration}
                     </th>
                   </tr>
-                  <tr>
+                  {/* <tr>
                     <td>Price</td>
                     <th
                       className=" text-white"
@@ -119,7 +117,7 @@ export default function SideMenu({ toSide }) {
                     >
                       {toSide.price}
                     </th>
-                  </tr>
+                  </tr> */}
                 </tbody>
               </table>
             </div>

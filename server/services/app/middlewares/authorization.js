@@ -17,12 +17,7 @@ async function ageAuthorizationBeforeCreateInvitation(req, res, next) {
       targetMagnet.specialRequirement !== "All gender" &&
       gender !== targetMagnet.specialRequirement
     ) {
-      // console.log(
-      //   targetMagnet.specialRequirement,
-      //   gender,
-      //   "<<<<<<<<<<<<<<<<<<<<"
-      // );
-      // console.log("masuk validasi inii");
+      // console.log(gender, targetMagnet.specialRequirement, "<<<<<<<<<<<<<");
       throw { name: "genderFail" };
     } else {
       next();

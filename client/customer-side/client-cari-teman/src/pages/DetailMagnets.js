@@ -181,7 +181,7 @@ export default function DetailMagnets() {
                   }}
                 >
                   <div className="row d-flex justify-content-center">
-                    <div className="col-md-4 h-100 d-flex justify-content-center">
+                    <div className="col-md-6 h-100 d-flex justify-content-center">
                       <div
                         style={{
                           width: "200px",
@@ -207,12 +207,12 @@ export default function DetailMagnets() {
                       >
                         {/* {magnetDetail.specialRequirement} */}
                         <div className="row">
-                          <div className="col-8  h-100 w">
+                          <div className="col-12  h-100 d-flex">
                             <h3 className="display-6">
-                              <strong>
+                            
                                 {magnetDetail.User.firstName}{" "}
                                 {magnetDetail.User.lastName}
-                              </strong>
+                              
                             </h3>
                           </div>
                         </div>

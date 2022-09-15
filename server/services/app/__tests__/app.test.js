@@ -805,15 +805,16 @@ describe("PUT /invitations/:invitationId/accept", () => {
         invitationDescription: "TEST",
       };
 
-      await request(app)
-        .post("/invitations/event/1/magnet/3/user/5")
+      const createdInvit = await request(app)
+        .post("/invitations/event/1/magnet/4/user/4")
         .set({
           target_user_age: 21,
-          user_id: 4,
+          user_id: 5,
         })
         .send(payload);
+      console.log(createdInvit.body, " INVIT<<<<<<<<<<<<<<<");
       const response = await request(app).put("/invitations/2/accept").set({
-        user_id: 5,
+        user_id: 4,
       });
       expect(response.status).toBe(400);
 
@@ -1455,51 +1456,6 @@ describe("PUT /magnets", () => {
       expect(response.body).toHaveProperty(
         "message",
         "Participant number is required"
-      );
-    });
-    it("Should return 'Please choose whether you want to open or close this magnet'", async () => {
-      const payload = {
-        confirmationDate: "2022/10/03",
-        status: "",
-        ageRequirement: "18",
-        specialRequirement: "Male or Female",
-        magnetDescription: "TEST",
-        participant: 3,
-        vacantParticipant: 2,
-      };
-      const response = await request(app)
-        .put("/magnets/1")
-        .set({
-          user_id: 3,
-        })
-        .send(payload);
-      // console.log(response, "<<<<<<<<<<<<<<<< ini  response");
-      expect(response.status).toBe(400);
-      expect(response.body).toHaveProperty(
-        "message",
-        "Please choose whether you want to open or close this magnet"
-      );
-    });
-    it("Should return 'Please choose whether you want to open or close this magnet'", async () => {
-      const payload = {
-        confirmationDate: "2022/10/03",
-        ageRequirement: "18",
-        specialRequirement: "Male or Female",
-        magnetDescription: "TEST",
-        participant: 3,
-        vacantParticipant: 2,
-      };
-      const response = await request(app)
-        .put("/magnets/1")
-        .set({
-          user_id: 3,
-        })
-        .send(payload);
-      // console.log(response, "<<<<<<<<<<<<<<<< ini  response");
-      expect(response.status).toBe(400);
-      expect(response.body).toHaveProperty(
-        "message",
-        "Please choose whether you want to open or close this magnet"
       );
     });
   });

@@ -85,6 +85,7 @@ export const detailMagnet = function (id) {
       })
       .then(({ data }) => {
         dispatch(getDetailMagnet(data));
+        console.log(data, "INI ACTION");
         return data;
       });
     // .finally(() => dispatch(loadingSet(false)));

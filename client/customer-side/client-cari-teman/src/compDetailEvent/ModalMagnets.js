@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { detailEvent, loadingSet } from "../store/action/events";
 import { addMagnets } from "../store/action/magnets";
 const Swal = require("sweetalert2");
@@ -17,7 +17,6 @@ export default function ModalMagnets() {
     magnetDescription: "",
     participant: "",
     vacantParticipant: "",
-    participantDescription: "",
   });
   const changeForm = (e) => {
     const { name, value } = e.target;
@@ -49,6 +48,9 @@ export default function ModalMagnets() {
               showConfirmButton: false,
               timer: 1500,
             });
+          })
+          .then(() => {
+            dispatch(detailEvent(params.id));
           })
           .catch((err) => {
             Swal.fire({
@@ -190,23 +192,6 @@ export default function ModalMagnets() {
                                 />
                               </div>
                             </div>
-                          </div>
-                          <div className="mb-3">
-                            <label
-                              htmlFor="exampleFormControlTextarea4"
-                              className="form-label"
-                            >
-                              Participant Description
-                            </label>
-                            <textarea
-                              value={dataForm.participantDescription}
-                              onChange={changeForm}
-                              name="participantDescription"
-                              className="form-control"
-                              id="exampleFormControlTextarea4"
-                              placeholder="description"
-                              rows="3"
-                            ></textarea>
                           </div>
                           <br />
 

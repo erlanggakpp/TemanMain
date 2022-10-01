@@ -2,7 +2,7 @@ import TopBanner from "../compDetailEvent/TopBanner";
 import CardAtDetailPage from "../compDetailEvent/CardAtDetailPage";
 import SideMenu from "../compDetailEvent/SideMenu";
 import { useParams, Outlet } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { detailEvent, loadingSet } from "../store/action/events";
 
@@ -10,26 +10,30 @@ export default function DetailEvent() {
   const params = useParams();
   const dispatch = useDispatch();
   const { loading, eventDetail } = useSelector((e) => e.events);
-
+  const [loadingEvent, setLoadingEvent] = useState(true);
   useEffect(() => {
     dispatch(detailEvent(params.id))
-    // dispatch(detailEvent(params.id)).finally(() => dispatch(loadingSet(false)));
+      .then((data) => {
+        setLoadingEvent(false);
+      })
+      .finally(() => {
+        dispatch(loadingSet(false));
+      });
   }, []);
 
   return (
     // <h1>hallo</h1>
     <>
-      {!eventDetail ? (
+      {loadingEvent ? (
         <>
           <div className="container d-flex justify-content-center align-items-center">
-            <div
-              style={{ width: "200px", height: "200px", marginTop: "50px" }}
-            >
+            <div style={{ width: "200px", height: "200px", marginTop: "50px" }}>
               <img
                 src="https://cdn.discordapp.com/attachments/1015235714780246077/1018164300940062790/loading.jpg"
                 alt=""
                 className="img-fluid rounded-circle"
               />
+              {/* <h1>loading</h1> */}
             </div>
           </div>
         </>
@@ -38,7 +42,7 @@ export default function DetailEvent() {
           <Outlet />
           {/* <p>{JSON.stringify(eventDetail)}</p> */}
           <div className="container" style={{ marginTop: "100px" }}>
-              <div className="container">
+            <div className="container">
               <TopBanner eventDetail={eventDetail} />
               {eventDetail.Magnets ? (
                 <div className="container d-flex justify-content-center align-items-center">
@@ -48,7 +52,11 @@ export default function DetailEvent() {
                 <>
                   <div className="container d-flex justify-content-center align-items-center">
                     <div
-                      style={{ width: "200px", height: "200px", marginTop: "50px" }}
+                      style={{
+                        width: "200px",
+                        height: "200px",
+                        marginTop: "50px",
+                      }}
                     >
                       <img
                         src="https://cdn.discordapp.com/attachments/1015235714780246077/1018164300940062790/loading.jpg"

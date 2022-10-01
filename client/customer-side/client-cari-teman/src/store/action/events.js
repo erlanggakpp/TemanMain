@@ -30,17 +30,17 @@ export const fetchEvent = function () {
     return axios
       .get(`${baseUrl}/events`, {
         headers: {
-          access_token:
-            localStorage.access_token        
-          },
+          access_token: localStorage.access_token,
+        },
       })
       .then(({ data }) => {
         dispatch(getEvent(data));
+
         // return data
       })
       .finally(() => {
-        dispatch(loadingSet(false))
-      })
+        dispatch(loadingSet(false));
+      });
 
     // .finally(() => dispatch(loadingSet(false)));
   };
@@ -48,25 +48,27 @@ export const fetchEvent = function () {
 
 export const detailEvent = function (id) {
   return function (dispatch) {
+    // dispatch(loadingSet(true));
     return axios
       .get(`${baseUrl}/events/${id}`, {
         headers: {
-          access_token:
-            localStorage.access_token
+          access_token: localStorage.access_token,
         },
       })
       .then(({ data }) => {
+        console.log(data, "INI ACTION");
         dispatch(getDetail(data));
-      })
-      .finally(() => {
-        dispatch(loadingSet(false))
-      })
+        return data;
+      });
+    // .finally(() => {
+    //   dispatch(loadingSet(false));
+    // });
     // .finally(() => dispatch(loadingSet(false)));
   };
 };
 
-export const getLocation = (loc) => (dispatch) =>{
+export const getLocation = (loc) => (dispatch) => {
   return axios.get(
     `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${loc},ID/2023-07-04?key=VQKDY363J7W3FXYM3KFRER4RW`
-  )
-}
+  );
+};
